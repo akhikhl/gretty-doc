@@ -10,7 +10,7 @@ is not optimal (too slow). Specifically for such cases Gretty implements "fast r
 
 You can configure fastReload feature by adjusting the link:Gretty-configuration.html[gretty configuration] properties:
 
-* link:Gretty-configuration.html#fastReload[fastReload] boolean.
+* link:Gretty-configuration.html#_fastreload[fastReload] boolean.
 
 ** When set to false, fast reload feature is disabled (the default). Effect: any resource changes will cause full restart of web-app (as far as scanInterval is specified, see link:Hot-deployment.html[Hot deployment]).
 
@@ -18,10 +18,10 @@ You can configure fastReload feature by adjusting the link:Gretty-configuration.
 That means: whenever some files within webAppDir are changed, these files are copied into running web-app 
 without web-app restart.
 
-* link:Gretty-configuration.html#fastReload[fastReload] function(String) or function(java.io.File).
+* link:Gretty-configuration.html#_fastreload[fastReload] function(String) or function(java.io.File).
 The specified directory or file is added to fast-reloaded resources.
 
-* link:Gretty-configuration.html#fastReload[fastReload] - function(Map).
+* link:Gretty-configuration.html#_fastreload[fastReload] - function(Map).
 Map may contain the following properties:
 
 ** +baseDir+ is required and should have type String or java.io.File. If
@@ -46,7 +46,7 @@ paths satisfy +excludesPattern+, are not fast-reloaded. +excludesPattern+ is alw
 
 Gretty fast reload assumes the following defaults:
 
-* link:Gretty-configuration.html#fastReload[fastReload] property is set to false.
+* link:Gretty-configuration.html#_fastreload[fastReload] property is set to false.
 
 * Fast reload always excludes the following files:
 `'*.jar', '*.class', 'web.xml', 'web-fragment.xml', 'jetty.xml', 'jetty-env.xml', 'WEB-INF/lib/**', 'WEB-INF/classes/**'`

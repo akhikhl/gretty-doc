@@ -7,9 +7,10 @@ Andrey Hihlovskiy
 
 link:Getting-started.html[Getting started] +
 link:Feature-overview.html[Feature overview] +
+link:System-requirements.html[System requirements] +
 link:Troubleshooting.html[Troubleshooting]
 
-=== Core features
+== Core features
 
 link:Switching-between-Jetty-and-servlet-API-versions.html[Switching between jetty and servlet-API versions] +
 link:Hot-deployment.html[Hot deployment] +
@@ -27,19 +28,19 @@ link:Integration-tests-support.html[Integration tests] +
 link:Code-coverage-support.html[Code coverage (jacoco) support] +
 link:Logging.html[Logging]
 
-==== JEE-specific
+=== JEE-specific
 
 link:Servlet-container-classpath.html[Servlet container classpath] +
 link:JEE-annotations-support.html[JEE annotations support] +
 link:Web-fragments-support.html[Web fragments support]
 
-==== Jetty-specific
+=== Jetty-specific
 
 link:Security-realms.html[Security Realms] +
 link:jetty.xml-support.html[jetty.xml support] +
 link:jetty-env.xml-support.html[jetty-env.xml support]
 
-=== Multiple web-apps
+== Multiple web-apps
 
 link:Multiple-web-apps-introduction.html[Introduction] +
 link:Multiple-web-apps-configureless-setup.html[Configureless setup] +
@@ -49,7 +50,7 @@ link:Combining-web-app-and-farm.html[Combining web-app and farm] +
 link:Debugging-a-farm.html[Debugging a farm] +
 link:Farm-integration-tests.html[Farm integration tests]
 
-==== Multiple web-apps configuration
+=== Multiple web-apps configuration
 
 link:Farm-extension.html[Farm extension] +
 link:Farms-extension.html[Farms extension] +
@@ -58,11 +59,11 @@ link:Farm-web-app-list.html[Farm web-app list] +
 link:Farms-and-web-app-specific-properties.html[Farms and web-app specific properties] +
 link:Duplicate-farm-names.html[Duplicate farm names]
 
-==== Multiple web-apps tasks
+=== Multiple web-apps tasks
 
 link:Farm-tasks.html[Farm tasks] +
 link:Farm-task-classes.html[Farm task classes]
 
-=== Additional materials
+== Additional materials
 
 link:Publishing-gretty-to-sonatype-and-bintray.html[Publishing gretty to sonatype and bintray]

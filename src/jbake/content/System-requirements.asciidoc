@@ -1,0 +1,19 @@
+= System requirements
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Gretty requires:
+
+* JDK7 or JDK8 
+
+* Gradle 1.11 or newer
+
+* Enough operating memory and disk space to run gradle and jetty
+
+* Access to jcenter repository or equivalent
+
+Support of JDK6 is coming soon.
+

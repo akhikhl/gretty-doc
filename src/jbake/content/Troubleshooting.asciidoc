@@ -5,7 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-==== GroovyCastException while starting web-app with Gretty
+== GroovyCastException while starting web-app with Gretty
 
 Don't try to apply from "grettyX-X.plugin" AND define classpath for
 gretty simultaneously:
@@ -32,7 +32,7 @@ apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.p
 
 Here the following happens: gradle loads gretty-plugin JARs twice, class-loading gets confused and you get exceptions like GroovyCastException.
 
-==== Exceptions when using Jacoco code coverage on JDK-8
+== Exceptions when using Jacoco code coverage on JDK-8
 
 If you get exceptions when using combination JDK-8 + Gradle 1.1x + Jacoco + Gretty, you are very likely hitting a problem of compatibility between JDK-8 and earlier versions of Jacoco. This is fixed by adding the following to your "build.gradle":
 

@@ -15,7 +15,7 @@ and you want that "things just work", consider using
 link:jettyRun-task.html[jettyRun task] or other link:Gretty-tasks[supported
 tasks].
 
-[[syntax]]
+[[_syntax]]
 Syntax
 ^^^^^^
 
@@ -70,7 +70,7 @@ task('myJettyRun', type: GrettyStartTask) {
 }
 ------------------------------------------------------------------------------
 
-[[properties]]
+[[_properties]]
 Properties
 ^^^^^^^^^^
 
@@ -100,16 +100,16 @@ proceeds with normal execution of tasks, which allows to implement
 integration tests.
 * when false, Gretty always waits for Jetty process to finish.
 * `port` - integer, optional, default is
-link:Gretty-configuration.html#port[project.gretty.port]. Defines TCP-port
+link:Gretty-configuration.html#_port[project.gretty.port]. Defines TCP-port
 used by Jetty for incoming HTTP-requests.
 * `servicePort` - integer, optional, default is
-link:Gretty-configuration.html#servicePort[project.gretty.servicePort].
+link:Gretty-configuration.html#_serviceport[project.gretty.servicePort].
 Defines TCP-port used by Gretty to send commands to Jetty process.
 * `statusPort` - integer, optional, default is
-link:Gretty-configuration.html#statusPort[project.gretty.statusPort]. Defines
+link:Gretty-configuration.html#_statusport[project.gretty.statusPort]. Defines
 TCP-port used by Jetty process to send status to Gretty.
 * `contextPath` - string, optional, default is
-link:Gretty-configuration.html#contextPath[project.gretty.contextPath].
+link:Gretty-configuration.html#_contextpath[project.gretty.contextPath].
 Defines context path for the web-app. "contextPath" affects only
 jettyRun[War][Debug], jettyStart[War][Debug] tasks. If you assemble WAR
 file and deploy it to some servlet container, you'll have to define
@@ -131,11 +131,11 @@ project.webAppDir. When not specified, GrettyStartTask borrows realm
 definition from gretty configuration. See more information in chapter
 link:Security-realms.html[Security Realms].
 * `jettyXmlFile` - string or java.io.File, optional, default is
-link:Gretty-configuration.html#jettyXmlFile[project.gretty.jettyXmlFile].
+link:Gretty-configuration.html#_jettyxmlfile[project.gretty.jettyXmlFile].
 Defines name and/or location of "jetty.xml" file. See more information
 in chapter link:jetty.xml-support.html[jetty.xml support].
 * `jettyEnvXmlFile` - string or java.io.File, default is
-link:Gretty-configuration.html#jettyEnvXmlFile[project.gretty.jettyEnvXmlFile].
+link:Gretty-configuration.html#_jettyenvxmlfile[project.gretty.jettyEnvXmlFile].
 Defines name and/or location of "jetty-env.xml" file. See more
 information in chapter link:jetty-env.xml-support[jetty-env.xml
 support].
@@ -144,7 +144,7 @@ be called just before jetty server is started.
 * `onStop` - function(Closure), optional, multiple. Defines closure to
 be called just after jetty server is stopped.
 * `scanInterval` - integer, optional, default is
-link:Gretty-configuration.html#scanInterval[project.gretty.scanInterval].
+link:Gretty-configuration.html#_scaninterval[project.gretty.scanInterval].
 Defines hot-deployment scan interval, in seconds. See more information
 in chapter link:Hot-deployment.html[Hot deployment].
 * `scanDir` - function(String) or function(java.io.File), optional,
@@ -170,31 +170,31 @@ directory to fast-reloaded resources, with additional specification of
 `pattern` and `excludesPattern` to fine-tune fast-reloading. See more
 information in chapter link:Fast-reload.html[Fast reload].
 * `logbackConfigFile` - string, optional, default is
-link:Gretty-configuration.html#logbackConfigFile[project.gretty.logbackConfigFile].
+link:Gretty-configuration.html#_logbackconfigfile[project.gretty.logbackConfigFile].
 Defines the absolute or relative path to logback configuration file
 (.groovy or .xml). See more information in chapter Logging.
 * `loggingLevel` - string, optional, default is
-link:Gretty-configuration.html#loggingLevel[project.gretty.loggingLevel].
+link:Gretty-configuration.html#_logginglevel[project.gretty.loggingLevel].
 Defines slf4j logging-level for jetty process. See more information in
 chapter Logging.
 * `consoleLogEnabled` - boolean, optional, default is
-link:Gretty-configuration.html#consoleLogEnabled[project.gretty.consoleLogEnabled].
+link:Gretty-configuration.html#_consolelogenabled[project.gretty.consoleLogEnabled].
 Defines, whether log messages are written to the terminal. See more
 information in chapter Logging.
 * `fileLogEnabled` - boolean, optional, default is
-link:Gretty-configuration.html#fileLogEnabled[project.gretty.fileLogEnabled].
+link:Gretty-configuration.html#_filelogenabled[project.gretty.fileLogEnabled].
 Defines, whether log messages are written to the log-file. See more
 information in chapter Logging.
 * `logFileName` - string, optional, default is
-link:Gretty-configuration.html#logFileName[project.gretty.logFileName].
+link:Gretty-configuration.html#_logfilename[project.gretty.logFileName].
 Defines log file name (without path). See more information in chapter
 Logging.
 * `logDir` - string, optional, default is
-link:Gretty-configuration.html#logDir[project.gretty.logDir]. Defines
+link:Gretty-configuration.html#_logdir[project.gretty.logDir]. Defines
 directory, where log file is created. See more information in chapter
 Logging.
 * `jvmArgs` - List, optional, default is
-link:Gretty-configuration.html#jvmArgs[project.gretty.jvmArgs]. Defines JVM
+link:Gretty-configuration.html#_jvmargs[project.gretty.jvmArgs]. Defines JVM
 arguments for Jetty process.
 * `classPath` - List, optional, default is project's runtime classpath.
 Defines a classpath for Jetty process.
@@ -210,7 +210,7 @@ default is
 Defines an ExecutorService to be used for asynchronous communication to
 Jetty process.
 
-[[workflow]]
+[[_workflow]]
 Workflow
 ^^^^^^^^
 

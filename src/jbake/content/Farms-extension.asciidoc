@@ -35,4 +35,4 @@ Each farm consists of two parts:
 * link:Farm-server-specific-properties.html[Farm server-specific properties]
 * link:Farm-web-app-list.html[Farm web-app list]
 
-See also: link:index.html#Multiple-web-apps[Multiple web-apps].
+See also: link:index.html#_multiple_web_apps[Multiple web-apps].

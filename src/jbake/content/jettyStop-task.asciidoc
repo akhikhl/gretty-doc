@@ -17,12 +17,12 @@ gradle jettyStop
 == Effects
 
 jettyStop does not build source code, it only sends "stop" command to
-localhost:link:Gretty-configuration.html#servicePort[servicePort]. Usually
+localhost:link:Gretty-configuration.html#_serviceport[servicePort]. Usually
 jettyStop is used to stop Gretty/Jetty process started by jettyStart[War][Debug].
 
 == Instantiation and extension
 
-The object called jettyStop is actually an instance of link:Gretty-task-classes.html#jettystoptask[JettyStopTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyStop is actually an instance of link:Gretty-task-classes.html#_jettystoptask[JettyStopTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----

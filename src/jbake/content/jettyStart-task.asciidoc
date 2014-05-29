@@ -18,7 +18,7 @@ gradle jettyStart
 .  The web-app gets compiled (if it's not up-to-date).
 .  Embedded jetty starts in separate java process against compiled
 classes and their dependencies and listens for HTTP-requests on
-link:Gretty-configuration.html#port[port] (default 8080).
+link:Gretty-configuration.html#_port[port] (default 8080).
 .  Gretty waits for jetty process to complete.
 .  Gradle script continues normal execution of tasks.
 
@@ -29,7 +29,7 @@ gradle process stops it, supposedly +gradle jettyStop+.
 
 == Instantiation and extension
 
-The object called jettyStart is actually an instance of link:Gretty-task-classes.html#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyStart is actually an instance of link:Gretty-task-classes.html#_jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----
@@ -54,6 +54,6 @@ If you are going to instantiate or extend this task class yourself, make sure yo
 
 == Workflow
 
-image::http://akhikhl.github.io/gretty/media/jettyStart_StateDiagram.svg[]
+image::images/jettyStart_StateDiagram.svg[]
 
 See also: link:jettyStop-task.html[jettyStop task] and link:jettyRestart-task.html[jettyRestart task].

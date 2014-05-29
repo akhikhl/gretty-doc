@@ -80,4 +80,4 @@ By default farm automatically adds all subprojects of the farm project, which ar
 
 Gretty-farm plugin also defines new, distinct set of tasks for running farms: farmRun, farmRunDebug, farmRunWar, farmRunWarDebug, etc. (see complete list of farm tasks link:Farm-tasks.html[here]).
 
-See also: link:index.html#Multiple-web-apps[Multiple web-apps].
+See also: link:index.html#_multiple_web_apps[Multiple web-apps].

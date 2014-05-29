@@ -75,7 +75,7 @@ Of course, you can intermix project and file-based web-apps and run them all on 
 
 TIP: Relative paths to WAR-files are resolved relative to current project's directory. 
 
-TIP: Sometimes you will want to customize link:Gretty-configuration.html#Web-app-specific-properties[web-app-specific properties] for a file-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties.html#Web-app-specific-properties-override[webapp-specific properties override] mechanism.
+TIP: Sometimes you will want to customize link:Gretty-configuration.html#_web_app_specific_properties[web-app-specific properties] for a file-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties.html#_web_app_specific_properties_override[webapp-specific properties override] mechanism.
 
 == Repository-based web-app references
 
@@ -93,12 +93,12 @@ Of course, you can intermix project, file-based and repository-based web-apps an
 
 TIP: If you get error message on missing dependency, check that "build.gradle" contains necessary repository definitions.
 
-TIP: Sometimes you will want to customize link:Gretty-configuration.html#Web-app-specific-properties[web-app-specific properties] for a repository-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties.html#Web-app-specific-properties-override[webapp-specific properties override] mechanism.
+TIP: Sometimes you will want to customize link:Gretty-configuration.html#_web_app_specific_properties[web-app-specific properties] for a repository-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties.html#_web_app_specific_properties_override[webapp-specific properties override] mechanism.
 
 '''
 
 See also: 
 
-* link:index.html#Multiple-web-apps[Multiple web-apps]
+* link:index.html#_multiple_web_apps[Multiple web-apps]
 * link:Farm-server-specific-properties.html[Farm server-specific properties]
 * link:Farms-and-web-app-specific-properties.html[Farms and web-app specific properties]

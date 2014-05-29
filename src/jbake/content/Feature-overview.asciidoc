@@ -5,10 +5,6 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-link:https://github.com/akhikhl/gretty.html[Project home] | link:index.html[Wiki home] | link:Feature-overview.html[Feature overview]
-
-image::http://akhikhl.github.io/gretty/media/gretty_logo.png[logo]
-
 == Gradle tasks
 Gretty provides gradle tasks, which automate starting, stopping, testing and debugging web-apps. 
 Tasks work out-of-the-box, without additional configuration, but are fully configurable/customizable.
@@ -16,13 +12,13 @@ Tasks work out-of-the-box, without additional configuration, but are fully confi
 See more information at link:Gretty-tasks.html[Gretty tasks] and link:Farm-tasks.html[Farm tasks].
 
 == Multiple web-apps support
-Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: link:Farm-web-app-list.html#Project-web-app-references[gradle projects], link:Farm-web-app-list.html#File-based-web-app-references[WAR-files in the file system] and even link:Farm-web-app-list.html#Repository-based-web-app-references[WAR-files from maven dependencies]. +
-Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup.html[configureless mode], although it is fully link:index.html#Multiple-web-apps-configuration[configurable/customizable]. +
+Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: link:Farm-web-app-list.html#_project_web_app_references[gradle projects], link:Farm-web-app-list.html#_file_based_web_app_references[WAR-files in the file system] and even link:Farm-web-app-list.html#_repository_based_web_app_references[WAR-files from maven dependencies]. +
+Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup.html[configureless mode], although it is fully link:index.html#_multiple_web_apps_configuration[configurable/customizable]. +
 Multiple web-apps feature also works nicely with integration tests and with the debugger.
 
 == Switch between jetty and servlet-API versions
 
-Gretty supports link:Switching-between-jetty-and-servlet-API-versions.html[easy switch] between jetty 7, 8 and 9 and servlet API 2.5, 3.0.1 and 3.1.0. 
+Gretty supports link:Switching-between-Jetty-and-servlet-API-versions.html[easy switch] between jetty 7, 8 and 9 and servlet API 2.5, 3.0.1 and 3.1.0. 
 
 == Hot deployment
 

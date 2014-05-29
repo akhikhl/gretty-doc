@@ -29,12 +29,12 @@ JettyStartTask starts single web-app project on Jetty.
 | server-specific properties
 | 
 | all properties are null by default
-| same as link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
+| same as link:Gretty-configuration.html#_server_specific_properties[server-specific properties of gretty configuration]
 
 | web-app-specific properties
 |
 | all properties are null by default
-| same as link:Gretty-configuration.html#Web-app-specific-properties[web-app specific properties of gretty configuration]
+| same as link:Gretty-configuration.html#_web_app_specific_properties[web-app specific properties of gretty configuration]
 
 | interactive
 | boolean
@@ -109,7 +109,7 @@ JettyStopTask sends "stop" command over servicePort to a single web-app, which w
 | servicePort
 | integer
 | null
-| same as in link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
+| same as in link:Gretty-configuration.html#_server_specific_properties[server-specific properties of gretty configuration]
 |===
 
 === Property inheritance
@@ -140,7 +140,7 @@ JettyRestartTask sends "restart" command over servicePort to a single web-app, w
 | servicePort
 | integer
 | null
-| same as in link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
+| same as in link:Gretty-configuration.html#_server_specific_properties[server-specific properties of gretty configuration]
 |===
 
 === Property inheritance
@@ -188,12 +188,12 @@ task('MyJettyBeforeIntegrationTest', type: JettyBeforeIntegrationTestTask) {
 | server-specific properties
 | 
 | all properties are null by default
-| same as link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
+| same as link:Gretty-configuration.html#_server_specific_properties[server-specific properties of gretty configuration]
 
 | web-app-specific properties
 |
 | all properties are null by default
-| same as link:Gretty-configuration.html#Web-app-specific-properties[web-app specific properties of gretty configuration]
+| same as link:Gretty-configuration.html#_web_app_specific_properties[web-app specific properties of gretty configuration]
 
 | interactive
 | boolean
@@ -258,7 +258,7 @@ task('MyJettyAfterIntegrationTest', type: JettyAfterIntegrationTestTask) {
 | servicePort
 | integer
 | null
-| same as in link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
+| same as in link:Gretty-configuration.html#_server_specific_properties[server-specific properties of gretty configuration]
 
 | integrationTestTask
 | String

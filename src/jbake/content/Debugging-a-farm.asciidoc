@@ -13,4 +13,4 @@ NOTE: Author of Gretty plugin tested farm debugging under Netbeans IDE. In princ
 
 IMPORTANT: The project, containing a farm, must be a JVM project (Java, Groovy, etc.), otherwise IDE does not send debugging commands to the debugged JVM process over port 5005. This requirement is easily fulfilled, when you apply gretty-farm plugin to one of the web-apps, as link:Combining-web-app-and-farm.html[described before].
 
-See also: link:index.html#Multiple-web-apps[Multiple web-apps].
+See also: link:index.html#_multiple_web_apps[Multiple web-apps].

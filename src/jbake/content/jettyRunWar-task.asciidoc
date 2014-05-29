@@ -17,7 +17,7 @@ gradle jettyRunWar
 == Effects
 .  The web-app gets compiled and assembled into WAR-file (if it's not up-to-date).
 .  Embedded jetty starts in separate java process against WAR-file and listens for HTTP-requests 
-on link:Gretty-configuration.html#port[port] (default 8080).
+on link:Gretty-configuration.html#_port[port] (default 8080).
 .  Gretty waits for the user keypress.
 .  When user presses any key (in the same terminal), jetty process shuts down.
 5.  Gretty waits for jetty process to complete.
@@ -25,7 +25,7 @@ on link:Gretty-configuration.html#port[port] (default 8080).
 
 == Instantiation and extension
 
-The object called jettyRunWar is actually an instance of link:Gretty-task-classes.html#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyRunWar is actually an instance of link:Gretty-task-classes.html#_jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----
@@ -50,4 +50,4 @@ If you are going to instantiate or extend this task class yourself, make sure yo
 
 == Workflow
 
-image::http://akhikhl.github.io/gretty/media/jettyRunWar_StateDiagram.svg[]
+image::images/jettyRunWar_StateDiagram.svg[]

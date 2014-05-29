@@ -7,7 +7,7 @@ Andrey Hihlovskiy
 
 == Web-app specific properties scope
 
-Farm does not define any farm-wide web-app-specific properties, like contextPath, initParameter etc. Instead, it applies link:Gretty-configuration.html#Web-app-specific-properties[web-app specific properties], defined in gretty configurations, to their respective web-apps:
+Farm does not define any farm-wide web-app-specific properties, like contextPath, initParameter etc. Instead, it applies link:Gretty-configuration.html#_web_app_specific_properties[web-app specific properties], defined in gretty configurations, to their respective web-apps:
 
 ProjectA:
 

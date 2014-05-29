@@ -6,7 +6,7 @@ Andrey Hihlovskiy
 :jbake-status: published
 
 Gretty automatically invokes this task before integration test task, referred in
-link:Gretty-configuration.html#integrationTestTask[integrationTestTask] property of gretty configuration.
+link:Gretty-configuration.html#_integrationtesttask[integrationTestTask] property of gretty configuration.
 
 WARNING: Internal task, please, don't invoke it on command line!
 
@@ -14,13 +14,13 @@ WARNING: Internal task, please, don't invoke it on command line!
 
 . Embedded jetty starts in separate java process against compiled
 classes and their dependencies and listens for HTTP-requests on
-link:Gretty-configuration.html#port[port] (default 8080).
+link:Gretty-configuration.html#_port[port] (default 8080).
 . Gradle script waits until jetty is online.
 . Gradle script proceeds to integration test task.
 
 == Instantiation and extension
 
-The object called jettyBeforeIntegrationTest is actually an instance of link:Gretty-task-classes.html#jettybeforeintegrationtesttask[JettyBeforeIntegrationTestTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyBeforeIntegrationTest is actually an instance of link:Gretty-task-classes.html#_jettybeforeintegrationtesttask[JettyBeforeIntegrationTestTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----

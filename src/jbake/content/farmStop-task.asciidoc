@@ -17,7 +17,7 @@ gradle farmStop
 == Effects
 
 farmStop does not build source code, it only sends "stop" command to
-localhost:link:Farm-configuration.html#servicePort[servicePort]. Usually
+localhost:link:Farm-configuration.html#_serviceport[servicePort]. Usually
 farmStop is used to stop Gretty/Jetty process started by farmStart[War][Debug].
 
 WARNING: do not try to stop Jetty server with farmStop, if it was started with jettyStart[War][Debug] or with farmStart[War][Debug] from another farm. Reason is simple: each farm may redefine it's TCP-ports in farm configuration, so farmStop may be sending a command on incorrect port, when paired with wrong start task.

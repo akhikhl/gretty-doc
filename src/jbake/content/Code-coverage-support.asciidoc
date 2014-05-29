@@ -174,7 +174,7 @@ NOTE: When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegratio
 
 NOTE: Passing myBeforeIntegrationTest as a parameter to JacocoReport.executionData is now simple: task already exists and Jacoco will correctly extract destinationFile from task's Jacoco extension.
 
-TIP: When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, you can use many nice features, like debugging, by setting up task properties. See more information in link:Gretty-task-classes.html#jettybeforeintegrationtesttask[JettyBeforeIntegrationTestTask] and link:Gretty-task-classes.html#jettyafterintegrationtesttask[JettyAfterIntegrationTestTask] class documentation.
+TIP: When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, you can use many nice features, like debugging, by setting up task properties. See more information in link:Gretty-task-classes.html#_jettybeforeintegrationtesttask[JettyBeforeIntegrationTestTask] and link:Gretty-task-classes.html#_jettyafterintegrationtesttask[JettyAfterIntegrationTestTask] class documentation.
 
 == Examples
 
@@ -191,4 +191,4 @@ Gretty contains the complete and working examples of Jacoco code coverage:
 
 == Troubleshooting
 
-If you get exceptions when using combination JDK-8 + Gradle 1.1x + Jacoco + Gretty, you are very likely hitting a problem of compatibility between JDK-8 and earlier versions of Jacoco. See information on how to fix this link:Troubleshooting.html#exceptions-when-using-jacoco-code-coverage-on-jdk-8[here].
+If you get exceptions when using combination JDK-8 + Gradle 1.1x + Jacoco + Gretty, you are very likely hitting a problem of compatibility between JDK-8 and earlier versions of Jacoco. See information on how to fix this link:Troubleshooting.html#_exceptions_when_using_jacoco_code_coverage_on_jdk_8[here].

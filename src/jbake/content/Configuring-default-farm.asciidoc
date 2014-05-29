@@ -22,4 +22,4 @@ farm {
 
 Here we define that default farm includes two projects - ProjectA and ProjectB. As soon as we start farm tasks, both projects will run on the same jetty server with distinct context paths.
 
-See also: link:index.html#Multiple-web-apps[Multiple web-apps].
+See also: link:index.html#_multiple_web_apps[Multiple web-apps].

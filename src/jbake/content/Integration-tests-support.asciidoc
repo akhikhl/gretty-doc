@@ -62,7 +62,7 @@ Your test code can access these properties via System.getProperty function. This
 
 == Workflow
 
-image::http://akhikhl.github.io/gretty/media/integrationTest_StateDiagram.svg[]
+image::images/integrationTest_StateDiagram.svg[]
 
 See also:
 link:jettyBeforeIntegrationTest-task.html[jettyBeforeIntegrationTest task]

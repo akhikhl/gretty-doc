@@ -44,7 +44,7 @@ On consequent runs:
 
 When you open HTTPS page in the browser for the first time, you typically see the message:
 
-image::http://akhikhl.github.io/gretty/media/Connection_is_untrusted.png[]
+image::images/Connection_is_untrusted.png[]
 
 The message is caused by the fact that Gretty uses self-signed certificate, not chained to http://en.wikipedia.org/wiki/Certificate_authority[Certificate Authority (CA)].
 After you click "I understand the risks" and accept the certificate, the web-browser shows your web-app.

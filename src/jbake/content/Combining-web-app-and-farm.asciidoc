@@ -21,4 +21,4 @@ Each of these plugins adds it's own stuff to the project:
 Everything added by gretty plugin relates to single web-app only. +
 Everything added by gretty-farm plugin relates to multiple web-apps.
 
-See also: link:index.html#Multiple-web-apps[Multiple web-apps].
+See also: link:index.html#_multiple_web_apps[Multiple web-apps].
