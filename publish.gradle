@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'github-pages'                        
 
 githubPages {
-  repoUri = 'git@github.com:akhikhl/testjbake.git'      
+  repoUri = 'git@github.com:akhikhl/gretty-doc.git'      
   pages {
      from(file('build/jbake')) {
      	into '.'                                    
