@@ -1,0 +1,83 @@
+= Farms and web-app specific properties
+
+== Web-app specific properties scope
+
+Farm does not define any farm-wide web-app-specific properties, like contextPath, initParameter etc. Instead, it applies link:Gretty-configuration#Web-app-specific-properties[web-app specific properties], defined in gretty configurations, to their respective web-apps:
+
+ProjectA:
+
+[source,groovy]
+----
+gretty {
+  contextPath: '/abc'
+}
+----
+
+ProjectB:
+
+[source,groovy]
+----
+gretty {
+  contextPath: '/def'
+}
+----
+
+farm project:
+
+[source,groovy]
+----
+farm {
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+}
+----
+
+When you invoke `gradle farmRun`, Gretty starts ProjectA with context "/abc" and ProjectB with context "/def".
+
+== Web-app specific properties override
+
+Farms support a mechanism for overriding any web-app-specific properties:
+
+[source,groovy]
+----
+gretty {
+  contextPath = '/abc'
+}
+
+farm {
+  webapp project, contextPath: '/def'
+}
+----
+
+* When you invoke `gradle farmRun`, it serves this web-app at context path "/def".
+
+* When you invoke `gradle jettyRun`, it serves this web-app at context path "/abc".
+
+== Mixing inplace and WAR mode
+
+Web-app specific properties override has one interesting application - you can mix inplace and WAR mode of your web-apps at will.
+
+By default, farmRun, farmRunDebug, farmStart, farmStartDebug tasks start all web-apps "inplace", without creating WAR-files. 
+
+By default, farmRunWar, farmRunWarDebug, farmStartWar, farmStartWarDebug tasks start all web-apps via WAR-files.
+
+You can change this behavior with property override mechanism:
+
+[source,groovy]
+----
+farm {
+  webapp ':ProjectA'
+  webapp ':ProjectB', inplace: true  // farm tasks always run it inplace
+  webapp ':ProjectC', inplace: false // farm tasks always run it as WAR-file
+}
+----
+
+When you invoke `gradle farmRun` for this configuration, ProjectA and ProjectB start inplace, while ProjectC starts as WAR-file.
+
+When you invoke `gradle farmRunWar` for this configuration, ProjectA and ProjectC start as WAR-files, while ProjectB starts inplace.
+
+'''
+
+See also:
+
+* link:Farm-web-app-list[Farm web-app list]

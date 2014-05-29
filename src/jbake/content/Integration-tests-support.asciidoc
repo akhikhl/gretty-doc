@@ -1,0 +1,64 @@
+= Integration tests support
+
+Gretty supports integration tests in the following way: it can start jetty before and stop after the specified task.
+The task itself can perform arbitrary tests (for example, use http://www.gebish.org/[Geb] and https://code.google.com/p/spock/[Spock] for testing client-side functionality direct in the browser).
+
+== Syntax
+
+[source,groovy]
+----
+gretty {
+  // ...
+  integrationTestTask = 'integrationTest' // name of existing gradle task
+  // ...
+}
+----
+
+== Effects
+
+When you run `gradle integrationTest` from command-line, Gretty starts
+Jetty before `integrationTest` task and stops it after.
+
+NOTE: Gretty does not define integration test task nor does it
+augment it in any way. All it does is start and stop Jetty.
+
+== Tunneling properties to test code
+
+When your integration task supports http://www.gradle.org/docs/current/javadoc/org/gradle/process/JavaForkOptions.html[JavaForkOptions] interface (for example, when integration task is instance of http://www.gradle.org/docs/current/javadoc/org/gradle/api/tasks/testing/Test.html[Test] class), Gretty passes the following system properties to the java process of integration task:
+
+[cols="1,3a", options="header"]
+|===
+| Property
+| Content/Purpose
+
+| gretty.contextPath
+| The context path of the current web-app project
+
+| gretty.httpPort
+| Currently used HTTP port, when HTTP protocol is enabled; null otherwise.
+
+| gretty.port
+| same as httpPort
+
+| gretty.httpBaseURI
+| `"http://${host}:${httpPort}${contextPath}"`, when HTTP protocol is enabled; null otherwise.
+
+| gretty.baseURI
+| same as gretty.httpBaseURI
+
+| gretty.httpsPort
+| Currently used HTTPS port, when HTTPS protocol is enabled; null otherwise.
+
+| gretty.httpsBaseURI
+| `"http://${host}:${httpsPort}${contextPath}"`, when HTTPS protocol is enabled; null otherwise.
+|===
+
+Your test code can access these properties via System.getProperty function. This allows to parametrize test code with Gretty-specific parameters.
+
+== Workflow
+
+image::http://akhikhl.github.io/gretty/media/integrationTest_StateDiagram.svg[]
+
+See also:
+link:jettyBeforeIntegrationTest-task[jettyBeforeIntegrationTest task]
+and link:jettyAfterIntegrationTest-task[jettyAfterIntegrationTest task].

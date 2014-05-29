@@ -1,0 +1,51 @@
+= jettyRunWarDebug task
+
+jettyRunWarDebug starts web-app on WAR-file, in debug and interactive mode.
+
+== Syntax
+
+[source,bash]
+----
+gradle jettyRunWarDebug
+----
+
+== Effects
+.  The web-app gets compiled and assembled into WAR-file (if it's not up-to-date).
+.  Embedded jetty starts in separate java process against WAR-file. +
+*important*: Upon start, the process is in suspended-mode and listens for debugger commands on port 5005.
+.  Upon resume, jetty process starts listening for HTTP-requests on link:Gretty-configuration#port[port] (default 8080).
+.  Gretty waits for the user keypress.
+.  When user presses any key (in the same terminal), jetty process shuts down.
+.  Gretty waits for jetty process to complete.
+.  Gradle script continues normal execution of tasks.
+
+== Instantiation and extension
+
+The object called jettyRunWarDebug is actually an instance of link:Gretty-task-classes#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'gretty'
+
+import org.akhikhl.gretty.JettyStartTask
+
+task('MyRun', type: JettyStartTask) {
+  // ...
+}
+
+class VerySpecialRun extends JettyStartTask {
+  // ...
+}
+
+task('MyRun2', type: VerySpecialRun) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+
+== Workflow
+
+image::http://akhikhl.github.io/gretty/media/jettyRunWarDebug_StateDiagram.svg[]
+
+See also: link:Debugger-support[Debugger support].

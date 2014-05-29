@@ -1,0 +1,193 @@
+= Farm tasks
+
+Provided that you already learned link:Multiple-web-apps-tutorial[multiple web apps tutorial], now you can systematically learn all about farm tasks.
+
+When you insert `apply plugin: 'gretty-farm'` to "build.gradle", Gretty facilitates the project with the following gradle tasks:
+
+[cols="3,3,1,1,1", options="header"]
+|===
+| Tasks
+| Purpose
+| Stopped by 
+| Uses WAR 
+| Debug
+
+| link:farmRun-task[farmRun], link:run-task[run]
+| Starts web-apps of default farm
+| keypress
+| no
+| no
+
+| link:farmRunDebug-task[farmRunDebug], link:debug-task[debug]
+| Starts web-apps of default farm
+| keypress 
+| no
+| yes
+
+| link:farmRunWar-task[farmRunWar]
+| Starts web-apps of default farm
+| keypress 
+| yes
+| no
+
+| link:farmRunWarDebug-task[farmRunWarDebug]
+| Starts web-apps of default farm
+| keypress 
+| yes
+| yes
+
+| link:farmStart-task[farmStart]
+| Starts web-apps of default farm
+| farmStop
+| no
+| no
+
+| link:farmStartDebug-task[farmStartDebug]
+| Starts web-apps of default farm
+| farmStop
+| no
+| yes
+
+| link:farmStartWar-task[farmStartWar]
+| Starts web-apps of default farm
+| farmStop
+| yes
+| no
+
+| link:farmStartWarDebug-task[farmStartWarDebug]
+| Starts web-apps of default farm
+| farmStop
+| yes
+| yes
+
+| link:farmStop-task[farmStop]
+| Stops web-apps of default farm
+| -
+| -
+| -
+
+| link:farmRestart-task[farmRestart]
+| Restarts web-apps of default farm
+| -
+| -
+| -
+
+| link:farmIntegrationTest-task[farmIntegrationTest]
+| Invokes integrationTest task on web-app projects of default farm
+| -
+| -
+| -
+
+| link:farmBeforeIntegrationTest-task[farmBeforeIntegrationTest]
+| Starts web-apps of default farm before integration tests
+| farmAfterIntegrationTest
+| no
+| no
+
+| link:farmAfterIntegrationTest-task[farmAfterIntegrationTest]
+| Stops web-apps of default farm after integration tests
+| -
+| -
+| -
+|===
+
+When you define an additional named farm:
+
+[source,groovy]
+----
+farms {
+  farm 'XYZ', {
+    webapp ':ProjectA'
+    // ...
+  }
+}
+----
+
+then Gretty facilitates the project with the following gradle tasks:
+
+[cols="3,3,1,1,1", options="header"]
+|===
+| Tasks
+| Purpose
+| Stopped by 
+| Uses WAR 
+| Debug
+
+| link:farmRun-task[farmRunXYZ]
+| Starts web-apps of farm "XYZ"
+| keypress
+| no
+| no
+
+| link:farmRunDebug-task[farmRunDebugXYZ]
+| Starts web-apps of farm "XYZ"
+| keypress 
+| no
+| yes
+
+| link:farmRunWar-task[farmRunWarXYZ]
+| Starts web-apps of farm "XYZ"
+| keypress 
+| yes
+| no
+
+| link:farmRunWarDebug-task[farmRunWarDebugXYZ]
+| Starts web-apps of farm "XYZ"
+| keypress 
+| yes
+| yes
+
+| link:farmStart-task[farmStartXYZ]
+| Starts web-apps of farm "XYZ"
+| farmStop
+| no
+| no
+
+| link:farmStartDebug-task[farmStartDebugXYZ]
+| Starts web-apps of farm "XYZ"
+| farmStop
+| no
+| yes
+
+| link:farmStartWar-task[farmStartWarXYZ]
+| Starts web-apps of farm "XYZ"
+| farmStop
+| yes
+| no
+
+| link:farmStartWarDebug-task[farmStartWarDebugXYZ]
+| Starts web-apps of farm "XYZ"
+| farmStop
+| yes
+| yes
+
+| link:farmStop-task[farmStopXYZ]
+| Stops web-apps of farm "XYZ"
+| -
+| -
+| -
+
+| link:farmRestart-task[farmRestartXYZ]
+| Restarts web-apps of farm "XYZ"
+| -
+| -
+| -
+
+| link:farmIntegrationTest-task[farmIntegrationTestXYZ]
+| Invokes integrationTest task on web-app projects of farm "XYZ"
+| -
+| -
+| -
+
+| link:farmBeforeIntegrationTest-task[farmBeforeIntegrationTestXYZ]
+| Starts web-apps of farm "XYZ" before integration tests
+| farmAfterIntegrationTest
+| no
+| no
+
+| link:farmAfterIntegrationTest-task[farmAfterIntegrationTestXYZ]
+| Stops web-apps of farm "XYZ" after integration tests
+| -
+| -
+| -
+|===

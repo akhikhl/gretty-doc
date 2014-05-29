@@ -1,0 +1,61 @@
+= Getting started
+Andrey Hihlovskiy
+2014-05-29
+:jbake-type: page
+:jbake-status: published
+
+Add the following to "build.gradle" of your web-app:
+
+[source,groovy]
+----
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+----
+
+That's all! Now you can start your web-app with the command:
+
+[source,bash]
+----
+gradle jettyRun
+----
+
+you can also use other link:Gretty-tasks[tasks for running and
+debugging] your web-app or link:Gretty-configuration[configure Gretty]
+to your needs.
+
+Alternatively, you can download the script from
+https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin
+to the project folder and include it like this:
+
+[source,groovy]
+----
+apply from: 'gretty.plugin'
+----
+
+or feel free inserting to your "build.gradle":
+
+[source,groovy]
+----
+buildscript {
+  repositories {
+    jcenter()
+  }
+  
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty-plugin:+'
+  }
+}
+
+repositories {
+  jcenter()
+}
+
+apply plugin: 'gretty'
+----
+
+NOTE: All versions of gretty are available at jcenter and maven central under
+the group 'org.akhikhl.gretty'.
+
+IMPORTANT: If you experience problems starting Gretty, first look into
+link:Troubleshooting[troubleshooting] section. If it does not help,
+raise an issue at https://github.com/akhikhl/gretty/issues[Gretty issue tracker] 
+or mailto:akhikhl@gmail.com[send an email] to Gretty developer.

@@ -1,0 +1,39 @@
+= Multiple farms
+
+Let's suppose, you have more web-apps: ProjectB, ProjectC, ProjectD, ProjectE and you want to start your web-apps in distinct constellations:
+
+- ProjectB, ProjectC
+- ProjectB, ProjectC, ProjectD
+- ProjectC, ProjectD, ProjectE
+
+For this you'll need to configure multiple farms:
+
+[source,groovy]
+----
+farms {
+  farm {
+    webapp ':ProjectB'
+    webapp ':ProjectC'
+  }
+  farm 'XXX', {
+    webapp ':ProjectB'
+    webapp ':ProjectC'
+    webapp ':ProjectD'
+  }
+  farm 'YYY', {
+    webapp ':ProjectC'
+    webapp ':ProjectD'
+    webapp ':ProjectE'
+  }
+}
+----
+
+Now you get new sets of gradle tasks, each set specific for particular farm:
+
+* farmRun, farmRunDebug, ... serve unnamed farm
+* farmRunXXX, farmRunDebugXXX, ... serve farm with name "XXX"
+* farmRunYYY, farmRunDebugYYY, ... serve farm with name "YYY"
+
+TIP: You can even invoke tasks for different farms in parallel, provided that each farm gets distinct set of TCP-ports (see more information on farm TCP-ports link:Farm-configuration#Server-specific-properties-catalog[here].
+
+See also: link:index#Multiple-web-apps[Multiple web-apps].

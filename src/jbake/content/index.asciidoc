@@ -1,0 +1,69 @@
+= Gretty documentation
+Andrey Hihlovskiy
+2014-05-29
+:jbake-type: page
+:jbake-status: published
+
+// image::http://akhikhl.github.io/gretty/media/gretty_logo.png[gretty logo]
+
+link:Getting-started.html[Getting started] +
+link:Feature-overview[Feature overview] +
+link:Troubleshooting[]
+
+=== Basic features
+
+link:Switching-between-Jetty-and-servlet-API-versions[Switching between jetty and servlet-API versions] +
+link:Hot-deployment[Hot deployment] +
+link:Fast-reload[Fast reload] +
+link:Web-app-overlays[Web-app overlays] +
+link:HTTPS-support[HTTPS support] +
+link:Gretty-configuration[Gretty configuration] +
+link:Gretty-tasks[Gretty tasks] +
+link:Gretty-task-classes[Gretty task classes]
+
+=== Debugging and testing
+
+link:Debugger-support[Debugger support] +
+link:Integration-tests-support[Integration tests] +
+link:Code-coverage-support[Code coverage (jacoco) support] +
+link:Logging[]
+
+==== JEE-specific
+
+link:Servlet-container-classpath[Servlet container classpath] +
+link:JEE-annotations-support[JEE annotations support] +
+link:Web-fragments-support[Web fragments support]
+
+==== Jetty-specific
+
+link:Security-realms[Security Realms] +
+link:jetty.xml-support[jetty.xml support] +
+link:jetty-env.xml-support[jetty-env.xml support]
+
+=== Multiple web-apps
+
+link:Multiple-web-apps-introduction[Introduction] +
+link:Multiple-web-apps-configureless-setup[Configureless setup] +
+link:Configuring-default-farm[Configuring default farm] +
+link:Multiple-farms[Multiple farms] +
+link:Combining-web-app-and-farm[Combining web-app and farm] +
+link:Debugging-a-farm[Debugging a farm] +
+link:Farm-integration-tests[Farm integration tests]
+
+==== Multiple web-apps configuration
+
+link:Farm-extension[Farm extension] +
+link:Farms-extension[Farms extension] +
+link:Farm-server-specific-properties[Farm server-specific properties] +
+link:Farm-web-app-list[Farm web-app list] +
+link:Farms-and-web-app-specific-properties[Farms and web-app specific properties] +
+link:Duplicate-farm-names[Duplicate farm names]
+
+==== Multiple web-apps tasks
+
+link:Farm-tasks[Farm tasks] +
+link:Farm-task-classes[Farm task classes]
+
+=== Additional materials
+
+link:Publishing-gretty-to-sonatype-and-bintray[Publishing gretty to sonatype and bintray]

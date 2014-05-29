@@ -1,0 +1,25 @@
+= farmStartDebug task
+
+farmStartDebug starts farm web-apps inplace, in debug mode.
+
+== Syntax
+
+[source,bash]
+----
+gradle farmStartDebug
+----
+
+== Effects
+. Each farm web-app gets compiled (if it's not up-to-date).
+. If farm configuration link:Multiple-web-apps-tutorial#Mixing-inplace-and-WAR-mode[overrides inplace property] for some web-apps to `false`, then each of these web-apps is assembled into WAR-file (if it’s not up-to-date).
+. Embedded jetty starts in separate java process against compiled classes and their dependencies (and, optionally, WAR-files). +
+*important*: Upon start, the process is in suspended-mode and listens for debugger commands on port 5005.
+. Upon resume, jetty process starts listening for HTTP-requests on link:Farm-configuration#port[port] (default 8080).
+.  Gretty waits for jetty process to complete.
+.  Gradle script continues normal execution of tasks.
+
+NOTE: by default this task does not depend on any "war" tasks. It's only when you override `inplace` property to `false` are some projects compiled to WAR-files and farmRun depends on respective "war" tasks.
+
+NOTE: this task does not stop Jetty. It is assumed that another gradle process stops it, supposedly +gradle farmStop+.
+
+See also: link:farmStop-task[farmStop task] and link:farmRestart-task[farmRestart task].

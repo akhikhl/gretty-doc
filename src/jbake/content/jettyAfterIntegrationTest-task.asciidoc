@@ -1,0 +1,40 @@
+= jettyAfterIntegrationTest task
+
+Gretty automatically invokes this task after integration test task, referred in 
+link:Gretty-configuration#integrationTestTask[integrationTestTask] property of gretty configuration.
+
+WARNING: Internal task, please, don't invoke it on command line!
+
+== Effects
+
+. Sends "stop" signal to localhost:link:Gretty-configuration#servicePort[servicePort] (default 9900).
+. When "stop" signal comes, jetty process stops.
+. Gradle script waits for jetty process to complete.
+. Gradle script continues normal execution of tasks.
+
+== Instantiation and extension
+
+The object called jettyAfterIntegrationTest is actually an instance of link:Gretty-task-classes#jettyafterintegrationtesttask[JettyAfterIntegrationTestTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'gretty'
+
+import org.akhikhl.gretty.JettyAfterIntegrationTestTask
+
+task('MyAfterIntegration', type: JettyAfterIntegrationTestTask) {
+  // ...
+}
+
+class VerySpecialAfterIntegration extends JettyAfterIntegrationTestTask {
+  // ...
+}
+
+task('MyAfterIntegration2', type: VerySpecialAfterIntegration) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+
+See also: link:Integration-tests-support[integration tests support].

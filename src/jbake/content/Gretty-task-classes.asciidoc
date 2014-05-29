@@ -1,0 +1,272 @@
+= Gretty task classes
+
+The existing link:Gretty-tasks[gretty tasks] should be sufficient for many web-app development scenarios.
+
+If you need to configure Gretty tasks, you should first look at link:Gretty-configuration[gretty configuration] - maybe, there is already everything that you need.
+
+Of course, there are cases, when you need to instantiate new gretty tasks or to extend their classes with new functions/properties. Then you need knowledge about gretty task classes.
+
+== JettyStartTask
+
+=== Purpose 
+
+JettyStartTask starts single web-app project on Jetty.
+
+=== Properties
+
+[cols="1,1,1,6", options="header"]
+|===
+| Property
+| Type
+| Default
+| Purpose
+
+| server-specific properties
+| 
+| all properties are null by default
+| same as link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+
+| web-app-specific properties
+|
+| all properties are null by default
+| same as link:Gretty-configuration#Web-app-specific-properties[web-app specific properties of gretty configuration]
+
+| interactive
+| boolean
+| true
+| If true, the task waits for user keypress and stops jetty server after it. +
+If false, the task does not wait for user keypress, it should be stopped by jettyStop task.
+
+| debug
+| boolean
+| false
+| If true, then Jetty server is started debug mode: it is suspended and waits for debugger commands on port 5005. +
+If false, the Jetty server is started in non-debug mode.
+|===
+
+=== Property inheritance
+
+All server-specific and web-app-specific properties of JettyStartTask are set to null by default.
+
+If, during task execution, Gretty sees that some property of JettyStartTask is null, it uses the value of the property with the same name from gretty configuration. For example:
+
+[source,groovy]
+----
+apply plugin: 'gretty'
+
+gretty {
+  contextPath = '/abc'
+}
+
+import org.akhikhl.gretty.JettyStartTask
+
+task('MyJettyRun', type: JettyStartTask) {
+  port = 9955
+}
+----
+
+the expected output of `gradle MyJettyRun` is:
+
+----
+:jettyRun
+scanInterval not specified (or zero), scanning disabled
+Auto-configuring server connectors
+2014-05-21 22:23:00.048 INFO  - jetty-9.1.0.v20131115
+2014-05-21 22:23:01.106 INFO  - Started o.e.j.w.WebAppContext@620cc0d4{/abc,file:/home/user/Projects/testgretty/build/inplaceWebapp,AVAILABLE}
+2014-05-21 22:23:01.130 INFO  - Started ServerConnector@3244630{HTTP/1.1}{0.0.0.0:9955}
+Jetty server 9.1.0.v20131115 started.
+: runs at the address http://localhost:9955/abc
+servicePort: 9900, statusPort: 9901
+Press any key to stop the jetty server.
+----
+
+Interpretation: we did not specify contextPath in MyJettyRun, so Gretty took contextPath from gretty configutation - "/abc". port we specified as 9955, so Gretty used it instead of port in gretty configuration (which is 8080 by default).
+
+=== Task dependencies
+
+TBD
+
+== JettyStopTask
+
+=== Purpose 
+
+JettyStopTask sends "stop" command over servicePort to a single web-app, which was supposedly started by JettyStartTask with interactive=false.
+
+=== Properties
+
+[cols="1,1,1,6", options="header"]
+|===
+| Property
+| Type
+| Default
+| Purpose
+
+| servicePort
+| integer
+| null
+| same as in link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+|===
+
+=== Property inheritance
+
+JettyStopTask.servicePort is set to null by default.
+
+If, during task execution, Gretty sees that JettyStartTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.
+
+=== Task dependencies
+
+JettyStop task has no dependencies.
+
+== JettyRestartTask
+
+=== Purpose 
+
+JettyRestartTask sends "restart" command over servicePort to a single web-app, which was supposedly started by JettyStartTask with interactive=false.
+
+=== Properties
+
+[cols="1,1,1,6", options="header"]
+|===
+| Property
+| Type
+| Default
+| Purpose
+
+| servicePort
+| integer
+| null
+| same as in link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+|===
+
+=== Property inheritance
+
+JettyRestartTask.servicePort is set to null by default.
+
+If, during task execution, Gretty sees that JettyRestartTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.
+
+=== Task dependencies
+
+JettyRestart task has no dependencies.
+
+== JettyBeforeIntegrationTestTask
+
+=== Purpose 
+
+JettyBeforeIntegrationTestTask extends JettyStartTask. 
+JettyBeforeIntegrationTestTask starts Jetty server automatically before the designated integration test task.
+
+By default JettyBeforeIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling `integrationTestTask` function:
+
+[source,groovy]
+----
+import org.akhikhl.gretty.JettyBeforeIntegrationTestTask
+
+task('MyIntegrationTest') {
+  // ...
+}
+
+task('MyJettyBeforeIntegrationTest', type: JettyBeforeIntegrationTestTask) {
+  integrationTestTask 'MyIntegrationTest'
+  // ...
+}
+----
+
+=== Properties
+
+[cols="1,1,1,6", options="header"]
+|===
+| Property
+| Type
+| Default
+| Purpose
+
+| server-specific properties
+| 
+| all properties are null by default
+| same as link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+
+| web-app-specific properties
+|
+| all properties are null by default
+| same as link:Gretty-configuration#Web-app-specific-properties[web-app specific properties of gretty configuration]
+
+| interactive
+| boolean
+| true
+| If true, the task waits for user keypress and stops jetty server after it. +
+If false, the task does not wait for user keypress, it should be stopped by jettyStop task.
+
+| debug
+| boolean
+| false
+| If true, then Jetty server is started debug mode: it is suspended and waits for debugger commands on port 5005. +
+If false, the Jetty server is started in non-debug mode.
+
+| integrationTestTask
+| String
+| null
+| Designates which gradle task is an integration task.
+|===
+
+=== Property inheritance
+
+All server-specific and web-app-specific properties of JettyBeforeIntegrationTestTask are set to null by default.
+
+If, during task execution, Gretty sees that some property of JettyBeforeIntegrationTestTask is null, it uses the value of the property with the same name from gretty configuration. 
+
+=== Task dependencies
+
+TBD
+
+== JettyAfterIntegrationTestTask
+
+=== Purpose 
+
+JettyAfterIntegrationTestTask extends JettyStopTask. 
+JettyAfterIntegrationTestTask stops Jetty server automatically after the designated integration test task.
+
+By default JettyAfterIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling `integrationTestTask` function:
+
+[source,groovy]
+----
+import org.akhikhl.gretty.JettyAfterIntegrationTestTask
+
+task('MyIntegrationTest') {
+  // ...
+}
+
+task('MyJettyAfterIntegrationTest', type: JettyAfterIntegrationTestTask) {
+  integrationTestTask 'MyIntegrationTest'
+  // ...
+}
+----
+
+=== Properties
+
+[cols="1,1,1,6", options="header"]
+|===
+| Property
+| Type
+| Default
+| Purpose
+
+| servicePort
+| integer
+| null
+| same as in link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+
+| integrationTestTask
+| String
+| null
+| Designates which gradle task is an integration task.
+|===
+
+=== Property inheritance
+
+All properties of JettyAfterIntegrationTestTask are set to null by default.
+
+If, during task execution, Gretty sees that some property of JettyStartTask is null, it uses the value of the property with the same name from gretty configuration. 
+
+=== Task dependencies
+
+TBD

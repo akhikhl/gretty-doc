@@ -1,0 +1,110 @@
+= HTTPS support
+
+Since version 0.0.23 Gretty link:HTTPS-support[supports HTTPS protocol] out-of-the-box.
+
+== HTTPS Auto-configuration
+
+Gretty provides very simple way to auto-configure HTTPS protocol. All you have to do is set `httpsEnabled=true` and launch Gretty start task. Upon successful start HTTPS is immediately available without any additional configuration.
+
+=== Syntax
+
+[source,groovy]
+----
+gretty {
+  httpsEnabled = true
+  // optionally you can specify port. 8443 is the default.
+  // httpsPort = 443
+}
+----
+
+=== Effects
+
+On first run:
+
+. Gretty generates 1024-bit RSA key
+. Gretty generates self-signed X.509 certificate using "SHA256WithRSA" signature algorithm
+. Gretty writes certificate to the file "${project.buildDir}/ssl/cert"
+. Gretty generates random passwords for key-store and key-manager
+. Gretty adds key and certificate to a new key-store, using key-manager password
+. Gretty writes key-store to the file "${project.buildDir}/ssl/keystore", using key-store password
+. Gretty saves key-store and key-manager passwords to the file "${project.buildDir}/ssl/properties"
+. Gretty uses key-store "${project.buildDir}/ssl/keystore" for configuring HTTPS-connector
+. Gretty starts Jetty server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).
+
+On consequent runs:
+
+. Gretty reads key-store and key-manager passwords from the file "${project.buildDir}/ssl/properties"
+. Gretty uses key-store "${project.buildDir}/ssl/keystore" for configuring HTTPS-connector
+. Gretty starts Jetty server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).
+
+When you open HTTPS page in the browser for the first time, you typically see the message:
+
+image::http://akhikhl.github.io/gretty/media/Connection_is_untrusted.png[]
+
+The message is caused by the fact that Gretty uses self-signed certificate, not chained to http://en.wikipedia.org/wiki/Certificate_authority[Certificate Authority (CA)].
+After you click "I understand the risks" and accept the certificate, the web-browser shows your web-app.
+
+[IMPORTANT]
+====
+Using self-signed certificate is OK for development environment, but not OK for production. Please never use the generated key and certificate files outside of Gretty tasks!
+====
+
+[IMPORTANT]
+====
+Saving passwords to the file system is inherently unsafe. Please never run Gretty with auto-configured HTTPS on production systems!
+====
+
+[TIP]
+====
+"${project.buildDir}/ssl" directory is preserved between Jetty runs, so that the same key and certificate are repeatedly used in development. Of course, you can delete the directory "${project.buildDir}/ssl" - it will be recreated on the next run. If you delete it, you'll see a message "Connection is untrusted" again.
+====
+
+[TIP]
+====
+The self-signed certificate has issuer-DN "CN=gretty-issuer, OU=None, O=Gretty, L=None, C=None", under which it can be easily found and deleted in the browser settings.
+====
+
+== HTTPS Manual configuration
+
+Gretty provides the way to specify http://docs.oracle.com/javase/8/docs/technotes/guides/security/jsse/JSSERefGuide.html#Stores[key-store and trust-store], so that pre-existing key and certificate are used.
+
+=== Syntax
+
+[source,groovy]
+----
+gretty {
+  sslKeyStorePath = '/some/path/keystore'
+  sslKeyStorePassword = 'someKeystorePassword'
+  sslKeyManagerPassword = 'someKeyManagerPassword'
+  sslTrustStorePath = '/another/path/trust_keystore'
+  sslTrustStorePassword = 'someTrustStorePassword'
+}
+----
+
+All SSL-related properties are optional.
+
+If sslKeyStorePath is not specified, all other SSL-related properties are ignored and HTTPS is auto-configured.
+
+sslKeyManagerPassword defaults to sslKeyStorePassword.
+
+sslTrustStorePath defaults to sslKeyStorePath.
+
+sslTrustStorePassword defaults to sslKeyStorePassword.
+
+sslKeyStorePath and sslTrustStorePath can be set to String or java.io.File. Relative paths will be resolved relative to project.projectDir, project.webAppDir (default is "src/main/webapp"), project.sourceSets.main.output.files (defaults to [ "${project.buildDir}/classes/main", "${project.buildDir}/resources/main" ]).
+
+Passwords may be obfuscated, as described in http://www.eclipse.org/jetty/documentation/current/configuring-ssl.html[official Jetty documentation]. If you are uncomfortable with saving passwords in the sources, consider using http://www.gradle.org/docs/current/userguide/build_environment.html#sec:gradle_configuration_properties[gradle.properties] or http://www.gradle.org/docs/current/userguide/init_scripts.html[gradle init scripts] for configuring password variables outside of project sources.
+
+IMPORTANT: CN attribute of the used certificate must match gretty.host property ("localhost" by default), otherwise Jetty could not decide, which certificate to use.
+
+== Disabling HTTP
+
+You might want to run your web-app with HTTPS only, without HTTP. It's easy to do so:
+
+[source,groovy]
+----
+gretty {
+  httpEnabled = false
+  httpsEnabled = true
+}
+----

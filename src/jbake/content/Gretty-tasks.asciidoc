@@ -1,0 +1,84 @@
+= Gretty tasks
+
+When you insert +apply plugin: \'gretty'+ to "build.gradle", Gretty plugin facilitates the project with the following gradle tasks:
+
+[cols="3,3,1,1,1", options="header"]
+|===
+| Tasks
+| Purpose
+| Stopped by 
+| Uses WAR 
+| Debug
+
+| link:jettyRun-task[jettyRun], link:run-task[run]
+| Starts web-app
+| keypress
+| no
+| no
+
+| link:jettyRunDebug-task[jettyRunDebug], link:debug-task[debug]
+| Starts web-app
+| keypress 
+| no
+| yes
+
+| link:jettyRunWar-task[jettyRunWar]
+| Starts web-app
+| keypress 
+| yes
+| no
+
+| link:jettyRunWarDebug-task[jettyRunWarDebug]
+| Starts web-app
+| keypress 
+| yes
+| yes
+
+| link:jettyStart-task[jettyStart]
+| Starts web-app
+| jettyStop
+| no
+| no
+
+| link:jettyStartDebug-task[jettyStartDebug]
+| Starts web-app
+| jettyStop
+| no
+| yes
+
+| link:jettyStartWar-task[jettyStartWar]
+| Starts web-app
+| jettyStop
+| yes
+| no
+
+| link:jettyStartWarDebug-task[jettyStartWarDebug]
+| Starts web-app
+| jettyStop
+| yes
+| yes
+
+| link:jettyStop-task[jettyStop]
+| Stops web-app
+| -
+| -
+| -
+
+| link:jettyRestart-task[jettyRestart]
+| Restarts web-app
+| -
+| -
+| -
+
+| link:jettyBeforeIntegrationTest-task[jettyBeforeIntegrationTest]
+| Starts jetty before integration test.
+| jettyAfterIntegrationTest
+| no
+| no
+
+| link:jettyAfterIntegrationTest-task[jettyAfterIntegrationTest]
+| Stops jetty after integration test.
+| -
+| -
+| -
+|===

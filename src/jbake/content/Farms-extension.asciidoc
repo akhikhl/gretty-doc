@@ -1,0 +1,33 @@
+= farms extension
+
+When you apply gretty-farm plugin, it adds *farms* extension to the current project.
+
+You can (but you don't have to) configure farms extension object in your gradle script:
+
+[source,groovy]
+----
+farms {
+  farm 'XYZ', {
+    // ... properties
+  }
+  farm 'ABC', {
+    // ... properties
+  }
+  // ...
+}
+----
+
+Farms extension object holds map of farm names to farm definitions.
+
+Default farm is already included into farm map with empty name.
+
+Each named farm defines it's own set of farm tasks: farmRunXYZ, farmRunDebugXYZ, etc., where "XYZ" is a farm name.
+
+All farm tasks, when invoked on given project, use properties of their farm definition.
+
+Each farm consists of two parts:
+
+* link:Farm-server-specific-properties[Farm server-specific properties]
+* link:Farm-web-app-list[Farm web-app list]
+
+See also: link:index#Multiple-web-apps[Multiple web-apps].

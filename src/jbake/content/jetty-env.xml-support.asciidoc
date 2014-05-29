@@ -1,0 +1,43 @@
+= jetty-env.xml support
+
+"jetty-env.xml" is an optional Jetty file that configures individual web-app. 
+The format of jetty-web.xml is the same as jetty.xml - it is an XML mapping of the Jetty API.
+
+The purpose and syntax of "jetty-env.xml" is documented at
+http://wiki.eclipse.org/Jetty/Reference/jetty-env.xml[Jetty reference].
+
+Gretty recognizes and supports "jetty-env.xml". As soon as Gretty finds
+existing "jetty-env.xml" file, it reads the file and uses it to
+configure jetty web-app. Even if "jetty-env.xml" is not found, Gretty
+still works.
+
+By convension Gretty looks for the file name "jetty-env.xml". You can
+(but you don't have to) change the file name by specifying property
++jettyEnvXmlFile+ in Gretty configuration:
+
+[source,groovy]
+----
+gretty {
+  // ...
+  jettyEnvXmlFile = 'someFile.xml'
+  // ...
+}
+----
+
+If explicitly defined jettyEnvXmlFile represents an absolute path, gretty will try to use just that.
+
+If implicitly or explicitly defined jettyEnvXmlFile represents a
+relative path, gretty tries to find corresponding existing file in the
+following directories:
+
+* `"$project.projectDir"`
+* `"$project.webAppDir/WEB-INF"`
+* `"$project.buildDir/classes"`
+* `"$project.buildDir/resources"`
+* recursively in all abovementioned folders of the overlay sources (if any)
+
+Gretty sources contain example programs demonstrating support of "jetty-env.xml" at work:
+
+* https://github.com/akhikhl/gretty/tree/master/examples/testJettyEnvXml7[testJettyEnvXml7]
+* https://github.com/akhikhl/gretty/tree/master/examples/testJettyEnvXml8[testJettyEnvXml8]
+* https://github.com/akhikhl/gretty/tree/master/examples/testJettyEnvXml9[testJettyEnvXml9]

@@ -1,0 +1,55 @@
+= jettyStartDebug task
+
+jettyStartDebug starts web-app inplace, in debug mode.
+
+== Syntax
+
+[source,bash]
+----
+gradle jettyStartDebug
+----
+
+== Effects
+. The web-app gets compiled (if it's not up-to-date).
+. Embedded jetty starts in separate java process against compiled
+classes and their dependencies. +
+*important*: Upon start, the process is in suspended-mode and listens for debugger commands on port 5005.
+. Upon resume, jetty process starts listening for HTTP-requests on
+link:Gretty-configuration#port[port] (default 8080).
+. Gretty waits for jetty process to complete.
+. Gradle script continues normal execution of tasks.
+
+Note that this task does not depend on "war" task, nor does it use WAR-file.
+
+Note that this task does not stop Jetty. It is assumed that another gradle process stops it, supposedly +gradle jettyStop+.
+
+== Instantiation and extension
+
+The object called jettyStartDebug is actually an instance of link:Gretty-task-classes#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'gretty'
+
+import org.akhikhl.gretty.JettyStartTask
+
+task('MyRun', type: JettyStartTask) {
+  // ...
+}
+
+class VerySpecialRun extends JettyStartTask {
+  // ...
+}
+
+task('MyRun2', type: VerySpecialRun) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+
+== Workflow
+
+image::http://akhikhl.github.io/gretty/media/jettyStartDebug_StateDiagram.svg[]
+
+See also: link:jettyStop-task[jettyStop task], link:jettyRestart-task[jettyRestart task], link:Debugger-support[Debugger support].

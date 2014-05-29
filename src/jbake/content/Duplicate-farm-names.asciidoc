@@ -1,0 +1,40 @@
+= Duplicate farm names
+
+If you configure farm with the same name more than once, there's still only one farm with the given name and it's properties are merged:
+
+* each property except web-app list is overridden by later definition
+* web-app lists are merged as hashmaps:
+** merged web-app list does not contain duplicates
+** override properties of web-apps with the same name are also merged as hashmaps
+
+Example:
+
+[source,groovy]
+----
+farms {
+  farm 'A', { 
+    port = 8081
+    webapp ':ProjectA'
+    webapp ':ProjectB', contextPath: '/aaa', inplace: false
+  }
+  farm 'A', { 
+    port = 8082
+    webapp ':ProjectB', contextPath: '/bbb'
+    webapp ':ProjectC'
+  }
+}
+----
+
+As the result, farm "A" gets `port=8082` and refers three web-apps:
+
+* `webapp ':ProjectA'`
+* `webapp ':ProjectB', contextPath: '/bbb', inplace: false`
+* `webapp ':ProjectC'`
+
+TIP: Farms are strictly project-specific. If you define farms with the same name in two different projects, they are totally unrelated and are never merged.
+
+See also:
+
+* link:Farm-server-specific-properties[Farm server-specific properties]
+* link:Farm-web-app-list[Farm web-app list]
+* link:Farms-and-web-app-specific-properties[Farms and web-app specific properties]

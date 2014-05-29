@@ -1,0 +1,17 @@
+= Servlet container classpath
+
+Gretty supports the ability to add dependencies to the servlet container classpath
+(as opposed to the classpath of web-app).
+
+This can be used to add libraries, such as JDBC drivers, which may be
+needed when Jetty is starting up. You can add your dependencies using
+the `gretty` configuration:
+
+[source,groovy]
+----
+dependencies {
+  // ...
+  gretty 'org.hsqldb:hsqldb:+'
+  // ...
+}
+----

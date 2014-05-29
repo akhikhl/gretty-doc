@@ -1,0 +1,40 @@
+= jetty.xml support
+
+"jetty.xml" is the configuration file for Jetty (for server itself, not for web-app).
+
+The purpose and syntax of "jetty.xml" is documented in
+http://wiki.eclipse.org/Jetty/Reference/jetty.xml[Jetty reference].
+
+Gretty recognizes and supports "jetty.xml". As soon as Gretty finds
+existing "jetty.xml" file, it reads the file and uses it to configure
+jetty server. Even if "jetty.xml" is not found, Gretty still works.
+
+By convension Gretty looks for the file name "jetty.xml". You can (but you don't have to) change the file name by specifying property +jettyXmlFile+ in Gretty configuration:
+
+[source,groovy]
+----
+gretty {
+  // ...
+  jettyXmlFile = 'someFile.xml'
+  // ...
+}
+----
+
+If explicitly defined jettyXmlFile represents an absolute path, gretty will try to use just that.
+
+If implicitly or explicitly defined jettyXmlFile represents a relative
+path, gretty tries to find corresponding existing file in the following
+directories: 
+
+* `"$project.projectDir"` 
+* `"$project.webAppDir/WEB-INF"`
+* `"$project.buildDir/classes"`
+* `"$project.buildDir/resources"` 
+* recursively in all abovementioned folders of the overlay sources (if any) 
+* `"$JETTY_HOME/etc"`
+
+Gretty sources contain example programs demonstrating support of "jetty.xml" at work:
+
+* https://github.com/akhikhl/gretty/tree/master/examples/testJettyXml7[testJettyXml7]
+* https://github.com/akhikhl/gretty/tree/master/examples/testJettyXml8[testJettyXml8]
+* https://github.com/akhikhl/gretty/tree/master/examples/testJettyXml9[testJettyXml9]

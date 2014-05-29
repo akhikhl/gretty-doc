@@ -1,0 +1,189 @@
+= Code coverage support
+
+Since version 0.0.22 Gretty supports http://www.eclemma.org/jacoco/index.html[Jacoco] instrumentation of web-app projects. The resulting coverage information can be converted to report with the help of standard gradle task http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html[JacocoReport]. Below are the details.
+
+Code coverage of web-apps consists of two parts:
+
+* **Client-side code coverage** covers the code of integration tests (integration tests are typically written with https://code.google.com/p/spock/[spock] + http://www.gebish.org/[geb] or https://code.google.com/p/spock/[spock] + http://groovy.codehaus.org/modules/http-builder/[HttpBuilder], but actually it can be any JVM code that connects to your web-app).
+* **Server-side code coverage** covers the code of the web-app itself.
+
+== Client-side code coverage
+
+Client-side code coverage is not related to Gretty at all. It is activated by applying Jacoco plugin to the given project containing integration tests:
+
+[source,groovy]
+----
+apply plugin: 'jacoco'
+----
+
+Side effects of applying Jacoco plugin:
+
+* Jacoco plugin adds http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.plugins.JacocoTaskExtension.html[JacocoTaskExtension] to each http://www.gradle.org/docs/current/javadoc/org/gradle/api/tasks/testing/Test.html[Test] task of the given project.
+* Jacoco plugin apppends Jacoco-specific JVM-arguments to each Test task. 
+* When Test task runs, Jacoco gathers code coverage to the file `"${project.buildDir}/jacoco/${task.name}.exec"` ("task.name" is the name of the test task). 
+* If you defined JacocoReport task, it creates a report from collected code coverage - html, xml or csv.
+
+Here is the example of client-side code coverage configuration:
+
+[source,groovy]
+----
+apply plugin: 'jacoco'
+
+// ...
+
+test {
+  include '**/Test*.*'
+  include '**/*Test.*'
+  exclude '**/*IT.*'
+}
+
+task integrationTest(type: Test, dependsOn: 'test') {
+  outputs.upToDateWhen { false }
+  finalizedBy { tasks.integrationTestClientReport }
+  include '**/*IT.*'
+  jacoco {
+    append = false
+    destinationFile = new File(project.buildDir, 'jacoco/integrationTest_client.exec')
+  }
+}
+
+task('integrationTestClientReport', type: JacocoReport) {
+
+  executionData project.tasks.integrationTest
+  
+  sourceDirectories = project.files(project.sourceSets.test.allSource.srcDirs)
+  classDirectories = project.sourceSets.test.output
+  
+  def reportDir = project.reporting.file("jacoco/integrationTest_client/html")
+  reports {
+    html.destination = reportDir
+  }
+  doLast {
+    println "Jacoco report for client created: file://${reportDir.toURI().path}"
+  }  
+}
+----
+
+== Server-side code coverage
+
+Server-side code coverage is implemented by Gretty, using Jacoco plugin and task extensions. It is also activated by applying Jacoco plugin:
+
+[source,groovy]
+----
+apply plugin: 'jacoco'
+----
+
+Gretty-specific side effects of applying Jacoco plugin:
+
+* Jacoco plugin adds http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.plugins.JacocoTaskExtension.html[JacocoTaskExtension] to each jetty-start task of the given project - to jettyRun, jettyRunDebug, ... and, most importantly, to jettyBeforeIntegrationTest.
+* By default JacocoTaskExtension is enabled for jettyBeforeIntegrationTest and disabled for all other jetty-start tasks. Code coverage is not collected for the tasks with disabled JacocoTaskExtension. You can configure this by setting `jettyRun.jacoco.enabled = true`.
+* Jacoco plugin apppends Jacoco-specific JVM-arguments to each jetty-start task.
+* When jetty-start task runs, Jacoco gathers code coverage to the file `"${project.buildDir}/jacoco/${task.name}.exec"` ("task.name" is the name of the jetty-start task). 
+* If you defined JacocoReport task, it creates a report from collected code coverage - html, xml or csv.
+
+Here is the example of server-side code coverage configuration:
+
+[source,groovy]
+----
+apply plugin: 'gretty'
+apply plugin: 'jacoco'
+
+// ...
+
+gretty {
+  afterEvaluate {
+
+    tasks.jettyBeforeIntegrationTest.jacoco {
+      append = false
+      destinationFile = new File(project.buildDir, 'jacoco/integrationTest_server.exec')
+    }
+    
+    tasks.jettyAfterIntegrationTest.finalizedBy tasks.integrationTestServerReport
+  }
+}
+
+task('integrationTestServerReport', type: JacocoReport) {
+
+  executionData { tasks.jettyBeforeIntegrationTest.jacoco.destinationFile }
+  
+  sourceDirectories = project.files(project.sourceSets.main.allSource.srcDirs)
+  classDirectories = project.sourceSets.main.output
+  
+  def reportDir = project.reporting.file("jacoco/integrationTest_server/html")
+  reports {
+    html.destination = reportDir
+  }
+  doLast {
+    println "Jacoco report for server created: file://${reportDir.toURI().path}"
+  }  
+}
+
+----
+
+NOTE: You must configure jettyBeforeIntegrationTest and jettyAfterIntegrationTest in gretty.afterEvaluate closure: this is because jettyBeforeIntegrationTest and jettyAfterIntegrationTest tasks are not yet defined, when the gradle script is processed.
+
+NOTE: You cannot pass jettyBeforeIntegrationTest as a parameter to JacocoReport.executionData for the same reason: it is not yet defined. jettyBeforeIntegrationTest cannot be wrapped with closure, because internally executionData will pass such closure directly to project.files function and the latter has no idea what to do with task. Wrapping jettyBeforeIntegrationTest.jacoco.destinationFile with closure will work.
+
+=== Combining custom JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask with jacoco
+
+If you instantiate JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, enabling server-side code coverage looks basically the same:
+
+[source,groovy]
+----
+
+task('myIntegrationTest', type: Test) {
+  // ...
+}
+
+task('myBeforeIntegrationTest', type: JettyBeforeIntegrationTestTask) {
+  jacoco {
+    append = false
+    destinationFile = new File(project.buildDir, 'jacoco/integrationTest_server.exec')
+  }
+  integrationTestTask 'myIntegrationTest'
+}
+
+task('myAfterIntegrationTest', type: JettyAfterIntegrationTestTask) {
+  finalizedBy { tasks.integrationTestServerReport }
+  integrationTestTask 'myIntegrationTest'
+}
+
+task('integrationTestServerReport', type: JacocoReport) {
+
+  executionData tasks.myBeforeIntegrationTest
+  
+  sourceDirectories = project.files(project.sourceSets.main.allSource.srcDirs)
+  classDirectories = project.sourceSets.main.output
+  
+  def reportDir = project.reporting.file("jacoco/integrationTest_server/html")
+  reports {
+    html.destination = reportDir
+  }
+  doLast {
+    System.out.println "Jacoco report for server created: file://${reportDir.toURI().path}"
+  }  
+}
+----
+
+NOTE: When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, you don't need to wrap task configuration to gretty.afterEvaluate.
+
+NOTE: Passing myBeforeIntegrationTest as a parameter to JacocoReport.executionData is now simple: task already exists and Jacoco will correctly extract destinationFile from task's Jacoco extension.
+
+TIP: When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, you can use many nice features, like debugging, by setting up task properties. See more information in link:Gretty-task-classes#jettybeforeintegrationtesttask[JettyBeforeIntegrationTestTask] and link:Gretty-task-classes#jettyafterintegrationtesttask[JettyAfterIntegrationTestTask] class documentation.
+
+== Examples
+
+Gretty contains the complete and working examples of Jacoco code coverage:
+
+* Code coverage with standard Gretty tasks: +
+  https://github.com/akhikhl/gretty/tree/master/examples/jacocoExample
+
+* Code coverage with instantiated Gretty tasks: +
+  https://github.com/akhikhl/gretty/tree/master/examples/jacocoInstantiateTasks
+
+* Code coverage with link:Multiple-web-apps-introduction[multiple web-apps]: +
+  https://github.com/akhikhl/gretty/tree/master/examples/farmJacoco
+
+== Troubleshooting
+
+If you get exceptions when using combination JDK-8 + Gradle 1.1x + Jacoco + Gretty, you are very likely hitting a problem of compatibility between JDK-8 and earlier versions of Jacoco. See information on how to fix this link:Troubleshooting#exceptions-when-using-jacoco-code-coverage-on-jdk-8[here].

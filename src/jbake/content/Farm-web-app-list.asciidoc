@@ -1,0 +1,99 @@
+= Farm web-app list
+
+Apart from link:Farm-server-specific-properties[server-specific properties], farm configuration contains web-app list.
+
+Web-app list, when not specified by you, is automatically populated with all subprojects of given project, which are facilitated with gretty plugin.
+
+You can populate web-app list by calling `webapp` function on a farm:
+
+[source,groovy]
+----
+farm {
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+}
+----
+
+in the example above, farm refers two web-app projects: ProjectA and ProjectB.
+
+webapp function understands web-app references of three types: project, file and maven dependency.
+
+== Project web-app references
+
+You can add a particular project to web-app list by one of two methods:
+
+* Pass a string in project-path syntax: 
+
+[source,groovy]
+----
+farm {
+  webapp ':A:B:C' // adds a subproject from folder rootProject/A/B/C
+}
+----
+
+* Pass object of http://www.gradle.org/docs/current/javadoc/org/gradle/api/Project.html[Project] class:
+
+[source,groovy]
+----
+farm {
+  webapp project(':A:B:C') // adds a subproject from folder rootProject/A/B/C
+}
+----
+
+[TIP]
+====
+You can also add current project to web-app list:
+
+[code,groovy]
+----
+farm {
+  webapp project
+}
+----
+====
+
+IMPORTANT: projects being added to a farm must be present in gradle project tree, otherwise you'll get "unknown project" error. You add projects to the project tree via "settings.gradle". See more information in link:http://www.gradle.org/docs/current/userguide/multi_project_builds.html[Chapter 56. Multi-project Builds] of gradle documentation.
+
+== File-based web-app references
+
+Farms support adding a web-app directly from WAR-file, without gradle project:
+
+[source,groovy]
+----
+farm {
+  webapp '/path/to/some/folder/MyWebApp1.war'
+  webapp '/path/to/some/folder/MyWebApp2.war'
+}
+----
+
+Of course, you can intermix project and file-based web-apps and run them all on the same Jetty server.
+
+TIP: Relative paths to WAR-files are resolved relative to current project's directory. 
+
+TIP: Sometimes you will want to customize link:Gretty-configuration#Web-app-specific-properties[web-app-specific properties] for a file-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties#Web-app-specific-properties-override[webapp-specific properties override] mechanism.
+
+== Repository-based web-app references
+
+Farms support adding a web-app from maven or ivy dependency, without gradle project:
+
+[source,groovy]
+----
+farm {
+  webapp 'com.mycompany.product:MyWebApp1:0.0.1'  
+  webapp 'com.mycompany.product:MyWebApp2:0.0.2'
+}
+----
+
+Of course, you can intermix project, file-based and repository-based web-apps and run them all on the same Jetty server.
+
+TIP: If you get error message on missing dependency, check that "build.gradle" contains necessary repository definitions.
+
+TIP: Sometimes you will want to customize link:Gretty-configuration#Web-app-specific-properties[web-app-specific properties] for a repository-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties#Web-app-specific-properties-override[webapp-specific properties override] mechanism.
+
+'''
+
+See also: 
+
+* link:index#Multiple-web-apps[Multiple web-apps]
+* link:Farm-server-specific-properties[Farm server-specific properties]
+* link:Farms-and-web-app-specific-properties[Farms and web-app specific properties]

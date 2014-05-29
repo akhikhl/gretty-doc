@@ -1,0 +1,41 @@
+= jettyStop task
+
+jettyStop sends "stop" command to a running jetty server.
+
+== Syntax
+
+[source,bash]
+----
+gradle jettyStop
+----
+
+== Effects
+
+jettyStop does not build source code, it only sends "stop" command to
+localhost:link:Gretty-configuration#servicePort[servicePort]. Usually
+jettyStop is used to stop Gretty/Jetty process started by jettyStart[War][Debug].
+
+== Instantiation and extension
+
+The object called jettyStop is actually an instance of link:Gretty-task-classes#jettystoptask[JettyStopTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'gretty'
+
+import org.akhikhl.gretty.JettyStopTask
+
+task('MyStop', type: JettyStopTask) {
+  // ...
+}
+
+class VerySpecialStop extends JettyStopTask {
+  // ...
+}
+
+task('MyStop2', type: VerySpecialStop) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.

@@ -1,0 +1,53 @@
+= Publishing gretty to bintray and maven central
+
+IMPORTANT: you only need this topic, if you are maintainer of Gretty and you are going to publish it's artifacts to Bintray and Maven Central.
+
+Gretty sources are configured for publishing gretty artifacts to Bintray and Maven Central. Publishing typically consists of two steps:
+
+1.  Define publishing-specific properties
+2.  Invoke publishing task.
+
+Below are the detailed instructions.
+
+== Publishing to sonatype
+
+. Create GPG signing key, add it to your public key ring.
+. Publish public GPG key to public keyserver, for example, to keyserver.ubuntu.com
+. Create file "gradle.properties" in ~/.gradle, insert the following content to it:
++
+----
+signing.keyId={gpg-key-id}
+signing.password={gpg-key-passphrase}
+signing.secretKeyRingFile=/home/yourUserName/.gnupg/secring.gpg
+sonatypeUsername={sonatype-username}
+sonatypePassword={sonatype-password}
+----
++
+(Please substitute real values instead of curly braces).
+
+. Run from command line: 
++
+[code,bash]
+----
+gradle uploadArchives -PpublishToSonatype=true
+----
+
+== Publishing to bintray
+
+. Upload private and public armored GPG key to https://bintray.com/profile/edit, section "GPG Signing".
+. Tick the checkbox "Sign this repository's files with key from: ..." at https://bintray.com/yourUserName/maven/edit?tab=general
+. Create file "gradle.properties" in ~/.gradle, insert the following content to it:
++
+----
+bintrayUser={bintray-user-name}
+bintrayKey={bintray-API-key}
+----
++
+(Please substitute real values instead of curly braces). 
+
+. Run from command line: 
++
+[code,bash]
+----
+gradle bintrayUpload
+----

@@ -1,0 +1,38 @@
+= Web-app overlays
+
++overlay+ function of gretty configuration adds the specified project as an _overlay source_ to the current project.
+
+== Syntax
+
+[source,groovy]
+----
+gretty {
+  // ...
+  overlay ':overlay1'
+  overlay ':overlay2'
+  // ...
+}
+----
+
+== Effects
+
+. When performing jettyRun[Debug] and jettyStart[Debug],
+runtime classpath of overlay sources is added to the runtime classpath of the current project.
+Classpath of the current project has priority.
+. When assembling WAR file, the compiled resources and classes of the overlay sources 
+are added (overlayed) to the current project. 
+The files of the current project have priority over overlay source files. 
+This allows to effectively customize web-app.
+
+TIP: You can specify more than one overlay source. 
+
+TIP: You can specify recursive overlay sources - that is, the projects, added by +overlay+ function, can contain gretty configuration with +overlay+ referencing other projects and so on.
+
+IMPORTANT: "overlay" property "understands" only gradle projects of the same project tree as an input. You can not specify maven artifacts as overlay sources.
+
+Gretty sources contain example programs, demonstrating use of overlays:
+
+* https://github.com/akhikhl/gretty/tree/master/examples/grettyOverlay7[grettyOverlay7]
+* https://github.com/akhikhl/gretty/tree/master/examples/grettyOverlay8[grettyOverlay8]
+* https://github.com/akhikhl/gretty/tree/master/examples/grettyOverlay9[grettyOverlay9]
+

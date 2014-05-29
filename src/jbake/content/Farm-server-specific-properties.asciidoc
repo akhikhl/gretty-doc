@@ -1,0 +1,194 @@
+= Farm server-specific properties
+
+Farm configuration defines it's own set of server-specific properties. When you run a farm task, it uses server-specific properties defined in farm configuration and ignores server-specific properties defined in gretty configurations. For example:
+
+[source,groovy]
+----
+gretty {
+  port = 8181
+}
+
+farm {
+  port = 9191
+  webapp project
+}
+----
+
+* when you invoke `gradle farmRun`, it serves port 9191, not 8181.
+* when you invoke `gradle jettyRun`, it serves port 8181, because jettyXXX tasks don't use farms.
+
+== Server-specific properties
+
+
+[cols="1,1,1,10", options="header"]
+|===
+| Property
+| Type
+| Default
+| Purpose
+
+| [[jvmArgs]] jvmArgs
+| List<String>
+| []
+| Additional JVM arguments to Jetty process.
+
+| [[host]] host
+| String
+| "localhost"
+| host is passed to Jetty connectors. If you use HTTPS, host must match CN of the subject DN of the certificate (if you use link:HTTPS-support#HTTPS-Auto-configuration[HTTP auto-configuration], this is ensured automatically).
+
+| [[httpEnabled]] httpEnabled
+| boolean
+| true
+| When httpEnabled is true, Gretty configures HTTP connector for the designated httpPort. Otherwise HTTP protocol is disabled. Normally either httpEnabled or httpsEnabled should be true.
+
+| [[httpPort]] httpPort
+| int
+| 8080
+| TCP-port used by Jetty for incoming HTTP-requests.
+
+| [[port]] port
+| int
+| 8080
+| This property is exactly the same as httpPort
+
+| [[httpIdleTimeout]] httpIdleTimeout
+| int
+| null
+| When not null, defines the time, in milliseconds, that the HTTP connection can be idle before it is closed. +
+See also: http://www.eclipse.org/jetty/documentation/current/configuring-connectors.html[Jetty documentation, configuring connectors].
+
+| [[httpsEnabled]] httpsEnabled
+| boolean
+| false
+| When httpsEnabled is true, Gretty configures HTTPS connector for the designated httpsPort. Otherwise HTTPS protocol is disabled. Normally either httpEnabled or httpsEnabled should be true. +
+See also: link:HTTPS-support[HTTPS support].
+
+| [[httpsPort]] httpsPort
+| int
+| 8443
+| TCP-port used by Jetty for incoming HTTPS-requests. +
+**Attention:** setting httpsPort alone is not enough to enable HTTPS protocol. You must set httpsEnabled=true in order to enable HTTPS.
+
+| [[sslKeyStorePath]] sslKeyStorePath
+| String or java.io.File
+| null
+| Absolute or relative path to the key-store, containing key and certificate for HTTPS connection. If sslKeyStorePath is not specified, all other SSL-related properties are ignored and HTTPS is auto-configured (if it is enabled). +
+See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+
+| [[sslKeyStorePassword]] sslKeyStorePassword
+| String
+| null
+| Password for the key-store designated by property sslKeyStorePath. +
+See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+
+| [[sslKeyManagerPassword]] sslKeyManagerPassword
+| String
+| sslKeyStorePassword
+| Password for the key of this host, stored in key-store designated by property sslKeyStorePath. +
+See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+
+| [[sslTrustStorePath]] sslTrustStorePath
+| String or java.io.File
+| sslKeyStorePath
+| Absolute or relative path to the trust-store for HTTPS connection.  +
+See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+
+| [[sslKeyStorePassword]] sslKeyStorePassword
+| String
+| null
+| Password for the key-store designated by property sslKeyStorePath. +
+See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+
+| [[httpsIdleTimeout]] httpsIdleTimeout
+| int
+| null
+| When not null, defines the time, in milliseconds, that the HTTPS connection can be idle before it is closed. +
+See also: http://www.eclipse.org/jetty/documentation/current/configuring-connectors.html[Jetty documentation, configuring connectors].
+
+| [[servicePort]] servicePort
+| int
+| 9900
+| TCP-port used by Gretty to send commands to Jetty process.
+
+| [[statusPort]] statusPort
+| int
+| 9901
+| TCP-port used by Jetty process to send status back to Gretty.
+
+| [[jettyXmlFile]] jettyXmlFile
+| String or java.io.File
+| "jetty.xml"
+| Name and/or location of "jetty.xml" file. +
+See also: link:jetty.xml-support[jetty.xml support].
+
+| [[scanInterval]] scanInterval
+| int
+| 0
+| Hot-deployment scan interval, in seconds. +
+See also: link:Hot-deployment[Hot deployment].
+
+| [[logbackConfigFile]] logbackConfigFile
+| String
+| "logback.groovy" or "logback.xml"
+| Absolute or relative path to logback configuration file (.groovy or .xml). +
+See also: link:Logging[].
+
+| [[loggingLevel]] loggingLevel
+| String
+| "INFO"
+| slf4j logging-level for jetty process. +
+See also: link:Logging[].
+
+| [[consoleLogEnabled]] consoleLogEnabled
+| boolean
+| true
+| Defines whether log messages are written to the terminal. +
+See also: link:Logging[].
+
+| [[fileLogEnabled]] fileLogEnabled
+| boolean
+| true
+| Defines, whether log messages are written to the log-file. +
+See also: link:Logging[].
+
+| [[logFileName]] logFileName
+| String
+| "${project.name}.log"
+| Log file name (without path). +
+See also: link:Logging[].
+
+| [[logDir]] logDir
+| String
+| "${user.home}/logs"
+| Directory, where the log file is created. +
+See also: link:Logging[].
+
+| [[onStart]] onStart
+| function(Closure)
+| -
+| Adds closure to be called just before jetty server is started.
+
+| [[onStop]] onStop
+| function(Closure)
+| -
+| Adds closure to be called just after jetty server is stopped.
+
+| [[onScan]] onScan
+| function(Closure)
+| -
+| Adds closure to be called on hot-deployment scan. +
+See also: link:Hot-deployment[Hot deployment].
+
+| [[onScanFilesChanged]] onScanFilesChanged
+| function(Closure)
+| -
+| Adds closure to be called whenever hot-deployment detects that files or folders were changed. +
+See also: link:Hot-deployment[Hot deployment].
+|===
+
+See also: 
+
+* link:index#Multiple-web-apps[Multiple web-apps]
+* link:Farm-web-app-list[Farm web-app list]
+* link:Farms-and-web-app-specific-properties[Farms and web-app specific properties]

@@ -1,0 +1,57 @@
+= Feature overview
+
+link:https://github.com/akhikhl/gretty[Project home] | link:Home[Wiki home] | link:Feature-overview[Feature overview]
+
+image::http://akhikhl.github.io/gretty/media/gretty_logo.png[logo]
+
+== Gradle tasks
+Gretty provides gradle tasks, which automate starting, stopping, testing and debugging web-apps. 
+Tasks work out-of-the-box, without additional configuration, but are fully configurable/customizable.
+ +
+See more information at link:Gretty-tasks[Gretty tasks] and link:Farm-tasks[Farm tasks].
+
+== Multiple web-apps support
+Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction[multiple web-apps feature]: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: link:Farm-web-app-list#Project-web-app-references[gradle projects], link:Farm-web-app-list#File-based-web-app-references[WAR-files in the file system] and even link:Farm-web-app-list#Repository-based-web-app-references[WAR-files from maven dependencies]. +
+Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup[configureless mode], although it is fully link:Home#Multiple-web-apps-configuration[configurable/customizable]. +
+Multiple web-apps feature also works nicely with integration tests and with the debugger.
+
+== Switch between jetty and servlet-API versions
+
+Gretty supports link:Switching-between-jetty-and-servlet-API-versions[easy switch] between jetty 7, 8 and 9 and servlet API 2.5, 3.0.1 and 3.1.0. 
+
+== Hot deployment
+
+Gretty support feature of link:Hot-deployment[Hot deployment]:
+When some assets have changed, Gretty automatically reloads your web-app. +
+There is _cool extension to hot-deployment feature_ in Gretty since version 0.0.18: Gretty automatically recompiles and then reloads your web-app, as soon as source code files have changed.
+
+You can specify that certain folders or files should be link:Fast-reload[fast-reloaded]: that is, when they change, they should not cause web-app restart. Instead, the changed files or folders are simply copied into running web-app.
+
+== Web-app overlays
+
+Gretty can generate link:Web-app-overlays[WAR overlays] automatically, each time you build your project.
+Overlays are also fully supported when running inplace (without WAR) and when debugging.
+
+== HTTPS support
+
+Since version 0.0.23 Gretty link:HTTPS-support[supports HTTPS protocol] out-of-the-box. All you have to do is set property `httpsEnabled=true`. Gretty does all heavy-lifting for you: generates necessary cryptographic key, generates X.509 certificate, configures SSL-connector. Of course, you can fully customize HTTPS protocol via Gretty configuration properties or even via "jetty.xml".
+
+== Debugger and integration tests support
+
+Gretty provides link:Debugger-support[integration with Java IDE debuggers]. You can even debug multiple web-apps loaded into the same Jetty server.
+
+Gretty link:Integration-tests-support[supports integration tests]: it starts jetty before integration tests and stop it after. Since version 0.0.22 Gretty link:Code-coverage-support[supports Jacoco code coverage] of web-app projects - both client-side and server-side. The resulting coverage information can be converted to report with the help of standard gradle task http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html[JacocoReport].
+
+== Logging support
+
+Gretty provides link:Logging[] out-of-the-box, although it does not force it on your web-app.
+
+== JEE features
+
+Gretty supports link:JEE-annotations-support[JEE annotations] out-of-the-box, no effort needed. +
+Gretty supports link:Web-fragments-support[Web fragments]: META-INF/web-fragment.xml and META-INF/resources in dependency libraries - both in inplace and WAR tasks.
+
+== Jetty-specific features
+
+Gretty automatically uses link:jetty.xml-support["jetty.xml"] and link:jetty-env.xml-support["jetty-env.xml"], if they are present. +
+Also gretty supports jetty link:Security-realms[security realms] out-of-the-box.

@@ -1,0 +1,41 @@
+= jettyBeforeIntegrationTest task
+
+Gretty automatically invokes this task before integration test task, referred in
+link:Gretty-configuration#integrationTestTask[integrationTestTask] property of gretty configuration.
+
+WARNING: Internal task, please, don't invoke it on command line!
+
+== Effects
+
+. Embedded jetty starts in separate java process against compiled
+classes and their dependencies and listens for HTTP-requests on
+link:Gretty-configuration#port[port] (default 8080).
+. Gradle script waits until jetty is online.
+. Gradle script proceeds to integration test task.
+
+== Instantiation and extension
+
+The object called jettyBeforeIntegrationTest is actually an instance of link:Gretty-task-classes#jettybeforeintegrationtesttask[JettyBeforeIntegrationTestTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'gretty'
+
+import org.akhikhl.gretty.JettyBeforeIntegrationTestTask
+
+task('MyBeforeIntegration', type: JettyBeforeIntegrationTestTask) {
+  // ...
+}
+
+class VerySpecialBeforeIntegration extends JettyBeforeIntegrationTestTask {
+  // ...
+}
+
+task('MyBeforeIntegration2', type: VerySpecialBeforeIntegration) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+
+See also: link:Integration-tests-support[integration tests support].

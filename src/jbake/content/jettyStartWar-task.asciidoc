@@ -1,0 +1,50 @@
+= jettyStartWar task
+
+jettyStartWar starts web-app on WAR-file.
+
+== Syntax
+
+[source,bash]
+----
+gradle jettyStartWar
+----
+
+== Effects
+.  The web-app gets compiled and assembled into WAR-file (if it's not up-to-date).
+.  Embedded jetty starts in separate java process against WAR-file and
+listens for HTTP-requests on link:Gretty-configuration#port[port] (default 8080).
+.  Gretty waits for jetty process to complete.
+.  Gradle script continues normal execution of tasks.
+
+Note that this task does not stop Jetty. It is assumed that another gradle process stops it, supposedly +gradle jettyStop+.
+
+== Instantiation and extension
+
+The object called jettyStartWar is actually an instance of link:Gretty-task-classes#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'gretty'
+
+import org.akhikhl.gretty.JettyStartTask
+
+task('MyRun', type: JettyStartTask) {
+  // ...
+}
+
+class VerySpecialRun extends JettyStartTask {
+  // ...
+}
+
+task('MyRun2', type: VerySpecialRun) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+
+== Workflow
+
+image::http://akhikhl.github.io/gretty/media/jettyStartWar_StateDiagram.svg[]
+
+See also: link:jettyStop-task[jettyStop task] and link:jettyRestart-task[jettyRestart task].

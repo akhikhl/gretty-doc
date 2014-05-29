@@ -1,0 +1,48 @@
+= Troubleshooting
+
+==== GroovyCastException while starting web-app with Gretty
+
+Don't try to apply from "grettyX-X.plugin" AND define classpath for
+gretty simultaneously:
+
+[source,groovy]
+----
+// ATTENTION: this script does not work! It contains error!
+buildscript {
+  repositories {
+    jcenter()
+  }
+  
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty-plugin:+'
+  }
+}
+
+repositories {
+  jcenter()
+}
+
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+----
+
+Here the following happens: gradle loads gretty-plugin JARs twice, class-loading gets confused and you get exceptions like GroovyCastException.
+
+==== Exceptions when using Jacoco code coverage on JDK-8
+
+If you get exceptions when using combination JDK-8 + Gradle 1.1x + Jacoco + Gretty, you are very likely hitting a problem of compatibility between JDK-8 and earlier versions of Jacoco. This is fixed by adding the following to your "build.gradle":
+
+[source,groovy]
+----
+jacoco {
+  toolVersion = '0.7.1.201405082137'
+}
+----
+
+or, if you don't want to depend on concrete version of Jacoco and prefer to use the latest available version:
+
+[source,groovy]
+----
+jacoco {
+  toolVersion = '+'
+}
+----
