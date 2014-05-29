@@ -1,4 +1,9 @@
 = Switching between jetty and servlet-API versions
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 To use specific version of jetty and servlet API, add one of the
 following to "build.gradle" of your web-app (instead of

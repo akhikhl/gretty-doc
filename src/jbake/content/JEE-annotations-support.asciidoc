@@ -1,4 +1,9 @@
 = JEE annotations support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Gretty supports JEE annotations out-of-the-box. This means: you don't
 have to configure anything, you just use JEE annotations in the
@@ -48,4 +53,4 @@ behavior by inserting the following into "jetty-env.xml":
 in the example above we specify, that Gretty should scan for annotations
 any jar whose name starts with "foo-" or "bar-", or a directory named "classes".
 
-See also: link:jetty-env.xml-support["jetty-env.xml" support].
+See also: link:jetty-env.xml-support.html["jetty-env.xml" support].

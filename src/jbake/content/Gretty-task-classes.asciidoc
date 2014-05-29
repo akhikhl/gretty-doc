@@ -1,8 +1,13 @@
 = Gretty task classes
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
-The existing link:Gretty-tasks[gretty tasks] should be sufficient for many web-app development scenarios.
+The existing link:Gretty-tasks.html[gretty tasks] should be sufficient for many web-app development scenarios.
 
-If you need to configure Gretty tasks, you should first look at link:Gretty-configuration[gretty configuration] - maybe, there is already everything that you need.
+If you need to configure Gretty tasks, you should first look at link:Gretty-configuration.html[gretty configuration] - maybe, there is already everything that you need.
 
 Of course, there are cases, when you need to instantiate new gretty tasks or to extend their classes with new functions/properties. Then you need knowledge about gretty task classes.
 
@@ -24,12 +29,12 @@ JettyStartTask starts single web-app project on Jetty.
 | server-specific properties
 | 
 | all properties are null by default
-| same as link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+| same as link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
 
 | web-app-specific properties
 |
 | all properties are null by default
-| same as link:Gretty-configuration#Web-app-specific-properties[web-app specific properties of gretty configuration]
+| same as link:Gretty-configuration.html#Web-app-specific-properties[web-app specific properties of gretty configuration]
 
 | interactive
 | boolean
@@ -104,7 +109,7 @@ JettyStopTask sends "stop" command over servicePort to a single web-app, which w
 | servicePort
 | integer
 | null
-| same as in link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+| same as in link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
 |===
 
 === Property inheritance
@@ -135,7 +140,7 @@ JettyRestartTask sends "restart" command over servicePort to a single web-app, w
 | servicePort
 | integer
 | null
-| same as in link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+| same as in link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
 |===
 
 === Property inheritance
@@ -183,12 +188,12 @@ task('MyJettyBeforeIntegrationTest', type: JettyBeforeIntegrationTestTask) {
 | server-specific properties
 | 
 | all properties are null by default
-| same as link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+| same as link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
 
 | web-app-specific properties
 |
 | all properties are null by default
-| same as link:Gretty-configuration#Web-app-specific-properties[web-app specific properties of gretty configuration]
+| same as link:Gretty-configuration.html#Web-app-specific-properties[web-app specific properties of gretty configuration]
 
 | interactive
 | boolean
@@ -253,7 +258,7 @@ task('MyJettyAfterIntegrationTest', type: JettyAfterIntegrationTestTask) {
 | servicePort
 | integer
 | null
-| same as in link:Gretty-configuration#Server-specific-properties[server-specific properties of gretty configuration]
+| same as in link:Gretty-configuration.html#Server-specific-properties[server-specific properties of gretty configuration]
 
 | integrationTestTask
 | String

@@ -1,4 +1,9 @@
 = Debugger support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 All jettyRunXXX and jettyStartXXX tasks have their debugging
 counterparts. For example, there are tasks jettyRun and jettyRunDebug.

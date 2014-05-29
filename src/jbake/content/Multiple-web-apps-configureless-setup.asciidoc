@@ -1,4 +1,9 @@
 = Multiple web-apps configureless setup
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Create three empty folders: ProjectA, ProjectB and ProjectC, so that folder tree looks like this:
 
@@ -71,8 +76,8 @@ Now explanation on the details of what we just did. We defined three gradle proj
 The projects with gretty plugin are usual web-apps, potentially with src/main/webapp, configuration files, servlets etc.etc. +
 The project with gretty-farm plugin is special. It defines *farm* - logical group of web-apps that should run together. 
 
-By default farm automatically adds all subprojects of the farm project, which are facilitated with gretty plugin, to web-apps list. On the link:Configuring-default-farm[next page] you'll see how you can control, which projects are added to a farm.
+By default farm automatically adds all subprojects of the farm project, which are facilitated with gretty plugin, to web-apps list. On the link:Configuring-default-farm.html[next page] you'll see how you can control, which projects are added to a farm.
 
-Gretty-farm plugin also defines new, distinct set of tasks for running farms: farmRun, farmRunDebug, farmRunWar, farmRunWarDebug, etc. (see complete list of farm tasks link:Farm-tasks[here]).
+Gretty-farm plugin also defines new, distinct set of tasks for running farms: farmRun, farmRunDebug, farmRunWar, farmRunWarDebug, etc. (see complete list of farm tasks link:Farm-tasks.html[here]).
 
-See also: link:index#Multiple-web-apps[Multiple web-apps].
+See also: link:index.html#Multiple-web-apps[Multiple web-apps].

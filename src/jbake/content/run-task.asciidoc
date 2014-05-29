@@ -1,5 +1,10 @@
 = run task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
-"run" task is the same as link:jettyRun-task[jettyRun task]. It was implemented for better integration of Gretty with Netbeans IDE.
+"run" task is the same as link:jettyRun-task.html[jettyRun task]. It was implemented for better integration of Gretty with Netbeans IDE.
 
-TIP: if you run a farm, "run" task is redefined as equivalent to link:farmRun-task[farmRun task].
+TIP: if you run a farm, "run" task is redefined as equivalent to link:farmRun-task.html[farmRun task].

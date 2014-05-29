@@ -1,31 +1,36 @@
 = Hot deployment
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Gretty supports hot deployment: whenever the classes, jars or resources
 [comprising the web-app] are updated, Gretty automatically reloads web-app.
 
 Since version 0.0.18 Gretty has new cool feature: it automatically recompiles and then reloads your web-app, as soon as source code files have changed. 
 
-You can configure hot deployment by adjusting the link:Gretty-configuration[gretty configuration] properties:
+You can configure hot deployment by adjusting the link:Gretty-configuration.html[gretty configuration] properties:
 
-* link:Gretty-configuration#scanInterval[scanInterval] defines scan interval, in seconds.
+* link:Gretty-configuration.html#scanInterval[scanInterval] defines scan interval, in seconds.
 
-* link:Gretty-configuration#scanDir[scanDir] defines one or more
+* link:Gretty-configuration.html#scanDir[scanDir] defines one or more
 directories, scanned by hot-deployment. The directory could be a string 
 or instance of java.io.File class, denoting relative (to the project) or absolute path.
 
-* link:Gretty-configuration#onScan[onScan] adds a closure to be called
+* link:Gretty-configuration.html#onScan[onScan] adds a closure to be called
 on hot-deployment scan, i.e. each scanInterval seconds. The function is
 called unconditionally, regardless of whether hot deployment detects
 changed files or not.
 
-* link:Gretty-configuration#onScanFileChanged[onScanFilesChanged]
+* link:Gretty-configuration.html#onScanFileChanged[onScanFilesChanged]
 adds a closure to be called whenever hot-deployment detects that files
 or folders were changed. The closure receives List as the parameter,
 which holds all changed files and folders.
 
 Gretty hot deployment assumes the following defaults:
 
-* link:Gretty-configuration#scanInterval[scanInterval] is set to zero,
+* link:Gretty-configuration.html#scanInterval[scanInterval] is set to zero,
 that means that hot deployment is disabled. You need to assign it to
 non-zero value to enable hot deployment.
 

@@ -1,4 +1,9 @@
 = jetty-env.xml support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 "jetty-env.xml" is an optional Jetty file that configures individual web-app. 
 The format of jetty-web.xml is the same as jetty.xml - it is an XML mapping of the Jetty API.

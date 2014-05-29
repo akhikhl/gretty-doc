@@ -1,4 +1,9 @@
 = Gretty tasks
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 When you insert +apply plugin: \'gretty'+ to "build.gradle", Gretty plugin facilitates the project with the following gradle tasks:
 
@@ -10,73 +15,73 @@ When you insert +apply plugin: \'gretty'+ to "build.gradle", Gretty plugin facil
 | Uses WAR 
 | Debug
 
-| link:jettyRun-task[jettyRun], link:run-task[run]
+| link:jettyRun-task.html[jettyRun], link:run-task.html[run]
 | Starts web-app
 | keypress
 | no
 | no
 
-| link:jettyRunDebug-task[jettyRunDebug], link:debug-task[debug]
+| link:jettyRunDebug-task.html[jettyRunDebug], link:debug-task.html[debug]
 | Starts web-app
 | keypress 
 | no
 | yes
 
-| link:jettyRunWar-task[jettyRunWar]
+| link:jettyRunWar-task.html[jettyRunWar]
 | Starts web-app
 | keypress 
 | yes
 | no
 
-| link:jettyRunWarDebug-task[jettyRunWarDebug]
+| link:jettyRunWarDebug-task.html[jettyRunWarDebug]
 | Starts web-app
 | keypress 
 | yes
 | yes
 
-| link:jettyStart-task[jettyStart]
+| link:jettyStart-task.html[jettyStart]
 | Starts web-app
 | jettyStop
 | no
 | no
 
-| link:jettyStartDebug-task[jettyStartDebug]
+| link:jettyStartDebug-task.html[jettyStartDebug]
 | Starts web-app
 | jettyStop
 | no
 | yes
 
-| link:jettyStartWar-task[jettyStartWar]
+| link:jettyStartWar-task.html[jettyStartWar]
 | Starts web-app
 | jettyStop
 | yes
 | no
 
-| link:jettyStartWarDebug-task[jettyStartWarDebug]
+| link:jettyStartWarDebug-task.html[jettyStartWarDebug]
 | Starts web-app
 | jettyStop
 | yes
 | yes
 
-| link:jettyStop-task[jettyStop]
+| link:jettyStop-task.html[jettyStop]
 | Stops web-app
 | -
 | -
 | -
 
-| link:jettyRestart-task[jettyRestart]
+| link:jettyRestart-task.html[jettyRestart]
 | Restarts web-app
 | -
 | -
 | -
 
-| link:jettyBeforeIntegrationTest-task[jettyBeforeIntegrationTest]
+| link:jettyBeforeIntegrationTest-task.html[jettyBeforeIntegrationTest]
 | Starts jetty before integration test.
 | jettyAfterIntegrationTest
 | no
 | no
 
-| link:jettyAfterIntegrationTest-task[jettyAfterIntegrationTest]
+| link:jettyAfterIntegrationTest-task.html[jettyAfterIntegrationTest]
 | Stops jetty after integration test.
 | -
 | -

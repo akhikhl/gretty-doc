@@ -1,4 +1,9 @@
 = jettyStartDebug task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 jettyStartDebug starts web-app inplace, in debug mode.
 
@@ -15,7 +20,7 @@ gradle jettyStartDebug
 classes and their dependencies. +
 *important*: Upon start, the process is in suspended-mode and listens for debugger commands on port 5005.
 . Upon resume, jetty process starts listening for HTTP-requests on
-link:Gretty-configuration#port[port] (default 8080).
+link:Gretty-configuration.html#port[port] (default 8080).
 . Gretty waits for jetty process to complete.
 . Gradle script continues normal execution of tasks.
 
@@ -25,7 +30,7 @@ Note that this task does not stop Jetty. It is assumed that another gradle proce
 
 == Instantiation and extension
 
-The object called jettyStartDebug is actually an instance of link:Gretty-task-classes#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyStartDebug is actually an instance of link:Gretty-task-classes.html#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----
@@ -52,4 +57,4 @@ If you are going to instantiate or extend this task class yourself, make sure yo
 
 image::http://akhikhl.github.io/gretty/media/jettyStartDebug_StateDiagram.svg[]
 
-See also: link:jettyStop-task[jettyStop task], link:jettyRestart-task[jettyRestart task], link:Debugger-support[Debugger support].
+See also: link:jettyStop-task.html[jettyStop task], link:jettyRestart-task.html[jettyRestart task], link:Debugger-support.html[Debugger support].

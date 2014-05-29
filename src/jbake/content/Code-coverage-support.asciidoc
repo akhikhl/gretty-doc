@@ -1,4 +1,9 @@
 = Code coverage support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Since version 0.0.22 Gretty supports http://www.eclemma.org/jacoco/index.html[Jacoco] instrumentation of web-app projects. The resulting coverage information can be converted to report with the help of standard gradle task http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html[JacocoReport]. Below are the details.
 
@@ -169,7 +174,7 @@ NOTE: When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegratio
 
 NOTE: Passing myBeforeIntegrationTest as a parameter to JacocoReport.executionData is now simple: task already exists and Jacoco will correctly extract destinationFile from task's Jacoco extension.
 
-TIP: When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, you can use many nice features, like debugging, by setting up task properties. See more information in link:Gretty-task-classes#jettybeforeintegrationtesttask[JettyBeforeIntegrationTestTask] and link:Gretty-task-classes#jettyafterintegrationtesttask[JettyAfterIntegrationTestTask] class documentation.
+TIP: When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, you can use many nice features, like debugging, by setting up task properties. See more information in link:Gretty-task-classes.html#jettybeforeintegrationtesttask[JettyBeforeIntegrationTestTask] and link:Gretty-task-classes.html#jettyafterintegrationtesttask[JettyAfterIntegrationTestTask] class documentation.
 
 == Examples
 
@@ -181,9 +186,9 @@ Gretty contains the complete and working examples of Jacoco code coverage:
 * Code coverage with instantiated Gretty tasks: +
   https://github.com/akhikhl/gretty/tree/master/examples/jacocoInstantiateTasks
 
-* Code coverage with link:Multiple-web-apps-introduction[multiple web-apps]: +
+* Code coverage with link:Multiple-web-apps-introduction.html[multiple web-apps]: +
   https://github.com/akhikhl/gretty/tree/master/examples/farmJacoco
 
 == Troubleshooting
 
-If you get exceptions when using combination JDK-8 + Gradle 1.1x + Jacoco + Gretty, you are very likely hitting a problem of compatibility between JDK-8 and earlier versions of Jacoco. See information on how to fix this link:Troubleshooting#exceptions-when-using-jacoco-code-coverage-on-jdk-8[here].
+If you get exceptions when using combination JDK-8 + Gradle 1.1x + Jacoco + Gretty, you are very likely hitting a problem of compatibility between JDK-8 and earlier versions of Jacoco. See information on how to fix this link:Troubleshooting.html#exceptions-when-using-jacoco-code-coverage-on-jdk-8[here].

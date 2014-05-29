@@ -1,4 +1,9 @@
 = jettyRunDebug task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 jettyRunDebug starts web-app inplace, in debug and interactive mode.
 
@@ -16,7 +21,7 @@ classes and their dependencies. +
 *important*: Upon start, the process is
 in suspended-mode and listens for debugger commands on port 5005.
 .  Upon resume, jetty process starts listening for HTTP-requests on
-link:Gretty-configuration#port[port] (default 8080).
+link:Gretty-configuration.html#port[port] (default 8080).
 .  Gretty waits for the user keypress.
 .  When user presses any key (in the same terminal), jetty process
 shuts down.
@@ -27,7 +32,7 @@ Note that this task does not depend on "war" task, nor does it use WAR-file.
 
 == Instantiation and extension
 
-The object called jettyRunDebug is actually an instance of link:Gretty-task-classes#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyRunDebug is actually an instance of link:Gretty-task-classes.html#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----
@@ -54,4 +59,4 @@ If you are going to instantiate or extend this task class yourself, make sure yo
 
 image::http://akhikhl.github.io/gretty/media/jettyRunDebug_StateDiagram.svg[]
 
-See also: link:Debugger-support[Debugger support].
+See also: link:Debugger-support.html[Debugger support].

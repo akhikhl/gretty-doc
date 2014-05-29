@@ -1,6 +1,11 @@
 = Farm web-app list
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
-Apart from link:Farm-server-specific-properties[server-specific properties], farm configuration contains web-app list.
+Apart from link:Farm-server-specific-properties.html[server-specific properties], farm configuration contains web-app list.
 
 Web-app list, when not specified by you, is automatically populated with all subprojects of given project, which are facilitated with gretty plugin.
 
@@ -44,7 +49,7 @@ farm {
 ====
 You can also add current project to web-app list:
 
-[code,groovy]
+[source,groovy]
 ----
 farm {
   webapp project
@@ -52,7 +57,7 @@ farm {
 ----
 ====
 
-IMPORTANT: projects being added to a farm must be present in gradle project tree, otherwise you'll get "unknown project" error. You add projects to the project tree via "settings.gradle". See more information in link:http://www.gradle.org/docs/current/userguide/multi_project_builds.html[Chapter 56. Multi-project Builds] of gradle documentation.
+IMPORTANT: projects being added to a farm must be present in gradle project tree, otherwise you'll get "unknown project" error. You add projects to the project tree via "settings.gradle". See more information in link:http://www.gradle.org/docs/current/userguide/multi_project_builds.html.html[Chapter 56. Multi-project Builds] of gradle documentation.
 
 == File-based web-app references
 
@@ -70,7 +75,7 @@ Of course, you can intermix project and file-based web-apps and run them all on 
 
 TIP: Relative paths to WAR-files are resolved relative to current project's directory. 
 
-TIP: Sometimes you will want to customize link:Gretty-configuration#Web-app-specific-properties[web-app-specific properties] for a file-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties#Web-app-specific-properties-override[webapp-specific properties override] mechanism.
+TIP: Sometimes you will want to customize link:Gretty-configuration.html#Web-app-specific-properties[web-app-specific properties] for a file-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties.html#Web-app-specific-properties-override[webapp-specific properties override] mechanism.
 
 == Repository-based web-app references
 
@@ -88,12 +93,12 @@ Of course, you can intermix project, file-based and repository-based web-apps an
 
 TIP: If you get error message on missing dependency, check that "build.gradle" contains necessary repository definitions.
 
-TIP: Sometimes you will want to customize link:Gretty-configuration#Web-app-specific-properties[web-app-specific properties] for a repository-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties#Web-app-specific-properties-override[webapp-specific properties override] mechanism.
+TIP: Sometimes you will want to customize link:Gretty-configuration.html#Web-app-specific-properties[web-app-specific properties] for a repository-based web-app references. You can do this with the help of link:Farms-and-web-app-specific-properties.html#Web-app-specific-properties-override[webapp-specific properties override] mechanism.
 
 '''
 
 See also: 
 
-* link:index#Multiple-web-apps[Multiple web-apps]
-* link:Farm-server-specific-properties[Farm server-specific properties]
-* link:Farms-and-web-app-specific-properties[Farms and web-app specific properties]
+* link:index.html#Multiple-web-apps[Multiple web-apps]
+* link:Farm-server-specific-properties.html[Farm server-specific properties]
+* link:Farms-and-web-app-specific-properties.html[Farms and web-app specific properties]

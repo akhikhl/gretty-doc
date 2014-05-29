@@ -1,4 +1,9 @@
 = jettyStartWarDebug task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 jettyStartWarDebug starts web-app on WAR-file, in debug mode.
 
@@ -14,13 +19,13 @@ gradle jettyStartWarDebug
 . Embedded jetty starts in separate java process against WAR-file. +
 *important*: Upon start, the process is in suspended-mode and listens for debugger commands on port 5005.
 . Upon resume, jetty process starts listening for HTTP-requests on
-link:Gretty-configuration#port[port] (default 8080).
+link:Gretty-configuration.html#port[port] (default 8080).
 . Gretty waits for jetty process to complete.
 . Gradle script continues normal execution of tasks.
 
 == Instantiation and extension
 
-The object called jettyStartWarDebug is actually an instance of link:Gretty-task-classes#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyStartWarDebug is actually an instance of link:Gretty-task-classes.html#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----
@@ -47,4 +52,4 @@ If you are going to instantiate or extend this task class yourself, make sure yo
 
 image::http://akhikhl.github.io/gretty/media/jettyStartWarDebug_StateDiagram.svg[]
 
-See also: link:jettyStop-task[jettyStop task], link:jettyRestart-task[jettyRestart task], link:Debugger-support[Debugger support].
+See also: link:jettyStop-task.html[jettyStop task], link:jettyRestart-task.html[jettyRestart task], link:Debugger-support.html[Debugger support].

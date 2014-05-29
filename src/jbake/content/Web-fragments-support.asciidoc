@@ -1,4 +1,9 @@
 = Web-fragments support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Gretty supports META-INF/web-fragment.xml and META-INF/resources in dependency libraries - both for inplace and WAR tasks.
 

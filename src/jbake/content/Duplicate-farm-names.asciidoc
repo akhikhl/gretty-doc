@@ -1,4 +1,9 @@
 = Duplicate farm names
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 If you configure farm with the same name more than once, there's still only one farm with the given name and it's properties are merged:
 
@@ -35,6 +40,6 @@ TIP: Farms are strictly project-specific. If you define farms with the same name
 
 See also:
 
-* link:Farm-server-specific-properties[Farm server-specific properties]
-* link:Farm-web-app-list[Farm web-app list]
-* link:Farms-and-web-app-specific-properties[Farms and web-app specific properties]
+* link:Farm-server-specific-properties.html[Farm server-specific properties]
+* link:Farm-web-app-list.html[Farm web-app list]
+* link:Farms-and-web-app-specific-properties.html[Farms and web-app specific properties]

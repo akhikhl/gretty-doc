@@ -1,4 +1,9 @@
 = jettyRestart task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 jettyRestart sends "restart" command to a running jetty server.
 
@@ -12,12 +17,12 @@ gradle jettyRestart
 == Effects
 
 jettyRestart does not build source code, it only sends "restart" command to
-localhost:link:Gretty-configuration#servicePort[servicePort]. Usually
+localhost:link:Gretty-configuration.html#servicePort[servicePort]. Usually
 jettyRestart is used to restart Gretty/Jetty process started by jettyStart[War][Debug].
 
 == Instantiation and extension
 
-The object called jettyRestart is actually an instance of link:Gretty-task-classes#jettyrestarttask[JettyRestartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyRestart is actually an instance of link:Gretty-task-classes.html#jettyrestarttask[JettyRestartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----

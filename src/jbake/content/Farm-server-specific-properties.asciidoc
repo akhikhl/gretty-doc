@@ -1,4 +1,9 @@
 = Farm server-specific properties
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Farm configuration defines it's own set of server-specific properties. When you run a farm task, it uses server-specific properties defined in farm configuration and ignores server-specific properties defined in gretty configurations. For example:
 
@@ -35,7 +40,7 @@ farm {
 | [[host]] host
 | String
 | "localhost"
-| host is passed to Jetty connectors. If you use HTTPS, host must match CN of the subject DN of the certificate (if you use link:HTTPS-support#HTTPS-Auto-configuration[HTTP auto-configuration], this is ensured automatically).
+| host is passed to Jetty connectors. If you use HTTPS, host must match CN of the subject DN of the certificate (if you use link:HTTPS-support.html#HTTPS-Auto-configuration[HTTP auto-configuration], this is ensured automatically).
 
 | [[httpEnabled]] httpEnabled
 | boolean
@@ -62,7 +67,7 @@ See also: http://www.eclipse.org/jetty/documentation/current/configuring-connect
 | boolean
 | false
 | When httpsEnabled is true, Gretty configures HTTPS connector for the designated httpsPort. Otherwise HTTPS protocol is disabled. Normally either httpEnabled or httpsEnabled should be true. +
-See also: link:HTTPS-support[HTTPS support].
+See also: link:HTTPS-support.html[HTTPS support].
 
 | [[httpsPort]] httpsPort
 | int
@@ -74,31 +79,31 @@ See also: link:HTTPS-support[HTTPS support].
 | String or java.io.File
 | null
 | Absolute or relative path to the key-store, containing key and certificate for HTTPS connection. If sslKeyStorePath is not specified, all other SSL-related properties are ignored and HTTPS is auto-configured (if it is enabled). +
-See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+See also: link:HTTPS-support.html#https-manual-configuration[HTTPS manual configuration]
 
 | [[sslKeyStorePassword]] sslKeyStorePassword
 | String
 | null
 | Password for the key-store designated by property sslKeyStorePath. +
-See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+See also: link:HTTPS-support.html#https-manual-configuration[HTTPS manual configuration]
 
 | [[sslKeyManagerPassword]] sslKeyManagerPassword
 | String
 | sslKeyStorePassword
 | Password for the key of this host, stored in key-store designated by property sslKeyStorePath. +
-See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+See also: link:HTTPS-support.html#https-manual-configuration[HTTPS manual configuration]
 
 | [[sslTrustStorePath]] sslTrustStorePath
 | String or java.io.File
 | sslKeyStorePath
 | Absolute or relative path to the trust-store for HTTPS connection.  +
-See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+See also: link:HTTPS-support.html#https-manual-configuration[HTTPS manual configuration]
 
 | [[sslKeyStorePassword]] sslKeyStorePassword
 | String
 | null
 | Password for the key-store designated by property sslKeyStorePath. +
-See also: link:HTTPS-support#https-manual-configuration[HTTPS manual configuration]
+See also: link:HTTPS-support.html#https-manual-configuration[HTTPS manual configuration]
 
 | [[httpsIdleTimeout]] httpsIdleTimeout
 | int
@@ -120,49 +125,49 @@ See also: http://www.eclipse.org/jetty/documentation/current/configuring-connect
 | String or java.io.File
 | "jetty.xml"
 | Name and/or location of "jetty.xml" file. +
-See also: link:jetty.xml-support[jetty.xml support].
+See also: link:jetty.xml-support.html[jetty.xml support].
 
 | [[scanInterval]] scanInterval
 | int
 | 0
 | Hot-deployment scan interval, in seconds. +
-See also: link:Hot-deployment[Hot deployment].
+See also: link:Hot-deployment.html[Hot deployment].
 
 | [[logbackConfigFile]] logbackConfigFile
 | String
 | "logback.groovy" or "logback.xml"
 | Absolute or relative path to logback configuration file (.groovy or .xml). +
-See also: link:Logging[].
+See also: link:Logging.html[Logging].
 
 | [[loggingLevel]] loggingLevel
 | String
 | "INFO"
 | slf4j logging-level for jetty process. +
-See also: link:Logging[].
+See also: link:Logging.html[Logging].
 
 | [[consoleLogEnabled]] consoleLogEnabled
 | boolean
 | true
 | Defines whether log messages are written to the terminal. +
-See also: link:Logging[].
+See also: link:Logging.html[Logging].
 
 | [[fileLogEnabled]] fileLogEnabled
 | boolean
 | true
 | Defines, whether log messages are written to the log-file. +
-See also: link:Logging[].
+See also: link:Logging.html[Logging].
 
 | [[logFileName]] logFileName
 | String
 | "${project.name}.log"
 | Log file name (without path). +
-See also: link:Logging[].
+See also: link:Logging.html[Logging].
 
 | [[logDir]] logDir
 | String
 | "${user.home}/logs"
 | Directory, where the log file is created. +
-See also: link:Logging[].
+See also: link:Logging.html[Logging].
 
 | [[onStart]] onStart
 | function(Closure)
@@ -178,17 +183,17 @@ See also: link:Logging[].
 | function(Closure)
 | -
 | Adds closure to be called on hot-deployment scan. +
-See also: link:Hot-deployment[Hot deployment].
+See also: link:Hot-deployment.html[Hot deployment].
 
 | [[onScanFilesChanged]] onScanFilesChanged
 | function(Closure)
 | -
 | Adds closure to be called whenever hot-deployment detects that files or folders were changed. +
-See also: link:Hot-deployment[Hot deployment].
+See also: link:Hot-deployment.html[Hot deployment].
 |===
 
 See also: 
 
-* link:index#Multiple-web-apps[Multiple web-apps]
-* link:Farm-web-app-list[Farm web-app list]
-* link:Farms-and-web-app-specific-properties[Farms and web-app specific properties]
+* link:index.html#Multiple-web-apps[Multiple web-apps]
+* link:Farm-web-app-list.html[Farm web-app list]
+* link:Farms-and-web-app-specific-properties.html[Farms and web-app specific properties]

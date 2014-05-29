@@ -1,14 +1,19 @@
 = farmAfterIntegrationTest task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
-Gretty automatically invokes this task after link:farmIntegrationTest-task[farmIntegrationTest task].
+Gretty automatically invokes this task after link:farmIntegrationTest-task.html[farmIntegrationTest task].
 
 WARNING: Internal task, please, don't invoke it on command line!
 
 == Effects
 
-. Sends "stop" signal to localhost:link:Farm-configuration#servicePort[servicePort] (default 9900).
+. Sends "stop" signal to localhost:link:Farm-configuration.html#servicePort[servicePort] (default 9900).
 . When "stop" signal comes, jetty process stops.
 . Gradle script waits for jetty process to complete.
 . Gradle script continues normal execution of tasks.
 
-See also: link:Multiple-web-apps-tutorial#Integration-tests-on-farms[Integration tests on farms].
+See also: link:Multiple-web-apps-tutorial.html#Integration-tests-on-farms[Integration tests on farms].

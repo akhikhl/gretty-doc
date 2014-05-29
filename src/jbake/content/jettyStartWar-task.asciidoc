@@ -1,4 +1,9 @@
 = jettyStartWar task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 jettyStartWar starts web-app on WAR-file.
 
@@ -12,7 +17,7 @@ gradle jettyStartWar
 == Effects
 .  The web-app gets compiled and assembled into WAR-file (if it's not up-to-date).
 .  Embedded jetty starts in separate java process against WAR-file and
-listens for HTTP-requests on link:Gretty-configuration#port[port] (default 8080).
+listens for HTTP-requests on link:Gretty-configuration.html#port[port] (default 8080).
 .  Gretty waits for jetty process to complete.
 .  Gradle script continues normal execution of tasks.
 
@@ -20,7 +25,7 @@ Note that this task does not stop Jetty. It is assumed that another gradle proce
 
 == Instantiation and extension
 
-The object called jettyStartWar is actually an instance of link:Gretty-task-classes#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyStartWar is actually an instance of link:Gretty-task-classes.html#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----
@@ -47,4 +52,4 @@ If you are going to instantiate or extend this task class yourself, make sure yo
 
 image::http://akhikhl.github.io/gretty/media/jettyStartWar_StateDiagram.svg[]
 
-See also: link:jettyStop-task[jettyStop task] and link:jettyRestart-task[jettyRestart task].
+See also: link:jettyStop-task.html[jettyStop task] and link:jettyRestart-task.html[jettyRestart task].

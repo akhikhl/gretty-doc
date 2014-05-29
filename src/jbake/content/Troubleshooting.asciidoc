@@ -1,4 +1,9 @@
 = Troubleshooting
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 ==== GroovyCastException while starting web-app with Gretty
 

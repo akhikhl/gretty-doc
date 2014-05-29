@@ -1,4 +1,9 @@
 = Web-app overlays
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 +overlay+ function of gretty configuration adds the specified project as an _overlay source_ to the current project.
 

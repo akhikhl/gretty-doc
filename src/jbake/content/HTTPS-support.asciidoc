@@ -1,6 +1,11 @@
 = HTTPS support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
-Since version 0.0.23 Gretty link:HTTPS-support[supports HTTPS protocol] out-of-the-box.
+Since version 0.0.23 Gretty link:HTTPS-support.html[supports HTTPS protocol] out-of-the-box.
 
 == HTTPS Auto-configuration
 

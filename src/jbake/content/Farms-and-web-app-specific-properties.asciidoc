@@ -1,8 +1,13 @@
 = Farms and web-app specific properties
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 == Web-app specific properties scope
 
-Farm does not define any farm-wide web-app-specific properties, like contextPath, initParameter etc. Instead, it applies link:Gretty-configuration#Web-app-specific-properties[web-app specific properties], defined in gretty configurations, to their respective web-apps:
+Farm does not define any farm-wide web-app-specific properties, like contextPath, initParameter etc. Instead, it applies link:Gretty-configuration.html#Web-app-specific-properties[web-app specific properties], defined in gretty configurations, to their respective web-apps:
 
 ProjectA:
 
@@ -80,4 +85,4 @@ When you invoke `gradle farmRunWar` for this configuration, ProjectA and Project
 
 See also:
 
-* link:Farm-web-app-list[Farm web-app list]
+* link:Farm-web-app-list.html[Farm web-app list]

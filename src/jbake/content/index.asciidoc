@@ -1,69 +1,68 @@
 = Gretty documentation
 Andrey Hihlovskiy
 2014-05-29
+:sectanchors:
 :jbake-type: page
 :jbake-status: published
 
-// image::http://akhikhl.github.io/gretty/media/gretty_logo.png[gretty logo]
-
 link:Getting-started.html[Getting started] +
-link:Feature-overview[Feature overview] +
-link:Troubleshooting[]
+link:Feature-overview.html[Feature overview] +
+link:Troubleshooting.html[Troubleshooting]
 
-=== Basic features
+=== Core features
 
-link:Switching-between-Jetty-and-servlet-API-versions[Switching between jetty and servlet-API versions] +
-link:Hot-deployment[Hot deployment] +
-link:Fast-reload[Fast reload] +
-link:Web-app-overlays[Web-app overlays] +
-link:HTTPS-support[HTTPS support] +
-link:Gretty-configuration[Gretty configuration] +
-link:Gretty-tasks[Gretty tasks] +
-link:Gretty-task-classes[Gretty task classes]
+link:Switching-between-Jetty-and-servlet-API-versions.html[Switching between jetty and servlet-API versions] +
+link:Hot-deployment.html[Hot deployment] +
+link:Fast-reload.html[Fast reload] +
+link:Web-app-overlays.html[Web-app overlays] +
+link:HTTPS-support.html[HTTPS support] +
+link:Gretty-configuration.html[Gretty configuration] +
+link:Gretty-tasks.html[Gretty tasks] +
+link:Gretty-task-classes.html[Gretty task classes]
 
 === Debugging and testing
 
-link:Debugger-support[Debugger support] +
-link:Integration-tests-support[Integration tests] +
-link:Code-coverage-support[Code coverage (jacoco) support] +
-link:Logging[]
+link:Debugger-support.html[Debugger support] +
+link:Integration-tests-support.html[Integration tests] +
+link:Code-coverage-support.html[Code coverage (jacoco) support] +
+link:Logging.html[Logging]
 
 ==== JEE-specific
 
-link:Servlet-container-classpath[Servlet container classpath] +
-link:JEE-annotations-support[JEE annotations support] +
-link:Web-fragments-support[Web fragments support]
+link:Servlet-container-classpath.html[Servlet container classpath] +
+link:JEE-annotations-support.html[JEE annotations support] +
+link:Web-fragments-support.html[Web fragments support]
 
 ==== Jetty-specific
 
-link:Security-realms[Security Realms] +
-link:jetty.xml-support[jetty.xml support] +
-link:jetty-env.xml-support[jetty-env.xml support]
+link:Security-realms.html[Security Realms] +
+link:jetty.xml-support.html[jetty.xml support] +
+link:jetty-env.xml-support.html[jetty-env.xml support]
 
 === Multiple web-apps
 
-link:Multiple-web-apps-introduction[Introduction] +
-link:Multiple-web-apps-configureless-setup[Configureless setup] +
-link:Configuring-default-farm[Configuring default farm] +
-link:Multiple-farms[Multiple farms] +
-link:Combining-web-app-and-farm[Combining web-app and farm] +
-link:Debugging-a-farm[Debugging a farm] +
-link:Farm-integration-tests[Farm integration tests]
+link:Multiple-web-apps-introduction.html[Introduction] +
+link:Multiple-web-apps-configureless-setup.html[Configureless setup] +
+link:Configuring-default-farm.html[Configuring default farm] +
+link:Multiple-farms.html[Multiple farms] +
+link:Combining-web-app-and-farm.html[Combining web-app and farm] +
+link:Debugging-a-farm.html[Debugging a farm] +
+link:Farm-integration-tests.html[Farm integration tests]
 
 ==== Multiple web-apps configuration
 
-link:Farm-extension[Farm extension] +
-link:Farms-extension[Farms extension] +
-link:Farm-server-specific-properties[Farm server-specific properties] +
-link:Farm-web-app-list[Farm web-app list] +
-link:Farms-and-web-app-specific-properties[Farms and web-app specific properties] +
-link:Duplicate-farm-names[Duplicate farm names]
+link:Farm-extension.html[Farm extension] +
+link:Farms-extension.html[Farms extension] +
+link:Farm-server-specific-properties.html[Farm server-specific properties] +
+link:Farm-web-app-list.html[Farm web-app list] +
+link:Farms-and-web-app-specific-properties.html[Farms and web-app specific properties] +
+link:Duplicate-farm-names.html[Duplicate farm names]
 
 ==== Multiple web-apps tasks
 
-link:Farm-tasks[Farm tasks] +
-link:Farm-task-classes[Farm task classes]
+link:Farm-tasks.html[Farm tasks] +
+link:Farm-task-classes.html[Farm task classes]
 
 === Additional materials
 
-link:Publishing-gretty-to-sonatype-and-bintray[Publishing gretty to sonatype and bintray]
+link:Publishing-gretty-to-sonatype-and-bintray.html[Publishing gretty to sonatype and bintray]

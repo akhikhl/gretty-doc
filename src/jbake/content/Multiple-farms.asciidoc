@@ -1,4 +1,9 @@
 = Multiple farms
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Let's suppose, you have more web-apps: ProjectB, ProjectC, ProjectD, ProjectE and you want to start your web-apps in distinct constellations:
 
@@ -34,6 +39,6 @@ Now you get new sets of gradle tasks, each set specific for particular farm:
 * farmRunXXX, farmRunDebugXXX, ... serve farm with name "XXX"
 * farmRunYYY, farmRunDebugYYY, ... serve farm with name "YYY"
 
-TIP: You can even invoke tasks for different farms in parallel, provided that each farm gets distinct set of TCP-ports (see more information on farm TCP-ports link:Farm-configuration#Server-specific-properties-catalog[here].
+TIP: You can even invoke tasks for different farms in parallel, provided that each farm gets distinct set of TCP-ports (see more information on farm TCP-ports link:Farm-configuration.html#Server-specific-properties-catalog[here].
 
-See also: link:index#Multiple-web-apps[Multiple web-apps].
+See also: link:index.html#Multiple-web-apps[Multiple web-apps].

@@ -1,4 +1,9 @@
 = Security realms
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Gretty configuration supports two properties related to Jetty realms - +realm+ and +realmConfigFile+. When both properties are defined, Gretty applies the specified security realm to a running web-app.
 

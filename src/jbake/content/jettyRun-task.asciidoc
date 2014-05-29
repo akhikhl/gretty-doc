@@ -1,4 +1,9 @@
 = jettyRun task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 jettyRun task starts web-app inplace, in interactive mode.
 
@@ -13,7 +18,7 @@ gradle jettyRun
 .  The web-app gets compiled (if it's not up-to-date).
 .  Embedded jetty starts in separate java process against compiled
 classes and their dependencies and listens for HTTP-requests on
-link:Gretty-configuration#port[port] (default 8080).
+link:Gretty-configuration.html#port[port] (default 8080).
 .  Gretty waits for the user keypress.
 .  When user presses any key (in the same terminal), jetty process shuts down.
 .  Gretty waits for jetty process to complete.
@@ -23,7 +28,7 @@ Note that this task does not depend on "war" task, nor does it use WAR-file.
 
 == Instantiation and extension
 
-The object called jettyRun is actually an instance of link:Gretty-task-classes#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called jettyRun is actually an instance of link:Gretty-task-classes.html#jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----

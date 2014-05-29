@@ -1,4 +1,9 @@
 = Integration tests support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Gretty supports integration tests in the following way: it can start jetty before and stop after the specified task.
 The task itself can perform arbitrary tests (for example, use http://www.gebish.org/[Geb] and https://code.google.com/p/spock/[Spock] for testing client-side functionality direct in the browser).
@@ -60,5 +65,5 @@ Your test code can access these properties via System.getProperty function. This
 image::http://akhikhl.github.io/gretty/media/integrationTest_StateDiagram.svg[]
 
 See also:
-link:jettyBeforeIntegrationTest-task[jettyBeforeIntegrationTest task]
-and link:jettyAfterIntegrationTest-task[jettyAfterIntegrationTest task].
+link:jettyBeforeIntegrationTest-task.html[jettyBeforeIntegrationTest task]
+and link:jettyAfterIntegrationTest-task.html[jettyAfterIntegrationTest task].

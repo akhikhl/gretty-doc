@@ -1,4 +1,9 @@
 = farmStartWar task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 farmStartWar starts farm web-apps as WAR-files.
 
@@ -11,11 +16,11 @@ gradle farmStartWar
 
 == Effects
 . By default each farm web-app is compiled and assembled into WAR-file (if it's not up-to-date).
-. If farm configuration link:Multiple-web-apps-tutorial#Mixing-inplace-and-WAR-mode[overrides inplace property] for some web-apps to `true`, then each of these web-apps gets compiled without creating WAR-file (if it’s not up-to-date).
-. Embedded jetty starts in separate java process against WAR-files (and, optionally, against compiled classes and their dependencies) and listens for HTTP-requests on link:Farm-configuration#port[port] (default 8080).
+. If farm configuration link:Multiple-web-apps-tutorial.html#Mixing-inplace-and-WAR-mode[overrides inplace property] for some web-apps to `true`, then each of these web-apps gets compiled without creating WAR-file (if it’s not up-to-date).
+. Embedded jetty starts in separate java process against WAR-files (and, optionally, against compiled classes and their dependencies) and listens for HTTP-requests on link:Farm-configuration.html#port[port] (default 8080).
 . Gretty waits for jetty process to complete.
 . Gradle script continues normal execution of tasks.
 
 NOTE: this task does not stop Jetty. It is assumed that another gradle process stops it, supposedly +gradle farmStop+.
 
-See also: link:farmStop-task[farmStop task] and link:farmRestart-task[farmRestart task].
+See also: link:farmStop-task.html[farmStop task] and link:farmRestart-task.html[farmRestart task].

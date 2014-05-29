@@ -1,4 +1,9 @@
 = farms extension
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 When you apply gretty-farm plugin, it adds *farms* extension to the current project.
 
@@ -27,7 +32,7 @@ All farm tasks, when invoked on given project, use properties of their farm defi
 
 Each farm consists of two parts:
 
-* link:Farm-server-specific-properties[Farm server-specific properties]
-* link:Farm-web-app-list[Farm web-app list]
+* link:Farm-server-specific-properties.html[Farm server-specific properties]
+* link:Farm-web-app-list.html[Farm web-app list]
 
-See also: link:index#Multiple-web-apps[Multiple web-apps].
+See also: link:index.html#Multiple-web-apps[Multiple web-apps].

@@ -1,4 +1,9 @@
 = farmRun task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 farmRun task starts farm web-apps inplace, in interactive mode.
 
@@ -11,10 +16,10 @@ gradle farmRun
 
 == Effects
 . Each farm web-app gets compiled (if it's not up-to-date).
-. If farm configuration link:Multiple-web-apps-tutorial#Mixing-inplace-and-WAR-mode[overrides inplace property] for some web-apps to `false`, then each of these web-apps is assembled into WAR-file (if it’s not up-to-date).
+. If farm configuration link:Multiple-web-apps-tutorial.html#Mixing-inplace-and-WAR-mode[overrides inplace property] for some web-apps to `false`, then each of these web-apps is assembled into WAR-file (if it’s not up-to-date).
 . Embedded jetty starts in separate java process against compiled
 classes and their dependencies (and, optionally, WAR-files) and listens for HTTP-requests on
-link:Farm-configuration#port[port] (default 8080).
+link:Farm-configuration.html#port[port] (default 8080).
 . Gretty waits for the user keypress.
 . When user presses any key (in the same terminal), jetty process shuts down.
 . Gretty waits for jetty process to complete.

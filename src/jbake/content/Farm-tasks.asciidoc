@@ -1,6 +1,11 @@
 = Farm tasks
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
-Provided that you already learned link:Multiple-web-apps-tutorial[multiple web apps tutorial], now you can systematically learn all about farm tasks.
+Provided that you already learned link:Multiple-web-apps-tutorial.html[multiple web apps tutorial], now you can systematically learn all about farm tasks.
 
 When you insert `apply plugin: 'gretty-farm'` to "build.gradle", Gretty facilitates the project with the following gradle tasks:
 
@@ -12,79 +17,79 @@ When you insert `apply plugin: 'gretty-farm'` to "build.gradle", Gretty facilita
 | Uses WAR 
 | Debug
 
-| link:farmRun-task[farmRun], link:run-task[run]
+| link:farmRun-task.html[farmRun], link:run-task.html[run]
 | Starts web-apps of default farm
 | keypress
 | no
 | no
 
-| link:farmRunDebug-task[farmRunDebug], link:debug-task[debug]
+| link:farmRunDebug-task.html[farmRunDebug], link:debug-task.html[debug]
 | Starts web-apps of default farm
 | keypress 
 | no
 | yes
 
-| link:farmRunWar-task[farmRunWar]
+| link:farmRunWar-task.html[farmRunWar]
 | Starts web-apps of default farm
 | keypress 
 | yes
 | no
 
-| link:farmRunWarDebug-task[farmRunWarDebug]
+| link:farmRunWarDebug-task.html[farmRunWarDebug]
 | Starts web-apps of default farm
 | keypress 
 | yes
 | yes
 
-| link:farmStart-task[farmStart]
+| link:farmStart-task.html[farmStart]
 | Starts web-apps of default farm
 | farmStop
 | no
 | no
 
-| link:farmStartDebug-task[farmStartDebug]
+| link:farmStartDebug-task.html[farmStartDebug]
 | Starts web-apps of default farm
 | farmStop
 | no
 | yes
 
-| link:farmStartWar-task[farmStartWar]
+| link:farmStartWar-task.html[farmStartWar]
 | Starts web-apps of default farm
 | farmStop
 | yes
 | no
 
-| link:farmStartWarDebug-task[farmStartWarDebug]
+| link:farmStartWarDebug-task.html[farmStartWarDebug]
 | Starts web-apps of default farm
 | farmStop
 | yes
 | yes
 
-| link:farmStop-task[farmStop]
+| link:farmStop-task.html[farmStop]
 | Stops web-apps of default farm
 | -
 | -
 | -
 
-| link:farmRestart-task[farmRestart]
+| link:farmRestart-task.html[farmRestart]
 | Restarts web-apps of default farm
 | -
 | -
 | -
 
-| link:farmIntegrationTest-task[farmIntegrationTest]
+| link:farmIntegrationTest-task.html[farmIntegrationTest]
 | Invokes integrationTest task on web-app projects of default farm
 | -
 | -
 | -
 
-| link:farmBeforeIntegrationTest-task[farmBeforeIntegrationTest]
+| link:farmBeforeIntegrationTest-task.html[farmBeforeIntegrationTest]
 | Starts web-apps of default farm before integration tests
 | farmAfterIntegrationTest
 | no
 | no
 
-| link:farmAfterIntegrationTest-task[farmAfterIntegrationTest]
+| link:farmAfterIntegrationTest-task.html[farmAfterIntegrationTest]
 | Stops web-apps of default farm after integration tests
 | -
 | -
@@ -113,79 +118,79 @@ then Gretty facilitates the project with the following gradle tasks:
 | Uses WAR 
 | Debug
 
-| link:farmRun-task[farmRunXYZ]
+| link:farmRun-task.html[farmRunXYZ]
 | Starts web-apps of farm "XYZ"
 | keypress
 | no
 | no
 
-| link:farmRunDebug-task[farmRunDebugXYZ]
+| link:farmRunDebug-task.html[farmRunDebugXYZ]
 | Starts web-apps of farm "XYZ"
 | keypress 
 | no
 | yes
 
-| link:farmRunWar-task[farmRunWarXYZ]
+| link:farmRunWar-task.html[farmRunWarXYZ]
 | Starts web-apps of farm "XYZ"
 | keypress 
 | yes
 | no
 
-| link:farmRunWarDebug-task[farmRunWarDebugXYZ]
+| link:farmRunWarDebug-task.html[farmRunWarDebugXYZ]
 | Starts web-apps of farm "XYZ"
 | keypress 
 | yes
 | yes
 
-| link:farmStart-task[farmStartXYZ]
+| link:farmStart-task.html[farmStartXYZ]
 | Starts web-apps of farm "XYZ"
 | farmStop
 | no
 | no
 
-| link:farmStartDebug-task[farmStartDebugXYZ]
+| link:farmStartDebug-task.html[farmStartDebugXYZ]
 | Starts web-apps of farm "XYZ"
 | farmStop
 | no
 | yes
 
-| link:farmStartWar-task[farmStartWarXYZ]
+| link:farmStartWar-task.html[farmStartWarXYZ]
 | Starts web-apps of farm "XYZ"
 | farmStop
 | yes
 | no
 
-| link:farmStartWarDebug-task[farmStartWarDebugXYZ]
+| link:farmStartWarDebug-task.html[farmStartWarDebugXYZ]
 | Starts web-apps of farm "XYZ"
 | farmStop
 | yes
 | yes
 
-| link:farmStop-task[farmStopXYZ]
+| link:farmStop-task.html[farmStopXYZ]
 | Stops web-apps of farm "XYZ"
 | -
 | -
 | -
 
-| link:farmRestart-task[farmRestartXYZ]
+| link:farmRestart-task.html[farmRestartXYZ]
 | Restarts web-apps of farm "XYZ"
 | -
 | -
 | -
 
-| link:farmIntegrationTest-task[farmIntegrationTestXYZ]
+| link:farmIntegrationTest-task.html[farmIntegrationTestXYZ]
 | Invokes integrationTest task on web-app projects of farm "XYZ"
 | -
 | -
 | -
 
-| link:farmBeforeIntegrationTest-task[farmBeforeIntegrationTestXYZ]
+| link:farmBeforeIntegrationTest-task.html[farmBeforeIntegrationTestXYZ]
 | Starts web-apps of farm "XYZ" before integration tests
 | farmAfterIntegrationTest
 | no
 | no
 
-| link:farmAfterIntegrationTest-task[farmAfterIntegrationTestXYZ]
+| link:farmAfterIntegrationTest-task.html[farmAfterIntegrationTestXYZ]
 | Stops web-apps of farm "XYZ" after integration tests
 | -
 | -

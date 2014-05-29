@@ -1,4 +1,9 @@
 = Logging
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 When Gretty runs it's tasks, it appends
 http://logback.qos.ch/[logback-classic] to the project's classpath.

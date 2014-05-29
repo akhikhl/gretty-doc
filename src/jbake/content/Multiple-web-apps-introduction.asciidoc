@@ -1,8 +1,13 @@
 = Multiple web-apps introduction
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
-Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction[multiple web-apps feature]: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: link:Farm-web-app-list#Project-web-app-references[gradle projects], link:Farm-web-app-list#File-based-web-app-references[WAR-files in the file system] and even link:Farm-web-app-list#Repository-based-web-app-references[WAR-files from maven dependencies].
+Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: link:Farm-web-app-list.html#Project-web-app-references[gradle projects], link:Farm-web-app-list.html#File-based-web-app-references[WAR-files in the file system] and even link:Farm-web-app-list.html#Repository-based-web-app-references[WAR-files from maven dependencies].
 
-Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup[configureless mode], although it is fully link:index#Multiple-web-apps-configuration[configurable/customizable].
+Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup.html[configureless mode], although it is fully link:index.html#Multiple-web-apps-configuration[configurable/customizable].
 
 Multiple web-apps feature also works nicely with integration tests and with the debugger.
 
@@ -14,4 +19,4 @@ There are two ways to define and use farms:
 
 * Named farms, which you create yourself in gradle script. You can add as many named farms as you want, and you can add web-apps to farms in arbitrary constellations. Each named farm provides a specific set of farm tasks. For example, if you define farm with name "XYZ", there will be new tasks farmRunXYZ, farmRunDebugXYZ, etc. available.
 
-You can start using multiple web-apps support right away. Take link:Multiple-web-apps-configureless-setup[Multiple web apps configureless setup] as a starting point.
+You can start using multiple web-apps support right away. Take link:Multiple-web-apps-configureless-setup.html[Multiple web apps configureless setup] as a starting point.

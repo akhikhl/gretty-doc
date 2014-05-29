@@ -1,4 +1,9 @@
 = Farm integration tests
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 This part of documentation is coming soon!
 

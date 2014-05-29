@@ -1,6 +1,7 @@
 = Getting started
 Andrey Hihlovskiy
 2014-05-29
+:sectanchors:
 :jbake-type: page
 :jbake-status: published
 
@@ -19,7 +20,7 @@ gradle jettyRun
 ----
 
 you can also use other link:Gretty-tasks[tasks for running and
-debugging] your web-app or link:Gretty-configuration[configure Gretty]
+debugging] your web-app or link:Gretty-configuration.html[configure Gretty]
 to your needs.
 
 Alternatively, you can download the script from
@@ -56,6 +57,6 @@ NOTE: All versions of gretty are available at jcenter and maven central under
 the group 'org.akhikhl.gretty'.
 
 IMPORTANT: If you experience problems starting Gretty, first look into
-link:Troubleshooting[troubleshooting] section. If it does not help,
+link:Troubleshooting.html[troubleshooting] section. If it does not help,
 raise an issue at https://github.com/akhikhl/gretty/issues[Gretty issue tracker] 
 or mailto:akhikhl@gmail.com[send an email] to Gretty developer.

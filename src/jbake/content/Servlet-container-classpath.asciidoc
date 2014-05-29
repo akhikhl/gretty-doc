@@ -1,4 +1,9 @@
 = Servlet container classpath
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 Gretty supports the ability to add dependencies to the servlet container classpath
 (as opposed to the classpath of web-app).

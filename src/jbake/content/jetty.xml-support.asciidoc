@@ -1,4 +1,9 @@
 = jetty.xml support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
 
 "jetty.xml" is the configuration file for Jetty (for server itself, not for web-app).
 
