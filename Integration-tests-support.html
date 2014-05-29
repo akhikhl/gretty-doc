@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Integration tests support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Integration tests support</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty supports integration tests in the following way: it can start jetty before and stop after the specified task.
+The task itself can perform arbitrary tests (for example, use <a href="http://www.gebish.org/">Geb</a> and <a href="https://code.google.com/p/spock/">Spock</a> for testing client-side functionality direct in the browser).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>gretty {
+  // ...
+  integrationTestTask = 'integrationTest' // name of existing gradle task
+  // ...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_effects"><a class="anchor" href="#_effects"></a>Effects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you run <code>gradle integrationTest</code> from command-line, Gretty starts
+Jetty before <code>integrationTest</code> task and stops it after.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Gretty does not define integration test task nor does it
+augment it in any way. All it does is start and stop Jetty.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tunneling_properties_to_test_code"><a class="anchor" href="#_tunneling_properties_to_test_code"></a>Tunneling properties to test code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When your integration task supports <a href="http://www.gradle.org/docs/current/javadoc/org/gradle/process/JavaForkOptions.html">JavaForkOptions</a> interface (for example, when integration task is instance of <a href="http://www.gradle.org/docs/current/javadoc/org/gradle/api/tasks/testing/Test.html">Test</a> class), Gretty passes the following system properties to the java process of integration task:</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<colgroup>
+<col style="width:25%;">
+<col style="width:75%;"> 
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Content/Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gretty.contextPath</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The context path of the current web-app project</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gretty.httpPort</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Currently used HTTP port, when HTTP protocol is enabled; null otherwise.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gretty.port</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>same as httpPort</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gretty.httpBaseURI</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>"http://${host}:${httpPort}${contextPath}"</code>, when HTTP protocol is enabled; null otherwise.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gretty.baseURI</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>same as gretty.httpBaseURI</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gretty.httpsPort</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Currently used HTTPS port, when HTTPS protocol is enabled; null otherwise.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gretty.httpsBaseURI</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>"http://${host}:${httpsPort}${contextPath}"</code>, when HTTPS protocol is enabled; null otherwise.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+
+<div class="paragraph">
+<p>Your test code can access these properties via System.getProperty function. This allows to parametrize test code with Gretty-specific parameters.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workflow"><a class="anchor" href="#_workflow"></a>Workflow</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/integrationTest_StateDiagram.svg" alt="integrationTest StateDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>See also:
+<a href="jettyBeforeIntegrationTest-task.html">jettyBeforeIntegrationTest task</a>
+and <a href="jettyAfterIntegrationTest-task.html">jettyAfterIntegrationTest task</a>.</p>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

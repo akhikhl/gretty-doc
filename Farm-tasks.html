@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Farm tasks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Farm tasks</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Provided that you already learned <a href="Multiple-web-apps-tutorial.html">multiple web apps tutorial</a>, now you can systematically learn all about farm tasks.</p>
+</div>
+<div class="paragraph">
+<p>When you insert <code>apply plugin: 'gretty-farm'</code> to "build.gradle", Gretty facilitates the project with the following gradle tasks:</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<colgroup>
+<col style="width:33%;">
+<col style="width:33%;">
+<col style="width:11%;">
+<col style="width:11%;">
+<col style="width:11%;"> 
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tasks</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+<th class="tableblock halign-left valign-top">Stopped by</th>
+<th class="tableblock halign-left valign-top">Uses WAR</th>
+<th class="tableblock halign-left valign-top">Debug</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRun-task.html">farmRun</a>, <a href="run-task.html">run</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRunDebug-task.html">farmRunDebug</a>, <a href="debug-task.html">debug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRunWar-task.html">farmRunWar</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRunWarDebug-task.html">farmRunWarDebug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStart-task.html">farmStart</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStartDebug-task.html">farmStartDebug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStartWar-task.html">farmStartWar</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStartWarDebug-task.html">farmStartWarDebug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStop-task.html">farmStop</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stops web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRestart-task.html">farmRestart</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restarts web-apps of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmIntegrationTest-task.html">farmIntegrationTest</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Invokes integrationTest task on web-app projects of default farm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmBeforeIntegrationTest-task.html">farmBeforeIntegrationTest</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of default farm before integration tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmAfterIntegrationTest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmAfterIntegrationTest-task.html">farmAfterIntegrationTest</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stops web-apps of default farm after integration tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+
+<div class="paragraph">
+<p>When you define an additional named farm:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>farms {
+  farm 'XYZ', {
+    webapp ':ProjectA'
+    // ...
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then Gretty facilitates the project with the following gradle tasks:</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<colgroup>
+<col style="width:33%;">
+<col style="width:33%;">
+<col style="width:11%;">
+<col style="width:11%;">
+<col style="width:11%;"> 
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tasks</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+<th class="tableblock halign-left valign-top">Stopped by</th>
+<th class="tableblock halign-left valign-top">Uses WAR</th>
+<th class="tableblock halign-left valign-top">Debug</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRun-task.html">farmRunXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRunDebug-task.html">farmRunDebugXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRunWar-task.html">farmRunWarXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRunWarDebug-task.html">farmRunWarDebugXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStart-task.html">farmStartXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStartDebug-task.html">farmStartDebugXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStartWar-task.html">farmStartWarXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStartWarDebug-task.html">farmStartWarDebugXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmStop-task.html">farmStopXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stops web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmRestart-task.html">farmRestartXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restarts web-apps of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmIntegrationTest-task.html">farmIntegrationTestXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Invokes integrationTest task on web-app projects of farm "XYZ"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmBeforeIntegrationTest-task.html">farmBeforeIntegrationTestXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-apps of farm "XYZ" before integration tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">farmAfterIntegrationTest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="farmAfterIntegrationTest-task.html">farmAfterIntegrationTestXYZ</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stops web-apps of farm "XYZ" after integration tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

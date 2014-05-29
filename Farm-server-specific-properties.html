@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Farm server-specific properties</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Farm server-specific properties</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Farm configuration defines it&#8217;s own set of server-specific properties. When you run a farm task, it uses server-specific properties defined in farm configuration and ignores server-specific properties defined in gretty configurations. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>gretty {
+  port = 8181
+}
+
+farm {
+  port = 9191
+  webapp project
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>when you invoke <code>gradle farmRun</code>, it serves port 9191, not 8181.</p>
+</li>
+<li>
+<p>when you invoke <code>gradle jettyRun</code>, it serves port 8181, because jettyXXX tasks don&#8217;t use farms.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_server_specific_properties"><a class="anchor" href="#_server_specific_properties"></a>Server-specific properties</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<colgroup>
+<col style="width:7%;">
+<col style="width:7%;">
+<col style="width:7%;">
+<col style="width:76%;"> 
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_jvmargs"></a> jvmArgs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List&lt;String&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional JVM arguments to Jetty process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_host"></a> host</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"localhost"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">host is passed to Jetty connectors. If you use HTTPS, host must match CN of the subject DN of the certificate (if you use <a href="HTTPS-support.html#_https_auto_configuration">HTTP auto-configuration</a>, this is ensured automatically).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpenabled"></a> httpEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When httpEnabled is true, Gretty configures HTTP connector for the designated httpPort. Otherwise HTTP protocol is disabled. Normally either httpEnabled or httpsEnabled should be true.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpport"></a> httpPort</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8080</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Jetty for incoming HTTP-requests.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_port"></a> port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8080</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This property is exactly the same as httpPort</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpidletimeout"></a> httpIdleTimeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When not null, defines the time, in milliseconds, that the HTTP connection can be idle before it is closed.<br>
+See also: <a href="http://www.eclipse.org/jetty/documentation/current/configuring-connectors.html">Jetty documentation, configuring connectors</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpsenabled"></a> httpsEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When httpsEnabled is true, Gretty configures HTTPS connector for the designated httpsPort. Otherwise HTTPS protocol is disabled. Normally either httpEnabled or httpsEnabled should be true.<br>
+See also: <a href="HTTPS-support.html">HTTPS support</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpsport"></a> httpsPort</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Jetty for incoming HTTPS-requests.<br>
+<strong>Attention:</strong> setting httpsPort alone is not enough to enable HTTPS protocol. You must set httpsEnabled=true in order to enable HTTPS.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_sslkeystorepath"></a> sslKeyStorePath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String or java.io.File</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Absolute or relative path to the key-store, containing key and certificate for HTTPS connection. If sslKeyStorePath is not specified, all other SSL-related properties are ignored and HTTPS is auto-configured (if it is enabled).<br>
+See also: <a href="HTTPS-support.html#_https_manual_configuration">HTTPS manual configuration</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_sslkeystorepassword"></a> sslKeyStorePassword</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password for the key-store designated by property sslKeyStorePath.<br>
+See also: <a href="HTTPS-support.html#_https_manual_configuration">HTTPS manual configuration</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_sslkeymanagerpassword"></a> sslKeyManagerPassword</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sslKeyStorePassword</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password for the key of this host, stored in key-store designated by property sslKeyStorePath.<br>
+See also: <a href="HTTPS-support.html#_https_manual_configuration">HTTPS manual configuration</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_ssltruststorepath"></a> sslTrustStorePath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String or java.io.File</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sslKeyStorePath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Absolute or relative path to the trust-store for HTTPS connection. <br>
+See also: <a href="HTTPS-support.html#_https_manual_configuration">HTTPS manual configuration</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_sslkeystorepassword"></a> sslKeyStorePassword</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password for the key-store designated by property sslKeyStorePath.<br>
+See also: <a href="HTTPS-support.html#_https_manual_configuration">HTTPS manual configuration</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpsidletimeout"></a> httpsIdleTimeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When not null, defines the time, in milliseconds, that the HTTPS connection can be idle before it is closed.<br>
+See also: <a href="http://www.eclipse.org/jetty/documentation/current/configuring-connectors.html">Jetty documentation, configuring connectors</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_serviceport"></a> servicePort</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9900</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Gretty to send commands to Jetty process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_statusport"></a> statusPort</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9901</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Jetty process to send status back to Gretty.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_jettyxmlfile"></a> jettyXmlFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String or java.io.File</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"jetty.xml"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name and/or location of "jetty.xml" file.<br>
+See also: <a href="jetty.xml-support.html">jetty.xml support</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_scaninterval"></a> scanInterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hot-deployment scan interval, in seconds.<br>
+See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_logbackconfigfile"></a> logbackConfigFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"logback.groovy" or "logback.xml"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Absolute or relative path to logback configuration file (.groovy or .xml).<br>
+See also: <a href="Logging.html">Logging</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_logginglevel"></a> loggingLevel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"INFO"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">slf4j logging-level for jetty process.<br>
+See also: <a href="Logging.html">Logging</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_consolelogenabled"></a> consoleLogEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether log messages are written to the terminal.<br>
+See also: <a href="Logging.html">Logging</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_filelogenabled"></a> fileLogEnabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines, whether log messages are written to the log-file.<br>
+See also: <a href="Logging.html">Logging</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_logfilename"></a> logFileName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"${project.name}.log"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log file name (without path).<br>
+See also: <a href="Logging.html">Logging</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_logdir"></a> logDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"${user.home}/logs"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directory, where the log file is created.<br>
+See also: <a href="Logging.html">Logging</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_onstart"></a> onStart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">function(Closure)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds closure to be called just before jetty server is started.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_onstop"></a> onStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">function(Closure)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds closure to be called just after jetty server is stopped.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_onscan"></a> onScan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">function(Closure)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds closure to be called on hot-deployment scan.<br>
+See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_onscanfileschanged"></a> onScanFilesChanged</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">function(Closure)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds closure to be called whenever hot-deployment detects that files or folders were changed.<br>
+See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
+</tr>
+</tbody>
+</table>
+
+<div class="paragraph">
+<p>See also:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="index.html#_multiple_web_apps">Multiple web-apps</a></p>
+</li>
+<li>
+<p><a href="Farm-web-app-list.html">Farm web-app list</a></p>
+</li>
+<li>
+<p><a href="Farms-and-web-app-specific-properties.html">Farms and web-app specific properties</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

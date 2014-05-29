@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Feature overview</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Feature overview</h1>
+	</div>
+
+	<p><div class="sect1">
+<h2 id="_gradle_tasks"><a class="anchor" href="#_gradle_tasks"></a>Gradle tasks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty provides gradle tasks, which automate starting, stopping, testing and debugging web-apps.
+Tasks work out-of-the-box, without additional configuration, but are fully configurable/customizable.
+<br>
+See more information at <a href="Gretty-tasks.html">Gretty tasks</a> and <a href="Farm-tasks.html">Farm tasks</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multiple_web_apps_support"><a class="anchor" href="#_multiple_web_apps_support"></a>Multiple web-apps support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since version 0.0.18 Gretty supports <a href="Multiple-web-apps-introduction.html">multiple web-apps feature</a>: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: <a href="Farm-web-app-list.html#_project_web_app_references">gradle projects</a>, <a href="Farm-web-app-list.html#_file_based_web_app_references">WAR-files in the file system</a> and even <a href="Farm-web-app-list.html#_repository_based_web_app_references">WAR-files from maven dependencies</a>.<br>
+Multiple web-apps feature works out-of-the-box in <a href="Multiple-web-apps-configureless-setup.html">configureless mode</a>, although it is fully <a href="index.html#_multiple_web_apps_configuration">configurable/customizable</a>.<br>
+Multiple web-apps feature also works nicely with integration tests and with the debugger.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_switch_between_jetty_and_servlet_api_versions"><a class="anchor" href="#_switch_between_jetty_and_servlet_api_versions"></a>Switch between jetty and servlet-API versions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty supports <a href="Switching-between-Jetty-and-servlet-API-versions.html">easy switch</a> between jetty 7, 8 and 9 and servlet API 2.5, 3.0.1 and 3.1.0.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hot_deployment"><a class="anchor" href="#_hot_deployment"></a>Hot deployment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty support feature of <a href="Hot-deployment.html">Hot deployment</a>:
+When some assets have changed, Gretty automatically reloads your web-app.<br>
+There is <em>cool extension to hot-deployment feature</em> in Gretty since version 0.0.18: Gretty automatically recompiles and then reloads your web-app, as soon as source code files have changed.</p>
+</div>
+<div class="paragraph">
+<p>You can specify that certain folders or files should be <a href="Fast-reload.html">fast-reloaded</a>: that is, when they change, they should not cause web-app restart. Instead, the changed files or folders are simply copied into running web-app.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_web_app_overlays"><a class="anchor" href="#_web_app_overlays"></a>Web-app overlays</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty can generate <a href="Web-app-overlays.html">WAR overlays</a> automatically, each time you build your project.
+Overlays are also fully supported when running inplace (without WAR) and when debugging.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_https_support"><a class="anchor" href="#_https_support"></a>HTTPS support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since version 0.0.23 Gretty <a href="HTTPS-support.html">supports HTTPS protocol</a> out-of-the-box. All you have to do is set property <code>httpsEnabled=true</code>. Gretty does all heavy-lifting for you: generates necessary cryptographic key, generates X.509 certificate, configures SSL-connector. Of course, you can fully customize HTTPS protocol via Gretty configuration properties or even via "jetty.xml".</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_debugger_and_integration_tests_support"><a class="anchor" href="#_debugger_and_integration_tests_support"></a>Debugger and integration tests support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty provides <a href="Debugger-support.html">integration with Java IDE debuggers</a>. You can even debug multiple web-apps loaded into the same Jetty server.</p>
+</div>
+<div class="paragraph">
+<p>Gretty <a href="Integration-tests-support.html">supports integration tests</a>: it starts jetty before integration tests and stop it after. Since version 0.0.22 Gretty <a href="Code-coverage-support.html">supports Jacoco code coverage</a> of web-app projects - both client-side and server-side. The resulting coverage information can be converted to report with the help of standard gradle task <a href="http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html">JacocoReport</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging_support"><a class="anchor" href="#_logging_support"></a>Logging support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty provides <a href="Logging.html">Logging</a> out-of-the-box, although it does not force it on your web-app.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jee_features"><a class="anchor" href="#_jee_features"></a>JEE features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty supports <a href="JEE-annotations-support.html">JEE annotations</a> out-of-the-box, no effort needed.<br>
+Gretty supports <a href="Web-fragments-support.html">Web fragments</a>: META-INF/web-fragment.xml and META-INF/resources in dependency libraries - both in inplace and WAR tasks.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jetty_specific_features"><a class="anchor" href="#_jetty_specific_features"></a>Jetty-specific features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty automatically uses <a href="jetty.xml-support.html">"jetty.xml"</a> and <a href="jetty-env.xml-support.html">"jetty-env.xml"</a>, if they are present.<br>
+Also gretty supports jetty <a href="Security-realms.html">security realms</a> out-of-the-box.</p>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

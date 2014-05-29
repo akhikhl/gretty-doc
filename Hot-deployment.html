@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Hot deployment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Hot deployment</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty supports hot deployment: whenever the classes, jars or resources
+[comprising the web-app] are updated, Gretty automatically reloads web-app.</p>
+</div>
+<div class="paragraph">
+<p>Since version 0.0.18 Gretty has new cool feature: it automatically recompiles and then reloads your web-app, as soon as source code files have changed.</p>
+</div>
+<div class="paragraph">
+<p>You can configure hot deployment by adjusting the <a href="Gretty-configuration.html">gretty configuration</a> properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="Gretty-configuration.html#_scaninterval">scanInterval</a> defines scan interval, in seconds.</p>
+</li>
+<li>
+<p><a href="Gretty-configuration.html#_scandir">scanDir</a> defines one or more
+directories, scanned by hot-deployment. The directory could be a string
+or instance of java.io.File class, denoting relative (to the project) or absolute path.</p>
+</li>
+<li>
+<p><a href="Gretty-configuration.html#_onscan">onScan</a> adds a closure to be called
+on hot-deployment scan, i.e. each scanInterval seconds. The function is
+called unconditionally, regardless of whether hot deployment detects
+changed files or not.</p>
+</li>
+<li>
+<p><a href="Gretty-configuration.html#_onscanfileschanged">onScanFilesChanged</a>
+adds a closure to be called whenever hot-deployment detects that files
+or folders were changed. The closure receives List as the parameter,
+which holds all changed files and folders.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Gretty hot deployment assumes the following defaults:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="Gretty-configuration.html#_scaninterval">scanInterval</a> is set to zero,
+that means that hot deployment is disabled. You need to assign it to
+non-zero value to enable hot deployment.</p>
+</li>
+<li>
+<p>Hot deployment by default scans the following folders:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>"${projectDir}/src/main/java"</code></p>
+</li>
+<li>
+<p><code>"${projectDir}/src/main/resources"</code></p>
+</li>
+<li>
+<p><code>"${projectDir}/src/main/groovy"</code></p>
+</li>
+<li>
+<p><code>"${projectDir}/build/classes/main"</code></p>
+</li>
+<li>
+<p><code>"${projectDir}/build/resources/main"</code></p>
+</li>
+<li>
+<p><code>"${projectDir}/src/main/webapp"</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>as well as all dependency jars and overlay-WARs, comprising the
+web-app.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+Current implementation of hot deployment does not detect changes in
+Gretty configuration. That means: whenever you change and save
+"build.gradle", containing Gretty configuration, you need to restart the
+web-app "by hand", only then the changes will have effect.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

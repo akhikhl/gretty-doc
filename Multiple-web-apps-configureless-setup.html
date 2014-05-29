@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Multiple web-apps configureless setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Multiple web-apps configureless setup</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create three empty folders: ProjectA, ProjectB and ProjectC, so that folder tree looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ProjectA
+|-- ProjectB
+\-- ProjectC</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create file "ProjectA/settings.gradle", insert code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>include 'ProjectA', 'ProjectB'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Explanation: we organize multi-project setup, so that multiple web-apps can be started/stopped by gretty-farm plugin.</p>
+</div>
+<div class="paragraph">
+<p>Create file "ProjectA/build.gradle", insert code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty-plugin:+'
+  }
+}
+
+apply plugin: 'gretty-farm'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create file "ProjectA/ProjectB/build.gradle", insert code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'gretty'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create file "ProjectA/ProjectC/build.gradle", insert code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'gretty'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Done! Now you can run multiple web-apps by running the following command in ProjectA:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint bash language-bash"><code>gradle farmRun</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Expected output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Jetty server 9.1.0.v20131115 started.
+:ProjectB runs at the address http://localhost:8080/ProjectB
+:ProjectC runs at the address http://localhost:8080/ProjectC
+servicePort: 9900, statusPort: 9901
+Press any key to stop the jetty server.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course, you&#8217;ll get 404 in the browser, because web-apps don&#8217;t contain any pages. But, as soon as you add pages or/and servlets to the web-apps, things will get real.</p>
+</div>
+<div class="paragraph">
+<p>Now explanation on the details of what we just did. We defined three gradle projects: two facilitated with gretty plugin and one - with gretty-farm plugin.<br>
+The projects with gretty plugin are usual web-apps, potentially with src/main/webapp, configuration files, servlets etc.etc.<br>
+The project with gretty-farm plugin is special. It defines <strong>farm</strong> - logical group of web-apps that should run together.</p>
+</div>
+<div class="paragraph">
+<p>By default farm automatically adds all subprojects of the farm project, which are facilitated with gretty plugin, to web-apps list. On the <a href="Configuring-default-farm.html">next page</a> you&#8217;ll see how you can control, which projects are added to a farm.</p>
+</div>
+<div class="paragraph">
+<p>Gretty-farm plugin also defines new, distinct set of tasks for running farms: farmRun, farmRunDebug, farmRunWar, farmRunWarDebug, etc. (see complete list of farm tasks <a href="Farm-tasks.html">here</a>).</p>
+</div>
+<div class="paragraph">
+<p>See also: <a href="index.html#_multiple_web_apps">Multiple web-apps</a>.</p>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

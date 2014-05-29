@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>HTTPS support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>HTTPS support</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since version 0.0.23 Gretty <a href="HTTPS-support.html">supports HTTPS protocol</a> out-of-the-box.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_https_auto_configuration"><a class="anchor" href="#_https_auto_configuration"></a>HTTPS Auto-configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty provides very simple way to auto-configure HTTPS protocol. All you have to do is set <code>httpsEnabled=true</code> and launch Gretty start task. Upon successful start HTTPS is immediately available without any additional configuration.</p>
+</div>
+<div class="sect2">
+<h3 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>gretty {
+  httpsEnabled = true
+  // optionally you can specify port. 8443 is the default.
+  // httpsPort = 443
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_effects"><a class="anchor" href="#_effects"></a>Effects</h3>
+<div class="paragraph">
+<p>On first run:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Gretty generates 1024-bit RSA key</p>
+</li>
+<li>
+<p>Gretty generates self-signed X.509 certificate using "SHA256WithRSA" signature algorithm</p>
+</li>
+<li>
+<p>Gretty writes certificate to the file "${project.buildDir}/ssl/cert"</p>
+</li>
+<li>
+<p>Gretty generates random passwords for key-store and key-manager</p>
+</li>
+<li>
+<p>Gretty adds key and certificate to a new key-store, using key-manager password</p>
+</li>
+<li>
+<p>Gretty writes key-store to the file "${project.buildDir}/ssl/keystore", using key-store password</p>
+</li>
+<li>
+<p>Gretty saves key-store and key-manager passwords to the file "${project.buildDir}/ssl/properties"</p>
+</li>
+<li>
+<p>Gretty uses key-store "${project.buildDir}/ssl/keystore" for configuring HTTPS-connector</p>
+</li>
+<li>
+<p>Gretty starts Jetty server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>On consequent runs:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Gretty reads key-store and key-manager passwords from the file "${project.buildDir}/ssl/properties"</p>
+</li>
+<li>
+<p>Gretty uses key-store "${project.buildDir}/ssl/keystore" for configuring HTTPS-connector</p>
+</li>
+<li>
+<p>Gretty starts Jetty server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When you open HTTPS page in the browser for the first time, you typically see the message:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Connection_is_untrusted.png" alt="Connection is untrusted">
+</div>
+</div>
+<div class="paragraph">
+<p>The message is caused by the fact that Gretty uses self-signed certificate, not chained to <a href="http://en.wikipedia.org/wiki/Certificate_authority">Certificate Authority (CA)</a>.
+After you click "I understand the risks" and accept the certificate, the web-browser shows your web-app.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Using self-signed certificate is OK for development environment, but not OK for production. Please never use the generated key and certificate files outside of Gretty tasks!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Saving passwords to the file system is inherently unsafe. Please never run Gretty with auto-configured HTTPS on production systems!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>"${project.buildDir}/ssl" directory is preserved between Jetty runs, so that the same key and certificate are repeatedly used in development. Of course, you can delete the directory "${project.buildDir}/ssl" - it will be recreated on the next run. If you delete it, you&#8217;ll see a message "Connection is untrusted" again.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The self-signed certificate has issuer-DN "CN=gretty-issuer, OU=None, O=Gretty, L=None, C=None", under which it can be easily found and deleted in the browser settings.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_https_manual_configuration"><a class="anchor" href="#_https_manual_configuration"></a>HTTPS Manual configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty provides the way to specify <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/security/jsse/JSSERefGuide.html#Stores">key-store and trust-store</a>, so that pre-existing key and certificate are used.</p>
+</div>
+<div class="sect2">
+<h3 id="_syntax_2"><a class="anchor" href="#_syntax_2"></a>Syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>gretty {
+  sslKeyStorePath = '/some/path/keystore'
+  sslKeyStorePassword = 'someKeystorePassword'
+  sslKeyManagerPassword = 'someKeyManagerPassword'
+  sslTrustStorePath = '/another/path/trust_keystore'
+  sslTrustStorePassword = 'someTrustStorePassword'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All SSL-related properties are optional.</p>
+</div>
+<div class="paragraph">
+<p>If sslKeyStorePath is not specified, all other SSL-related properties are ignored and HTTPS is auto-configured.</p>
+</div>
+<div class="paragraph">
+<p>sslKeyManagerPassword defaults to sslKeyStorePassword.</p>
+</div>
+<div class="paragraph">
+<p>sslTrustStorePath defaults to sslKeyStorePath.</p>
+</div>
+<div class="paragraph">
+<p>sslTrustStorePassword defaults to sslKeyStorePassword.</p>
+</div>
+<div class="paragraph">
+<p>sslKeyStorePath and sslTrustStorePath can be set to String or java.io.File. Relative paths will be resolved relative to project.projectDir, project.webAppDir (default is "src/main/webapp"), project.sourceSets.main.output.files (defaults to [ "${project.buildDir}/classes/main", "${project.buildDir}/resources/main" ]).</p>
+</div>
+<div class="paragraph">
+<p>Passwords may be obfuscated, as described in <a href="http://www.eclipse.org/jetty/documentation/current/configuring-ssl.html">official Jetty documentation</a>. If you are uncomfortable with saving passwords in the sources, consider using <a href="http://www.gradle.org/docs/current/userguide/build_environment.html#sec:gradle_configuration_properties">gradle.properties</a> or <a href="http://www.gradle.org/docs/current/userguide/init_scripts.html">gradle init scripts</a> for configuring password variables outside of project sources.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+CN attribute of the used certificate must match gretty.host property ("localhost" by default), otherwise Jetty could not decide, which certificate to use.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_disabling_http"><a class="anchor" href="#_disabling_http"></a>Disabling HTTP</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You might want to run your web-app with HTTPS only, without HTTP. It&#8217;s easy to do so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>gretty {
+  httpEnabled = false
+  httpsEnabled = true
+}</code></pre>
+</div>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

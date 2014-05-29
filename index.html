@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Gretty documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Gretty documentation</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="Getting-started.html">Getting started</a><br>
+<a href="Feature-overview.html">Feature overview</a><br>
+<a href="System-requirements.html">System requirements</a><br>
+<a href="Troubleshooting.html">Troubleshooting</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_core_features"><a class="anchor" href="#_core_features"></a>Core features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="Switching-between-Jetty-and-servlet-API-versions.html">Switching between jetty and servlet-API versions</a><br>
+<a href="Hot-deployment.html">Hot deployment</a><br>
+<a href="Fast-reload.html">Fast reload</a><br>
+<a href="Web-app-overlays.html">Web-app overlays</a><br>
+<a href="HTTPS-support.html">HTTPS support</a><br>
+<a href="Gretty-configuration.html">Gretty configuration</a><br>
+<a href="Gretty-tasks.html">Gretty tasks</a><br>
+<a href="Gretty-task-classes.html">Gretty task classes</a></p>
+</div>
+<div class="sect2">
+<h3 id="_debugging_and_testing"><a class="anchor" href="#_debugging_and_testing"></a>Debugging and testing</h3>
+<div class="paragraph">
+<p><a href="Debugger-support.html">Debugger support</a><br>
+<a href="Integration-tests-support.html">Integration tests</a><br>
+<a href="Code-coverage-support.html">Code coverage (jacoco) support</a><br>
+<a href="Logging.html">Logging</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jee_specific"><a class="anchor" href="#_jee_specific"></a>JEE-specific</h3>
+<div class="paragraph">
+<p><a href="Servlet-container-classpath.html">Servlet container classpath</a><br>
+<a href="JEE-annotations-support.html">JEE annotations support</a><br>
+<a href="Web-fragments-support.html">Web fragments support</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jetty_specific"><a class="anchor" href="#_jetty_specific"></a>Jetty-specific</h3>
+<div class="paragraph">
+<p><a href="Security-realms.html">Security Realms</a><br>
+<a href="jetty.xml-support.html">jetty.xml support</a><br>
+<a href="jetty-env.xml-support.html">jetty-env.xml support</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multiple_web_apps"><a class="anchor" href="#_multiple_web_apps"></a>Multiple web-apps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="Multiple-web-apps-introduction.html">Introduction</a><br>
+<a href="Multiple-web-apps-configureless-setup.html">Configureless setup</a><br>
+<a href="Configuring-default-farm.html">Configuring default farm</a><br>
+<a href="Multiple-farms.html">Multiple farms</a><br>
+<a href="Combining-web-app-and-farm.html">Combining web-app and farm</a><br>
+<a href="Debugging-a-farm.html">Debugging a farm</a><br>
+<a href="Farm-integration-tests.html">Farm integration tests</a></p>
+</div>
+<div class="sect2">
+<h3 id="_multiple_web_apps_configuration"><a class="anchor" href="#_multiple_web_apps_configuration"></a>Multiple web-apps configuration</h3>
+<div class="paragraph">
+<p><a href="Farm-extension.html">Farm extension</a><br>
+<a href="Farms-extension.html">Farms extension</a><br>
+<a href="Farm-server-specific-properties.html">Farm server-specific properties</a><br>
+<a href="Farm-web-app-list.html">Farm web-app list</a><br>
+<a href="Farms-and-web-app-specific-properties.html">Farms and web-app specific properties</a><br>
+<a href="Duplicate-farm-names.html">Duplicate farm names</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multiple_web_apps_tasks"><a class="anchor" href="#_multiple_web_apps_tasks"></a>Multiple web-apps tasks</h3>
+<div class="paragraph">
+<p><a href="Farm-tasks.html">Farm tasks</a><br>
+<a href="Farm-task-classes.html">Farm task classes</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_materials"><a class="anchor" href="#_additional_materials"></a>Additional materials</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="Publishing-gretty-to-sonatype-and-bintray.html">Publishing gretty to sonatype and bintray</a></p>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

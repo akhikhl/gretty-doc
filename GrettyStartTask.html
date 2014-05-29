@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>GrettyStartTask</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>GrettyStartTask</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is task class you can instantiate and configure in your gradle
+scripts. Many standard Gretty tasks are actually instances of this
+class.</p>
+</div>
+<div class="paragraph">
+<p><strong>Attention:</strong> this is "low-level" class. You will have to program
+properties and dependencies on other tasks yourself. If this is too much
+and you want that "things just work", consider using
+<a href="jettyRun-task.html">jettyRun task</a> or other <a href="Gretty-tasks">supported
+tasks</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h4>
+<div class="paragraph">
+<p>code,groovy------------------------------------------------------------------------------
+code,groovy
+import org.akhikhl.gretty.GrettyStartTask
+task(<em>myJettyRun</em>, type: GrettyStartTask) {
+  dependsOn { tasks.prepareInplaceWebApp }
+  inplace = true
+  interactive = true
+  debug = false
+  integrationTest = false
+  port = 8080
+  servicePort = 9900
+  statusPort = 9901
+  contextPath = <em>/myWebApp</em>
+  initParameter <em>param1</em>, <em>buildTimeEvaluationParameter</em>
+  initParameter <em>param2</em>, { <em>lazyEvaluationParameter</em> }
+  realm <em>auth</em>
+  realmConfigFile <em>WEB-INF/jetty-realm.properties</em>
+  jettyXmlFile = <em>jetty.xml</em>
+  jettyEnvXmlFile = <em>jetty-env.xml</em>
+  onStart {
+    println <em>Jetty start</em>
+  }
+  onStop {
+    println <em>Jetty stop</em>
+  }
+  scanInterval = 1 // in seconds
+  scanDir <em>dir1</em>
+  scanDir <em>dir2</em>
+  onScan {
+    println <em>Scanning files for changes</em>
+  }
+  onScanFilesChanged { fileList &#8594;
+    println "Files were changed: $fileList"
+  }
+  fastReload true
+  fastReload baseDir: <em>xyz</em>, pattern: /.*\.html/, excludesPattern: /abc\.html/
+  logbackConfigFile = <em>xyz/logback.groovy</em>
+  loggingLevel = <em>INFO</em>
+  consoleLogEnabled = true
+  fileLogEnabled = true
+  logFileName = project.name
+  logDir = "${System.getProperty(<em>user.home</em>)}/logs"
+  jvmArgs = []
+  classPath = null // URL list, defaults to project&#8217;s runtime classpath
+  inplaceResourceBase = "${project.buildDir}/inplaceWebapp"
+  warResourceBase = project.tasks.war.archivePath
+  ExecutorService executorService
+}</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>
+[[_properties]]
+Properties
+^^^^^^^^^^
+
+* `inplace` - boolean, optional, default true.
+* when true, Gretty starts web-app without WAR-file, directly against
+compiled classes and resources in buildDir.
+* when false, Gretty builds and starts web-app as WAR-file.
+* `interactive` - boolean, optional, default true.
+* when true, Gretty starts web-app and then waits for user keypress.
+When user presses a key, Gretty stops web-app and Gradle continues
+normal execution of tasks.
+* when false, Gretty does not instruct Jetty to stop and simply waits
+for it to finish. It is assumed that Jetty is stopped from another
+process, presumably via `gradle jettyStop` or similar. Upon Jetty
+finish, Gretty stops waiting and Gradle continues normal execution of
+tasks. Attention: `interactive` has no effect, when `integrationTest` is
+true.
+* `debug` - boolean, optional, default false.
+* when true, Gretty starts web-app in suspended mode and listens on port
+5005. It is expected that a debugger (IDE) sends debugging instructions
+over this port.
+* when false, Gretty starts web-app normally, without debugging.
+* `integrationTest` - boolean, optional, default false.
+* when true, Gretty does not instruct Jetty to stop and does not wait
+for Jetty to finish. Instead, Jetty process is still running and Gradle
+proceeds with normal execution of tasks, which allows to implement
+integration tests.
+* when false, Gretty always waits for Jetty process to finish.
+* `port` - integer, optional, default is
+link:Gretty-configuration.html#_port[project.gretty.port]. Defines TCP-port
+used by Jetty for incoming HTTP-requests.
+* `servicePort` - integer, optional, default is
+link:Gretty-configuration.html#_serviceport[project.gretty.servicePort].
+Defines TCP-port used by Gretty to send commands to Jetty process.
+* `statusPort` - integer, optional, default is
+link:Gretty-configuration.html#_statusport[project.gretty.statusPort]. Defines
+TCP-port used by Jetty process to send status to Gretty.
+* `contextPath` - string, optional, default is
+link:Gretty-configuration.html#_contextpath[project.gretty.contextPath].
+Defines context path for the web-app. "contextPath" affects only
+jettyRun[War][Debug], jettyStart[War][Debug] tasks. If you assemble WAR
+file and deploy it to some servlet container, you'll have to define
+context path by means of that container.
+* `initParameter` - function(String key, String value), optional,
+multiple. Defines web-app initialization parameter(s). It has
+the same meaning/effect as /web-app/servlet/init-param element in
+"web.xml". You can specify more than one initParameter. When
+initParameter was not called, GrettyStartTask borrows init-parameters
+from gretty configuration.
+* `realm` - string, optional. Defines security realm for the given
+web-app. When not specified, GrettyStartTask borrows realm
+definition from gretty configuration. See more information in chapter
+link:Security-realms.html[Security Realms].
+* `realmConfigFile` - string or java.io.File, optional. Defines
+properties file, containing security realm properties. When
+realmConfigFile is relative, Gretty tries to resolve it against
+project.webAppDir. When not specified, GrettyStartTask borrows realm
+definition from gretty configuration. See more information in chapter
+link:Security-realms.html[Security Realms].
+* `jettyXmlFile` - string or java.io.File, optional, default is
+link:Gretty-configuration.html#_jettyxmlfile[project.gretty.jettyXmlFile].
+Defines name and/or location of "jetty.xml" file. See more information
+in chapter link:jetty.xml-support.html[jetty.xml support].
+* `jettyEnvXmlFile` - string or java.io.File, default is
+link:Gretty-configuration.html#_jettyenvxmlfile[project.gretty.jettyEnvXmlFile].
+Defines name and/or location of "jetty-env.xml" file. See more
+information in chapter link:jetty-env.xml-support[jetty-env.xml
+support].
+* `onStart` - function(Closure), optional, multiple. Defines closure to
+be called just before jetty server is started.
+* `onStop` - function(Closure), optional, multiple. Defines closure to
+be called just after jetty server is stopped.
+* `scanInterval` - integer, optional, default is
+link:Gretty-configuration.html#_scaninterval[project.gretty.scanInterval].
+Defines hot-deployment scan interval, in seconds. See more information
+in chapter link:Hot-deployment.html[Hot deployment].
+* `scanDir` - function(String) or function(java.io.File), optional,
+multiple. Adds a directory to the list of directories scanned by
+hot-deployment. See more information in chapter link:Hot-deployment[Hot
+deployment].
+* `onScan` - function(Closure), optional, multiple. Defines closure to
+be called on hot-deployment scan. See more information in chapter
+link:Hot-deployment.html[Hot deployment].
+* `onScanFilesChanged` - function(Closure), optional, multiple. Defines
+closure to be called whenever hot-deployment detects that files or
+folders were changed. See more information in chapter
+link:Hot-deployment.html[Hot deployment].
+* `fastReload` - boolean or function(String) or function(java.io.File)
+or function(Map), optional, multiple. Defines which folders are to be
+fast-reloaded on change, i.e. copied to running web-app without
+restarting web-app.
+* when boolean, enables/disables fast-reload of project.webAppDir.
+* when function(String) or function(java.io.File), enables fast-reload
+and adds the specified directory or file to fast-reloaded resources.
+* when function(Map), enables fast-reload and adds the specified
+directory to fast-reloaded resources, with additional specification of
+`pattern` and `excludesPattern` to fine-tune fast-reloading. See more
+information in chapter link:Fast-reload.html[Fast reload].
+* `logbackConfigFile` - string, optional, default is
+link:Gretty-configuration.html#_logbackconfigfile[project.gretty.logbackConfigFile].
+Defines the absolute or relative path to logback configuration file
+(.groovy or .xml). See more information in chapter Logging.
+* `loggingLevel` - string, optional, default is
+link:Gretty-configuration.html#_logginglevel[project.gretty.loggingLevel].
+Defines slf4j logging-level for jetty process. See more information in
+chapter Logging.
+* `consoleLogEnabled` - boolean, optional, default is
+link:Gretty-configuration.html#_consolelogenabled[project.gretty.consoleLogEnabled].
+Defines, whether log messages are written to the terminal. See more
+information in chapter Logging.
+* `fileLogEnabled` - boolean, optional, default is
+link:Gretty-configuration.html#_filelogenabled[project.gretty.fileLogEnabled].
+Defines, whether log messages are written to the log-file. See more
+information in chapter Logging.
+* `logFileName` - string, optional, default is
+link:Gretty-configuration.html#_logfilename[project.gretty.logFileName].
+Defines log file name (without path). See more information in chapter
+Logging.
+* `logDir` - string, optional, default is
+link:Gretty-configuration.html#_logdir[project.gretty.logDir]. Defines
+directory, where log file is created. See more information in chapter
+Logging.
+* `jvmArgs` - List, optional, default is
+link:Gretty-configuration.html#_jvmargs[project.gretty.jvmArgs]. Defines JVM
+arguments for Jetty process.
+* `classPath` - List, optional, default is project's runtime classpath.
+Defines a classpath for Jetty process.
+* `inplaceResourceBase` - string, optional, default is
+`"${project.buildDir}/inplaceWebapp"`. Defines a directory to be used
+for inplace web-app (i.e. when `inplace == true`).
+* `warResourceBase` - string, optional, default is
+`project.ext.finalWarPath ?: project.tasks.war.archivePath`. Defines a
+WAR file to be used for WAR web-app (i.e. when `inplace == false`).
+* `executorService` - java.util.concurrent.ExecutorService, optional,
+default is
+`project.ext.executorService ?: Executors.newSingleThreadExecutor()`.
+Defines an ExecutorService to be used for asynchronous communication to
+Jetty process.
+
+[[_workflow]]
+Workflow
+^^^^^^^^
+
+image:http://akhikhl.github.io/gretty/media/GrettyStartTask_StateDiagram.svg[GrettyStartTask_StateDiagram.svg,title="GrettyStartTask Diagram"]
+
+See also: link:Gretty-tasks.html[Gretty supported tasks].</pre>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

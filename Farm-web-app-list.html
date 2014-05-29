@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Farm web-app list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Farm web-app list</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Apart from <a href="Farm-server-specific-properties.html">server-specific properties</a>, farm configuration contains web-app list.</p>
+</div>
+<div class="paragraph">
+<p>Web-app list, when not specified by you, is automatically populated with all subprojects of given project, which are facilitated with gretty plugin.</p>
+</div>
+<div class="paragraph">
+<p>You can populate web-app list by calling <code>webapp</code> function on a farm:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>farm {
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>in the example above, farm refers two web-app projects: ProjectA and ProjectB.</p>
+</div>
+<div class="paragraph">
+<p>webapp function understands web-app references of three types: project, file and maven dependency.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_project_web_app_references"><a class="anchor" href="#_project_web_app_references"></a>Project web-app references</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can add a particular project to web-app list by one of two methods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pass a string in project-path syntax:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>farm {
+  webapp ':A:B:C' // adds a subproject from folder rootProject/A/B/C
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pass object of <a href="http://www.gradle.org/docs/current/javadoc/org/gradle/api/Project.html">Project</a> class:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>farm {
+  webapp project(':A:B:C') // adds a subproject from folder rootProject/A/B/C
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can also add current project to web-app list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>farm {
+  webapp project
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+projects being added to a farm must be present in gradle project tree, otherwise you&#8217;ll get "unknown project" error. You add projects to the project tree via "settings.gradle". See more information in <a href="http://www.gradle.org/docs/current/userguide/multi_project_builds.html.html">Chapter 56. Multi-project Builds</a> of gradle documentation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_file_based_web_app_references"><a class="anchor" href="#_file_based_web_app_references"></a>File-based web-app references</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Farms support adding a web-app directly from WAR-file, without gradle project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>farm {
+  webapp '/path/to/some/folder/MyWebApp1.war'
+  webapp '/path/to/some/folder/MyWebApp2.war'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course, you can intermix project and file-based web-apps and run them all on the same Jetty server.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Relative paths to WAR-files are resolved relative to current project&#8217;s directory.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Sometimes you will want to customize <a href="Gretty-configuration.html#_web_app_specific_properties">web-app-specific properties</a> for a file-based web-app references. You can do this with the help of <a href="Farms-and-web-app-specific-properties.html#_web_app_specific_properties_override">webapp-specific properties override</a> mechanism.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_repository_based_web_app_references"><a class="anchor" href="#_repository_based_web_app_references"></a>Repository-based web-app references</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Farms support adding a web-app from maven or ivy dependency, without gradle project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>farm {
+  webapp 'com.mycompany.product:MyWebApp1:0.0.1'
+  webapp 'com.mycompany.product:MyWebApp2:0.0.2'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course, you can intermix project, file-based and repository-based web-apps and run them all on the same Jetty server.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+If you get error message on missing dependency, check that "build.gradle" contains necessary repository definitions.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Sometimes you will want to customize <a href="Gretty-configuration.html#_web_app_specific_properties">web-app-specific properties</a> for a repository-based web-app references. You can do this with the help of <a href="Farms-and-web-app-specific-properties.html#_web_app_specific_properties_override">webapp-specific properties override</a> mechanism.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+<div class="paragraph">
+<p>See also:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="index.html#_multiple_web_apps">Multiple web-apps</a></p>
+</li>
+<li>
+<p><a href="Farm-server-specific-properties.html">Farm server-specific properties</a></p>
+</li>
+<li>
+<p><a href="Farms-and-web-app-specific-properties.html">Farms and web-app specific properties</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

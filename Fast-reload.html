@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Fast reload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Fast reload</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are cases, when restart of the web-app on every resource change
+is not optimal (too slow). Specifically for such cases Gretty implements "fast reload" feature.</p>
+</div>
+<div class="paragraph">
+<p>You can configure fastReload feature by adjusting the <a href="Gretty-configuration.html">gretty configuration</a> properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> boolean.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>When set to false, fast reload feature is disabled (the default). Effect: any resource changes will cause full restart of web-app (as far as scanInterval is specified, see <a href="Hot-deployment.html">Hot deployment</a>).</p>
+</li>
+<li>
+<p>When set to true, webAppDir folder (which is typically src/main/webapp) is set as being fast-reloaded.
+That means: whenever some files within webAppDir are changed, these files are copied into running web-app
+without web-app restart.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> function(String) or function(java.io.File).
+The specified directory or file is added to fast-reloaded resources.</p>
+</li>
+<li>
+<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> - function(Map).
+Map may contain the following properties:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>baseDir</code> is required and should have type String or java.io.File. If
+baseDir represents a relative path, gretty tries to find corresponding
+existing folder in the following directories:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>"$project.projectDir"</code></p>
+</li>
+<li>
+<p><code>"$project.webAppDir"</code></p>
+</li>
+<li>
+<p><code>"$project.buildDir/classes/main"</code></p>
+</li>
+<li>
+<p><code>"$project.buildDir/resources/main"</code>
+each resolved subfolder within these folders is added to fast reload.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>pattern</code> is optional and should have type String or java.util.regex.Pattern.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If <code>pattern</code> is not specified, then all files within baseDir are fast-reloaded.</p>
+</li>
+<li>
+<p>If <code>pattern</code> is specified, then only the files, whose relative (to baseDir)
+paths satisfy <code>pattern</code>, are fast-reloaded, other files are full-reloaded.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>excludesPattern</code> is optional and should have type String or java.util.regex.Pattern.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If <code>excludesPattern</code> is not specified, then <code>pattern</code> fully defines which files are fast-reloaded.</p>
+</li>
+<li>
+<p>If <code>excludesPattern</code> is specified, then those files whose relative (to baseDir)
+paths satisfy <code>excludesPattern</code>, are not fast-reloaded. <code>excludesPattern</code> is always applied after <code>pattern</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Gretty fast reload assumes the following defaults:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> property is set to false.</p>
+</li>
+<li>
+<p>Fast reload always excludes the following files:
+<code>'*.jar', '*.class', 'web.xml', 'web-fragment.xml', 'jetty.xml', 'jetty-env.xml', 'WEB-INF/lib/**', 'WEB-INF/classes/**'</code>
+That means: when these files are changed, web-app is fully restarted.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can add more than one fastReload specification. In such case all specified folders are fast-reloaded.</p>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>
