@@ -28,6 +28,10 @@ link:Integration-tests-support.html[Integration tests] +
 link:Code-coverage-support.html[Code coverage (jacoco) support] +
 link:Logging.html[Logging]
 
+=== Spring-framework-specific
+
+link:spring-boot-support.html[Spring-boot support]
+
 === JEE-specific
 
 link:Servlet-container-classpath.html[Servlet container classpath] +

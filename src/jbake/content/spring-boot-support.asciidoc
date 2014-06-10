@@ -1,0 +1,102 @@
+= spring-boot support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Since version 0.0.24 Gretty supports spring-boot web-apps out-of-the-box.
+You can run one or more spring-boot web-apps on the same Jetty server.
+You can also freely mix spring-boot and "normal" web-applications - Gretty will sort it out.
+
+*Attention: this part of documentation is yet under construction! More information comes soon!*
+
+== Simplest gretty spring-boot setup
+
+Add the following code to "build.gradle":
+
+[source,groovy]
+----
+buildscript {
+  ext {
+    springBootVersion = '1.1.0.BUILD-SNAPSHOT'
+  }
+  
+  repositories {
+    mavenLocal()
+    jcenter()
+    maven { url "http://repo.spring.io/snapshot" }
+  }
+
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
+    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
+    classpath 'org.akhikhl.gretty:gretty-spring-boot-plugin:0.0.24'
+  }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'gretty-spring-boot'
+----
+
+Now you can run your spring-boot application with the command `gradle jettyRun`.
+
+The complete sources for the simplest gretty spring-boot setup:
+
+* https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-simple[spring-boot-simple]
+
+== Configuring spring-boot with gretty
+
+"gretty-spring-boot" plugin facilitates your project with the same link:Gretty-configuration.html[gretty configuration],
+as "gretty" plugin. You can set the same properties, like "contextPath", "port", etc. etc. - they all
+will be passed to the Jetty server and web-app.
+
+== Gretty spring-boot tasks
+
+"gretty-spring-boot" plugin implements all gretty tasks except those with "War" word in the name.
+For example, there are tasks "jettyRun", "jettyRunDebug", "jettyStart", "jettyStop", etc.
+
+== Gretty and spring-boot: hot-deployment
+
+Gretty uses https://github.com/spring-projects/spring-loaded[spring-loaded] library for smooth reload
+of running spring-boot applications. As soon as you change the sources, the project gets 
+automatically recompiled and web-app reloads with updated classes.
+
+Gretty also supports link:Fast-reload.html[Fast reload] feature with spring-boot web-apps.
+
+== Gretty and spring-boot: webapp-overlays
+
+Webapp-overlays are technically possible with gretty and spring-boot, but author of Gretty plugin
+did not test this feature yet. See more information in link:Web-app-overlays.html[Web-app overlays] section.
+
+== Gretty and spring-boot: HTTPS
+
+Gretty fully supports link:HTTPS-support.html[HTTPS] with spring-boot web-apps.
+
+== Gretty and spring-boot: debugging, testing and logging
+
+Gretty fully supports link:Debugger-support.html[debugging] of spring-boot web-apps.
+
+Gretty fully supports link:Integration-tests-support.html[integration tests] with spring-boot web-apps.
+
+Gretty fully supports link:Code-coverage-support.html[Jacoco code coverage] with spring-boot web-apps.
+
+Gretty fully supports link:Logging.html[logging] of spring-boot web-apps.
+
+== Gretty and spring-boot: Jetty-specific features
+
+Gretty fully supports link:Security-realms.html[Jetty security Realms] with spring-boot web-apps.
+
+Gretty fully supports link:jetty.xml-support.html[jetty.xml] with spring-boot web-apps.
+
+Gretty fully supports link:jetty-env.xml-support.html[jetty-env.xml] with spring-boot web-apps.
+
+== Gretty and spring-boot: multiple web-apps
+
+Gretty supports running multiple web-apps on so-called link:Multiple-web-apps-introduction.html[farms].
+Web-apps can be spring-boot or "normal", in any combinations - Gretty will sort them out.
+
+Gretty contains example program, showing multi-web-app setup with spring-boot:
+
+* https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm[spring-boot-farm]
+
