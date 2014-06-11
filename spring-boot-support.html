@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>spring-boot support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>spring-boot support</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since version 0.0.24 Gretty supports spring-boot web-apps out-of-the-box.
+You can run one or more spring-boot web-apps on the same Jetty server.
+You can also freely mix spring-boot and "normal" web-applications - Gretty will sort it out.</p>
+</div>
+<div class="paragraph">
+<p><strong>Attention: this part of documentation is yet under construction! More information comes soon!</strong></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_simplest_gretty_spring_boot_setup"><a class="anchor" href="#_simplest_gretty_spring_boot_setup"></a>Simplest gretty spring-boot setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add the following code to "build.gradle":</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>buildscript {
+  ext {
+    springBootVersion = '1.1.0.BUILD-SNAPSHOT'
+  }
+
+  repositories {
+    mavenLocal()
+    jcenter()
+    maven { url "http://repo.spring.io/snapshot" }
+  }
+
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
+    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
+    classpath 'org.akhikhl.gretty:gretty-spring-boot-plugin:0.0.24'
+  }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'gretty-spring-boot'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can run your spring-boot application with the command <code>gradle jettyRun</code>.</p>
+</div>
+<div class="paragraph">
+<p>The complete sources for the simplest gretty spring-boot setup:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-simple">spring-boot-simple</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_spring_boot_with_gretty"><a class="anchor" href="#_configuring_spring_boot_with_gretty"></a>Configuring spring-boot with gretty</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>"gretty-spring-boot" plugin facilitates your project with the same <a href="Gretty-configuration.html">gretty configuration</a>,
+as "gretty" plugin. You can set the same properties, like "contextPath", "port", etc. etc. - they all
+will be passed to the Jetty server and web-app.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gretty_spring_boot_tasks"><a class="anchor" href="#_gretty_spring_boot_tasks"></a>Gretty spring-boot tasks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>"gretty-spring-boot" plugin implements all gretty tasks except those with "War" word in the name.
+For example, there are tasks "jettyRun", "jettyRunDebug", "jettyStart", "jettyStop", etc.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gretty_and_spring_boot_hot_deployment"><a class="anchor" href="#_gretty_and_spring_boot_hot_deployment"></a>Gretty and spring-boot: hot-deployment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty uses <a href="https://github.com/spring-projects/spring-loaded">spring-loaded</a> library for smooth reload
+of running spring-boot applications. As soon as you change the sources, the project gets
+automatically recompiled and web-app reloads with updated classes.</p>
+</div>
+<div class="paragraph">
+<p>Gretty also supports <a href="Fast-reload.html">Fast reload</a> feature with spring-boot web-apps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gretty_and_spring_boot_webapp_overlays"><a class="anchor" href="#_gretty_and_spring_boot_webapp_overlays"></a>Gretty and spring-boot: webapp-overlays</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Webapp-overlays are technically possible with gretty and spring-boot, but author of Gretty plugin
+did not test this feature yet. See more information in <a href="Web-app-overlays.html">Web-app overlays</a> section.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gretty_and_spring_boot_https"><a class="anchor" href="#_gretty_and_spring_boot_https"></a>Gretty and spring-boot: HTTPS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty fully supports <a href="HTTPS-support.html">HTTPS</a> with spring-boot web-apps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gretty_and_spring_boot_debugging_testing_and_logging"><a class="anchor" href="#_gretty_and_spring_boot_debugging_testing_and_logging"></a>Gretty and spring-boot: debugging, testing and logging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty fully supports <a href="Debugger-support.html">debugging</a> of spring-boot web-apps.</p>
+</div>
+<div class="paragraph">
+<p>Gretty fully supports <a href="Integration-tests-support.html">integration tests</a> with spring-boot web-apps.</p>
+</div>
+<div class="paragraph">
+<p>Gretty fully supports <a href="Code-coverage-support.html">Jacoco code coverage</a> with spring-boot web-apps.</p>
+</div>
+<div class="paragraph">
+<p>Gretty fully supports <a href="Logging.html">logging</a> of spring-boot web-apps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gretty_and_spring_boot_jetty_specific_features"><a class="anchor" href="#_gretty_and_spring_boot_jetty_specific_features"></a>Gretty and spring-boot: Jetty-specific features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty fully supports <a href="Security-realms.html">Jetty security Realms</a> with spring-boot web-apps.</p>
+</div>
+<div class="paragraph">
+<p>Gretty fully supports <a href="jetty.xml-support.html">jetty.xml</a> with spring-boot web-apps.</p>
+</div>
+<div class="paragraph">
+<p>Gretty fully supports <a href="jetty-env.xml-support.html">jetty-env.xml</a> with spring-boot web-apps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gretty_and_spring_boot_multiple_web_apps"><a class="anchor" href="#_gretty_and_spring_boot_multiple_web_apps"></a>Gretty and spring-boot: multiple web-apps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty supports running multiple web-apps on so-called <a href="Multiple-web-apps-introduction.html">farms</a>.
+Web-apps can be spring-boot or "normal", in any combinations - Gretty will sort them out.</p>
+</div>
+<div class="paragraph">
+<p>Gretty contains example program, showing multi-web-app setup with spring-boot:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm">spring-boot-farm</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>
