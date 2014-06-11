@@ -6,12 +6,21 @@ Andrey Hihlovskiy
 :jbake-status: published
 
 == Gradle tasks
+
 Gretty provides gradle tasks, which automate starting, stopping, testing and debugging web-apps. 
 Tasks work out-of-the-box, without additional configuration, but are fully configurable/customizable.
- +
+
 See more information at link:Gretty-tasks.html[Gretty tasks] and link:Farm-tasks.html[Farm tasks].
 
+== Spring-boot support
+
+Since version 0.0.24 Gretty link:spring-boot-support.html[fully supports spring-boot web-apps]. 
+You can run spring-boot web-apps and "normal" web-apps side-by-side on the same Jetty server. 
+You can control spring-boot web-apps with the same link:Gretty-configuration.html[Gretty configuration] 
+and apply all Gretty features to them: integration tests, debugging, Jacoco code coverage etc.etc.
+
 == Multiple web-apps support
+
 Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: link:Farm-web-app-list.html#_project_web_app_references[gradle projects], link:Farm-web-app-list.html#_file_based_web_app_references[WAR-files in the file system] and even link:Farm-web-app-list.html#_repository_based_web_app_references[WAR-files from maven dependencies]. +
 Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup.html[configureless mode], although it is fully link:index.html#_multiple_web_apps_configuration[configurable/customizable]. +
 Multiple web-apps feature also works nicely with integration tests and with the debugger.

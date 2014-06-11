@@ -6,12 +6,9 @@ Andrey Hihlovskiy
 :jbake-status: published
 
 Since version 0.0.24 Gretty supports spring-boot web-apps out-of-the-box.
-You can run one or more spring-boot web-apps on the same Jetty server.
-You can also freely mix spring-boot and "normal" web-applications - Gretty will sort it out.
+All Gretty features also apply to spring-boot web-apps.
 
-*Attention: this part of documentation is yet under construction! More information comes soon!*
-
-== Simplest gretty spring-boot setup
+== Simplest Gretty setup with spring-boot 
 
 Add the following code to "build.gradle":
 
@@ -19,13 +16,12 @@ Add the following code to "build.gradle":
 ----
 buildscript {
   ext {
-    springBootVersion = '1.1.0.BUILD-SNAPSHOT'
+    springBootVersion = '1.1.0.RELEASE'
   }
   
   repositories {
     mavenLocal()
     jcenter()
-    maven { url "http://repo.spring.io/snapshot" }
   }
 
   dependencies {
@@ -35,7 +31,6 @@ buildscript {
   }
 }
 
-apply plugin: 'groovy'
 apply plugin: 'gretty-spring-boot'
 ----
 
