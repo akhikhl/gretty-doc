@@ -66,16 +66,12 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Since version 0.0.24 Gretty supports spring-boot web-apps out-of-the-box.
-You can run one or more spring-boot web-apps on the same Jetty server.
-You can also freely mix spring-boot and "normal" web-applications - Gretty will sort it out.</p>
-</div>
-<div class="paragraph">
-<p><strong>Attention: this part of documentation is yet under construction! More information comes soon!</strong></p>
+All Gretty features also apply to spring-boot web-apps.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_simplest_gretty_spring_boot_setup"><a class="anchor" href="#_simplest_gretty_spring_boot_setup"></a>Simplest gretty spring-boot setup</h2>
+<h2 id="_simplest_gretty_setup_with_spring_boot"><a class="anchor" href="#_simplest_gretty_setup_with_spring_boot"></a>Simplest Gretty setup with spring-boot</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Add the following code to "build.gradle":</p>
@@ -84,13 +80,12 @@ You can also freely mix spring-boot and "normal" web-applications - Gretty will 
 <div class="content">
 <pre class="prettyprint groovy language-groovy"><code>buildscript {
   ext {
-    springBootVersion = '1.1.0.BUILD-SNAPSHOT'
+    springBootVersion = '1.1.0.RELEASE'
   }
 
   repositories {
     mavenLocal()
     jcenter()
-    maven { url "http://repo.spring.io/snapshot" }
   }
 
   dependencies {
@@ -100,7 +95,6 @@ You can also freely mix spring-boot and "normal" web-applications - Gretty will 
   }
 }
 
-apply plugin: 'groovy'
 apply plugin: 'gretty-spring-boot'</code></pre>
 </div>
 </div>
