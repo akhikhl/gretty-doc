@@ -5,84 +5,237 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-When you insert +apply plugin: \'gretty'+ to "build.gradle", Gretty plugin facilitates the project with the following gradle tasks:
+When you insert +apply plugin: \'org.akhikhl.gretty'+ to "build.gradle", Gretty plugin facilitates the project with the following gradle tasks:
 
-[cols="3,3,1,1,1", options="header"]
+[cols="3,3,3,1,1,1", options="header"]
 |===
 | Tasks
 | Purpose
+| Servlet container
 | Stopped by 
 | Uses WAR 
 | Debug
 
-| link:jettyRun-task.html[jettyRun], link:run-task.html[run]
+| link:appRun-task.html[appRun], link:run-task.html[run]
 | Starts web-app
+| defined by gretty.servletContainer
+| keypress
+| no
+| no
+
+| link:appRunDebug-task.html[appRunDebug], link:debug-task.html[debug]
+| Starts web-app
+| defined by gretty.servletContainer
+| keypress 
+| no
+| yes
+
+| link:appRunWar-task.html[appRunWar]
+| Starts web-app
+| defined by gretty.servletContainer
+| keypress 
+| yes
+| no
+
+| link:appRunWarDebug-task.html[appRunWarDebug]
+| Starts web-app
+| defined by gretty.servletContainer
+| keypress 
+| yes
+| yes
+
+| link:appStart-task.html[appStart]
+| Starts web-app
+| defined by gretty.servletContainer
+| appStop
+| no
+| no
+
+| link:appStartDebug-task.html[appStartDebug]
+| Starts web-app
+| defined by gretty.servletContainer
+| appStop
+| no
+| yes
+
+| link:appStartWar-task.html[appStartWar]
+| Starts web-app
+| defined by gretty.servletContainer
+| appStop
+| yes
+| no
+
+| link:appStartWarDebug-task.html[appStartWarDebug]
+| Starts web-app
+| defined by gretty.servletContainer
+| appStop
+| yes
+| yes
+
+| link:appStop-task.html[appStop]
+| Stops web-app
+| -
+| -
+| -
+| -
+
+| link:appRestart-task.html[appRestart]
+| Restarts web-app
+| -
+| -
+| -
+| -
+
+| link:appBeforeIntegrationTest-task.html[appBeforeIntegrationTest]
+| Starts app before integration test.
+| defined by gretty.servletContainer
+| appAfterIntegrationTest
+| no
+| no
+
+| link:appAfterIntegrationTest-task.html[appAfterIntegrationTest]
+| Stops app after integration test.
+| -
+| -
+| -
+| -
+
+| link:jettyRun-task.html[jettyRun]
+| Starts web-app
+| jetty
 | keypress
 | no
 | no
 
 | link:jettyRunDebug-task.html[jettyRunDebug], link:debug-task.html[debug]
 | Starts web-app
+| jetty
 | keypress 
 | no
 | yes
 
 | link:jettyRunWar-task.html[jettyRunWar]
 | Starts web-app
+| jetty
 | keypress 
 | yes
 | no
 
 | link:jettyRunWarDebug-task.html[jettyRunWarDebug]
 | Starts web-app
+| jetty
 | keypress 
 | yes
 | yes
 
 | link:jettyStart-task.html[jettyStart]
 | Starts web-app
+| jetty
 | jettyStop
 | no
 | no
 
 | link:jettyStartDebug-task.html[jettyStartDebug]
 | Starts web-app
+| jetty
 | jettyStop
 | no
 | yes
 
 | link:jettyStartWar-task.html[jettyStartWar]
 | Starts web-app
+| jetty
 | jettyStop
 | yes
 | no
 
 | link:jettyStartWarDebug-task.html[jettyStartWarDebug]
 | Starts web-app
+| jetty
 | jettyStop
 | yes
 | yes
 
 | link:jettyStop-task.html[jettyStop]
-| Stops web-app
+| same as appStop
+| -
 | -
 | -
 | -
 
 | link:jettyRestart-task.html[jettyRestart]
-| Restarts web-app
+| same as appRestart
+| -
 | -
 | -
 | -
 
-| link:jettyBeforeIntegrationTest-task.html[jettyBeforeIntegrationTest]
-| Starts jetty before integration test.
-| jettyAfterIntegrationTest
+| link:tomcatRun-task.html[tomcatRun]
+| Starts web-app
+| tomcat
+| keypress
 | no
 | no
 
-| link:jettyAfterIntegrationTest-task.html[jettyAfterIntegrationTest]
-| Stops jetty after integration test.
+| link:tomcatRunDebug-task.html[tomcatRunDebug], link:debug-task.html[debug]
+| Starts web-app
+| tomcat
+| keypress 
+| no
+| yes
+
+| link:tomcatRunWar-task.html[tomcatRunWar]
+| Starts web-app
+| tomcat
+| keypress 
+| yes
+| no
+
+| link:tomcatRunWarDebug-task.html[tomcatRunWarDebug]
+| Starts web-app
+| tomcat
+| keypress 
+| yes
+| yes
+
+| link:tomcatStart-task.html[tomcatStart]
+| Starts web-app
+| tomcat
+| tomcatStop
+| no
+| no
+
+| link:tomcatStartDebug-task.html[tomcatStartDebug]
+| Starts web-app
+| tomcat
+| tomcatStop
+| no
+| yes
+
+| link:tomcatStartWar-task.html[tomcatStartWar]
+| Starts web-app
+| tomcat
+| tomcatStop
+| yes
+| no
+
+| link:tomcatStartWarDebug-task.html[tomcatStartWarDebug]
+| Starts web-app
+| tomcat
+| tomcatStop
+| yes
+| yes
+
+| link:tomcatStop-task.html[tomcatStop]
+| same as appStop
+| -
+| -
+| -
+| -
+
+| link:tomcatRestart-task.html[tomcatRestart]
+| same as appRestart
+| -
 | -
 | -
 | -

@@ -5,32 +5,5 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-This is task class you can instantiate and configure in your gradle
-scripts. Many standard Gretty tasks are actually instances of this
-class.
-
-*Attention:* this is "low-level" class. You will have to program
-properties and dependencies on other tasks yourself. If this is too much
-and you want that "things just work", consider using
-link:jettyStop-task.html[jettyStop task] or other link:Gretty-tasks[gretty
-tasks].
-
-[[_syntax]]
-Syntax
-^^^^^^
-
-code,groovy---------------------------------------------- code,groovy
-import org.akhikhl.gretty.GrettyServiceTask
-// ...
-task('myJettyStop', type: GrettyServiceTask) {
-  command = 'stop'
-  servicePort = 9900
-}
-----------------------------------------------
-
-* `command` - string, required. Defines a string to send to
-`servicePort` when task is executed.
-* `servicePort` - integer, optional, default is
-link:Gretty-configuration.html#_serviceport[project.gretty.servicePort].
-Defines TCP-port to which a command is sent.
-
+Attention: this is deprecated class.
+Please use link:AppServiceTask.html[AppServiceTask] class instead.
