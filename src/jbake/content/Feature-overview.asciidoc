@@ -5,6 +5,14 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
+image::images/gretty_logo.png[]
+
+Gretty is a feature-rich gradle plugin for running web-apps on Jetty. 
+It supports multiple Jetty versions (7, 8 and 9), multiple web-apps and many more. 
+It wraps Jetty functions as convenient Gradle tasks and configuration DSL.
+
+Gretty provides the following features:
+
 == Gradle tasks
 
 Gretty provides gradle tasks, which automate starting, stopping, testing and debugging web-apps. 

@@ -12,7 +12,7 @@ link:Troubleshooting.html[Troubleshooting]
 
 == Core features
 
-link:Switching-between-Jetty-and-servlet-API-versions.html[Switching between jetty and servlet-API versions] +
+link:Switching-between-servlet-containers.html[Switching between servlet containers] +
 link:Hot-deployment.html[Hot deployment] +
 link:Fast-reload.html[Fast reload] +
 link:Web-app-overlays.html[Web-app overlays] +
@@ -68,6 +68,3 @@ link:Duplicate-farm-names.html[Duplicate farm names]
 link:Farm-tasks.html[Farm tasks] +
 link:Farm-task-classes.html[Farm task classes]
 
-== Additional materials
-
-link:Publishing-gretty-to-sonatype-and-bintray.html[Publishing gretty to sonatype and bintray]

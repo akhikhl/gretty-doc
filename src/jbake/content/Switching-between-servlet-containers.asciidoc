@@ -5,6 +5,20 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
+Starting with version 1.0.0, Gretty supports unified interface to the servlet containers
+Jetty 7, 8 and 9, Tomcat 7 and 8. There's only one plugin to include: `org.akhikhl.gretty`.
+
+The syntax:
+
+[source,groovy]
+----
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+apply from: 'war' // optional, if you use spring-boot
+
+
+----
+
+
 To use specific version of jetty and servlet API, add one of the
 following to "build.gradle" of your web-app (instead of
 "gretty.plugin"):
