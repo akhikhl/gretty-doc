@@ -1,0 +1,46 @@
+= appRestart task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+appRestart sends "restart" command to a running servlet-container process.
+
+== Syntax
+
+[source,bash]
+----
+gradle appRestart
+----
+
+== Effects
+
+appRestart does not build source code, it only sends "restart" command to localhost:link:Gretty-configuration.html#_serviceport[servicePort]. Usually
+appRestart is used to restart servlet-container process started by appStart[War][Debug].
+
+== Instantiation and extension
+
+The object called appRestart is actually an instance of link:Gretty-task-classes.html#_apprestarttask[AppRestartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'org.akhikhl.gretty'
+
+import org.akhikhl.gretty.AppRestartTask
+
+task('MyRestart', type: AppRestartTask) {
+  // ...
+}
+
+class VerySpecialRestart extends AppRestartTask {
+  // ...
+}
+
+task('MyRestart2', type: VerySpecialRestart) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+

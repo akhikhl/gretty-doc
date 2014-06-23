@@ -5,49 +5,5 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-jettyRunWar starts web-app on WAR-file, in interactive mode.
+jettyRunWar task is almost identical to link:appRunWar-task.html[appRunWar task]. There's only one difference: jettyRunWar forces Gretty to ignore the value of `gretty.servletContainer` and run on Jetty.
 
-== Syntax
-
-[source,bash]
-----
-gradle jettyRunWar
-----
-
-== Effects
-.  The web-app gets compiled and assembled into WAR-file (if it's not up-to-date).
-.  Embedded servlet-container starts in separate java process against WAR-file and listens for HTTP-requests 
-on link:Gretty-configuration.html#_port[port] (default 8080).
-.  Gretty waits for the user keypress.
-.  When user presses any key (in the same terminal), servlet-container process shuts down.
-5.  Gretty waits for servlet-container process to complete.
-6.  Gradle script continues normal execution of tasks.
-
-== Instantiation and extension
-
-The object called jettyRunWar is actually an instance of link:Gretty-task-classes.html#_jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
-
-[source,groovy]
-----
-apply plugin: 'org.akhikhl.gretty'
-
-import org.akhikhl.gretty.JettyStartTask
-
-task('MyRun', type: JettyStartTask) {
-  // ...
-}
-
-class VerySpecialRun extends JettyStartTask {
-  // ...
-}
-
-task('MyRun2', type: VerySpecialRun) {
-  // ...
-}
-----
-
-If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
-
-== Workflow
-
-image::images/jettyRunWar_StateDiagram.svg[]

@@ -1,0 +1,9 @@
+= tomcatRunWarDebug task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+tomcatRunWarDebug task is almost identical to link:appRunWarDebug-task.html[appRunWarDebug task]. There's only one difference: tomcatRunWarDebug forces Gretty to ignore the value of `gretty.servletContainer` and run on Tomcat.
+

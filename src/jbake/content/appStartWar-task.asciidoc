@@ -1,0 +1,55 @@
+= appStartWar task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+appStartWar starts web-app on WAR-file.
+
+== Syntax
+
+[source,bash]
+----
+gradle appStartWar
+----
+
+== Effects
+.  The web-app gets compiled and assembled into WAR-file (if it's not up-to-date).
+.  Embedded servlet-container starts in separate java process against WAR-file and listens for HTTP-requests on link:Gretty-configuration.html#_port[port] (default 8080).
+.  Gretty waits for servlet-container process to complete.
+.  Gradle script continues normal execution of tasks.
+
+Note that this task does not stop servlet-container. It is assumed that another gradle process stops it, supposedly +gradle appStop+.
+
+== Instantiation and extension
+
+The object called appStartWar is actually an instance of link:Gretty-task-classes.html#_appstarttask[AppStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'org.akhikhl.gretty'
+
+import org.akhikhl.gretty.AppStartTask
+
+task('MyRun', type: AppStartTask) {
+  // ...
+}
+
+class VerySpecialRun extends AppStartTask {
+  // ...
+}
+
+task('MyRun2', type: VerySpecialRun) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+
+== Workflow
+
+image::images/appStartWar_StateDiagram.svg[]
+
+See also: link:appStop-task.html[appStop task] and link:appRestart-task.html[appRestart task].
+

@@ -5,56 +5,5 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-jettyStartDebug starts web-app inplace, in debug mode.
+jettyStartDebug task is almost identical to link:appStartDebug-task.html[appStartDebug task]. There's only one difference: jettyStartDebug forces Gretty to ignore the value of `gretty.servletContainer` and run on Jetty.
 
-== Syntax
-
-[source,bash]
-----
-gradle jettyStartDebug
-----
-
-== Effects
-. The web-app gets compiled (if it's not up-to-date).
-. Embedded servlet-container starts in separate java process against compiled
-classes and their dependencies. +
-*important*: Upon start, the process is in suspended-mode and listens for debugger commands on port 5005.
-. Upon resume, servlet-container process starts listening for HTTP-requests on
-link:Gretty-configuration.html#_port[port] (default 8080).
-. Gretty waits for servlet-container process to complete.
-. Gradle script continues normal execution of tasks.
-
-Note that this task does not depend on "war" task, nor does it use WAR-file.
-
-Note that this task does not stop Jetty. It is assumed that another gradle process stops it, supposedly +gradle jettyStop+.
-
-== Instantiation and extension
-
-The object called jettyStartDebug is actually an instance of link:Gretty-task-classes.html#_jettystarttask[JettyStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
-
-[source,groovy]
-----
-apply plugin: 'org.akhikhl.gretty'
-
-import org.akhikhl.gretty.JettyStartTask
-
-task('MyRun', type: JettyStartTask) {
-  // ...
-}
-
-class VerySpecialRun extends JettyStartTask {
-  // ...
-}
-
-task('MyRun2', type: VerySpecialRun) {
-  // ...
-}
-----
-
-If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
-
-== Workflow
-
-image::images/jettyStartDebug_StateDiagram.svg[]
-
-See also: link:jettyStop-task.html[jettyStop task], link:jettyRestart-task.html[jettyRestart task], link:Debugger-support.html[Debugger support].

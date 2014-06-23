@@ -7,9 +7,9 @@ Andrey Hihlovskiy
 
 image::images/gretty_logo.png[]
 
-Gretty is a feature-rich gradle plugin for running web-apps on Jetty. 
-It supports multiple Jetty versions (7, 8 and 9), multiple web-apps and many more. 
-It wraps Jetty functions as convenient Gradle tasks and configuration DSL.
+Gretty is a feature-rich gradle plugin for running web-apps on embedded servlet containers. 
+It supports Jetty versions 7, 8 and 9, Tomcat versions 7 and 8, multiple web-apps and many more. 
+It wraps servlet container functions as convenient Gradle tasks and configuration DSL.
 
 Gretty is an open-source project and is freely available in https://github.com/akhikhl/gretty[sources] as well as in compiled form.
 All officially released Gretty versions are available at jcenter and maven central under the group 'org.akhikhl.gretty'.

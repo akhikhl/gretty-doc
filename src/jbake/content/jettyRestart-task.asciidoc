@@ -5,42 +5,5 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-jettyRestart sends "restart" command to a running jetty server.
+jettyRestart task is fully identical to link:appRestart-task.html[appRestart task]. These two tasks can be used interchangeably.
 
-== Syntax
-
-[source,bash]
-----
-gradle jettyRestart
-----
-
-== Effects
-
-jettyRestart does not build source code, it only sends "restart" command to
-localhost:link:Gretty-configuration.html#_serviceport[servicePort]. Usually
-jettyRestart is used to restart Gretty/Jetty process started by jettyStart[War][Debug].
-
-== Instantiation and extension
-
-The object called jettyRestart is actually an instance of link:Gretty-task-classes.html#_jettyrestarttask[JettyRestartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
-
-[source,groovy]
-----
-apply plugin: 'org.akhikhl.gretty'
-
-import org.akhikhl.gretty.JettyRestartTask
-
-task('MyRestart', type: JettyRestartTask) {
-  // ...
-}
-
-class VerySpecialRestart extends JettyRestartTask {
-  // ...
-}
-
-task('MyRestart2', type: VerySpecialRestart) {
-  // ...
-}
-----
-
-If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.

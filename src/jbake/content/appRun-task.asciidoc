@@ -1,0 +1,55 @@
+= appRun task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+appRun task starts web-app inplace, in interactive mode.
+
+== Syntax
+
+[source,bash]
+----
+gradle appRun
+----
+
+== Effects
+.  The web-app gets compiled (if it's not up-to-date).
+.  Embedded servlet-container starts in separate java process against compiled classes and their dependencies and listens for HTTP-requests on link:Gretty-configuration.html#_port[port] (default 8080).
+.  Gretty waits for the user keypress.
+.  When user presses any key (in the same terminal), servlet-container process shuts down.
+.  Gretty waits for servlet-container process to complete.
+.  Gradle script continues normal execution of tasks.
+
+Note that this task does not depend on "war" task, nor does it use WAR-file.
+
+== Instantiation and extension
+
+The object called appRun is actually an instance of link:Gretty-task-classes.html#_appstarttask[AppStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'org.akhikhl.gretty'
+
+import org.akhikhl.gretty.AppStartTask
+
+task('MyRun', type: AppStartTask) {
+  // ...
+}
+
+class VerySpecialRun extends AppStartTask {
+  // ...
+}
+
+task('MyRun2', type: VerySpecialRun) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+
+== Workflow
+
+image::images/appRun_StateDiagram.svg[]
+

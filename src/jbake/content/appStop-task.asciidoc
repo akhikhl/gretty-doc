@@ -1,0 +1,45 @@
+= appStop task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+appStop sends "stop" command to a running servlet-container process.
+
+== Syntax
+
+[source,bash]
+----
+gradle appStop
+----
+
+== Effects
+
+appStop does not build source code, it only sends "stop" command to localhost:link:Gretty-configuration.html#_serviceport[servicePort]. Usually appStop is used to stop servlet-container process started by appStart[War][Debug].
+
+== Instantiation and extension
+
+The object called appStop is actually an instance of link:Gretty-task-classes.html#_appstoptask[AppStopTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'org.akhikhl.gretty'
+
+import org.akhikhl.gretty.AppStopTask
+
+task('MyStop', type: AppStopTask) {
+  // ...
+}
+
+class VerySpecialStop extends AppStopTask {
+  // ...
+}
+
+task('MyStop2', type: VerySpecialStop) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+

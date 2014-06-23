@@ -1,0 +1,9 @@
+= tomcatStartDebug task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+tomcatStartDebug task is almost identical to link:appStartDebug-task.html[appStartDebug task]. There's only one difference: tomcatStartDebug forces Gretty to ignore the value of `gretty.servletContainer` and run on Tomcat.
+

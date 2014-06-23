@@ -1,0 +1,55 @@
+= tomcatStartWar task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+tomcatStartWar starts web-app on WAR-file.
+
+== Syntax
+
+[source,bash]
+----
+gradle tomcatStartWar
+----
+
+== Effects
+.  The web-app gets compiled and assembled into WAR-file (if it's not up-to-date).
+.  Embedded servlet-container starts in separate java process against WAR-file and
+listens for HTTP-requests on link:Gretty-configuration.html#_port[port] (default 8080).
+.  Gretty waits for servlet-container process to complete.
+.  Gradle script continues normal execution of tasks.
+
+Note that this task does not stop Tomcat. It is assumed that another gradle process stops it, supposedly +gradle tomcatStop+.
+
+== Instantiation and extension
+
+The object called tomcatStartWar is actually an instance of link:Gretty-task-classes.html#_tomcatstarttask[TomcatStartTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+
+[source,groovy]
+----
+apply plugin: 'org.akhikhl.gretty'
+
+import org.akhikhl.gretty.TomcatStartTask
+
+task('MyRun', type: TomcatStartTask) {
+  // ...
+}
+
+class VerySpecialRun extends TomcatStartTask {
+  // ...
+}
+
+task('MyRun2', type: VerySpecialRun) {
+  // ...
+}
+----
+
+If you are going to instantiate or extend this task class yourself, make sure you've learned it's properties and methods.
+
+== Workflow
+
+image::images/tomcatStartWar_StateDiagram.svg[]
+
+See also: link:tomcatStop-task.html[tomcatStop task] and link:tomcatRestart-task.html[tomcatRestart task].

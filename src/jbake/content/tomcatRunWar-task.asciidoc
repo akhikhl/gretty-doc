@@ -1,0 +1,9 @@
+= tomcatRunWar task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+tomcatRunWar task is almost identical to link:appRunWar-task.html[appRunWar task]. There's only one difference: tomcatRunWar forces Gretty to ignore the value of `gretty.servletContainer` and run on Tomcat.
+

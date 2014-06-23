@@ -1,0 +1,9 @@
+= tomcatStart task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+tomcatStart task is almost identical to link:appStart-task.html[appStart task]. There's only one difference: tomcatStart forces Gretty to ignore the value of `gretty.servletContainer` and run on Tomcat.
+

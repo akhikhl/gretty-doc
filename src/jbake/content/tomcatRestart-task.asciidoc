@@ -1,0 +1,9 @@
+= tomcatRestart task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+tomcatRestart task is fully identical to link:appRestart-task.html[appRestart task]. These two tasks can be used interchangeably.
+

@@ -1,0 +1,9 @@
+= tomcatStop task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+tomcatStop task is fully identical to link:appStop-task.html[appStop task]. These two tasks can be used interchangeably.
+

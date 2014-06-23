@@ -1,0 +1,9 @@
+= tomcatRun task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+tomcatRun task is almost identical to link:appRun-task.html[appRun task]. There's only one difference: tomcatRun forces Gretty to ignore the value of `gretty.servletContainer` and run on Tomcat.
+

@@ -1,0 +1,9 @@
+= tomcatRunDebug task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+tomcatRunDebug task is almost identical to link:appRunDebug-task.html[appRunDebug task]. There's only one difference: tomcatRunDebug forces Gretty to ignore the value of `gretty.servletContainer` and run on Tomcat.
+
