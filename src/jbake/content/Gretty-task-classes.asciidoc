@@ -7,15 +7,15 @@ Andrey Hihlovskiy
 
 The existing link:Gretty-tasks.html[gretty tasks] should be sufficient for many web-app development scenarios.
 
-If you need to configure Gretty tasks, you should first look at link:Gretty-configuration.html[gretty configuration] - maybe, there is already everything that you need.
+If you need to configure Gretty tasks, you should first look at link:Gretty-configuration.html[gretty configuration] - maybe, there is already everything you need.
 
 Of course, there are cases, when you need to instantiate new gretty tasks or to extend their classes with new functions/properties. Then you need knowledge about gretty task classes.
 
-== JettyStartTask
+== AppStartTask
 
 === Purpose 
 
-JettyStartTask starts single web-app project on Jetty.
+AppStartTask starts single web-app project on a servlet-container.
 
 === Properties
 
@@ -39,21 +39,21 @@ JettyStartTask starts single web-app project on Jetty.
 | interactive
 | boolean
 | true
-| If true, the task waits for user keypress and stops jetty server after it. +
-If false, the task does not wait for user keypress, it should be stopped by jettyStop task.
+| If true, the task waits for user keypress and stops servlet-container process after it. +
+If false, the task does not wait for user keypress, it should be stopped by appStop task.
 
 | debug
 | boolean
 | false
-| If true, then Jetty server is started debug mode: it is suspended and waits for debugger commands on port 5005. +
-If false, the Jetty server is started in non-debug mode.
+| If true, then servlet-container process is started debug mode: it is suspended and waits for debugger commands on port 5005. +
+If false, the servlet-container process is started in non-debug mode.
 |===
 
 === Property inheritance
 
-All server-specific and web-app-specific properties of JettyStartTask are set to null by default.
+All server-specific and web-app-specific properties of AppStartTask are set to null by default.
 
-If, during task execution, Gretty sees that some property of JettyStartTask is null, it uses the value of the property with the same name from gretty configuration. For example:
+If, during task execution, Gretty sees that some property of AppStartTask is null, it uses the value of the property with the same name from gretty configuration. For example:
 
 [source,groovy]
 ----
@@ -63,17 +63,17 @@ gretty {
   contextPath = '/abc'
 }
 
-import org.akhikhl.gretty.JettyStartTask
+import org.akhikhl.gretty.AppStartTask
 
-task('MyJettyRun', type: JettyStartTask) {
+task('myAppRun', type: AppStartTask) {
   port = 9955
 }
 ----
 
-the expected output of `gradle MyJettyRun` is:
+the expected output of `gradle MyAppRun` is:
 
 ----
-:jettyRun
+:myAppRun
 scanInterval not specified (or zero), scanning disabled
 Auto-configuring server connectors
 2014-05-21 22:23:00.048 INFO  - jetty-9.1.0.v20131115
@@ -85,17 +85,64 @@ servicePort: 9900, statusPort: 9901
 Press any key to stop the jetty server.
 ----
 
-Interpretation: we did not specify contextPath in MyJettyRun, so Gretty took contextPath from gretty configutation - "/abc". port we specified as 9955, so Gretty used it instead of port in gretty configuration (which is 8080 by default).
+Interpretation: we did not specify contextPath in myAppRun, so Gretty took contextPath from gretty configutation - "/abc". We specified port as 9955, so Gretty used it instead of port in gretty configuration (which is 8080 by default).
+
+=== Property inheritance override
+
+In some cases it is desirable to inhibit property inheritance within gretty tasks.
+
+Consider the following example:
+
+[source,groovy]
+----
+gretty {
+  jvmArgs = '-Da=b'
+}
+
+task('myRun', type: AppStartTask) {
+  jvmArgs = '-Dx=y'
+}
+----
+
+as the result, myRun task will contain two parameters: '-Da=b' and '-Dx=y', but you probably wanted only '-Dx=y'.
+
+If you want replace jvmArgs rather than append, you'll need to call prepareServerConfig function with closure parameter:
+
+[source,groovy]
+----
+gretty {
+  jvmArgs = '-Da=b'
+}
+
+task('myRun', type: AppStartTask) {
+  prepareServerConfig {
+    jvmArgs = '-Dx=y'
+  }
+}
+----
+
+The closure passed to prepareServerConfig can be used for property post-processing: it is called after property merge is finished 
+and receives merged property object as closure delegate.
+
+There are actually two functions for property post-processing: prepareServerConfig and prepareWebAppConfig. prepareServerConfig deals with link:Gretty-configuration.html#_server_specific_properties[server-specific properties] and prepareWebAppConfig deals with link:Gretty-configuration.html#_web_app_specific_properties[web-app-specific properties].
 
 === Task dependencies
 
 TBD
 
-== JettyStopTask
+== JettyStartTask
+
+JettyStartTask is almost identical to link:#_appstarttask[AppStartTask task]. There's only one difference: JettyStartTask forces Gretty to ignore the value of `gretty.servletContainer` and run on Jetty.
+
+== TomcatStartTask
+
+TomcatStartTask is almost identical to link:#_appstarttask[AppStartTask task]. There's only one difference: TomcatStartTask forces Gretty to ignore the value of `gretty.servletContainer` and run on Tomcat.
+
+== AppStopTask
 
 === Purpose 
 
-JettyStopTask sends "stop" command over servicePort to a single web-app, which was supposedly started by JettyStartTask with interactive=false.
+AppStopTask sends "stop" command over servicePort to a single web-app, which was supposedly started by AppStartTask with interactive=false.
 
 === Properties
 
@@ -114,19 +161,19 @@ JettyStopTask sends "stop" command over servicePort to a single web-app, which w
 
 === Property inheritance
 
-JettyStopTask.servicePort is set to null by default.
+AppStopTask.servicePort is set to null by default.
 
-If, during task execution, Gretty sees that JettyStartTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.
+If, during task execution, Gretty sees that AppStopTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.
 
 === Task dependencies
 
-JettyStop task has no dependencies.
+AppStopTask has no task dependencies.
 
-== JettyRestartTask
+== AppRestartTask
 
 === Purpose 
 
-JettyRestartTask sends "restart" command over servicePort to a single web-app, which was supposedly started by JettyStartTask with interactive=false.
+AppRestartTask sends "restart" command over servicePort to a single web-app, which was supposedly started by AppStartTask with interactive=false.
 
 === Properties
 
@@ -145,20 +192,20 @@ JettyRestartTask sends "restart" command over servicePort to a single web-app, w
 
 === Property inheritance
 
-JettyRestartTask.servicePort is set to null by default.
+AppRestartTask.servicePort is set to null by default.
 
-If, during task execution, Gretty sees that JettyRestartTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.
+If, during task execution, Gretty sees that AppRestartTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.
 
 === Task dependencies
 
-JettyRestart task has no dependencies.
+AppRestartTask has no task dependencies.
 
 == AppBeforeIntegrationTestTask
 
 === Purpose 
 
-AppBeforeIntegrationTestTask extends JettyStartTask. 
-AppBeforeIntegrationTestTask starts Jetty server automatically before the designated integration test task.
+AppBeforeIntegrationTestTask extends AppStartTask. 
+AppBeforeIntegrationTestTask starts servlet container automatically before the designated integration test task.
 
 By default AppBeforeIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling `integrationTestTask` function:
 
@@ -170,7 +217,7 @@ task('MyIntegrationTest') {
   // ...
 }
 
-task('MyJettyBeforeIntegrationTest', type: AppBeforeIntegrationTestTask) {
+task('MyBeforeIntegrationTest', type: AppBeforeIntegrationTestTask) {
   integrationTestTask 'MyIntegrationTest'
   // ...
 }
@@ -198,14 +245,14 @@ task('MyJettyBeforeIntegrationTest', type: AppBeforeIntegrationTestTask) {
 | interactive
 | boolean
 | true
-| If true, the task waits for user keypress and stops jetty server after it. +
-If false, the task does not wait for user keypress, it should be stopped by jettyStop task.
+| If true, the task waits for user keypress and stops servlet-container after it. +
+If false, the task does not wait for user keypress, it should be stopped by appStop task.
 
 | debug
 | boolean
 | false
-| If true, then Jetty server is started debug mode: it is suspended and waits for debugger commands on port 5005. +
-If false, the Jetty server is started in non-debug mode.
+| If true, then servlet-container is started debug mode: it is suspended and waits for debugger commands on port 5005. +
+If false, the servlet-container is started in non-debug mode.
 
 | integrationTestTask
 | String
@@ -227,8 +274,8 @@ TBD
 
 === Purpose 
 
-AppAfterIntegrationTestTask extends JettyStopTask. 
-AppAfterIntegrationTestTask stops Jetty server automatically after the designated integration test task.
+AppAfterIntegrationTestTask extends AppStopTask. 
+AppAfterIntegrationTestTask stops servlet-container process automatically after the designated integration test task.
 
 By default AppAfterIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling `integrationTestTask` function:
 
@@ -240,7 +287,7 @@ task('MyIntegrationTest') {
   // ...
 }
 
-task('MyAppAfterIntegrationTest', type: AppAfterIntegrationTestTask) {
+task('MyAfterIntegrationTest', type: AppAfterIntegrationTestTask) {
   integrationTestTask 'MyIntegrationTest'
   // ...
 }
@@ -270,8 +317,9 @@ task('MyAppAfterIntegrationTest', type: AppAfterIntegrationTestTask) {
 
 All properties of AppAfterIntegrationTestTask are set to null by default.
 
-If, during task execution, Gretty sees that some property of JettyStartTask is null, it uses the value of the property with the same name from gretty configuration. 
+If, during task execution, Gretty sees that some property of AppAfterIntegrationTestTask is null, it uses the value of the property with the same name from gretty configuration. 
 
 === Task dependencies
 
 TBD
+

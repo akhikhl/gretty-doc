@@ -1,11 +1,11 @@
-= Security realms
+= Jetty security realms
 Andrey Hihlovskiy
 2014-05-29
 :sectanchors:
 :jbake-type: page
 :jbake-status: published
 
-Gretty configuration supports two properties related to Jetty realms - +realm+ and +realmConfigFile+. When both properties are defined, Gretty applies the specified security realm to a running web-app.
+Gretty configuration supports two properties related to Jetty security realms - +realm+ and +realmConfigFile+. When both properties are defined, Gretty applies the specified security realm to a web-app.
 
 == Syntax
 
@@ -13,6 +13,7 @@ Gretty configuration supports two properties related to Jetty realms - +realm+ a
 ----
 gretty {
   // ...
+  servletContainer = 'jetty9'
   realm 'auth'
   realmConfigFile 'jetty-realm.properties'
   // ...
@@ -26,16 +27,16 @@ When specified, it must match /web-app/login-config/realm-name element
 in "web.xml".
 
 +realmConfigFile+ property defines relative (to webAppDir/WEB-INF folder)
-path to the properties file, containing properties for HashLoginService. +
+path to the properties file, containing properties for HashLoginService.
 
 +realm+ and +realmConfigFile+ affect only Gretty tasks. If you assemble WAR file and deploy it to some servlet container, you must define security realms by means of that
 container.
 
-Gretty contains example programs, demonstrating use of Jetty realms:
+Gretty contains example programs, demonstrating use of Jetty security realms:
 
 * https://github.com/akhikhl/gretty/tree/master/examples/securityRealm7[securityRealm7]
 * https://github.com/akhikhl/gretty/tree/master/examples/securityRealm8[securityRealm8]
 * https://github.com/akhikhl/gretty/tree/master/examples/securityRealm9[securityRealm9]
 
-See also: http://wiki.eclipse.org/Jetty/Tutorial/Realms.
+See more information on Jetty security realms at: http://wiki.eclipse.org/Jetty/Tutorial/Realms.
 

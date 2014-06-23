@@ -39,6 +39,11 @@ Gretty extension supports the following server-specific properties:
 | []
 | Additional JVM arguments to servlet-container process.
 
+| [[_servletcontainer]] servletContainer
+| String
+| 'jetty9'
+| Servlet container to be used in appXXX tasks. Possible values are 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'.
+
 | [[_host]] host
 | String
 | "localhost"
@@ -224,13 +229,13 @@ in "web.xml".
 | String
 | null
 | Security realm for the given web-app. +
-See also: link:Security-realms.html[Security Realms].
+See also: link:Jetty-security-realms.html[Jetty security Realms] and link:Tomcat-security-realms.html[Tomcat security Realms].
 
 | [[_realmconfigfile]] realmConfigFile
 | String or java.io.File
-| "jetty-realm.properties"
-| Properties file, containing security realm properties. +
-See also: link:Security-realms.html[Security Realms].
+| "jetty-realm.properties" or "tomcat-users.xml"
+| Contains security realm properties. +
+See also: link:Jetty-security-realms.html[Jetty security Realms] and link:Tomcat-security-realms.html[Tomcat security Realms].
 
 | [[_jettyenvxmlfile]] jettyEnvXmlFile
 | String or java.io.File

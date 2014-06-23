@@ -1,0 +1,35 @@
+= Tomcat security realms
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Gretty configuration supports two properties related to Tomcat security realms - +realm+ and +realmConfigFile+. When both properties are defined, Gretty applies the specified security realm to a web-app.
+
+== Syntax
+
+[source,groovy]
+----
+gretty {
+  // ...
+  servletContainer = 'tomcat8'
+  realm 'auth'
+  realmConfigFile 'tomcat-users.xml'
+  // ...
+}
+----
+
+== Effects
+
++realm+ property defines security realm for the given web-app.
+When specified, it must match /web-app/login-config/realm-name element
+in "web.xml".
+
++realmConfigFile+ property defines relative (to webAppDir/WEB-INF folder) path to the XML file, containing security realm data. File format is identical to "tomcat-users.xml" found in standard Tomcat distribution.
+
++realm+ and +realmConfigFile+ affect only Gretty tasks. If you assemble WAR file and deploy it to some servlet container, you must define security realms by means of that
+container.
+
+See more information on Tomcat security realms at: http://tomcat.apache.org/tomcat-7.0-doc/realm-howto.html.
+
