@@ -26,7 +26,7 @@ The object called jettyRestart is actually an instance of link:Gretty-task-class
 
 [source,groovy]
 ----
-apply plugin: 'gretty'
+apply plugin: 'org.akhikhl.gretty'
 
 import org.akhikhl.gretty.JettyRestartTask
 

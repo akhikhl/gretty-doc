@@ -7,9 +7,9 @@ Andrey Hihlovskiy
 
 image::images/gretty_logo.png[]
 
-Gretty is a feature-rich gradle plugin for running web-apps on Jetty. 
-It supports multiple Jetty versions (7, 8 and 9), multiple web-apps and many more. 
-It wraps Jetty functions as convenient Gradle tasks and configuration DSL.
+Gretty is a feature-rich gradle plugin for running web-apps on embedded servlet containers. 
+It supports multiple Jetty versions (7, 8 and 9), multiple Tomcat versions (7 and 8), multiple web-apps and many more. 
+It wraps servlet container functions as convenient Gradle tasks and configuration DSL.
 
 Gretty provides the following features:
 
@@ -23,19 +23,19 @@ See more information at link:Gretty-tasks.html[Gretty tasks] and link:Farm-tasks
 == Spring-boot support
 
 Since version 0.0.24 Gretty link:spring-boot-support.html[fully supports spring-boot web-apps]. 
-You can run spring-boot web-apps and "normal" web-apps side-by-side on the same Jetty server. 
+You can run spring-boot web-apps and "normal" web-apps side-by-side on the same servlet container. 
 You can control spring-boot web-apps with the same link:Gretty-configuration.html[Gretty configuration] 
 and apply all Gretty features to them: integration tests, debugging, Jacoco code coverage etc.etc.
 
 == Multiple web-apps support
 
-Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: link:Farm-web-app-list.html#_project_web_app_references[gradle projects], link:Farm-web-app-list.html#_file_based_web_app_references[WAR-files in the file system] and even link:Farm-web-app-list.html#_repository_based_web_app_references[WAR-files from maven dependencies]. +
+Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: it can start arbitrary number of web-apps on the same servlet container. Gretty supports web-apps of various types: link:Farm-web-app-list.html#_project_web_app_references[gradle projects], link:Farm-web-app-list.html#_file_based_web_app_references[WAR-files in the file system] and even link:Farm-web-app-list.html#_repository_based_web_app_references[WAR-files from maven dependencies]. +
 Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup.html[configureless mode], although it is fully link:index.html#_multiple_web_apps_configuration[configurable/customizable]. +
 Multiple web-apps feature also works nicely with integration tests and with the debugger.
 
-== Switch between jetty and servlet-API versions
+== Switch between servlet container versions
 
-Gretty supports link:Switching-between-Jetty-and-servlet-API-versions.html[easy switch] between jetty 7, 8 and 9 and servlet API 2.5, 3.0.1 and 3.1.0. 
+Gretty supports link:Switching-between-servlet-containers.html[easy switch] between Jetty 7, 8 and 9 and Tomcat 7 and 8.
 
 == Hot deployment
 
@@ -56,9 +56,9 @@ Since version 0.0.23 Gretty link:HTTPS-support.html[supports HTTPS protocol] out
 
 == Debugger and integration tests support
 
-Gretty provides link:Debugger-support.html[integration with Java IDE debuggers]. You can even debug multiple web-apps loaded into the same Jetty server.
+Gretty provides link:Debugger-support.html[integration with Java IDE debuggers]. You can even debug multiple web-apps loaded into the same servlet container.
 
-Gretty link:Integration-tests-support.html[supports integration tests]: it starts jetty before integration tests and stop it after. Since version 0.0.22 Gretty link:Code-coverage-support.html[supports Jacoco code coverage] of web-app projects - both client-side and server-side. The resulting coverage information can be converted to report with the help of standard gradle task http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html[JacocoReport].
+Gretty link:Integration-tests-support.html[supports integration tests]: it starts servlet container before integration tests and stop it after. Since version 0.0.22 Gretty link:Code-coverage-support.html[supports Jacoco code coverage] of web-app projects - both client-side and server-side. The resulting coverage information can be converted to report with the help of standard gradle task http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html[JacocoReport].
 
 == Logging support
 
@@ -72,4 +72,9 @@ Gretty supports link:Web-fragments-support.html[Web fragments]: META-INF/web-fra
 == Jetty-specific features
 
 Gretty automatically uses link:jetty.xml-support.html["jetty.xml"] and link:jetty-env.xml-support.html["jetty-env.xml"], if they are present. +
-Also gretty supports jetty link:Security-realms.html[security realms] out-of-the-box.
+Also Gretty supports link:Jetty-security-realms.html[Jetty security realms] out-of-the-box.
+
+== Tomcat-specific features
+
+Gretty supports link:Tomcat-security-realms.html[Tomcat security realms] out-of-the-box.
+

@@ -1,4 +1,4 @@
-= jettyAfterIntegrationTest task
+= appAfterIntegrationTest task
 Andrey Hihlovskiy
 2014-05-29
 :sectanchors:
@@ -13,25 +13,25 @@ WARNING: Internal task, please, don't invoke it on command line!
 == Effects
 
 . Sends "stop" signal to localhost:link:Gretty-configuration.html#_serviceport[servicePort] (default 9900).
-. When "stop" signal comes, jetty process stops.
-. Gradle script waits for jetty process to complete.
+. When "stop" signal comes, servlet-container process stops.
+. Gradle script waits for servlet-container process to complete.
 . Gradle script continues normal execution of tasks.
 
 == Instantiation and extension
 
-The object called jettyAfterIntegrationTest is actually an instance of link:Gretty-task-classes.html#_jettyafterintegrationtesttask[JettyAfterIntegrationTestTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
+The object called appAfterIntegrationTest is actually an instance of link:Gretty-task-classes.html#_appafterintegrationtesttask[AppAfterIntegrationTestTask] class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:
 
 [source,groovy]
 ----
-apply plugin: 'gretty'
+apply plugin: 'org.akhikhl.gretty'
 
-import org.akhikhl.gretty.JettyAfterIntegrationTestTask
+import org.akhikhl.gretty.AppAfterIntegrationTestTask
 
-task('MyAfterIntegration', type: JettyAfterIntegrationTestTask) {
+task('MyAfterIntegration', type: AppAfterIntegrationTestTask) {
   // ...
 }
 
-class VerySpecialAfterIntegration extends JettyAfterIntegrationTestTask {
+class VerySpecialAfterIntegration extends AppAfterIntegrationTestTask {
   // ...
 }
 

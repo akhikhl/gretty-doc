@@ -7,10 +7,10 @@ Andrey Hihlovskiy
 
 Gretty supports debugging a farm with a set of special gradle tasks: farmRunDebug, farmRunWarDebug, farmStartDebug, farmStartWarDebug.
 
-When you invoke one of the debugging tasks, a farm starts jetty server with all farm web-apps, in suspended mode, and waits for debugger commands on port 5005.
+When you invoke one of the debugging tasks, a farm starts servlet-container with all farm web-apps, in suspended mode, and waits for debugger commands on port 5005.
 
 NOTE: Author of Gretty plugin tested farm debugging under Netbeans IDE. In principle, it should work under other Java IDEs as well, but it's not tested yet.
 
-IMPORTANT: The project, containing a farm, must be a JVM project (Java, Groovy, etc.), otherwise IDE does not send debugging commands to the debugged JVM process over port 5005. This requirement is easily fulfilled, when you apply gretty-farm plugin to one of the web-apps, as link:Combining-web-app-and-farm.html[described before].
+IMPORTANT: The project, containing a farm, must be a JVM project (Java, Groovy, etc.), otherwise IDE does not send debugging commands to the debugged JVM process over port 5005. This requirement is easily fulfilled, when you define a farm in one of the web-apps.
 
 See also: link:index.html#_multiple_web_apps[Multiple web-apps].

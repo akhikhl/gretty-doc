@@ -37,12 +37,12 @@ Gretty extension supports the following server-specific properties:
 | [[_jvmargs]] jvmArgs
 | List<String>
 | []
-| Additional JVM arguments to Jetty process.
+| Additional JVM arguments to servlet-container process.
 
 | [[_host]] host
 | String
 | "localhost"
-| host is passed to Jetty connectors. If you use HTTPS, host must match CN of the subject DN of the certificate (if you use link:HTTPS-support.html#_https_auto_configuration[HTTP auto-configuration], this is ensured automatically).
+| host is passed to servlet-container connectors. If you use HTTPS, host must match CN of the subject DN of the certificate (if you use link:HTTPS-support.html#_https_auto_configuration[HTTP auto-configuration], Gretty ensures this automatically).
 
 | [[_httpenabled]] httpEnabled
 | boolean
@@ -52,7 +52,7 @@ Gretty extension supports the following server-specific properties:
 | [[_httpport]] httpPort
 | int
 | 8080
-| TCP-port used by Jetty for incoming HTTP-requests.
+| TCP-port used by servlet-container for incoming HTTP-requests.
 
 | [[_port]] port
 | int
@@ -62,8 +62,7 @@ Gretty extension supports the following server-specific properties:
 | [[_httpidletimeout]] httpIdleTimeout
 | int
 | null
-| When not null, defines the time, in milliseconds, that the HTTP connection can be idle before it is closed. +
-See also: http://www.eclipse.org/jetty/documentation/current/configuring-connectors.html[Jetty documentation, configuring connectors].
+| When not null, defines the time, in milliseconds, that the HTTP connection can be idle before it is closed.
 
 | [[_httpsenabled]] httpsEnabled
 | boolean
@@ -74,7 +73,7 @@ See also: link:HTTPS-support.html[HTTPS support].
 | [[_httpsport]] httpsPort
 | int
 | 8443
-| TCP-port used by Jetty for incoming HTTPS-requests. +
+| TCP-port used by servlet-container for incoming HTTPS-requests. +
 **Attention:** setting httpsPort alone is not enough to enable HTTPS protocol. You must set httpsEnabled=true in order to enable HTTPS.
 
 | [[_sslkeystorepath]] sslKeyStorePath
@@ -110,18 +109,17 @@ See also: link:HTTPS-support.html#_https_manual_configuration[HTTPS manual confi
 | [[_httpsidletimeout]] httpsIdleTimeout
 | int
 | null
-| When not null, defines the time, in milliseconds, that the HTTPS connection can be idle before it is closed. +
-See also: http://www.eclipse.org/jetty/documentation/current/configuring-connectors.html[Jetty documentation, configuring connectors].
+| When not null, defines the time, in milliseconds, that the HTTPS connection can be idle before it is closed.
 
 | [[_serviceport]] servicePort
 | int
 | 9900
-| TCP-port used by Gretty to send commands to Jetty process.
+| TCP-port used by Gretty to send commands to servlet-container process.
 
 | [[_statusport]] statusPort
 | int
 | 9901
-| TCP-port used by Jetty process to send status back to Gretty.
+| TCP-port used by servlet-container process to send status back to Gretty.
 
 | [[_jettyxmlfile]] jettyXmlFile
 | String or java.io.File
@@ -144,7 +142,7 @@ See also: link:Logging.html[Logging].
 | [[_logginglevel]] loggingLevel
 | String
 | "INFO"
-| slf4j logging-level for jetty process. +
+| slf4j logging-level for servlet-container process. +
 See also: link:Logging.html[Logging].
 
 | [[_consolelogenabled]] consoleLogEnabled
@@ -174,12 +172,12 @@ See also: link:Logging.html[Logging].
 | [[_onstart]] onStart
 | function(Closure)
 | -
-| Adds closure to be called just before jetty server is started.
+| Adds closure to be called just before servlet-container is started.
 
 | [[_onstop]] onStop
 | function(Closure)
 | -
-| Adds closure to be called just after jetty server is stopped.
+| Adds closure to be called just after servlet-container is stopped.
 
 | [[_onscan]] onScan
 | function(Closure)
@@ -261,6 +259,7 @@ See also: link:Web-app-overlays.html[Web-app overlays].
 | [[_integrationtesttask]] integrationTestTask
 | String
 | "integrationTest"
-| Name of gradle task in the same project, which gretty "encloses" with jetty start/stop. +
+| Name of gradle task in the same project, which gretty "encloses" with servlet-container start/stop. +
 See also: link:Integration-tests-support.html[Integration tests support].
 |===
+

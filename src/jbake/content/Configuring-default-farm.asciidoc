@@ -5,7 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-In real life you are likely to face two problems:
+When organizing Gretty farms in real life, you are likely to face two problems:
 
 - web-apps are not subprojects of farm project 
 - you do not want all web-apps to be started, only subset of them
@@ -20,6 +20,6 @@ farm {
 }
 ----
 
-Here we define that default farm includes two projects - ProjectA and ProjectB. As soon as we start farm tasks, both projects will run on the same jetty server with distinct context paths.
+Here we define that default farm includes two projects - ProjectA and ProjectB. As soon as we start farm tasks, both projects will run on the same servlet-container with distinct context paths.
 
 See also: link:index.html#_multiple_web_apps[Multiple web-apps].

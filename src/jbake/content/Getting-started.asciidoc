@@ -9,6 +9,7 @@ Add the following to "build.gradle" of your web-app:
 
 [source,groovy]
 ----
+apply plugin: 'war'
 apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 ----
 
@@ -16,16 +17,12 @@ That's all! Now you can start your web-app with the command:
 
 [source,bash]
 ----
-gradle jettyRun
+gradle appRun
 ----
 
-you can also use other link:Gretty-tasks[tasks for running and
-debugging] your web-app or link:Gretty-configuration.html[configure Gretty]
-to your needs.
+you can also use other link:Gretty-tasks[Gretty tasks] for running and debugging your web-app or link:Gretty-configuration.html[configure Gretty] to your needs.
 
-Alternatively, you can download the script from
-https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin
-to the project folder and include it like this:
+Alternatively, you can download the script from https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin to the project folder and include it like this:
 
 [source,groovy]
 ----
@@ -42,7 +39,7 @@ buildscript {
   }
   
   dependencies {
-    classpath 'org.akhikhl.gretty:gretty-plugin:+'
+    classpath 'org.akhikhl.gretty:gretty:+'
   }
 }
 
@@ -50,13 +47,10 @@ repositories {
   jcenter()
 }
 
-apply plugin: 'gretty'
+apply plugin: 'org.akhikhl.gretty'
 ----
 
-NOTE: All versions of gretty are available at jcenter and maven central under
-the group 'org.akhikhl.gretty'.
+NOTE: All versions of gretty are available at jcenter and maven central under the group 'org.akhikhl.gretty'.
 
-IMPORTANT: If you experience problems starting Gretty, first look into
-link:Troubleshooting.html[troubleshooting] section. If it does not help,
-raise an issue at https://github.com/akhikhl/gretty/issues[Gretty issue tracker] 
-or mailto:akhikhl@gmail.com[send an email] to Gretty developer.
+IMPORTANT: If you experience problems starting Gretty, first look into link:Troubleshooting.html[troubleshooting] section. If it does not help, raise an issue at https://github.com/akhikhl/gretty/issues[Gretty issue tracker] or mailto:akhikhl@gmail.com[send an email] to Gretty developer.
+

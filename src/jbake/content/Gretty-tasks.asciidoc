@@ -5,7 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-When you insert +apply plugin: \'org.akhikhl.gretty'+ to "build.gradle", Gretty plugin facilitates the project with the following gradle tasks:
+When you insert `apply plugin: 'org.akhikhl.gretty'` to "build.gradle", Gretty plugin facilitates the project with the following gradle tasks:
 
 [cols="3,3,3,1,1,1", options="header"]
 |===

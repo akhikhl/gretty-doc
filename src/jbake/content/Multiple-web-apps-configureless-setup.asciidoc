@@ -20,7 +20,7 @@ Create file "ProjectA/settings.gradle", insert code:
 include 'ProjectA', 'ProjectB'
 ----
 
-Explanation: we organize multi-project setup, so that multiple web-apps can be started/stopped by gretty-farm plugin.
+Explanation: we organize multi-project setup, so that multiple web-apps can be started/stopped by gretty plugin.
 
 Create file "ProjectA/build.gradle", insert code:
 
@@ -32,25 +32,25 @@ buildscript {
   }
 
   dependencies {
-    classpath 'org.akhikhl.gretty:gretty-plugin:+'
+    classpath 'org.akhikhl.gretty:gretty:+'
   }
 }
 
-apply plugin: 'gretty-farm'
+apply plugin: 'org.akhikhl.gretty'
 ----
 
 Create file "ProjectA/ProjectB/build.gradle", insert code:
 
 [source,groovy]
 ----
-apply plugin: 'gretty'
+apply plugin: 'org.akhikhl.gretty'
 ----
 
 Create file "ProjectA/ProjectC/build.gradle", insert code:
 
 [source,groovy]
 ----
-apply plugin: 'gretty'
+apply plugin: 'org.akhikhl.gretty'
 ----
 
 Done! Now you can run multiple web-apps by running the following command in ProjectA:
@@ -63,21 +63,20 @@ gradle farmRun
 Expected output:
 
 ----
-Jetty server 9.1.0.v20131115 started.
+Jetty 9.2.1.v20140609 started.
 :ProjectB runs at the address http://localhost:8080/ProjectB
 :ProjectC runs at the address http://localhost:8080/ProjectC
-servicePort: 9900, statusPort: 9901
 Press any key to stop the jetty server.
 ----
 
 Of course, you'll get 404 in the browser, because web-apps don't contain any pages. But, as soon as you add pages or/and servlets to the web-apps, things will get real.
 
-Now explanation on the details of what we just did. We defined three gradle projects: two facilitated with gretty plugin and one - with gretty-farm plugin. +
-The projects with gretty plugin are usual web-apps, potentially with src/main/webapp, configuration files, servlets etc.etc. +
-The project with gretty-farm plugin is special. It defines *farm* - logical group of web-apps that should run together. 
+Now explanation on the details of what we just did. We defined three gradle projects, all facilitated with gretty plugin. +
+The projects ProjectB and ProjectC are usual web-apps, potentially with src/main/webapp, configuration files, servlets etc.etc. +
+The project ProjectA is special. It defines *farm* - logical group of web-apps that should run together. 
 
 By default farm automatically adds all subprojects of the farm project, which are facilitated with gretty plugin, to web-apps list. On the link:Configuring-default-farm.html[next page] you'll see how you can control, which projects are added to a farm.
 
-Gretty-farm plugin also defines new, distinct set of tasks for running farms: farmRun, farmRunDebug, farmRunWar, farmRunWarDebug, etc. (see complete list of farm tasks link:Farm-tasks.html[here]).
+Gretty plugin also defines distinct set of tasks for running farms: farmRun, farmRunDebug, farmRunWar, farmRunWarDebug, etc. (see complete list of farm tasks link:Farm-tasks.html[here]).
 
 See also: link:index.html#_multiple_web_apps[Multiple web-apps].

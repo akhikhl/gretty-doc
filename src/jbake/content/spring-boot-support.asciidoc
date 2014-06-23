@@ -17,41 +17,66 @@ Add the following code to "build.gradle":
 [source,groovy]
 ----
 buildscript {
-  ext {
-    springBootVersion = '1.1.0.RELEASE'
-  }
-  
   repositories {
     mavenLocal()
     jcenter()
   }
 
   dependencies {
-    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
-    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
-    classpath 'org.akhikhl.gretty:gretty-spring-boot-plugin:0.0.24'
+    classpath 'org.akhikhl.gretty:gretty:+'
   }
 }
 
-apply plugin: 'gretty-spring-boot'
+apply plugin: 'gretty'
+
+gretty {
+  springBoot = true
+}
 ----
 
-Now you can run your Spring Boot application with the command `gradle jettyRun`.
+Now you can run your Spring Boot application with the command `gradle appRun`.
 
 The complete sources for the simplest Gretty Spring Boot setup:
 
 * https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-simple[spring-boot-simple]
 
+== Running on specific version of spring boot
+
+Add the following code to "build.gradle":
+
+[source,groovy]
+----
+buildscript {
+  ext {
+    springBootVersion = '1.1.2.BUILD-SNAPSHOT'
+  }
+  
+  repositories {
+    mavenLocal()
+    jcenter()
+    maven { url 'http://repo.spring.io/snapshot' }
+  }
+
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
+    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
+    classpath 'org.akhikhl.gretty:gretty:+'
+  }
+}
+
+apply plugin: 'gretty'
+----
+
+Note that spring-boot versions prior to 1.1.0 are not supported by Gretty and may produce compile-time or runtime errors.
+
 == Gretty configuration and Spring Boot
 
-"gretty-spring-boot" plugin facilitates your project with the same link:Gretty-configuration.html[gretty configuration],
-as "gretty" plugin. You can set the same properties, like "contextPath", "port", etc. etc. - they all
-will be passed to the Jetty server and web-app.
+Gretty configuration also applies to spring-boot projects. You can set properties like "contextPath", "port", etc. etc. - they all
+will be passed to the servlet container and web-app.
 
 == Gretty tasks and Spring Boot
 
-"gretty-spring-boot" plugin implements all gretty tasks except those with "War" word in the name.
-For example, there are tasks "jettyRun", "jettyRunDebug", "jettyStart", "jettyStop", etc.
+Gretty plugin implements all gretty tasks for spring-boot projects.
 
 == Gretty hot-deployment and Spring Boot
 
@@ -82,11 +107,15 @@ Gretty fully supports link:Logging.html[logging] of Spring Boot web-apps.
 
 == Gretty Jetty-specific features and Spring Boot
 
-Gretty fully supports link:Security-realms.html[Jetty security Realms] with Spring Boot web-apps.
+Gretty fully supports link:Jetty-security-realms.html[Jetty security realms] with Spring Boot web-apps.
 
 Gretty fully supports link:jetty.xml-support.html[jetty.xml] with Spring Boot web-apps.
 
 Gretty fully supports link:jetty-env.xml-support.html[jetty-env.xml] with Spring Boot web-apps.
+
+== Gretty Tomcat-specific features and Spring Boot
+
+Gretty fully supports link:Tomcat-security-realms.html[Tomcat security realms] with Spring Boot web-apps.
 
 == Gretty multiple web-apps and Spring Boot
 
@@ -97,57 +126,9 @@ Gretty contains example program, showing multi-web-app setup with Spring Boot:
 
 * https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm[spring-boot-farm]
 
-== Gretty multiple Jetty versions and Spring Boot
+== Servlet container versions and Spring Boot
 
-Gretty supports running Spring Boot web-apps on Jetty 8 and 9. Running against Jetty 7 is not supported,
-since Spring Boot uses servlet-api 3.x, which is not compatible with Jetty 7.
+Gretty supports running Spring Boot web-apps on Jetty 8/9 and Tomcat 7/8. Running Spring Boot on Jetty 7 is not supported, since Jetty 7 uses older servlet API not compatible with Spring Boot.
 
-If you want to run Spring Boot web-apps against Jetty 8:
+The servlet container for Spring Boot web-apps is selected via link:Gretty-configuration.html#_servletcontainer[servletContainer] property of Gretty configuration.
 
-[source,groovy]
-----
-buildscript {
-  ext {
-    springBootVersion = '1.1.0.RELEASE'
-  }
-  
-  repositories {
-    mavenLocal()
-    jcenter()
-  }
-
-  dependencies {
-    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
-    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
-    classpath 'org.akhikhl.gretty:gretty8-spring-boot-plugin:0.0.24'
-  }
-}
-
-apply plugin: 'gretty8-spring-boot'
-----
-
-If you want to run Spring Boot web-apps against Jetty 9:
-
-[source,groovy]
-----
-buildscript {
-  ext {
-    springBootVersion = '1.1.0.RELEASE'
-  }
-  
-  repositories {
-    mavenLocal()
-    jcenter()
-  }
-
-  dependencies {
-    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
-    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
-    classpath 'org.akhikhl.gretty:gretty9-spring-boot-plugin:0.0.24'
-  }
-}
-
-apply plugin: 'gretty9-spring-boot'
-----
-
-The example at the beginning of this page does not refer specific Jetty version. In this case the latest officially supported Jetty version is used (9 at the moment of writing).

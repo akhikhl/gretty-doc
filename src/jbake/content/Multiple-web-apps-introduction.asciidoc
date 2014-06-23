@@ -5,7 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: link:Farm-web-app-list.html#_project_web_app_references[gradle projects], link:Farm-web-app-list.html#_file_based_web_app_references[WAR-files in the file system] and even link:Farm-web-app-list.html#_repository_based_web_app_references[WAR-files from maven dependencies].
+Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: it can start arbitrary number of web-apps on the same servlet-container. Gretty supports web-apps of various types: link:Farm-web-app-list.html#_project_web_app_references[gradle projects], link:Farm-web-app-list.html#_file_based_web_app_references[WAR-files in the file system] and even link:Farm-web-app-list.html#_repository_based_web_app_references[WAR-files from maven dependencies].
 
 Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup.html[configureless mode], although it is fully link:index.html#_multiple_web_apps_configuration[configurable/customizable].
 
@@ -15,7 +15,7 @@ The central concept of Multiple web-apps feature is *farm* - a collection of web
 
 There are two ways to define and use farms:
 
-* Default farm is automatically created for you by Gretty. You may add artbitrary web-apps to it and then invoke farm-specific tasks: farmRun, farmRunDebug, etc. Note that farm-specific tasks are not using gretty tasks (jettyRun, jettyRunDebug, etc.), but they understand and use gretty configurations.
+* Default farm is automatically created for you by Gretty. You may add artbitrary web-apps to it and then invoke farm-specific tasks: farmRun, farmRunDebug, etc. Note that farm-specific tasks are not using gretty tasks (appRun, appRunDebug, etc.).
 
 * Named farms, which you create yourself in gradle script. You can add as many named farms as you want, and you can add web-apps to farms in arbitrary constellations. Each named farm provides a specific set of farm tasks. For example, if you define farm with name "XYZ", there will be new tasks farmRunXYZ, farmRunDebugXYZ, etc. available.
 

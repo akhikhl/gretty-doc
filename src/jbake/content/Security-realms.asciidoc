@@ -28,9 +28,7 @@ in "web.xml".
 +realmConfigFile+ property defines relative (to webAppDir/WEB-INF folder)
 path to the properties file, containing properties for HashLoginService. +
 
-+realm+ and +realmConfigFile+ affect only jettyRun[War][Debug],
-jettyStart[War][Debug] tasks. If you assemble WAR file and deploy it to
-some servlet container, you must define security realms by means of that
++realm+ and +realmConfigFile+ affect only Gretty tasks. If you assemble WAR file and deploy it to some servlet container, you must define security realms by means of that
 container.
 
 Gretty contains example programs, demonstrating use of Jetty realms:
@@ -40,3 +38,4 @@ Gretty contains example programs, demonstrating use of Jetty realms:
 * https://github.com/akhikhl/gretty/tree/master/examples/securityRealm9[securityRealm9]
 
 See also: http://wiki.eclipse.org/Jetty/Tutorial/Realms.
+

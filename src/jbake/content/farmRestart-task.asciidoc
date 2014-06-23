@@ -5,7 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-farmRestart sends "restart" command to a running jetty server.
+farmRestart sends "restart" command to a running servlet-container process.
 
 == Syntax
 
@@ -16,8 +16,7 @@ gradle farmRestart
 
 == Effects
 
-farmRestart does not build source code, it only sends "restart" command to
-localhost:link:Farm-configuration.html#_serviceport[servicePort]. Usually
-farmRestart is used to restart Gretty/Jetty process started by farmStart[War][Debug].
+farmRestart does not build source code, it only sends "restart" command to localhost:link:Farm-configuration.html#_serviceport[servicePort]. Usually farmRestart is used to restart servlet-container process started by farmStart[War][Debug].
 
-WARNING: do not try to restart Jetty server with farmRestart, if it was started with jettyStart[War][Debug] or with farmStart[War][Debug] from another farm. Reason is simple: each farm may redefine it's TCP-ports in farm configuration, so farmRestart may be sending a command on incorrect port, when paired with wrong start task.
+WARNING: do not try to restart servlet-container process with farmRestart, if it was started with appStart[War][Debug] or with farmStart[War][Debug] from another farm. Reason is simple: each farm may define it's own set of TCP-ports in farm configuration, so farmRestart may be sending a command to incorrect port, when paired with wrong start task.
+

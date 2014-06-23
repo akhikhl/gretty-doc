@@ -56,7 +56,7 @@ farm {
 
 * When you invoke `gradle farmRun`, it serves this web-app at context path "/def".
 
-* When you invoke `gradle jettyRun`, it serves this web-app at context path "/abc".
+* When you invoke `gradle appRun`, it serves this web-app at context path "/abc".
 
 == Mixing inplace and WAR mode
 

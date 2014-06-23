@@ -16,12 +16,12 @@ gradle jettyStartDebug
 
 == Effects
 . The web-app gets compiled (if it's not up-to-date).
-. Embedded jetty starts in separate java process against compiled
+. Embedded servlet-container starts in separate java process against compiled
 classes and their dependencies. +
 *important*: Upon start, the process is in suspended-mode and listens for debugger commands on port 5005.
-. Upon resume, jetty process starts listening for HTTP-requests on
+. Upon resume, servlet-container process starts listening for HTTP-requests on
 link:Gretty-configuration.html#_port[port] (default 8080).
-. Gretty waits for jetty process to complete.
+. Gretty waits for servlet-container process to complete.
 . Gradle script continues normal execution of tasks.
 
 Note that this task does not depend on "war" task, nor does it use WAR-file.
@@ -34,7 +34,7 @@ The object called jettyStartDebug is actually an instance of link:Gretty-task-cl
 
 [source,groovy]
 ----
-apply plugin: 'gretty'
+apply plugin: 'org.akhikhl.gretty'
 
 import org.akhikhl.gretty.JettyStartTask
 

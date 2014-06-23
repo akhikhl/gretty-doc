@@ -7,7 +7,7 @@ Andrey Hihlovskiy
 
 Gretty supports META-INF/web-fragment.xml and META-INF/resources in dependency libraries - both for inplace and WAR tasks.
 
-NOTE: web fragments feature was introduced in servlet 3.0 specification, therefore it is not available with jetty 7 (and with gretty7).
+NOTE: web fragments feature was introduced in servlet 3.0 specification, therefore it is not available with jetty 7.
 
 Gretty sources contain example programs, demonstrating use of web-fragments:
 

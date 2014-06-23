@@ -26,7 +26,7 @@ The object called jettyStop is actually an instance of link:Gretty-task-classes.
 
 [source,groovy]
 ----
-apply plugin: 'gretty'
+apply plugin: 'org.akhikhl.gretty'
 
 import org.akhikhl.gretty.JettyStopTask
 

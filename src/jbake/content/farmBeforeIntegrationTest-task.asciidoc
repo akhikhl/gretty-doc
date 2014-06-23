@@ -11,8 +11,8 @@ WARNING: Internal task, please, don't invoke it on command line!
 
 == Effects
 
-. Embedded jetty starts in separate java process against the web-apps of given farm and listens for HTTP-requests on link:Farm-configuration.html#_port[port] (default 8080).
-. Gradle script waits until jetty is online.
+. Embedded servlet-container starts in separate java process against the web-apps of given farm and listens for HTTP-requests on link:Farm-configuration.html#_port[port] (default 8080).
+. Gradle script waits until servlet-container is online.
 . Gradle script proceeds to integration test task.
 
 See also: link:Farm-integration-tests.html[Farm integration tests].

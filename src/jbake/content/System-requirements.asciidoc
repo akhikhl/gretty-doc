@@ -7,13 +7,13 @@ Andrey Hihlovskiy
 
 Gretty requires:
 
-* JDK7 or JDK8 
+* JDK6, JDK7 or JDK8.
 
-* Gradle 1.11 or newer
+* Gradle 1.11 or newer.
 
-* Enough operating memory and disk space to run gradle and jetty
+* Enough operating memory and disk space to run gradle, jetty, tomcat.
 
-* Access to jcenter repository or equivalent
+* Access to jcenter repository or equivalent.
 
 Support of JDK6 is coming soon.
 

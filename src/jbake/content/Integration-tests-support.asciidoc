@@ -5,7 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-Gretty supports integration tests in the following way: it can start jetty before and stop after the specified task.
+Gretty supports integration tests in the following way: it can start servlet-container before and stop after the specified task.
 The task itself can perform arbitrary tests (for example, use http://www.gebish.org/[Geb] and https://code.google.com/p/spock/[Spock] for testing client-side functionality direct in the browser).
 
 == Syntax
@@ -21,11 +21,9 @@ gretty {
 
 == Effects
 
-When you run `gradle integrationTest` from command-line, Gretty starts
-Jetty before `integrationTest` task and stops it after.
+When you run `gradle integrationTest` from command-line, Gretty starts servlet-container before `integrationTest` task and stops it after.
 
-NOTE: Gretty does not define integration test task nor does it
-augment it in any way. All it does is start and stop Jetty.
+NOTE: Gretty does not define integration test task nor does it augment it in any way. All it does is start and stop servlet-container.
 
 == Tunneling properties to test code
 
@@ -64,6 +62,5 @@ Your test code can access these properties via System.getProperty function. This
 
 image::images/integrationTest_StateDiagram.svg[]
 
-See also:
-link:jettyBeforeIntegrationTest-task.html[jettyBeforeIntegrationTest task]
-and link:jettyAfterIntegrationTest-task.html[jettyAfterIntegrationTest task].
+See also: link:appBeforeIntegrationTest-task.html[appBeforeIntegrationTest task] and link:appAfterIntegrationTest-task.html[appAfterIntegrationTest task].
+

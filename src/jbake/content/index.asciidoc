@@ -40,9 +40,13 @@ link:Web-fragments-support.html[Web fragments support]
 
 === Jetty-specific
 
-link:Security-realms.html[Security Realms] +
+link:Jetty-security-realms.html[Jetty security realms] +
 link:jetty.xml-support.html[jetty.xml support] +
 link:jetty-env.xml-support.html[jetty-env.xml support]
+
+=== Tomcat-specific
+
+link:Tomcat-security-realms.html[Tomcat security realms] +
 
 == Multiple web-apps
 
@@ -50,7 +54,6 @@ link:Multiple-web-apps-introduction.html[Introduction] +
 link:Multiple-web-apps-configureless-setup.html[Configureless setup] +
 link:Configuring-default-farm.html[Configuring default farm] +
 link:Multiple-farms.html[Multiple farms] +
-link:Combining-web-app-and-farm.html[Combining web-app and farm] +
 link:Debugging-a-farm.html[Debugging a farm] +
 link:Farm-integration-tests.html[Farm integration tests]
 

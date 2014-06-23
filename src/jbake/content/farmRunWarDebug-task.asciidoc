@@ -17,10 +17,10 @@ gradle farmRunWarDebug
 == Effects
 . By default each farm web-app is compiled and assembled into WAR-file (if it's not up-to-date).
 . If farm configuration link:Multiple-web-apps-tutorial.html#_mixing_inplace_and_war_mode[overrides inplace property] for some web-apps to `true`, then each of these web-apps gets compiled without creating WAR-file (if it’s not up-to-date).
-. Embedded jetty starts in separate java process against WAR-files (and, optionally, against compiled classes and their dependencies). +
+. Embedded servlet-container starts in separate java process against WAR-files (and, optionally, against compiled classes and their dependencies). +
 *important*: Upon start, the process is in suspended-mode and listens for debugger commands on port 5005.
-. Upon resume, jetty process starts listening for HTTP-requests on link:Farm-configuration.html#_port[port] (default 8080).
+. Upon resume, servlet-container process starts listening for HTTP-requests on link:Farm-configuration.html#_port[port] (default 8080).
 . Gretty waits for the user keypress.
-. When user presses any key (in the same terminal), jetty process shuts down.
-. Gretty waits for jetty process to complete.
+. When user presses any key (in the same terminal), servlet-container process shuts down.
+. Gretty waits for servlet-container process to complete.
 . Gradle script continues normal execution of tasks.

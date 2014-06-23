@@ -5,7 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-When you apply gretty-farm plugin, it adds *farm* extension object to the current project.
+When you apply gretty plugin, it adds *farm* extension object to the current project.
 
 You can (but you don't have to) configure farm extension object in your gradle script:
 

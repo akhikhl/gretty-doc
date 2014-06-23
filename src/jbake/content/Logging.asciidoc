@@ -10,48 +10,24 @@ http://logback.qos.ch/[logback-classic] to the project's classpath.
 
 Gretty supports configuring slf4j/logback logging in three forms:
 
-. If you place "logback.groovy" or "logback.xml" to
-"src/main/resources", it is compiled (copied) to "build/resources/main"
-folder before running any jetty tasks. Gretty auto-discovers logback
-configuration file in that folder and applies it to jetty process.
-. If you place "logback.groovy" or "logback.xml" to arbitrary folder
-and then reference it by +logbackConfigFile+ property, gretty applies
-the specified configuration to jetty process.
-. If there's no "logback.groovy" or "logback.xml" file, gretty
-configures logging with default settings:
+. If you place "logback.groovy" or "logback.xml" to "src/main/resources", it is compiled (copied) to "build/resources/main" folder before running any start tasks. Gretty auto-discovers logback configuration file in that folder and applies it to servlet-container process.
+. If you place "logback.groovy" or "logback.xml" to arbitrary folder and then reference it by +logbackConfigFile+ property, gretty applies the specified configuration to servlet-container process.
+. If there's no "logback.groovy" or "logback.xml" file, gretty configures logging with default settings:
 * It enables slf4j logging with level INFO.
-* It configures two appenders: one for console and another for the log
-file.
-* Log file by default has name "${project.name}.log" and is created in folder 
-"${user.home}/logs".
+* It configures two appenders: one for console and another for the log file.
+* Log file by default has name "${project.name}.log" and is created in folder "${user.home}/logs".
 
-IMPORTANT: gretty logging is only effective in Gretty tasks. Gretty
-does not reconfigure logging (or libraries) of the compiled WAR-file.
+IMPORTANT: gretty logging is only effective in Gretty tasks. Gretty does not reconfigure logging (or libraries) of the compiled WAR-file.
 
-You can fine-tune gretty logging by adjusting the following properties
-[of gretty plugin extension]:
+You can fine-tune gretty logging by adjusting the following properties [of gretty plugin extension]:
 
-* +logbackConfigFile+ defines the absolute or relative path to logback
-configuration file (.groovy or .xml). If "logbackConfigFile" is
-relative, it is first combined with projectDir. If the resulting path
-points to an existing file, it is used for logback configuration. If
-not, gretty tries to combine "logbackConfigFile" with each output folder
-(typically "${projectDir}/build/classes/main" and "${projectDir}/build/resources/main").
-If any resulting path points to an existing file, it is used for logback
-configuration.
-* +loggingLevel+ defines slf4j logging-level for Jetty process. It is a
-string, having one of the values: 'ALL', 'DEBUG', 'ERROR', 'INFO',
-'OFF', 'TRACE', 'WARN'. The default value is 'INFO'.
-* +consoleLogEnabled+ defines, whether log messages are written to the
-terminal. It is a boolean, default is "true".
-* +fileLogEnabled+ defines, whether log messages are written to the
-log-file. It is a boolean, default is "true".
-* +logFileName+ defines log file name (without path). It is a string,
-default value is "${project.name}.log".
-* +logDir+ defines directory, where log file is created. It is a string,
-default value is "${user.home}/logs".
+* +logbackConfigFile+ defines the absolute or relative path to logback configuration file (.groovy or .xml). If "logbackConfigFile" is relative, it is first combined with projectDir. If the resulting path points to an existing file, it is used for logback configuration. If not, gretty tries to combine "logbackConfigFile" with each output folder (typically "${projectDir}/build/classes/main" and "${projectDir}/build/resources/main"). If any resulting path points to an existing file, it is used for logback configuration.
+* +loggingLevel+ defines slf4j logging-level for servlet-container process. It is a string, having one of the values: 'ALL', 'DEBUG', 'ERROR', 'INFO', 'OFF', 'TRACE', 'WARN'. The default value is 'INFO'.
+* +consoleLogEnabled+ defines, whether log messages are written to the terminal. It is a boolean, default is "true".
+* +fileLogEnabled+ defines, whether log messages are written to the log-file. It is a boolean, default is "true".
+* +logFileName+ defines log file name (without path). It is a string, default value is "${project.name}.log".
+* +logDir+ defines directory, where log file is created. It is a string, default value is "${user.home}/logs".
 
-IMPORTANT: when logback configuration file is used (either
-auto-discovered or specified via "logbackConfigFile" property), other
-logging properties ("loggingLevel", "consoleLogEnabled",
+IMPORTANT: when logback configuration file is used (either auto-discovered or specified via "logbackConfigFile" property), other logging properties ("loggingLevel", "consoleLogEnabled",
 "fileLogEnabled", "logFileName", "logDir") have no effect.
+

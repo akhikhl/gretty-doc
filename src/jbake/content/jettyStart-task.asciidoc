@@ -16,10 +16,10 @@ gradle jettyStart
 
 == Effects
 .  The web-app gets compiled (if it's not up-to-date).
-.  Embedded jetty starts in separate java process against compiled
+.  Embedded servlet-container starts in separate java process against compiled
 classes and their dependencies and listens for HTTP-requests on
 link:Gretty-configuration.html#_port[port] (default 8080).
-.  Gretty waits for jetty process to complete.
+.  Gretty waits for servlet-container process to complete.
 .  Gradle script continues normal execution of tasks.
 
 Note that this task does not depend on "war" task, nor does it use WAR-file.
@@ -33,7 +33,7 @@ The object called jettyStart is actually an instance of link:Gretty-task-classes
 
 [source,groovy]
 ----
-apply plugin: 'gretty'
+apply plugin: 'org.akhikhl.gretty'
 
 import org.akhikhl.gretty.JettyStartTask
 

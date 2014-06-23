@@ -7,7 +7,7 @@ Andrey Hihlovskiy
 
 Provided that you already learned about link:Multiple-web-apps-introduction.html[multiple web apps] in Gretty, now you can systematically learn all about farm tasks.
 
-When you insert `apply plugin: 'gretty-farm'` to "build.gradle", Gretty facilitates the project with the following gradle tasks:
+When you insert `apply plugin: 'org.akhikhl.gretty'` to "build.gradle", Gretty additionally facilitates the project with the following gradle tasks:
 
 [cols="3,3,1,1,1", options="header"]
 |===

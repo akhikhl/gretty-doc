@@ -57,7 +57,7 @@ If, during task execution, Gretty sees that some property of JettyStartTask is n
 
 [source,groovy]
 ----
-apply plugin: 'gretty'
+apply plugin: 'org.akhikhl.gretty'
 
 gretty {
   contextPath = '/abc'
@@ -153,24 +153,24 @@ If, during task execution, Gretty sees that JettyRestartTask.servicePort is null
 
 JettyRestart task has no dependencies.
 
-== JettyBeforeIntegrationTestTask
+== AppBeforeIntegrationTestTask
 
 === Purpose 
 
-JettyBeforeIntegrationTestTask extends JettyStartTask. 
-JettyBeforeIntegrationTestTask starts Jetty server automatically before the designated integration test task.
+AppBeforeIntegrationTestTask extends JettyStartTask. 
+AppBeforeIntegrationTestTask starts Jetty server automatically before the designated integration test task.
 
-By default JettyBeforeIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling `integrationTestTask` function:
+By default AppBeforeIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling `integrationTestTask` function:
 
 [source,groovy]
 ----
-import org.akhikhl.gretty.JettyBeforeIntegrationTestTask
+import org.akhikhl.gretty.AppBeforeIntegrationTestTask
 
 task('MyIntegrationTest') {
   // ...
 }
 
-task('MyJettyBeforeIntegrationTest', type: JettyBeforeIntegrationTestTask) {
+task('MyJettyBeforeIntegrationTest', type: AppBeforeIntegrationTestTask) {
   integrationTestTask 'MyIntegrationTest'
   // ...
 }
@@ -215,32 +215,32 @@ If false, the Jetty server is started in non-debug mode.
 
 === Property inheritance
 
-All server-specific and web-app-specific properties of JettyBeforeIntegrationTestTask are set to null by default.
+All server-specific and web-app-specific properties of AppBeforeIntegrationTestTask are set to null by default.
 
-If, during task execution, Gretty sees that some property of JettyBeforeIntegrationTestTask is null, it uses the value of the property with the same name from gretty configuration. 
+If, during task execution, Gretty sees that some property of AppBeforeIntegrationTestTask is null, it uses the value of the property with the same name from gretty configuration. 
 
 === Task dependencies
 
 TBD
 
-== JettyAfterIntegrationTestTask
+== AppAfterIntegrationTestTask
 
 === Purpose 
 
-JettyAfterIntegrationTestTask extends JettyStopTask. 
-JettyAfterIntegrationTestTask stops Jetty server automatically after the designated integration test task.
+AppAfterIntegrationTestTask extends JettyStopTask. 
+AppAfterIntegrationTestTask stops Jetty server automatically after the designated integration test task.
 
-By default JettyAfterIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling `integrationTestTask` function:
+By default AppAfterIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling `integrationTestTask` function:
 
 [source,groovy]
 ----
-import org.akhikhl.gretty.JettyAfterIntegrationTestTask
+import org.akhikhl.gretty.AppAfterIntegrationTestTask
 
 task('MyIntegrationTest') {
   // ...
 }
 
-task('MyJettyAfterIntegrationTest', type: JettyAfterIntegrationTestTask) {
+task('MyAppAfterIntegrationTest', type: AppAfterIntegrationTestTask) {
   integrationTestTask 'MyIntegrationTest'
   // ...
 }
@@ -268,7 +268,7 @@ task('MyJettyAfterIntegrationTest', type: JettyAfterIntegrationTestTask) {
 
 === Property inheritance
 
-All properties of JettyAfterIntegrationTestTask are set to null by default.
+All properties of AppAfterIntegrationTestTask are set to null by default.
 
 If, during task execution, Gretty sees that some property of JettyStartTask is null, it uses the value of the property with the same name from gretty configuration. 
 

@@ -5,6 +5,5 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-"debug" task is the same as link:jettyRunDebug-task.html[jettyRunDebug task]. It was implemented for better integration of gretty with Netbeans IDE.
+"debug" task is the same as link:appRunDebug-task.html[appRunDebug task]. It was implemented for better integration of gretty with Netbeans IDE.
 
-TIP: if you run a farm, "debug" task is redefined as equivalent to link:farmRunDebug-task.html[farmRunDebug task].

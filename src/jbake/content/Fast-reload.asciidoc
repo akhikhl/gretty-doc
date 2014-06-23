@@ -49,7 +49,7 @@ Gretty fast reload assumes the following defaults:
 * link:Gretty-configuration.html#_fastreload[fastReload] property is set to false.
 
 * Fast reload always excludes the following files:
-`'*.jar', '*.class', 'web.xml', 'web-fragment.xml', 'jetty.xml', 'jetty-env.xml', 'WEB-INF/lib/**', 'WEB-INF/classes/**'`
+`'*.jar', '*.class', 'web.xml', 'web-fragment.xml', 'jetty.xml', 'jetty-env.xml', 'tomcat-users.xml', 'WEB-INF/lib/**', 'WEB-INF/classes/**'`
 That means: when these files are changed, web-app is fully restarted.
 
 You can add more than one fastReload specification. In such case all specified folders are fast-reloaded.

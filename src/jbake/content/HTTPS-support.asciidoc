@@ -34,13 +34,13 @@ On first run:
 . Gretty writes key-store to the file "${project.buildDir}/ssl/keystore", using key-store password
 . Gretty saves key-store and key-manager passwords to the file "${project.buildDir}/ssl/properties"
 . Gretty uses key-store "${project.buildDir}/ssl/keystore" for configuring HTTPS-connector
-. Gretty starts Jetty server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).
+. Gretty starts servlet-container server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).
 
 On consequent runs:
 
 . Gretty reads key-store and key-manager passwords from the file "${project.buildDir}/ssl/properties"
 . Gretty uses key-store "${project.buildDir}/ssl/keystore" for configuring HTTPS-connector
-. Gretty starts Jetty server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).
+. Gretty starts servlet-container server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).
 
 When you open HTTPS page in the browser for the first time, you typically see the message:
 
@@ -61,7 +61,7 @@ Saving passwords to the file system is inherently unsafe. Please never run Grett
 
 [TIP]
 ====
-"${project.buildDir}/ssl" directory is preserved between Jetty runs, so that the same key and certificate are repeatedly used in development. Of course, you can delete the directory "${project.buildDir}/ssl" - it will be recreated on the next run. If you delete it, you'll see a message "Connection is untrusted" again.
+"${project.buildDir}/ssl" directory is preserved between servlet-container runs, so that the same key and certificate are repeatedly used in development. Of course, you can delete the directory "${project.buildDir}/ssl" - it will be recreated on the next run. If you delete it, you'll see a message "Connection is untrusted" again.
 ====
 
 [TIP]
@@ -100,7 +100,7 @@ sslKeyStorePath and sslTrustStorePath can be set to String or java.io.File. Rela
 
 Passwords may be obfuscated, as described in http://www.eclipse.org/jetty/documentation/current/configuring-ssl.html[official Jetty documentation]. If you are uncomfortable with saving passwords in the sources, consider using http://www.gradle.org/docs/current/userguide/build_environment.html#sec:gradle_configuration_properties[gradle.properties] or http://www.gradle.org/docs/current/userguide/init_scripts.html[gradle init scripts] for configuring password variables outside of project sources.
 
-IMPORTANT: CN attribute of the used certificate must match gretty.host property ("localhost" by default), otherwise Jetty could not decide, which certificate to use.
+IMPORTANT: CN attribute of the used certificate must match gretty.host property ("localhost" by default), otherwise servlet-container could not decide, which certificate to use.
 
 == Disabling HTTP
 
