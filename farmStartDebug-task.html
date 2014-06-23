@@ -91,14 +91,14 @@
 <p>If farm configuration <a href="Multiple-web-apps-tutorial.html#_mixing_inplace_and_war_mode">overrides inplace property</a> for some web-apps to <code>false</code>, then each of these web-apps is assembled into WAR-file (if it’s not up-to-date).</p>
 </li>
 <li>
-<p>Embedded jetty starts in separate java process against compiled classes and their dependencies (and, optionally, WAR-files).<br>
+<p>Embedded servlet-container starts in separate java process against compiled classes and their dependencies (and, optionally, WAR-files).<br>
 <strong>important</strong>: Upon start, the process is in suspended-mode and listens for debugger commands on port 5005.</p>
 </li>
 <li>
-<p>Upon resume, jetty process starts listening for HTTP-requests on <a href="Farm-configuration.html#_port">port</a> (default 8080).</p>
+<p>Upon resume, servlet-container process starts listening for HTTP-requests on <a href="Farm-configuration.html#_port">port</a> (default 8080).</p>
 </li>
 <li>
-<p>Gretty waits for jetty process to complete.</p>
+<p>Gretty waits for servlet-container process to complete.</p>
 </li>
 <li>
 <p>Gradle script continues normal execution of tasks.</p>

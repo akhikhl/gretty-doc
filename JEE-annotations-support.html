@@ -91,15 +91,13 @@ public class ExampleServlet extends HttpServlet {
 </div>
 </div>
 <div class="paragraph">
-<p>Note that jetty-7 flavor of Gretty does not support JEE annotations, since it is using servlet-api 2.5.</p>
+<p>Note that jetty7 flavor of Gretty does not support JEE annotations, since it is using servlet-api 2.5.</p>
 </div>
 <div class="paragraph">
-<p>jetty-8 and jetty-9 flavors of Gretty support JEE annotations in the current web-app and in it&#8217;s overlays (if any).</p>
+<p>jetty8, jetty9, tomcat7, tomcat8 flavors of Gretty support JEE annotations in the current web-app and in it&#8217;s overlays (if any).</p>
 </div>
 <div class="paragraph">
-<p>Normally Gretty looks for JEE-annotated classes in "build/classes"
-directories belonging to the web-app classpath. You can change this
-behavior by inserting the following into "jetty-env.xml":</p>
+<p>Normally Gretty looks for JEE-annotated classes in "build/classes" directories belonging to the web-app classpath. You can change this behavior by inserting the following into "jetty-env.xml" (if you run on jetty):</p>
 </div>
 <div class="listingblock">
 <div class="content">

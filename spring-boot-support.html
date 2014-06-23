@@ -81,27 +81,25 @@ See more information below.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint groovy language-groovy"><code>buildscript {
-  ext {
-    springBootVersion = '1.1.0.RELEASE'
-  }
-
   repositories {
     mavenLocal()
     jcenter()
   }
 
   dependencies {
-    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
-    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
-    classpath 'org.akhikhl.gretty:gretty-spring-boot-plugin:0.0.24'
+    classpath 'org.akhikhl.gretty:gretty:+'
   }
 }
 
-apply plugin: 'gretty-spring-boot'</code></pre>
+apply plugin: 'gretty'
+
+gretty {
+  springBoot = true
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now you can run your Spring Boot application with the command <code>gradle jettyRun</code>.</p>
+<p>Now you can run your Spring Boot application with the command <code>gradle appRun</code>.</p>
 </div>
 <div class="paragraph">
 <p>The complete sources for the simplest Gretty Spring Boot setup:</p>
@@ -116,12 +114,45 @@ apply plugin: 'gretty-spring-boot'</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_running_on_specific_version_of_spring_boot"><a class="anchor" href="#_running_on_specific_version_of_spring_boot"></a>Running on specific version of spring boot</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add the following code to "build.gradle":</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>buildscript {
+  ext {
+    springBootVersion = '1.1.2.BUILD-SNAPSHOT'
+  }
+
+  repositories {
+    mavenLocal()
+    jcenter()
+    maven { url 'http://repo.spring.io/snapshot' }
+  }
+
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
+    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
+    classpath 'org.akhikhl.gretty:gretty:+'
+  }
+}
+
+apply plugin: 'gretty'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that spring-boot versions prior to 1.1.0 are not supported by Gretty and may produce compile-time or runtime errors.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_gretty_configuration_and_spring_boot"><a class="anchor" href="#_gretty_configuration_and_spring_boot"></a>Gretty configuration and Spring Boot</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>"gretty-spring-boot" plugin facilitates your project with the same <a href="Gretty-configuration.html">gretty configuration</a>,
-as "gretty" plugin. You can set the same properties, like "contextPath", "port", etc. etc. - they all
-will be passed to the Jetty server and web-app.</p>
+<p>Gretty configuration also applies to spring-boot projects. You can set properties like "contextPath", "port", etc. etc. - they all
+will be passed to the servlet container and web-app.</p>
 </div>
 </div>
 </div>
@@ -129,8 +160,7 @@ will be passed to the Jetty server and web-app.</p>
 <h2 id="_gretty_tasks_and_spring_boot"><a class="anchor" href="#_gretty_tasks_and_spring_boot"></a>Gretty tasks and Spring Boot</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>"gretty-spring-boot" plugin implements all gretty tasks except those with "War" word in the name.
-For example, there are tasks "jettyRun", "jettyRunDebug", "jettyStart", "jettyStop", etc.</p>
+<p>Gretty plugin implements all gretty tasks for spring-boot projects.</p>
 </div>
 </div>
 </div>
@@ -185,13 +215,21 @@ did not test this feature yet. See more information in <a href="Web-app-overlays
 <h2 id="_gretty_jetty_specific_features_and_spring_boot"><a class="anchor" href="#_gretty_jetty_specific_features_and_spring_boot"></a>Gretty Jetty-specific features and Spring Boot</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gretty fully supports <a href="Security-realms.html">Jetty security Realms</a> with Spring Boot web-apps.</p>
+<p>Gretty fully supports <a href="Jetty-security-realms.html">Jetty security realms</a> with Spring Boot web-apps.</p>
 </div>
 <div class="paragraph">
 <p>Gretty fully supports <a href="jetty.xml-support.html">jetty.xml</a> with Spring Boot web-apps.</p>
 </div>
 <div class="paragraph">
 <p>Gretty fully supports <a href="jetty-env.xml-support.html">jetty-env.xml</a> with Spring Boot web-apps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gretty_tomcat_specific_features_and_spring_boot"><a class="anchor" href="#_gretty_tomcat_specific_features_and_spring_boot"></a>Gretty Tomcat-specific features and Spring Boot</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty fully supports <a href="Tomcat-security-realms.html">Tomcat security realms</a> with Spring Boot web-apps.</p>
 </div>
 </div>
 </div>
@@ -215,64 +253,13 @@ Web-apps can be Spring Boot or "normal", in any combinations - Gretty will sort 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gretty_multiple_jetty_versions_and_spring_boot"><a class="anchor" href="#_gretty_multiple_jetty_versions_and_spring_boot"></a>Gretty multiple Jetty versions and Spring Boot</h2>
+<h2 id="_servlet_container_versions_and_spring_boot"><a class="anchor" href="#_servlet_container_versions_and_spring_boot"></a>Servlet container versions and Spring Boot</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gretty supports running Spring Boot web-apps on Jetty 8 and 9. Running against Jetty 7 is not supported,
-since Spring Boot uses servlet-api 3.x, which is not compatible with Jetty 7.</p>
+<p>Gretty supports running Spring Boot web-apps on Jetty 8/9 and Tomcat 7/8. Running Spring Boot on Jetty 7 is not supported, since Jetty 7 uses older servlet API not compatible with Spring Boot.</p>
 </div>
 <div class="paragraph">
-<p>If you want to run Spring Boot web-apps against Jetty 8:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint groovy language-groovy"><code>buildscript {
-  ext {
-    springBootVersion = '1.1.0.RELEASE'
-  }
-
-  repositories {
-    mavenLocal()
-    jcenter()
-  }
-
-  dependencies {
-    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
-    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
-    classpath 'org.akhikhl.gretty:gretty8-spring-boot-plugin:0.0.24'
-  }
-}
-
-apply plugin: 'gretty8-spring-boot'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you want to run Spring Boot web-apps against Jetty 9:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint groovy language-groovy"><code>buildscript {
-  ext {
-    springBootVersion = '1.1.0.RELEASE'
-  }
-
-  repositories {
-    mavenLocal()
-    jcenter()
-  }
-
-  dependencies {
-    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
-    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
-    classpath 'org.akhikhl.gretty:gretty9-spring-boot-plugin:0.0.24'
-  }
-}
-
-apply plugin: 'gretty9-spring-boot'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The example at the beginning of this page does not refer specific Jetty version. In this case the latest officially supported Jetty version is used (9 at the moment of writing).</p>
+<p>The servlet container for Spring Boot web-apps is selected via <a href="Gretty-configuration.html#_servletcontainer">servletContainer</a> property of Gretty configuration.</p>
 </div>
 </div>
 </div></p>

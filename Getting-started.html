@@ -69,7 +69,8 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'</code></pre>
+<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'war'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -77,18 +78,14 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint bash language-bash"><code>gradle jettyRun</code></pre>
+<pre class="prettyprint bash language-bash"><code>gradle appRun</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>you can also use other <a href="Gretty-tasks">tasks for running and
-debugging</a> your web-app or <a href="Gretty-configuration.html">configure Gretty</a>
-to your needs.</p>
+<p>you can also use other <a href="Gretty-tasks">Gretty tasks</a> for running and debugging your web-app or <a href="Gretty-configuration.html">configure Gretty</a> to your needs.</p>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can download the script from
-<a href="https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin">https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin</a>
-to the project folder and include it like this:</p>
+<p>Alternatively, you can download the script from <a href="https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin">https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin</a> to the project folder and include it like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -106,7 +103,7 @@ to the project folder and include it like this:</p>
   }
 
   dependencies {
-    classpath 'org.akhikhl.gretty:gretty-plugin:+'
+    classpath 'org.akhikhl.gretty:gretty:+'
   }
 }
 
@@ -114,7 +111,7 @@ repositories {
   jcenter()
 }
 
-apply plugin: 'gretty'</code></pre>
+apply plugin: 'org.akhikhl.gretty'</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -124,8 +121,7 @@ apply plugin: 'gretty'</code></pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-All versions of gretty are available at jcenter and maven central under
-the group <em>org.akhikhl.gretty</em>.
+All versions of gretty are available at jcenter and maven central under the group <em>org.akhikhl.gretty</em>.
 </td>
 </tr>
 </table>
@@ -137,10 +133,7 @@ the group <em>org.akhikhl.gretty</em>.
 <div class="title">Important</div>
 </td>
 <td class="content">
-If you experience problems starting Gretty, first look into
-<a href="Troubleshooting.html">troubleshooting</a> section. If it does not help,
-raise an issue at <a href="https://github.com/akhikhl/gretty/issues">Gretty issue tracker</a>
-or <a href="mailto:akhikhl@gmail.com">send an email</a> to Gretty developer.
+If you experience problems starting Gretty, first look into <a href="Troubleshooting.html">troubleshooting</a> section. If it does not help, raise an issue at <a href="https://github.com/akhikhl/gretty/issues">Gretty issue tracker</a> or <a href="mailto:akhikhl@gmail.com">send an email</a> to Gretty developer.
 </td>
 </tr>
 </table>

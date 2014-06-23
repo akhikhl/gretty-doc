@@ -65,37 +65,8 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is task class you can instantiate and configure in your gradle
-scripts. Many standard Gretty tasks are actually instances of this
-class.</p>
-</div>
-<div class="paragraph">
-<p><strong>Attention:</strong> this is "low-level" class. You will have to program
-properties and dependencies on other tasks yourself. If this is too much
-and you want that "things just work", consider using
-<a href="jettyStop-task.html">jettyStop task</a> or other <a href="Gretty-tasks">gretty
-tasks</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h4>
-<div class="paragraph">
-<p>code,groovy---------------------------------------------- code,groovy
-import org.akhikhl.gretty.GrettyServiceTask
-task(<em>myJettyStop</em>, type: GrettyServiceTask) {
-  command = <em>stop</em>
-  servicePort = 9900
-}</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>
-* `command` - string, required. Defines a string to send to
-`servicePort` when task is executed.
-* `servicePort` - integer, optional, default is
-link:Gretty-configuration.html#_serviceport[project.gretty.servicePort].
-Defines TCP-port to which a command is sent.</pre>
+<p>Attention: this is deprecated class.
+Please use <a href="AppServiceTask.html">AppServiceTask</a> class instead.</p>
 </div>
 </div>
 </div></p>

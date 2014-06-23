@@ -74,31 +74,23 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you place "logback.groovy" or "logback.xml" to
-"src/main/resources", it is compiled (copied) to "build/resources/main"
-folder before running any jetty tasks. Gretty auto-discovers logback
-configuration file in that folder and applies it to jetty process.</p>
+<p>If you place "logback.groovy" or "logback.xml" to "src/main/resources", it is compiled (copied) to "build/resources/main" folder before running any start tasks. Gretty auto-discovers logback configuration file in that folder and applies it to servlet-container process.</p>
 </li>
 <li>
-<p>If you place "logback.groovy" or "logback.xml" to arbitrary folder
-and then reference it by <code>logbackConfigFile</code> property, gretty applies
-the specified configuration to jetty process.</p>
+<p>If you place "logback.groovy" or "logback.xml" to arbitrary folder and then reference it by <code>logbackConfigFile</code> property, gretty applies the specified configuration to servlet-container process.</p>
 </li>
 <li>
-<p>If there&#8217;s no "logback.groovy" or "logback.xml" file, gretty
-configures logging with default settings:</p>
+<p>If there&#8217;s no "logback.groovy" or "logback.xml" file, gretty configures logging with default settings:</p>
 <div class="ulist">
 <ul>
 <li>
 <p>It enables slf4j logging with level INFO.</p>
 </li>
 <li>
-<p>It configures two appenders: one for console and another for the log
-file.</p>
+<p>It configures two appenders: one for console and another for the log file.</p>
 </li>
 <li>
-<p>Log file by default has name "${project.name}.log" and is created in folder
-"${user.home}/logs".</p>
+<p>Log file by default has name "${project.name}.log" and is created in folder "${user.home}/logs".</p>
 </li>
 </ul>
 </div>
@@ -112,48 +104,33 @@ file.</p>
 <div class="title">Important</div>
 </td>
 <td class="content">
-gretty logging is only effective in Gretty tasks. Gretty
-does not reconfigure logging (or libraries) of the compiled WAR-file.
+gretty logging is only effective in Gretty tasks. Gretty does not reconfigure logging (or libraries) of the compiled WAR-file.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>You can fine-tune gretty logging by adjusting the following properties
-[of gretty plugin extension]:</p>
+<p>You can fine-tune gretty logging by adjusting the following properties [of gretty plugin extension]:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>logbackConfigFile</code> defines the absolute or relative path to logback
-configuration file (.groovy or .xml). If "logbackConfigFile" is
-relative, it is first combined with projectDir. If the resulting path
-points to an existing file, it is used for logback configuration. If
-not, gretty tries to combine "logbackConfigFile" with each output folder
-(typically "${projectdir}/build/classes/main" and "${projectdir}/build/resources/main").
-If any resulting path points to an existing file, it is used for logback
-configuration.</p>
+<p><code>logbackConfigFile</code> defines the absolute or relative path to logback configuration file (.groovy or .xml). If "logbackConfigFile" is relative, it is first combined with projectDir. If the resulting path points to an existing file, it is used for logback configuration. If not, gretty tries to combine "logbackConfigFile" with each output folder (typically "${projectdir}/build/classes/main" and "${projectdir}/build/resources/main"). If any resulting path points to an existing file, it is used for logback configuration.</p>
 </li>
 <li>
-<p><code>loggingLevel</code> defines slf4j logging-level for Jetty process. It is a
-string, having one of the values: <em>ALL</em>, <em>DEBUG</em>, <em>ERROR</em>, <em>INFO</em>,
-<em>OFF</em>, <em>TRACE</em>, <em>WARN</em>. The default value is <em>INFO</em>.</p>
+<p><code>loggingLevel</code> defines slf4j logging-level for servlet-container process. It is a string, having one of the values: <em>ALL</em>, <em>DEBUG</em>, <em>ERROR</em>, <em>INFO</em>, <em>OFF</em>, <em>TRACE</em>, <em>WARN</em>. The default value is <em>INFO</em>.</p>
 </li>
 <li>
-<p><code>consoleLogEnabled</code> defines, whether log messages are written to the
-terminal. It is a boolean, default is "true".</p>
+<p><code>consoleLogEnabled</code> defines, whether log messages are written to the terminal. It is a boolean, default is "true".</p>
 </li>
 <li>
-<p><code>fileLogEnabled</code> defines, whether log messages are written to the
-log-file. It is a boolean, default is "true".</p>
+<p><code>fileLogEnabled</code> defines, whether log messages are written to the log-file. It is a boolean, default is "true".</p>
 </li>
 <li>
-<p><code>logFileName</code> defines log file name (without path). It is a string,
-default value is "${project.name}.log".</p>
+<p><code>logFileName</code> defines log file name (without path). It is a string, default value is "${project.name}.log".</p>
 </li>
 <li>
-<p><code>logDir</code> defines directory, where log file is created. It is a string,
-default value is "${user.home}/logs".</p>
+<p><code>logDir</code> defines directory, where log file is created. It is a string, default value is "${user.home}/logs".</p>
 </li>
 </ul>
 </div>
@@ -164,9 +141,7 @@ default value is "${user.home}/logs".</p>
 <div class="title">Important</div>
 </td>
 <td class="content">
-when logback configuration file is used (either
-auto-discovered or specified via "logbackConfigFile" property), other
-logging properties ("loggingLevel", "consoleLogEnabled",
+when logback configuration file is used (either auto-discovered or specified via "logbackConfigFile" property), other logging properties ("loggingLevel", "consoleLogEnabled",
 "fileLogEnabled", "logFileName", "logDir") have no effect.
 </td>
 </tr>

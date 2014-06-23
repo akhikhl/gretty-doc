@@ -65,7 +65,7 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Since version 0.0.18 Gretty supports <a href="Multiple-web-apps-introduction.html">multiple web-apps feature</a>: it can start arbitrary number of web-apps on the same Jetty server. Gretty supports web-apps of various types: <a href="Farm-web-app-list.html#_project_web_app_references">gradle projects</a>, <a href="Farm-web-app-list.html#_file_based_web_app_references">WAR-files in the file system</a> and even <a href="Farm-web-app-list.html#_repository_based_web_app_references">WAR-files from maven dependencies</a>.</p>
+<p>Since version 0.0.18 Gretty supports <a href="Multiple-web-apps-introduction.html">multiple web-apps feature</a>: it can start arbitrary number of web-apps on the same servlet-container. Gretty supports web-apps of various types: <a href="Farm-web-app-list.html#_project_web_app_references">gradle projects</a>, <a href="Farm-web-app-list.html#_file_based_web_app_references">WAR-files in the file system</a> and even <a href="Farm-web-app-list.html#_repository_based_web_app_references">WAR-files from maven dependencies</a>.</p>
 </div>
 <div class="paragraph">
 <p>Multiple web-apps feature works out-of-the-box in <a href="Multiple-web-apps-configureless-setup.html">configureless mode</a>, although it is fully <a href="index.html#_multiple_web_apps_configuration">configurable/customizable</a>.</p>
@@ -82,7 +82,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Default farm is automatically created for you by Gretty. You may add artbitrary web-apps to it and then invoke farm-specific tasks: farmRun, farmRunDebug, etc. Note that farm-specific tasks are not using gretty tasks (jettyRun, jettyRunDebug, etc.), but they understand and use gretty configurations.</p>
+<p>Default farm is automatically created for you by Gretty. You may add artbitrary web-apps to it and then invoke farm-specific tasks: farmRun, farmRunDebug, etc. Note that farm-specific tasks are not using gretty tasks (appRun, appRunDebug, etc.).</p>
 </li>
 <li>
 <p>Named farms, which you create yourself in gradle script. You can add as many named farms as you want, and you can add web-apps to farms in arbitrary constellations. Each named farm provides a specific set of farm tasks. For example, if you define farm with name "XYZ", there will be new tasks farmRunXYZ, farmRunDebugXYZ, etc. available.</p>

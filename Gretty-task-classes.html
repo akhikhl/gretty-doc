@@ -68,7 +68,7 @@
 <p>The existing <a href="Gretty-tasks.html">gretty tasks</a> should be sufficient for many web-app development scenarios.</p>
 </div>
 <div class="paragraph">
-<p>If you need to configure Gretty tasks, you should first look at <a href="Gretty-configuration.html">gretty configuration</a> - maybe, there is already everything that you need.</p>
+<p>If you need to configure Gretty tasks, you should first look at <a href="Gretty-configuration.html">gretty configuration</a> - maybe, there is already everything you need.</p>
 </div>
 <div class="paragraph">
 <p>Of course, there are cases, when you need to instantiate new gretty tasks or to extend their classes with new functions/properties. Then you need knowledge about gretty task classes.</p>
@@ -76,12 +76,12 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jettystarttask"><a class="anchor" href="#_jettystarttask"></a>JettyStartTask</h2>
+<h2 id="_appstarttask"><a class="anchor" href="#_appstarttask"></a>AppStartTask</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>Purpose</h3>
 <div class="paragraph">
-<p>JettyStartTask starts single web-app project on Jetty.</p>
+<p>AppStartTask starts single web-app project on a servlet-container.</p>
 </div>
 </div>
 <div class="sect2">
@@ -118,15 +118,15 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">interactive</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If true, the task waits for user keypress and stops jetty server after it.<br>
-If false, the task does not wait for user keypress, it should be stopped by jettyStop task.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, the task waits for user keypress and stops servlet-container process after it.<br>
+If false, the task does not wait for user keypress, it should be stopped by appStop task.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">debug</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If true, then Jetty server is started debug mode: it is suspended and waits for debugger commands on port 5005.<br>
-If false, the Jetty server is started in non-debug mode.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, then servlet-container process is started debug mode: it is suspended and waits for debugger commands on port 5005.<br>
+If false, the servlet-container process is started in non-debug mode.</p></td>
 </tr>
 </tbody>
 </table>
@@ -135,32 +135,32 @@ If false, the Jetty server is started in non-debug mode.</p></td>
 <div class="sect2">
 <h3 id="_property_inheritance"><a class="anchor" href="#_property_inheritance"></a>Property inheritance</h3>
 <div class="paragraph">
-<p>All server-specific and web-app-specific properties of JettyStartTask are set to null by default.</p>
+<p>All server-specific and web-app-specific properties of AppStartTask are set to null by default.</p>
 </div>
 <div class="paragraph">
-<p>If, during task execution, Gretty sees that some property of JettyStartTask is null, it uses the value of the property with the same name from gretty configuration. For example:</p>
+<p>If, during task execution, Gretty sees that some property of AppStartTask is null, it uses the value of the property with the same name from gretty configuration. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'gretty'
+<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'org.akhikhl.gretty'
 
 gretty {
   contextPath = '/abc'
 }
 
-import org.akhikhl.gretty.JettyStartTask
+import org.akhikhl.gretty.AppStartTask
 
-task('MyJettyRun', type: JettyStartTask) {
+task('myAppRun', type: AppStartTask) {
   port = 9955
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>the expected output of <code>gradle MyJettyRun</code> is:</p>
+<p>the expected output of <code>gradle MyAppRun</code> is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>:jettyRun
+<pre>:myAppRun
 scanInterval not specified (or zero), scanning disabled
 Auto-configuring server connectors
 2014-05-21 22:23:00.048 INFO  - jetty-9.1.0.v20131115
@@ -173,7 +173,53 @@ Press any key to stop the jetty server.</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Interpretation: we did not specify contextPath in MyJettyRun, so Gretty took contextPath from gretty configutation - "/abc". port we specified as 9955, so Gretty used it instead of port in gretty configuration (which is 8080 by default).</p>
+<p>Interpretation: we did not specify contextPath in myAppRun, so Gretty took contextPath from gretty configutation - "/abc". We specified port as 9955, so Gretty used it instead of port in gretty configuration (which is 8080 by default).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_property_inheritance_override"><a class="anchor" href="#_property_inheritance_override"></a>Property inheritance override</h3>
+<div class="paragraph">
+<p>In some cases it is desirable to inhibit property inheritance within gretty tasks.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>gretty {
+  jvmArgs = '-Da=b'
+}
+
+task('myRun', type: AppStartTask) {
+  jvmArgs = '-Dx=y'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>as the result, myRun task will contain two parameters: <em>-Da=b</em> and <em>-Dx=y</em>, but you probably wanted only <em>-Dx=y</em>.</p>
+</div>
+<div class="paragraph">
+<p>If you want replace jvmArgs rather than append, you&#8217;ll need to call prepareServerConfig function with closure parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>gretty {
+  jvmArgs = '-Da=b'
+}
+
+task('myRun', type: AppStartTask) {
+  prepareServerConfig {
+    jvmArgs = '-Dx=y'
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The closure passed to prepareServerConfig can be used for property post-processing: it is called after property merge is finished
+and receives merged property object as closure delegate.</p>
+</div>
+<div class="paragraph">
+<p>There are actually two functions for property post-processing: prepareServerConfig and prepareWebAppConfig. prepareServerConfig deals with <a href="Gretty-configuration.html#_server_specific_properties">server-specific properties</a> and prepareWebAppConfig deals with <a href="Gretty-configuration.html#_web_app_specific_properties">web-app-specific properties</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -185,12 +231,28 @@ Press any key to stop the jetty server.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jettystoptask"><a class="anchor" href="#_jettystoptask"></a>JettyStopTask</h2>
+<h2 id="_jettystarttask"><a class="anchor" href="#_jettystarttask"></a>JettyStartTask</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JettyStartTask is almost identical to <a href="#_appstarttask">AppStartTask task</a>. There&#8217;s only one difference: JettyStartTask forces Gretty to ignore the value of <code>gretty.servletContainer</code> and run on Jetty.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tomcatstarttask"><a class="anchor" href="#_tomcatstarttask"></a>TomcatStartTask</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TomcatStartTask is almost identical to <a href="#_appstarttask">AppStartTask task</a>. There&#8217;s only one difference: TomcatStartTask forces Gretty to ignore the value of <code>gretty.servletContainer</code> and run on Tomcat.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appstoptask"><a class="anchor" href="#_appstoptask"></a>AppStopTask</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_purpose_2"><a class="anchor" href="#_purpose_2"></a>Purpose</h3>
 <div class="paragraph">
-<p>JettyStopTask sends "stop" command over servicePort to a single web-app, which was supposedly started by JettyStartTask with interactive=false.</p>
+<p>AppStopTask sends "stop" command over servicePort to a single web-app, which was supposedly started by AppStartTask with interactive=false.</p>
 </div>
 </div>
 <div class="sect2">
@@ -224,27 +286,27 @@ Press any key to stop the jetty server.</pre>
 <div class="sect2">
 <h3 id="_property_inheritance_2"><a class="anchor" href="#_property_inheritance_2"></a>Property inheritance</h3>
 <div class="paragraph">
-<p>JettyStopTask.servicePort is set to null by default.</p>
+<p>AppStopTask.servicePort is set to null by default.</p>
 </div>
 <div class="paragraph">
-<p>If, during task execution, Gretty sees that JettyStartTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.</p>
+<p>If, during task execution, Gretty sees that AppStopTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_task_dependencies_2"><a class="anchor" href="#_task_dependencies_2"></a>Task dependencies</h3>
 <div class="paragraph">
-<p>JettyStop task has no dependencies.</p>
+<p>AppStopTask has no task dependencies.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jettyrestarttask"><a class="anchor" href="#_jettyrestarttask"></a>JettyRestartTask</h2>
+<h2 id="_apprestarttask"><a class="anchor" href="#_apprestarttask"></a>AppRestartTask</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_purpose_3"><a class="anchor" href="#_purpose_3"></a>Purpose</h3>
 <div class="paragraph">
-<p>JettyRestartTask sends "restart" command over servicePort to a single web-app, which was supposedly started by JettyStartTask with interactive=false.</p>
+<p>AppRestartTask sends "restart" command over servicePort to a single web-app, which was supposedly started by AppStartTask with interactive=false.</p>
 </div>
 </div>
 <div class="sect2">
@@ -278,41 +340,41 @@ Press any key to stop the jetty server.</pre>
 <div class="sect2">
 <h3 id="_property_inheritance_3"><a class="anchor" href="#_property_inheritance_3"></a>Property inheritance</h3>
 <div class="paragraph">
-<p>JettyRestartTask.servicePort is set to null by default.</p>
+<p>AppRestartTask.servicePort is set to null by default.</p>
 </div>
 <div class="paragraph">
-<p>If, during task execution, Gretty sees that JettyRestartTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.</p>
+<p>If, during task execution, Gretty sees that AppRestartTask.servicePort is null, it uses the value of the property with the same name from gretty configuration.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_task_dependencies_3"><a class="anchor" href="#_task_dependencies_3"></a>Task dependencies</h3>
 <div class="paragraph">
-<p>JettyRestart task has no dependencies.</p>
+<p>AppRestartTask has no task dependencies.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jettybeforeintegrationtesttask"><a class="anchor" href="#_jettybeforeintegrationtesttask"></a>JettyBeforeIntegrationTestTask</h2>
+<h2 id="_appbeforeintegrationtesttask"><a class="anchor" href="#_appbeforeintegrationtesttask"></a>AppBeforeIntegrationTestTask</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_purpose_4"><a class="anchor" href="#_purpose_4"></a>Purpose</h3>
 <div class="paragraph">
-<p>JettyBeforeIntegrationTestTask extends JettyStartTask.
-JettyBeforeIntegrationTestTask starts Jetty server automatically before the designated integration test task.</p>
+<p>AppBeforeIntegrationTestTask extends AppStartTask.
+AppBeforeIntegrationTestTask starts servlet container automatically before the designated integration test task.</p>
 </div>
 <div class="paragraph">
-<p>By default JettyBeforeIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling <code>integrationTestTask</code> function:</p>
+<p>By default AppBeforeIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling <code>integrationTestTask</code> function:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>import org.akhikhl.gretty.JettyBeforeIntegrationTestTask
+<pre class="prettyprint groovy language-groovy"><code>import org.akhikhl.gretty.AppBeforeIntegrationTestTask
 
 task('MyIntegrationTest') {
   // ...
 }
 
-task('MyJettyBeforeIntegrationTest', type: JettyBeforeIntegrationTestTask) {
+task('MyBeforeIntegrationTest', type: AppBeforeIntegrationTestTask) {
   integrationTestTask 'MyIntegrationTest'
   // ...
 }</code></pre>
@@ -353,15 +415,15 @@ task('MyJettyBeforeIntegrationTest', type: JettyBeforeIntegrationTestTask) {
 <td class="tableblock halign-left valign-top"><p class="tableblock">interactive</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If true, the task waits for user keypress and stops jetty server after it.<br>
-If false, the task does not wait for user keypress, it should be stopped by jettyStop task.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, the task waits for user keypress and stops servlet-container after it.<br>
+If false, the task does not wait for user keypress, it should be stopped by appStop task.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">debug</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If true, then Jetty server is started debug mode: it is suspended and waits for debugger commands on port 5005.<br>
-If false, the Jetty server is started in non-debug mode.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If true, then servlet-container is started debug mode: it is suspended and waits for debugger commands on port 5005.<br>
+If false, the servlet-container is started in non-debug mode.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">integrationTestTask</p></td>
@@ -376,10 +438,10 @@ If false, the Jetty server is started in non-debug mode.</p></td>
 <div class="sect2">
 <h3 id="_property_inheritance_4"><a class="anchor" href="#_property_inheritance_4"></a>Property inheritance</h3>
 <div class="paragraph">
-<p>All server-specific and web-app-specific properties of JettyBeforeIntegrationTestTask are set to null by default.</p>
+<p>All server-specific and web-app-specific properties of AppBeforeIntegrationTestTask are set to null by default.</p>
 </div>
 <div class="paragraph">
-<p>If, during task execution, Gretty sees that some property of JettyBeforeIntegrationTestTask is null, it uses the value of the property with the same name from gretty configuration.</p>
+<p>If, during task execution, Gretty sees that some property of AppBeforeIntegrationTestTask is null, it uses the value of the property with the same name from gretty configuration.</p>
 </div>
 </div>
 <div class="sect2">
@@ -391,26 +453,26 @@ If false, the Jetty server is started in non-debug mode.</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jettyafterintegrationtesttask"><a class="anchor" href="#_jettyafterintegrationtesttask"></a>JettyAfterIntegrationTestTask</h2>
+<h2 id="_appafterintegrationtesttask"><a class="anchor" href="#_appafterintegrationtesttask"></a>AppAfterIntegrationTestTask</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_purpose_5"><a class="anchor" href="#_purpose_5"></a>Purpose</h3>
 <div class="paragraph">
-<p>JettyAfterIntegrationTestTask extends JettyStopTask.
-JettyAfterIntegrationTestTask stops Jetty server automatically after the designated integration test task.</p>
+<p>AppAfterIntegrationTestTask extends AppStopTask.
+AppAfterIntegrationTestTask stops servlet-container process automatically after the designated integration test task.</p>
 </div>
 <div class="paragraph">
-<p>By default JettyAfterIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling <code>integrationTestTask</code> function:</p>
+<p>By default AppAfterIntegrationTestTask operates on the task named "integrationTest" defined in the same project. You can change this by calling <code>integrationTestTask</code> function:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>import org.akhikhl.gretty.JettyAfterIntegrationTestTask
+<pre class="prettyprint groovy language-groovy"><code>import org.akhikhl.gretty.AppAfterIntegrationTestTask
 
 task('MyIntegrationTest') {
   // ...
 }
 
-task('MyJettyAfterIntegrationTest', type: JettyAfterIntegrationTestTask) {
+task('MyAfterIntegrationTest', type: AppAfterIntegrationTestTask) {
   integrationTestTask 'MyIntegrationTest'
   // ...
 }</code></pre>
@@ -454,10 +516,10 @@ task('MyJettyAfterIntegrationTest', type: JettyAfterIntegrationTestTask) {
 <div class="sect2">
 <h3 id="_property_inheritance_5"><a class="anchor" href="#_property_inheritance_5"></a>Property inheritance</h3>
 <div class="paragraph">
-<p>All properties of JettyAfterIntegrationTestTask are set to null by default.</p>
+<p>All properties of AppAfterIntegrationTestTask are set to null by default.</p>
 </div>
 <div class="paragraph">
-<p>If, during task execution, Gretty sees that some property of JettyStartTask is null, it uses the value of the property with the same name from gretty configuration.</p>
+<p>If, during task execution, Gretty sees that some property of AppAfterIntegrationTestTask is null, it uses the value of the property with the same name from gretty configuration.</p>
 </div>
 </div>
 <div class="sect2">

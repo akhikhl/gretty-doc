@@ -113,13 +113,19 @@ gretty tasks run with reasonable defaults.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_jvmargs"></a> jvmArgs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List&lt;String&gt;</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Additional JVM arguments to Jetty process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional JVM arguments to servlet-container process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_servletcontainer"></a> servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>jetty9</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Servlet container to be used in appXXX tasks. Possible values are <em>jetty7</em>, <em>jetty8</em>, <em>jetty9</em>, <em>tomcat7</em>, <em>tomcat8</em>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_host"></a> host</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"localhost"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">host is passed to Jetty connectors. If you use HTTPS, host must match CN of the subject DN of the certificate (if you use <a href="HTTPS-support.html#_https_auto_configuration">HTTP auto-configuration</a>, this is ensured automatically).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">host is passed to servlet-container connectors. If you use HTTPS, host must match CN of the subject DN of the certificate (if you use <a href="HTTPS-support.html#_https_auto_configuration">HTTP auto-configuration</a>, Gretty ensures this automatically).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpenabled"></a> httpEnabled</p></td>
@@ -131,7 +137,7 @@ gretty tasks run with reasonable defaults.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpport"></a> httpPort</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8080</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Jetty for incoming HTTP-requests.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by servlet-container for incoming HTTP-requests.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_port"></a> port</p></td>
@@ -143,8 +149,7 @@ gretty tasks run with reasonable defaults.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpidletimeout"></a> httpIdleTimeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When not null, defines the time, in milliseconds, that the HTTP connection can be idle before it is closed.<br>
-See also: <a href="http://www.eclipse.org/jetty/documentation/current/configuring-connectors.html">Jetty documentation, configuring connectors</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When not null, defines the time, in milliseconds, that the HTTP connection can be idle before it is closed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpsenabled"></a> httpsEnabled</p></td>
@@ -157,7 +162,7 @@ See also: <a href="HTTPS-support.html">HTTPS support</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpsport"></a> httpsPort</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8443</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Jetty for incoming HTTPS-requests.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by servlet-container for incoming HTTPS-requests.<br>
 <strong>Attention:</strong> setting httpsPort alone is not enough to enable HTTPS protocol. You must set httpsEnabled=true in order to enable HTTPS.</p></td>
 </tr>
 <tr>
@@ -199,20 +204,19 @@ See also: <a href="HTTPS-support.html#_https_manual_configuration">HTTPS manual 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_httpsidletimeout"></a> httpsIdleTimeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When not null, defines the time, in milliseconds, that the HTTPS connection can be idle before it is closed.<br>
-See also: <a href="http://www.eclipse.org/jetty/documentation/current/configuring-connectors.html">Jetty documentation, configuring connectors</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When not null, defines the time, in milliseconds, that the HTTPS connection can be idle before it is closed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_serviceport"></a> servicePort</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">9900</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Gretty to send commands to Jetty process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Gretty to send commands to servlet-container process.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_statusport"></a> statusPort</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">9901</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Jetty process to send status back to Gretty.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by servlet-container process to send status back to Gretty.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_jettyxmlfile"></a> jettyXmlFile</p></td>
@@ -239,7 +243,7 @@ See also: <a href="Logging.html">Logging</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_logginglevel"></a> loggingLevel</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"INFO"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">slf4j logging-level for jetty process.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">slf4j logging-level for servlet-container process.<br>
 See also: <a href="Logging.html">Logging</a>.</p></td>
 </tr>
 <tr>
@@ -274,13 +278,13 @@ See also: <a href="Logging.html">Logging</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_onstart"></a> onStart</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">function(Closure)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds closure to be called just before jetty server is started.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds closure to be called just before servlet-container is started.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_onstop"></a> onStop</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">function(Closure)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adds closure to be called just after jetty server is stopped.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds closure to be called just after servlet-container is stopped.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_onscan"></a> onScan</p></td>
@@ -347,14 +351,14 @@ in "web.xml".</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Security realm for the given web-app.<br>
-See also: <a href="Security-realms.html">Security Realms</a>.</p></td>
+See also: <a href="Jetty-security-realms.html">Jetty security Realms</a> and <a href="Tomcat-security-realms.html">Tomcat security Realms</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_realmconfigfile"></a> realmConfigFile</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String or java.io.File</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"jetty-realm.properties"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Properties file, containing security realm properties.<br>
-See also: <a href="Security-realms.html">Security Realms</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"jetty-realm.properties" or "tomcat-users.xml"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contains security realm properties.<br>
+See also: <a href="Jetty-security-realms.html">Jetty security Realms</a> and <a href="Tomcat-security-realms.html">Tomcat security Realms</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_jettyenvxmlfile"></a> jettyEnvXmlFile</p></td>
@@ -388,7 +392,7 @@ See also: <a href="Web-app-overlays.html">Web-app overlays</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_integrationtesttask"></a> integrationTestTask</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"integrationTest"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of gradle task in the same project, which gretty "encloses" with jetty start/stop.<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of gradle task in the same project, which gretty "encloses" with servlet-container start/stop.<br>
 See also: <a href="Integration-tests-support.html">Integration tests support</a>.</p></td>
 </tr>
 </tbody>

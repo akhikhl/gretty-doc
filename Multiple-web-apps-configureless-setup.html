@@ -83,7 +83,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Explanation: we organize multi-project setup, so that multiple web-apps can be started/stopped by gretty-farm plugin.</p>
+<p>Explanation: we organize multi-project setup, so that multiple web-apps can be started/stopped by gretty plugin.</p>
 </div>
 <div class="paragraph">
 <p>Create file "ProjectA/build.gradle", insert code:</p>
@@ -96,11 +96,11 @@
   }
 
   dependencies {
-    classpath 'org.akhikhl.gretty:gretty-plugin:+'
+    classpath 'org.akhikhl.gretty:gretty:+'
   }
 }
 
-apply plugin: 'gretty-farm'</code></pre>
+apply plugin: 'org.akhikhl.gretty'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -108,7 +108,7 @@ apply plugin: 'gretty-farm'</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'gretty'</code></pre>
+<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'org.akhikhl.gretty'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -116,7 +116,7 @@ apply plugin: 'gretty-farm'</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'gretty'</code></pre>
+<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'org.akhikhl.gretty'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -132,10 +132,9 @@ apply plugin: 'gretty-farm'</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Jetty server 9.1.0.v20131115 started.
+<pre>Jetty 9.2.1.v20140609 started.
 :ProjectB runs at the address http://localhost:8080/ProjectB
 :ProjectC runs at the address http://localhost:8080/ProjectC
-servicePort: 9900, statusPort: 9901
 Press any key to stop the jetty server.</pre>
 </div>
 </div>
@@ -143,15 +142,15 @@ Press any key to stop the jetty server.</pre>
 <p>Of course, you&#8217;ll get 404 in the browser, because web-apps don&#8217;t contain any pages. But, as soon as you add pages or/and servlets to the web-apps, things will get real.</p>
 </div>
 <div class="paragraph">
-<p>Now explanation on the details of what we just did. We defined three gradle projects: two facilitated with gretty plugin and one - with gretty-farm plugin.<br>
-The projects with gretty plugin are usual web-apps, potentially with src/main/webapp, configuration files, servlets etc.etc.<br>
-The project with gretty-farm plugin is special. It defines <strong>farm</strong> - logical group of web-apps that should run together.</p>
+<p>Now explanation on the details of what we just did. We defined three gradle projects, all facilitated with gretty plugin.<br>
+The projects ProjectB and ProjectC are usual web-apps, potentially with src/main/webapp, configuration files, servlets etc.etc.<br>
+The project ProjectA is special. It defines <strong>farm</strong> - logical group of web-apps that should run together.</p>
 </div>
 <div class="paragraph">
 <p>By default farm automatically adds all subprojects of the farm project, which are facilitated with gretty plugin, to web-apps list. On the <a href="Configuring-default-farm.html">next page</a> you&#8217;ll see how you can control, which projects are added to a farm.</p>
 </div>
 <div class="paragraph">
-<p>Gretty-farm plugin also defines new, distinct set of tasks for running farms: farmRun, farmRunDebug, farmRunWar, farmRunWarDebug, etc. (see complete list of farm tasks <a href="Farm-tasks.html">here</a>).</p>
+<p>Gretty plugin also defines distinct set of tasks for running farms: farmRun, farmRunDebug, farmRunWar, farmRunWarDebug, etc. (see complete list of farm tasks <a href="Farm-tasks.html">here</a>).</p>
 </div>
 <div class="paragraph">
 <p>See also: <a href="index.html#_multiple_web_apps">Multiple web-apps</a>.</p>

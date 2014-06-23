@@ -65,7 +65,7 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>farmStop sends "stop" command to a running jetty server.</p>
+<p>farmStop sends "stop" command to a running servlet-container process.</p>
 </div>
 </div>
 </div>
@@ -83,9 +83,7 @@
 <h2 id="_effects"><a class="anchor" href="#_effects"></a>Effects</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>farmStop does not build source code, it only sends "stop" command to
-localhost:<a href="Farm-configuration.html#_serviceport">servicePort</a>. Usually
-farmStop is used to stop Gretty/Jetty process started by farmStart[War][Debug].</p>
+<p>farmStop does not build source code, it only sends "stop" command to localhost:<a href="Farm-configuration.html#_serviceport">servicePort</a>. Usually farmStop is used to stop servlet-container process started by farmStart[War][Debug].</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -94,7 +92,7 @@ farmStop is used to stop Gretty/Jetty process started by farmStart[War][Debug].<
 <div class="title">Warning</div>
 </td>
 <td class="content">
-do not try to stop Jetty server with farmStop, if it was started with jettyStart[War][Debug] or with farmStart[War][Debug] from another farm. Reason is simple: each farm may redefine it&#8217;s TCP-ports in farm configuration, so farmStop may be sending a command on incorrect port, when paired with wrong start task.
+do not try to stop servlet-container process with farmStop, if it was started with appStart[War][Debug] or with farmStart[War][Debug] from another farm. Reason is simple: each farm may define it&#8217;s own set of TCP-ports in farm configuration, so farmStop may be sending a command to incorrect port, when paired with wrong start task.
 </td>
 </tr>
 </table>

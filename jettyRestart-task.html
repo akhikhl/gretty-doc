@@ -65,57 +65,7 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>jettyRestart sends "restart" command to a running jetty server.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint bash language-bash"><code>gradle jettyRestart</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_effects"><a class="anchor" href="#_effects"></a>Effects</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>jettyRestart does not build source code, it only sends "restart" command to
-localhost:<a href="Gretty-configuration.html#_serviceport">servicePort</a>. Usually
-jettyRestart is used to restart Gretty/Jetty process started by jettyStart[War][Debug].</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_instantiation_and_extension"><a class="anchor" href="#_instantiation_and_extension"></a>Instantiation and extension</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The object called jettyRestart is actually an instance of <a href="Gretty-task-classes.html#_jettyrestarttask">JettyRestartTask</a> class, created and configured for you by Gretty. You can instantiate or even extend this class on your own:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'gretty'
-
-import org.akhikhl.gretty.JettyRestartTask
-
-task('MyRestart', type: JettyRestartTask) {
-  // ...
-}
-
-class VerySpecialRestart extends JettyRestartTask {
-  // ...
-}
-
-task('MyRestart2', type: VerySpecialRestart) {
-  // ...
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you are going to instantiate or extend this task class yourself, make sure you&#8217;ve learned it&#8217;s properties and methods.</p>
+<p>jettyRestart task is fully identical to <a href="appRestart-task.html">appRestart task</a>. These two tasks can be used interchangeably.</p>
 </div>
 </div>
 </div></p>

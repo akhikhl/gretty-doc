@@ -65,20 +65,22 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you insert <code>apply plugin: 'gretty'</code> to "build.gradle", Gretty plugin facilitates the project with the following gradle tasks:</p>
+<p>When you insert <code>apply plugin: 'org.akhikhl.gretty'</code> to "build.gradle", Gretty plugin facilitates the project with the following gradle tasks:</p>
 </div>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:11%;"> 
+<col style="width:25%;">
+<col style="width:25%;">
+<col style="width:25%;">
+<col style="width:8%;">
+<col style="width:8%;">
+<col style="width:8%;"> 
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Tasks</th>
 <th class="tableblock halign-left valign-top">Purpose</th>
+<th class="tableblock halign-left valign-top">Servlet container</th>
 <th class="tableblock halign-left valign-top">Stopped by</th>
 <th class="tableblock halign-left valign-top">Uses WAR</th>
 <th class="tableblock halign-left valign-top">Debug</th>
@@ -86,8 +88,105 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyRun-task.html">jettyRun</a>, <a href="run-task.html">run</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appRun-task.html">appRun</a>, <a href="run-task.html">run</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defined by gretty.servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appRunDebug-task.html">appRunDebug</a>, <a href="debug-task.html">debug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defined by gretty.servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appRunWar-task.html">appRunWar</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defined by gretty.servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appRunWarDebug-task.html">appRunWarDebug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defined by gretty.servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appStart-task.html">appStart</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defined by gretty.servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">appStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appStartDebug-task.html">appStartDebug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defined by gretty.servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">appStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appStartWar-task.html">appStartWar</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defined by gretty.servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">appStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appStartWarDebug-task.html">appStartWarDebug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defined by gretty.servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">appStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appStop-task.html">appStop</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stops web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appRestart-task.html">appRestart</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restarts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appBeforeIntegrationTest-task.html">appBeforeIntegrationTest</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts app before integration test.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defined by gretty.servletContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">appAfterIntegrationTest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="appAfterIntegrationTest-task.html">appAfterIntegrationTest</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stops app after integration test.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyRun-task.html">jettyRun</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jetty</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
@@ -95,6 +194,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyRunDebug-task.html">jettyRunDebug</a>, <a href="debug-task.html">debug</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jetty</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
@@ -102,6 +202,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyRunWar-task.html">jettyRunWar</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jetty</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
@@ -109,6 +210,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyRunWarDebug-task.html">jettyRunWarDebug</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jetty</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
@@ -116,6 +218,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyStart-task.html">jettyStart</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jetty</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jettyStop</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
@@ -123,6 +226,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyStartDebug-task.html">jettyStartDebug</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jetty</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jettyStop</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
@@ -130,6 +234,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyStartWar-task.html">jettyStartWar</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jetty</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jettyStop</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
@@ -137,34 +242,103 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyStartWarDebug-task.html">jettyStartWarDebug</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jetty</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jettyStop</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyStop-task.html">jettyStop</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stops web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">same as appStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyRestart-task.html">jettyRestart</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Restarts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">same as appRestart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyBeforeIntegrationTest-task.html">jettyBeforeIntegrationTest</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Starts jetty before integration test.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jettyAfterIntegrationTest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatRun-task.html">tomcatRun</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="jettyAfterIntegrationTest-task.html">jettyAfterIntegrationTest</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stops jetty after integration test.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatRunDebug-task.html">tomcatRunDebug</a>, <a href="debug-task.html">debug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatRunWar-task.html">tomcatRunWar</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatRunWarDebug-task.html">tomcatRunWarDebug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keypress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatStart-task.html">tomcatStart</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcatStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatStartDebug-task.html">tomcatStartDebug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcatStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatStartWar-task.html">tomcatStartWar</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcatStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatStartWarDebug-task.html">tomcatStartWarDebug</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Starts web-app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tomcatStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatStop-task.html">tomcatStop</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">same as appStop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="tomcatRestart-task.html">tomcatRestart</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">same as appRestart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>

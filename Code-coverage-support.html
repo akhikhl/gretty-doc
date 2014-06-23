@@ -173,19 +173,19 @@ task('integrationTestClientReport', type: JacocoReport) {
 <div class="ulist">
 <ul>
 <li>
-<p>Jacoco plugin adds <a href="http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.plugins.JacocoTaskExtension.html">JacocoTaskExtension</a> to each jetty-start task of the given project - to jettyRun, jettyRunDebug, &#8230; and, most importantly, to jettyBeforeIntegrationTest.</p>
+<p>Jacoco plugin adds <a href="http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.plugins.JacocoTaskExtension.html">JacocoTaskExtension</a> to each app-start task of the given project - to appRun, appRunDebug, &#8230; and, most importantly, to appBeforeIntegrationTest.</p>
 </li>
 <li>
-<p>By default JacocoTaskExtension is enabled for jettyBeforeIntegrationTest and disabled for all other jetty-start tasks. Code coverage is not collected for the tasks with disabled JacocoTaskExtension. You can configure this by setting <code>jettyRun.jacoco.enabled = true</code>.</p>
+<p>By default JacocoTaskExtension is enabled for appBeforeIntegrationTest and disabled for all other app-start tasks. Code coverage is not collected for the tasks with disabled JacocoTaskExtension. You can configure this by setting <code>appRun.jacoco.enabled = true</code>.</p>
 </li>
 <li>
-<p>Jacoco plugin apppends Jacoco-specific JVM-arguments to each jetty-start task.</p>
+<p>Jacoco plugin apppends Jacoco-specific JVM-arguments to each app-start task.</p>
 </li>
 <li>
-<p>When jetty-start task runs, Jacoco gathers code coverage to the file <code>"${project.buildDir}/jacoco/${task.name}.exec"</code> ("task.name" is the name of the jetty-start task).</p>
+<p>When app-start task runs, Jacoco gathers code coverage to the file <code>"${project.buildDir}/jacoco/${task.name}.exec"</code> ("task.name" is the name of the app-start task).</p>
 </li>
 <li>
-<p>If you defined JacocoReport task, it creates a report from collected code coverage - html, xml or csv.</p>
+<p>If you define JacocoReport task, it creates a report from collected code coverage - html, xml or csv.</p>
 </li>
 </ul>
 </div>
@@ -194,7 +194,7 @@ task('integrationTestClientReport', type: JacocoReport) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'gretty'
+<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'org.akhikhl.gretty'
 apply plugin: 'jacoco'
 
 // ...
@@ -202,18 +202,18 @@ apply plugin: 'jacoco'
 gretty {
   afterEvaluate {
 
-    tasks.jettyBeforeIntegrationTest.jacoco {
+    tasks.appBeforeIntegrationTest.jacoco {
       append = false
       destinationFile = new File(project.buildDir, 'jacoco/integrationTest_server.exec')
     }
 
-    tasks.jettyAfterIntegrationTest.finalizedBy tasks.integrationTestServerReport
+    tasks.appAfterIntegrationTest.finalizedBy tasks.integrationTestServerReport
   }
 }
 
 task('integrationTestServerReport', type: JacocoReport) {
 
-  executionData { tasks.jettyBeforeIntegrationTest.jacoco.destinationFile }
+  executionData { tasks.appBeforeIntegrationTest.jacoco.destinationFile }
 
   sourceDirectories = project.files(project.sourceSets.main.allSource.srcDirs)
   classDirectories = project.sourceSets.main.output
@@ -236,7 +236,7 @@ task('integrationTestServerReport', type: JacocoReport) {
 <div class="title">Note</div>
 </td>
 <td class="content">
-You must configure jettyBeforeIntegrationTest and jettyAfterIntegrationTest in gretty.afterEvaluate closure: this is because jettyBeforeIntegrationTest and jettyAfterIntegrationTest tasks are not yet defined, when the gradle script is processed.
+You must configure appBeforeIntegrationTest and appAfterIntegrationTest in gretty.afterEvaluate closure: this is because appBeforeIntegrationTest and appAfterIntegrationTest tasks are not yet defined, when the gradle script is processed.
 </td>
 </tr>
 </table>
@@ -248,15 +248,15 @@ You must configure jettyBeforeIntegrationTest and jettyAfterIntegrationTest in g
 <div class="title">Note</div>
 </td>
 <td class="content">
-You cannot pass jettyBeforeIntegrationTest as a parameter to JacocoReport.executionData for the same reason: it is not yet defined. jettyBeforeIntegrationTest cannot be wrapped with closure, because internally executionData will pass such closure directly to project.files function and the latter has no idea what to do with task. Wrapping jettyBeforeIntegrationTest.jacoco.destinationFile with closure will work.
+You cannot pass appBeforeIntegrationTest as a parameter to JacocoReport.executionData for the same reason: it is not yet defined. appBeforeIntegrationTest cannot be wrapped with closure, because internally executionData will pass such closure directly to project.files function and the latter has no idea what to do with task. Wrapping appBeforeIntegrationTest.jacoco.destinationFile with closure will work.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_combining_custom_jettybeforeintegrationtesttask_and_jettyafterintegrationtesttask_with_jacoco"><a class="anchor" href="#_combining_custom_jettybeforeintegrationtesttask_and_jettyafterintegrationtesttask_with_jacoco"></a>Combining custom JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask with jacoco</h3>
+<h3 id="_combining_custom_appbeforeintegrationtesttask_and_appafterintegrationtesttask_with_jacoco"><a class="anchor" href="#_combining_custom_appbeforeintegrationtesttask_and_appafterintegrationtesttask_with_jacoco"></a>Combining custom AppBeforeIntegrationTestTask and AppAfterIntegrationTestTask with jacoco</h3>
 <div class="paragraph">
-<p>If you instantiate JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, enabling server-side code coverage looks basically the same:</p>
+<p>If you instantiate AppBeforeIntegrationTestTask and AppAfterIntegrationTestTask classes yourself, enabling server-side code coverage looks basically the same:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -265,7 +265,7 @@ task('myIntegrationTest', type: Test) {
   // ...
 }
 
-task('myBeforeIntegrationTest', type: JettyBeforeIntegrationTestTask) {
+task('myBeforeIntegrationTest', type: AppBeforeIntegrationTestTask) {
   jacoco {
     append = false
     destinationFile = new File(project.buildDir, 'jacoco/integrationTest_server.exec')
@@ -273,7 +273,7 @@ task('myBeforeIntegrationTest', type: JettyBeforeIntegrationTestTask) {
   integrationTestTask 'myIntegrationTest'
 }
 
-task('myAfterIntegrationTest', type: JettyAfterIntegrationTestTask) {
+task('myAfterIntegrationTest', type: AppAfterIntegrationTestTask) {
   finalizedBy { tasks.integrationTestServerReport }
   integrationTestTask 'myIntegrationTest'
 }
@@ -302,7 +302,7 @@ task('integrationTestServerReport', type: JacocoReport) {
 <div class="title">Note</div>
 </td>
 <td class="content">
-When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, you don&#8217;t need to wrap task configuration to gretty.afterEvaluate.
+When instantiating AppBeforeIntegrationTestTask and AppAfterIntegrationTestTask classes yourself, you don&#8217;t need to wrap task configuration to gretty.afterEvaluate.
 </td>
 </tr>
 </table>
@@ -326,7 +326,7 @@ Passing myBeforeIntegrationTest as a parameter to JacocoReport.executionData is 
 <div class="title">Tip</div>
 </td>
 <td class="content">
-When instantiating JettyBeforeIntegrationTestTask and JettyAfterIntegrationTestTask classes yourself, you can use many nice features, like debugging, by setting up task properties. See more information in <a href="Gretty-task-classes.html#_jettybeforeintegrationtesttask">JettyBeforeIntegrationTestTask</a> and <a href="Gretty-task-classes.html#_jettyafterintegrationtesttask">JettyAfterIntegrationTestTask</a> class documentation.
+When instantiating AppBeforeIntegrationTestTask and AppAfterIntegrationTestTask classes yourself, you can use many nice features, like debugging, by setting up task properties. See more information in <a href="Gretty-task-classes.html#_appbeforeintegrationtesttask">AppBeforeIntegrationTestTask</a> and <a href="Gretty-task-classes.html#_appafterintegrationtesttask">AppAfterIntegrationTestTask</a> class documentation.
 </td>
 </tr>
 </table>

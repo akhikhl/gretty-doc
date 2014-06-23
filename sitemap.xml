@@ -5,10 +5,6 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
-        <loc>http://akhikhl.github.io/gretty-doc/Combining-web-app-and-farm.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
         <loc>http://akhikhl.github.io/gretty-doc/Configuring-default-farm.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
@@ -73,10 +69,6 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
-        <loc>http://akhikhl.github.io/gretty-doc/Gretty-gradle-plugins.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
         <loc>http://akhikhl.github.io/gretty-doc/Gretty-task-classes.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
@@ -109,6 +101,10 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
+        <loc>http://akhikhl.github.io/gretty-doc/Jetty-security-realms.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
         <loc>http://akhikhl.github.io/gretty-doc/Logging.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
@@ -125,23 +121,19 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
-        <loc>http://akhikhl.github.io/gretty-doc/Publishing-gretty-to-sonatype-and-bintray.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
-        <loc>http://akhikhl.github.io/gretty-doc/Security-realms.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
         <loc>http://akhikhl.github.io/gretty-doc/Servlet-container-classpath.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
-        <loc>http://akhikhl.github.io/gretty-doc/Switching-between-Jetty-and-servlet-API-versions.html</loc>
+        <loc>http://akhikhl.github.io/gretty-doc/Switching-between-servlet-containers.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
         <loc>http://akhikhl.github.io/gretty-doc/System-requirements.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/Tomcat-security-realms.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
@@ -158,6 +150,54 @@
     </url>
     <url>
         <loc>http://akhikhl.github.io/gretty-doc/about.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appAfterIntegrationTest-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appBeforeIntegrationTest-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appRestart-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appRun-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appRunDebug-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appRunWar-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appRunWarDebug-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appStart-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appStartDebug-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appStartWar-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appStartWarDebug-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/appStop-task.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
@@ -225,14 +265,6 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
-        <loc>http://akhikhl.github.io/gretty-doc/jettyAfterIntegrationTest-task.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
-        <loc>http://akhikhl.github.io/gretty-doc/jettyBeforeIntegrationTest-task.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
         <loc>http://akhikhl.github.io/gretty-doc/jettyRestart-task.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
@@ -278,6 +310,46 @@
     </url>
     <url>
         <loc>http://akhikhl.github.io/gretty-doc/spring-boot-support.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatRestart-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatRun-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatRunDebug-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatRunWar-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatRunWarDebug-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatStart-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatStartDebug-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatStartWar-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatStartWarDebug-task.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/tomcatStop-task.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
 </urlset>

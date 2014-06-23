@@ -65,7 +65,7 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gretty supports integration tests in the following way: it can start jetty before and stop after the specified task.
+<p>Gretty supports integration tests in the following way: it can start servlet-container before and stop after the specified task.
 The task itself can perform arbitrary tests (for example, use <a href="http://www.gebish.org/">Geb</a> and <a href="https://code.google.com/p/spock/">Spock</a> for testing client-side functionality direct in the browser).</p>
 </div>
 </div>
@@ -88,8 +88,7 @@ The task itself can perform arbitrary tests (for example, use <a href="http://ww
 <h2 id="_effects"><a class="anchor" href="#_effects"></a>Effects</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When you run <code>gradle integrationTest</code> from command-line, Gretty starts
-Jetty before <code>integrationTest</code> task and stops it after.</p>
+<p>When you run <code>gradle integrationTest</code> from command-line, Gretty starts servlet-container before <code>integrationTest</code> task and stops it after.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -98,8 +97,7 @@ Jetty before <code>integrationTest</code> task and stops it after.</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-Gretty does not define integration test task nor does it
-augment it in any way. All it does is start and stop Jetty.
+Gretty does not define integration test task nor does it augment it in any way. All it does is start and stop servlet-container.
 </td>
 </tr>
 </table>
@@ -183,9 +181,7 @@ augment it in any way. All it does is start and stop Jetty.
 </div>
 </div>
 <div class="paragraph">
-<p>See also:
-<a href="jettyBeforeIntegrationTest-task.html">jettyBeforeIntegrationTest task</a>
-and <a href="jettyAfterIntegrationTest-task.html">jettyAfterIntegrationTest task</a>.</p>
+<p>See also: <a href="appBeforeIntegrationTest-task.html">appBeforeIntegrationTest task</a> and <a href="appAfterIntegrationTest-task.html">appAfterIntegrationTest task</a>.</p>
 </div>
 </div>
 </div></p>

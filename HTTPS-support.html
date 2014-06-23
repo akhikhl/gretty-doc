@@ -119,7 +119,7 @@
 <p>Gretty uses key-store "${project.buildDir}/ssl/keystore" for configuring HTTPS-connector</p>
 </li>
 <li>
-<p>Gretty starts Jetty server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).</p>
+<p>Gretty starts servlet-container server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).</p>
 </li>
 </ol>
 </div>
@@ -135,7 +135,7 @@
 <p>Gretty uses key-store "${project.buildDir}/ssl/keystore" for configuring HTTPS-connector</p>
 </li>
 <li>
-<p>Gretty starts Jetty server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).</p>
+<p>Gretty starts servlet-container server with two connectors: HTTP, listening to httpPort (default 8080) and HTTPS, listening to httpsPort (default 8443).</p>
 </li>
 </ol>
 </div>
@@ -187,7 +187,7 @@ After you click "I understand the risks" and accept the certificate, the web-bro
 </td>
 <td class="content">
 <div class="paragraph">
-<p>"${project.buildDir}/ssl" directory is preserved between Jetty runs, so that the same key and certificate are repeatedly used in development. Of course, you can delete the directory "${project.buildDir}/ssl" - it will be recreated on the next run. If you delete it, you&#8217;ll see a message "Connection is untrusted" again.</p>
+<p>"${project.buildDir}/ssl" directory is preserved between servlet-container runs, so that the same key and certificate are repeatedly used in development. Of course, you can delete the directory "${project.buildDir}/ssl" - it will be recreated on the next run. If you delete it, you&#8217;ll see a message "Connection is untrusted" again.</p>
 </div>
 </td>
 </tr>
@@ -257,7 +257,7 @@ After you click "I understand the risks" and accept the certificate, the web-bro
 <div class="title">Important</div>
 </td>
 <td class="content">
-CN attribute of the used certificate must match gretty.host property ("localhost" by default), otherwise Jetty could not decide, which certificate to use.
+CN attribute of the used certificate must match gretty.host property ("localhost" by default), otherwise servlet-container could not decide, which certificate to use.
 </td>
 </tr>
 </table>
