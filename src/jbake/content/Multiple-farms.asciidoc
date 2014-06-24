@@ -39,6 +39,6 @@ Now you get new sets of gradle tasks, each set specific for particular farm:
 * farmRunXXX, farmRunDebugXXX, ... serve farm with name "XXX"
 * farmRunYYY, farmRunDebugYYY, ... serve farm with name "YYY"
 
-TIP: You can even invoke tasks for different farms in parallel, provided that each farm gets distinct set of TCP-ports (see more information on farm TCP-ports link:Farm-configuration.html#_server_specific_properties_catalog[here].
+TIP: You can even invoke tasks for different farms in parallel, provided that each farm gets distinct set of TCP-ports (see more information on farm TCP-ports link:Farm-server-specific-properties.html[here].
 
 See also: link:index.html#_multiple_web_apps[Multiple web-apps].
