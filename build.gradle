@@ -4,14 +4,14 @@ buildscript {
   }
 
   dependencies {
-    classpath 'me.champeau.gradle:jbake-gradle-plugin:0.1'
+    classpath 'me.champeau.gradle:jbake-gradle-plugin:0.2'
     classpath 'org.asciidoctor:asciidoctor-java-integration:0.1.4'
     classpath 'org.pegdown:pegdown:1.4.2'
     classpath 'org.freemarker:freemarker:2.3.19'
   }
 }
 
-apply plugin: 'jbake'
+apply plugin: 'me.champeau.jbake'
 
 task publish(type: GradleBuild) {           
     buildFile = 'publish.gradle'
