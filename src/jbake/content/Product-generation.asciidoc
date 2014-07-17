@@ -1,0 +1,15 @@
+= Product generation
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Since version 1.1.0 Gretty is able to generate runnable products. Gretty accurately packs one or more web-apps with the specified servlet container (tomcat or jetty), configuration files and, when needed, with spring boot libraries. The generated products are autonomous and self-contained: the only requirement to the target machine is the presence of JRE 6/7/8.
+
+== Configureless product generation
+
+Every project using gretty is already able to generate a product in configureless mode. All you have to do is to invoke `gradle buildProduct` on the command line (or from your favorite IDE, if you like).
+
+The generated product is placed to "build/output/${project.name}" directory and has the following structure:
+

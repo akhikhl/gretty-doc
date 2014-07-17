@@ -37,6 +37,10 @@ Multiple web-apps feature also works nicely with integration tests and with the 
 
 Gretty supports link:Switching-between-servlet-containers.html[easy switch] between Jetty 7, 8 and 9 and Tomcat 7 and 8.
 
+== Product generation
+
+Since version 1.1.0 Gretty is able to link:Product-generation.html[generate runnable products]. Gretty accurately packs one or more web-apps with the specified servlet container (tomcat or jetty), configuration files and, when needed, with spring boot libraries. The generated products are autonomous and self-contained: the only requirement to the target machine is the presence of JRE 6/7/8.
+
 == Hot deployment
 
 Gretty support feature of link:Hot-deployment.html[Hot deployment]:

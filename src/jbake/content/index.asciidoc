@@ -20,6 +20,7 @@ link:HTTPS-support.html[HTTPS support] +
 link:Gretty-configuration.html[Gretty configuration] +
 link:Gretty-tasks.html[Gretty tasks] +
 link:Gretty-task-classes.html[Gretty task classes]
+link:Product-generation[Product generation]
 
 === Debugging and testing
 
