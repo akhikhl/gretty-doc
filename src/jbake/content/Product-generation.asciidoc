@@ -5,11 +5,135 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-Since version 1.1.0 Gretty is able to generate runnable products. Gretty accurately packs one or more web-apps with the specified servlet container (tomcat or jetty), configuration files and, when needed, with spring boot libraries. The generated products are autonomous and self-contained: the only requirement to the target machine is the presence of JRE 6/7/8.
+Since version 1.1.0 Gretty is able to generate runnable products. It works as follows: you invoke "buildProduct" gradle task and Gretty accurately packs one or more web-apps with the specified servlet container (tomcat or jetty), configuration files and, when needed, with spring boot libraries. The generated products are autonomous and self-contained, so they can be deployed to vanilla machines without preinstalled servlet container. The only requirement to the target machine is the presence of JRE 6/7/8.
 
 == Configureless product generation
 
 Every project using gretty is already able to generate a product in configureless mode. All you have to do is to invoke `gradle buildProduct` on the command line (or from your favorite IDE, if you like).
 
+== Product structure
+
 The generated product is placed to "build/output/${project.name}" directory and has the following structure:
+
+image::images/product-structure.png[]
+
+Product root contains shell scripts for starting and stopping the web-server.
+
+"conf" directory contains server-specific configuration files.
+
+"runner" directory contains runtime libraries for the servlet container.
+
+"starter" directory contains runtime libraries for the starter java program that interacts with servlet container.
+
+"webapps" directory contains one or more of your web-apps.
+
+== Configuring single-web-app product
+
+Configuring product with a single web-app is very simple: you specify all necessary properties in link:Gretty-configuration.html[gretty configuration] and product inherits them all. Gretty saves product configuration to the file "conf/server.json", which is automatically used by product starter.
+
+== Configuring multiple-web-app product
+
+You can configure product with multiple web-apps with the help of "product" extension:
+
+[source,groovy]
+----
+product {
+  webapp project // include this project
+  webapp ':ProjectA'  
+  webapp ':ProjectB'  
+}
+----
+
+The syntax of product extension is the same as of link:Farm-extension.html[farm extension]. For example, you can specify server-specific properties the same way as link:Farm-server-specific-properties.html[farm server-specific properties] and web-app-specific properties the same way as link:Farms-and-web-app-specific-properties.html[farm web-app specific properties].
+
+== Specifying multiple product configurations
+
+As with farms, you can specify more than one product configuration:
+
+[source,groovy]
+----
+products {
+  product {
+    webapp ':ProjectB'
+    webapp ':ProjectC'
+  }
+  product 'XXX', {
+    webapp ':ProjectB'
+    webapp ':ProjectC'
+    webapp ':ProjectD'
+  }
+  product 'YYY', {
+    webapp ':ProjectC'
+    webapp ':ProjectD'
+    webapp ':ProjectE'
+  }
+}
+----
+
+Each product gets it's own gradle task:
+
+* buildProduct generates a product from unnamed configuration
+* buildProductXXX generates a product from configuration "XXX"
+* buildProductYYY generates a product from configuration "YYY"
+
+== Multiple product configurations and servlet containers
+
+You can configure multiple products that run on different servlet containers:
+
+[source,groovy]
+----
+products {
+  product 'jetty', {
+    servletContainer = 'jetty9'
+    // ...
+  }
+  product 'tomcat', {
+    servletContainer = 'tomcat8'
+    // ...
+  }
+}
+----
+
+== Property inheritance between farms and products
+
+Gretty products automatically inherit all properties from the farms having the same name. When some property is present both in farm and product, product's property has priority. There's one exclusion: webapps list is rather merged than overridden from farm to product.
+
+For example:
+
+[source,groovy]
+----
+farms {
+  farm 'X', {
+    servletContainer = 'jetty8'
+    webapp ':ProjectA'
+  }
+  farm 'Y', {
+    servletContainer = 'tomcat8'
+    webapp ':ProjectB'
+  }
+}
+
+products {
+  product 'X', {
+    servletContainer = 'jetty9'
+    webapp ':ProjectC'
+  }
+  product 'Y', {
+    webapp ':ProjectD'
+  }
+}
+----
+
+Product "X" gets jetty9 as servlet container and web-apps ProjectA and ProjectC.
+
+Product "Y" gets tomcat8 as servlet container and web-apps ProjectB and ProjectD.
+
+== Product runtime limitations
+
+The following Gretty features are not supported by generated products: 
+
+- hot reload
+- fast reload
+- springloaded integration
+- jacoco integration
 

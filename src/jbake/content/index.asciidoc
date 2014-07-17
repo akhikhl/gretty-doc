@@ -19,8 +19,8 @@ link:Web-app-overlays.html[Web-app overlays] +
 link:HTTPS-support.html[HTTPS support] +
 link:Gretty-configuration.html[Gretty configuration] +
 link:Gretty-tasks.html[Gretty tasks] +
-link:Gretty-task-classes.html[Gretty task classes]
-link:Product-generation[Product generation]
+link:Gretty-task-classes.html[Gretty task classes] +
+link:Product-generation.html[Product generation]
 
 === Debugging and testing
 
