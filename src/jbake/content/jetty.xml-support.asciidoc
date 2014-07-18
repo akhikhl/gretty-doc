@@ -22,7 +22,7 @@ gretty {
 }
 ----
 
-If serverConfigFile is not specified, Gretty looks for one of the files: "jetty9.xml" (in case of Jetty 9), "jetty.xml". Jetty version is defined by link:Gretty-configuration.html#_servletcontainer[gretty.servletContainer] property.
+If serverConfigFile is not specified, Gretty looks for one of the files "jetty9.xml" (for Jetty 9), "jetty8.xml" (for Jetty 8), "jetty7.xml" (for Jetty 7), "jetty.xml". Jetty version is defined by link:Gretty-configuration.html#_servletcontainer[gretty.servletContainer] property.
 
 If explicitly defined serverConfigFile represents an absolute path, gretty will use just that.
 
@@ -33,7 +33,9 @@ If implicitly or explicitly defined serverConfigFile represents a relative path,
 * "$project.projectDir/config"
 * recursively in the abovementioned folders of the overlay sources (if any)
 
-When you generate a product, "jetty.xml" file is automatically copied to "conf" subdirectory and referenced in "conf/server.json". The running product automatically applies "jetty.xml" files listed in "conf/server.json".
+When you generate a link:Product-generation.html[product], "jetty.xml" file is automatically copied to "conf" subdirectory and referenced in "conf/server.json". The running product automatically applies "jetty.xml" files listed in "conf/server.json".
+
+When you run a farm or generate product from a farm, serverConfigFile is taken from farm or product configuration, not from gretty configurations. 
 
 Gretty sources contain example program demonstrating support of "jetty.xml" at work:
 

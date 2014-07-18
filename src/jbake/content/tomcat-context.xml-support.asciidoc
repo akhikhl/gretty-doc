@@ -22,7 +22,7 @@ gretty {
 }
 ----
 
-If contextConfigFile is not specified, Gretty looks for one of the files: "tomcat8-context.xml" (in case of Tomcat 8), "tomcat-context.xml", "context.xml" in the directory "$project.webAppDir/META-INF". Tomcat version is defined by link:Gretty-configuration.html#_servletcontainer[gretty.servletContainer] property.
+If contextConfigFile is not specified, Gretty looks for one of the files: "tomcat8-context.xml" (for Tomcat 8), "tomcat7-context.xml" (for Tomcat 7), "tomcat-context.xml", "context.xml" in the directory "$project.webAppDir/META-INF". Tomcat version is defined by link:Gretty-configuration.html#_servletcontainer[gretty.servletContainer] property.
 
 If explicitly defined contextConfigFile represents an absolute path, gretty will use just that.
 
@@ -32,9 +32,9 @@ If explicitly defined contextConfigFile represents a relative path, gretty tries
 * "$project.projectDir/webapp-config"
 * recursively in the abovementioned folders of the overlay sources (if any)
 
-When you generate a product and "tomcat-context.xml" resides within "$project.webAppDir/META-INF", it is packed to the WAR-file. The running product automatically finds and applies "META-INF/tomcat-context.xml" of each included web-app.
+When you generate a link:Product-generation.html[product] and "tomcat-context.xml" resides within "$project.webAppDir/META-INF", it is packed to the WAR-file. The running product automatically finds and applies "META-INF/tomcat-context.xml" of each included web-app.
 
-When you generate a product and "tomcat-context.xml" resides within "webapp-tomcat" or "webapp-config", the file is copied to subdirectory "conf/$projectName" and referenced in "conf/server.json". The running product automatically applies "tomcat-context.xml" files listed in "conf/server.json".
+When you generate a link:Product-generation.html[product] and "tomcat-context.xml" resides within "webapp-tomcat" or "webapp-config", the file is copied to subdirectory "conf/$projectName" and referenced in "conf/server.json". The running product automatically applies "tomcat-context.xml" files listed in "conf/server.json".
 
 Gretty sources contain example programs demonstrating support of "tomcat-context.xml" at work:
 

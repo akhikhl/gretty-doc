@@ -1,0 +1,30 @@
+= Single sign-on
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Since version 1.1.0 Gretty supports single sign-on (SSO) on jetty and tomcat realms.
+
+Single sign-on is enabled when:
+
+- You set farm.singleSignOn property to true.
+- You configure all webapps to use the same realm and realmConfigFile.
+
+== Jetty-specific single sign-on configuration
+
+[source,groovy]
+----
+farm {
+  singleSignOn = true
+  realm = 'myRealm' // required
+  realmConfigFile = 'jetty-realm.properties' // optional
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+}
+----
+
+In this example we configure two web-apps - ProjectA and ProjectB - to use single sign-on to the same realm "myRealm" defined in realm configuration file "jetty-realm.properties".
+
+
