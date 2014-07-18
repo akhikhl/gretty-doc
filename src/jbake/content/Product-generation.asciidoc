@@ -128,6 +128,17 @@ Product "X" gets jetty9 as servlet container and web-apps ProjectA and ProjectC.
 
 Product "Y" gets tomcat8 as servlet container and web-apps ProjectB and ProjectD.
 
+== Products and external configuration files
+
+Gretty recognizes the external configuration files, like "jetty.xml", "jetty-env.xml", "tomcat.xml", "tomcat-context.xml", and automatically packs them into the generated product. When you run the product, it automatically applies all these configuration files to server and webapps.
+
+See more information at:
+
+- link:jetty.xml-support.html[jetty.xml support]
+- link:jetty-env.xml-support.html[jetty-env.xml support]
+- link:tomcat.xml-support.html[tomcat.xml support]
+- link:tomcat-context.xml-support.html[tomcat-context.xml support]
+
 == Product runtime limitations
 
 The following Gretty features are not supported by generated products: 

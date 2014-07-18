@@ -1,0 +1,47 @@
+= tomcat-context.xml support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+"tomcat-context.xml" is an optional Tomcat file that configures individual web-app. 
+
+The purpose and syntax of "tomcat-context.xml" is documented at http://tomcat.apache.org/tomcat-8.0-doc/config/context.html[Tomcat reference].
+
+Gretty recognizes and supports "tomcat-context.xml". As soon as Gretty finds existing "tomcat-context.xml" file, it reads the file and uses it to configure tomcat web-app. Even if "tomcat-context.xml" is not found, Gretty still works.
+
+By convension Gretty looks for the file name "tomcat-context.xml". You can (but you don't have to) change the file name by specifying property "contextConfigFile" in Gretty configuration:
+
+[source,groovy]
+----
+gretty {
+  // ...
+  contextConfigFile = 'someFile.xml'
+  // ...
+}
+----
+
+If contextConfigFile is not specified, Gretty looks for one of the files: "tomcat8-context.xml" (in case of Tomcat 8), "tomcat-context.xml", "context.xml" in the directory "$project.webAppDir/META-INF". Tomcat version is defined by link:Gretty-configuration.html#_servletcontainer[gretty.servletContainer] property.
+
+If explicitly defined contextConfigFile represents an absolute path, gretty will use just that.
+
+If explicitly defined contextConfigFile represents a relative path, gretty tries to resolve it in the following directories:
+
+* "$project.projectDir/webapp-tomcat"
+* "$project.projectDir/webapp-config"
+* recursively in the abovementioned folders of the overlay sources (if any)
+
+When you generate a product and "tomcat-context.xml" resides within "$project.webAppDir/META-INF", it is packed to the WAR-file. The running product automatically finds and applies "META-INF/tomcat-context.xml" of each included web-app.
+
+When you generate a product and "tomcat-context.xml" resides within "webapp-tomcat" or "webapp-config", the file is copied to subdirectory "conf/$projectName" and referenced in "conf/server.json". The running product automatically applies "tomcat-context.xml" files listed in "conf/server.json".
+
+Gretty sources contain example programs demonstrating support of "tomcat-context.xml" at work:
+
+https://github.com/akhikhl/gretty/tree/master/examples/testTomcatContextConfig
+
+See also:
+
+- link:tomcat.xml-support.html[tomcat.xml support]
+- link:Gretty-configuration.html[Gretty configuration]
+

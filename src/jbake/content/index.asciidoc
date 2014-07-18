@@ -48,6 +48,8 @@ link:jetty-env.xml-support.html[jetty-env.xml support]
 === Tomcat-specific
 
 link:Tomcat-security-realms.html[Tomcat security realms] +
+link:tomcat.xml-support.html[tomcat.xml support] +
+link:tomcat-context.xml-support.html[tomcat-context.xml support]
 
 == Multiple web-apps
 

@@ -76,9 +76,10 @@ Gretty supports link:Web-fragments-support.html[Web fragments]: META-INF/web-fra
 == Jetty-specific features
 
 Gretty automatically uses link:jetty.xml-support.html["jetty.xml"] and link:jetty-env.xml-support.html["jetty-env.xml"], if they are present. +
-Also Gretty supports link:Jetty-security-realms.html[Jetty security realms] out-of-the-box.
+Gretty also supports link:Jetty-security-realms.html[Jetty security realms] out-of-the-box.
 
 == Tomcat-specific features
 
-Gretty supports link:Tomcat-security-realms.html[Tomcat security realms] out-of-the-box.
+Gretty automatically uses link:tomcat.xml-support.html["tomcat.xml"] and link:tomcat-context.xml-support.html["tomcat-context.xml"], if they are present. +
+Gretty also supports link:Tomcat-security-realms.html[Tomcat security realms] out-of-the-box.
 

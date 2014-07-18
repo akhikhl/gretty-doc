@@ -1,0 +1,46 @@
+= tomcat.xml support
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+"tomcat.xml" is the configuration file for Tomcat (for server itself, not for web-app).
+
+The purpose and syntax of "tomcat.xml" is documented in http://tomcat.apache.org/tomcat-8.0-doc/config/index.html[Tomcat configuration reference].
+
+Gretty recognizes and supports "tomcat.xml". As soon as Gretty finds existing "tomcat.xml" file, it reads the file and uses it to configure tomcat server. Even if "tomcat.xml" is not found, Gretty still works.
+
+You can (but you don't have to) specify "tomcat.xml" file via property "serverConfigFile" in Gretty configuration:
+
+[source,groovy]
+----
+gretty {
+  // ...
+  serverConfigFile = 'someFile.xml'
+  // ...
+}
+----
+
+If serverConfigFile is not specified, Gretty looks for one of the files: "tomcat8.xml" (in case of Tomcat 8), "tomcat.xml", "tomcat8-server.xml" (in case of Tomcat 8), "server.xml". Tomcat version is defined by link:Gretty-configuration.html#_servletcontainer[gretty.servletContainer] property.
+
+If explicitly defined serverConfigFile represents an absolute path, gretty will use just that.
+
+If implicitly or explicitly defined serverConfigFile represents a relative path, gretty tries to resolve it in the following directories:
+
+* "$project.projectDir/tomcat"
+* "$project.projectDir/server"
+* "$project.projectDir/config"
+* recursively in the abovementioned folders of the overlay sources (if any)
+
+When you generate a product, "tomcat.xml" file is automatically copied to "conf" subdirectory and referenced in "conf/server.json". The running product automatically applies "tomcat.xml" files listed in "conf/server.json".
+
+Gretty sources contain example program demonstrating support of "tomcat.xml" at work:
+
+https://github.com/akhikhl/gretty/tree/master/examples/testTomcatServerConfig
+
+See also:
+
+- link:tomcat-context.xml-support.html[tomcat-context.xml support]
+- link:Gretty-configuration.html[Gretty configuration]
+
