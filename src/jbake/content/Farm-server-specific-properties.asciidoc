@@ -42,6 +42,12 @@ farm {
 | 'jetty9'
 | Servlet container to be used in farmXXX tasks. Possible values are 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'.
 
+| [[_managedclassreload]] managedClassReload
+| boolean
+| true
+| When true, Gretty gradle tasks facilitate your web-app with springloaded library, thus allowing to live-reload compiled classes and avoid restarting servlet container. +
+See also: link:Hot-deployment.html[Hot deployment].
+
 | [[_host]] host
 | String
 | "localhost"
@@ -114,15 +120,11 @@ See also: link:HTTPS-support.html#_https_manual_configuration[HTTPS manual confi
 | null
 | When not null, defines the time, in milliseconds, that the HTTPS connection can be idle before it is closed.
 
-| [[_serviceport]] servicePort
-| int
-| 9900
-| TCP-port used by Gretty to send commands to servlet-container process.
-
-| [[_statusport]] statusPort
-| int
-| 9901
-| TCP-port used by servlet-container process to send status back to Gretty.
+| [[_serverconfigfile]] serverConfigFile
+| String or java.io.File
+| "jetty.xml" or "tomcat.xml"
+| Name and/or location of servlet-container-specific server configuration file. +
+See also: link:jetty.xml-support.html[jetty.xml support] and link:tomcat.xml-support.html[tomcat.xml support].
 
 | [[_jettyxmlfile]] jettyXmlFile
 | String or java.io.File
@@ -130,9 +132,27 @@ See also: link:HTTPS-support.html#_https_manual_configuration[HTTPS manual confi
 | Name and/or location of "jetty.xml" file. +
 See also: link:jetty.xml-support.html[jetty.xml support].
 
+| [[_realm]] realm
+| String
+| null
+| Security realm for the given farm. +
+See also: link:Jetty-security-realms.html[Jetty security realms] and link:Tomcat-security-realms.html[Tomcat security realms].
+
+| [[_realmconfigfile]] realmConfigFile
+| String or java.io.File
+| "jetty-realm.properties" or "tomcat-users.xml"
+| Contains security realm properties for the given farm. +
+See also: link:Jetty-security-realms.html[Jetty security realms] and link:Tomcat-security-realms.html[Tomcat security realms].
+
+| [[_singlesignon]] singleSignOn
+| boolean
+| false
+| true, if single sign-on should be enabled for the given farm. +
+See also: link:single-sign-on.html[Single sign on].
+
 | [[_scaninterval]] scanInterval
 | int
-| 0
+| 1
 | Hot-deployment scan interval, in seconds. +
 See also: link:Hot-deployment.html[Hot deployment].
 
@@ -193,6 +213,16 @@ See also: link:Hot-deployment.html[Hot deployment].
 | -
 | Adds closure to be called whenever hot-deployment detects that files or folders were changed. +
 See also: link:Hot-deployment.html[Hot deployment].
+
+| [[_serviceport]] servicePort
+| int
+| 9900
+| TCP-port used by Gretty to send commands to servlet-container process.
+
+| [[_statusport]] statusPort
+| int
+| 9901
+| TCP-port used by servlet-container process to send status back to Gretty.
 |===
 
 See also: 

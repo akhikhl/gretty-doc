@@ -9,7 +9,7 @@ Since version 1.1.0 Gretty supports single sign-on (SSO) on Jetty and Tomcat rea
 
 Single sign-on is enabled when:
 
-- You set farm.singleSignOn property to true.
+- You set link:Farm-server-specific-properties.html#_singlesignon[farm.singleSignOn] property to true.
 - You configure all webapps to use the same realm and realmConfigFile.
 
 == Jetty-specific single sign-on configuration
@@ -55,5 +55,5 @@ Gretty fully supports single sign-on with link:Product-generation.html[product g
 * https://github.com/akhikhl/gretty/tree/master/examples/farmSecure
 * https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm-secure
 
-All you have to do is to run `gradle buildProduct` and inspect the results in "buildDir/output" subdirectory.
+All you have to do is to run `gradle buildProduct` and try running the generated products in "buildDir/output" subdirectory.
 

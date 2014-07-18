@@ -66,7 +66,7 @@ link:Farms-extension.html[Farms extension] +
 link:Farm-server-specific-properties.html[Farm server-specific properties] +
 link:Farm-web-app-list.html[Farm web-app list] +
 link:Farms-and-web-app-specific-properties.html[Farms and web-app specific properties] +
-link:Duplicate-farm-names.html[Duplicate farm names]
+link:Duplicate-farm-names.html[Duplicate farm names] +
 link:single-sign-on.html[Single sign-on]
 
 === Multiple web-apps tasks

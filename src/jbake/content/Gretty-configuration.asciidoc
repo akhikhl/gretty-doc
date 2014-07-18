@@ -44,6 +44,12 @@ Gretty extension supports the following server-specific properties:
 | 'jetty9'
 | Servlet container to be used in appXXX tasks. Possible values are 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'.
 
+| [[_managedclassreload]] managedClassReload
+| boolean
+| true
+| When true, Gretty gradle tasks facilitate your web-app with springloaded library, thus allowing to live-reload compiled classes and avoid restarting servlet container. +
+See also: link:Hot-deployment.html[Hot deployment].
+
 | [[_host]] host
 | String
 | "localhost"
@@ -62,7 +68,7 @@ Gretty extension supports the following server-specific properties:
 | [[_port]] port
 | int
 | 8080
-| This property is exactly the same as httpPort
+| This property is deprecated, please use httpPort instead
 
 | [[_httpidletimeout]] httpIdleTimeout
 | int
@@ -116,25 +122,20 @@ See also: link:HTTPS-support.html#_https_manual_configuration[HTTPS manual confi
 | null
 | When not null, defines the time, in milliseconds, that the HTTPS connection can be idle before it is closed.
 
-| [[_serviceport]] servicePort
-| int
-| 9900
-| TCP-port used by Gretty to send commands to servlet-container process.
-
-| [[_statusport]] statusPort
-| int
-| 9901
-| TCP-port used by servlet-container process to send status back to Gretty.
+| [[_serverconfigfile]] serverConfigFile
+| String or java.io.File
+| "jetty.xml" or "tomcat.xml"
+| Name and/or location of servlet-container-specific server configuration file. +
+See also: link:jetty.xml-support.html[jetty.xml support] and link:tomcat.xml-support.html[tomcat.xml support].
 
 | [[_jettyxmlfile]] jettyXmlFile
 | String or java.io.File
 | "jetty.xml"
-| Name and/or location of "jetty.xml" file. +
-See also: link:jetty.xml-support.html[jetty.xml support].
+| This property is deprecated, please use serverConfigFile instead.
 
 | [[_scaninterval]] scanInterval
 | int
-| 0
+| 1
 | Hot-deployment scan interval, in seconds. +
 See also: link:Hot-deployment.html[Hot deployment].
 
@@ -195,6 +196,16 @@ See also: link:Hot-deployment.html[Hot deployment].
 | -
 | Adds closure to be called whenever hot-deployment detects that files or folders were changed. +
 See also: link:Hot-deployment.html[Hot deployment].
+
+| [[_serviceport]] servicePort
+| int
+| 9900
+| TCP-port used by Gretty to send commands to servlet-container process.
+
+| [[_statusport]] statusPort
+| int
+| 9901
+| TCP-port used by servlet-container process to send status back to Gretty.
 |===
 
 == Web-app-specific properties
@@ -225,23 +236,28 @@ initParameter affects only gretty tasks.
 If you assemble WAR file and deploy it to some servlet container, you must define init-parameters
 in "web.xml".
 
-| [[_realm]] realm
-| String
-| null
-| Security realm for the given web-app. +
-See also: link:Jetty-security-realms.html[Jetty security Realms] and link:Tomcat-security-realms.html[Tomcat security Realms].
-
-| [[_realmconfigfile]] realmConfigFile
+| [[_contextconfigfile]] contextConfigFile
 | String or java.io.File
-| "jetty-realm.properties" or "tomcat-users.xml"
-| Contains security realm properties. +
-See also: link:Jetty-security-realms.html[Jetty security Realms] and link:Tomcat-security-realms.html[Tomcat security Realms].
+| "jetty-env.xml" or "tomcat-context.xml"
+| Name and/or location of servlet-container-specific context configuration file. +
+See also: link:jetty-env.xml-support.html[jetty-env.xml support] and link:tomcat-context.xml-support.html[tomcat-context.xml support].
 
 | [[_jettyenvxmlfile]] jettyEnvXmlFile
 | String or java.io.File
 | "jetty-env.xml"
-| Name and/or location of "jetty-env.xml" file. +
-See also: link:jetty-env.xml-support.html[jetty-env.xml support].
+| This property is deprecated, please use contextConfigFile instead.
+
+| [[_realm]] realm
+| String
+| null
+| Security realm for the given web-app. +
+See also: link:Jetty-security-realms.html[Jetty security realms] and link:Tomcat-security-realms.html[Tomcat security realms].
+
+| [[_realmconfigfile]] realmConfigFile
+| String or java.io.File
+| "jetty-realm.properties" or "tomcat-users.xml"
+| Contains security realm properties for the given web-app. +
+See also: link:Jetty-security-realms.html[Jetty security realms] and link:Tomcat-security-realms.html[Tomcat security realms].
 
 | [[_scandir]] scanDir
 | function(String) or function(java.io.File)
@@ -254,6 +270,30 @@ See also: link:Hot-deployment.html[Hot deployment].
 | false
 | Adds folders to be fast-reloaded on change, i.e. copied to running web-app without restarting web-app. +
 See also: link:Fast-reload.html[Fast reload].
+
+| [[_recompileonsourcechange]] recompileOnSourceChange
+| boolean
+| true
+| Should the given web-app automatically recompile on source change? +
+See also: link:Hot-deployment.html[Hot deployment].
+
+| [[_reloadonclasschange]] reloadOnClassChange
+| boolean
+| true
+| Should the given web-app automatically reload when it's compiled classes change? +
+See also: link:Hot-deployment.html[Hot deployment].
+
+| [[_reloadonconfigchange]] reloadOnConfigChange
+| boolean
+| true
+| Should the given web-app automatically reload when configuration files (either in WEB-INF or META-INF) change? +
+See also: link:Hot-deployment.html[Hot deployment].
+
+| [[_reloadonlibchange]] reloadOnLibChange
+| boolean
+| true
+| Should the given web-app automatically reload when library files (either in WEB-INF/lib or in maven dependencies) change? +
+See also: link:Hot-deployment.html[Hot deployment].
 
 | [[_overlay]] overlay
 | function(String) or function(Project)
