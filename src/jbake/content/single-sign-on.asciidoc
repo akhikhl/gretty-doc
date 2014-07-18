@@ -5,7 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-Since version 1.1.0 Gretty supports single sign-on (SSO) on jetty and tomcat realms.
+Since version 1.1.0 Gretty supports single sign-on (SSO) on Jetty and Tomcat realms.
 
 Single sign-on is enabled when:
 
@@ -17,6 +17,7 @@ Single sign-on is enabled when:
 [source,groovy]
 ----
 farm {
+  servletContainer = 'jetty9'
   singleSignOn = true
   realm = 'myRealm' // required
   realmConfigFile = 'jetty-realm.properties' // optional
@@ -27,4 +28,32 @@ farm {
 
 In this example we configure two web-apps - ProjectA and ProjectB - to use single sign-on to the same realm "myRealm" defined in realm configuration file "jetty-realm.properties".
 
+Jetty-specific realmConfigFile resolution rules are described in link:Jetty-security-realms.html[Jetty security realms].
+
+== Tomcat-specific single sign-on configuration
+
+[source,groovy]
+----
+farm {
+  servletContainer = 'tomcat8'
+  singleSignOn = true
+  realm = 'myRealm' // required
+  realmConfigFile = 'tomcat-users.xml' // optional
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+}
+----
+
+In this example we configure two web-apps - ProjectA and ProjectB - to use single sign-on to the same realm "myRealm" defined in realm configuration file "tomcat-users.xml".
+
+Tomcat-specific realmConfigFile resolution rules are described in link:Tomcat-security-realms.html[Tomcat security realms].
+
+== Single sign-on and product generation
+
+Gretty fully supports single sign-on with link:Product-generation.html[product generation]. Gretty sources contain the following examples of multiple web-apps with single sign-on:
+
+* https://github.com/akhikhl/gretty/tree/master/examples/farmSecure
+* https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm-secure
+
+All you have to do is to run `gradle buildProduct` and inspect the results in "buildDir/output" subdirectory.
 

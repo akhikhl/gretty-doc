@@ -20,7 +20,6 @@ link:HTTPS-support.html[HTTPS support] +
 link:Gretty-configuration.html[Gretty configuration] +
 link:Gretty-tasks.html[Gretty tasks] +
 link:Gretty-task-classes.html[Gretty task classes] +
-link:Product-generation.html[Product generation]
 
 === Debugging and testing
 
@@ -68,9 +67,14 @@ link:Farm-server-specific-properties.html[Farm server-specific properties] +
 link:Farm-web-app-list.html[Farm web-app list] +
 link:Farms-and-web-app-specific-properties.html[Farms and web-app specific properties] +
 link:Duplicate-farm-names.html[Duplicate farm names]
+link:single-sign-on.html[Single sign-on]
 
 === Multiple web-apps tasks
 
 link:Farm-tasks.html[Farm tasks] +
 link:Farm-task-classes.html[Farm task classes]
+
+=== Product generation
+
+link:Product-generation.html[Product generation]
 
