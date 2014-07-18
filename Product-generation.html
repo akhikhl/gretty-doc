@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Product generation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/user.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Gretty documentation
+          <img id="logo" src="images/logo_small.png"/></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Feature-overview.html">Feature overview</a></li>
+            <li><a href="https://github.com/akhikhl/gretty">Sources</a></li>
+            <li><a href="Troubleshooting.html">Troubleshooting</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="page-header">
+		<h1>Product generation</h1>
+	</div>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since version 1.1.0 Gretty is able to generate runnable products. It works as follows: you invoke "buildProduct" gradle task and Gretty accurately packs one or more web-apps with the specified servlet container (tomcat or jetty), configuration files and, when needed, with spring boot libraries. The generated products are autonomous and self-contained, so they can be deployed to vanilla machines without preinstalled servlet container. The only requirement to the target machine is the presence of JRE 6/7/8.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configureless_product_generation"><a class="anchor" href="#_configureless_product_generation"></a>Configureless product generation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every project using gretty is already able to generate a product in configureless mode. All you have to do is to invoke <code>gradle buildProduct</code> on the command line (or from your favorite IDE, if you like).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_product_structure"><a class="anchor" href="#_product_structure"></a>Product structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The generated product is placed to "build/output/${project.name}" directory and has the following structure:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/product-structure.png" alt="product structure">
+</div>
+</div>
+<div class="paragraph">
+<p>Product root contains shell scripts for starting and stopping the web-server.</p>
+</div>
+<div class="paragraph">
+<p>"conf" directory contains server-specific configuration files.</p>
+</div>
+<div class="paragraph">
+<p>"runner" directory contains runtime libraries for the servlet container.</p>
+</div>
+<div class="paragraph">
+<p>"starter" directory contains runtime libraries for the starter java program that interacts with servlet container.</p>
+</div>
+<div class="paragraph">
+<p>"webapps" directory contains one or more of your web-apps.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_single_web_app_product"><a class="anchor" href="#_configuring_single_web_app_product"></a>Configuring single-web-app product</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Configuring product with a single web-app is very simple: you specify all necessary properties in <a href="Gretty-configuration.html">gretty configuration</a> and product inherits them all. Gretty saves product configuration to the file "conf/server.json", which is automatically used by product starter.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_multiple_web_app_product"><a class="anchor" href="#_configuring_multiple_web_app_product"></a>Configuring multiple-web-app product</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can configure product with multiple web-apps with the help of "product" extension:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>product {
+  webapp project // include this project
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The syntax of product extension is the same as of <a href="Farm-extension.html">farm extension</a>. For example, you can specify server-specific properties the same way as <a href="Farm-server-specific-properties.html">farm server-specific properties</a> and web-app-specific properties the same way as <a href="Farms-and-web-app-specific-properties.html">farm web-app specific properties</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_specifying_multiple_product_configurations"><a class="anchor" href="#_specifying_multiple_product_configurations"></a>Specifying multiple product configurations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As with farms, you can specify more than one product configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>products {
+  product {
+    webapp ':ProjectB'
+    webapp ':ProjectC'
+  }
+  product 'XXX', {
+    webapp ':ProjectB'
+    webapp ':ProjectC'
+    webapp ':ProjectD'
+  }
+  product 'YYY', {
+    webapp ':ProjectC'
+    webapp ':ProjectD'
+    webapp ':ProjectE'
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each product gets it&#8217;s own gradle task:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>buildProduct generates a product from unnamed configuration</p>
+</li>
+<li>
+<p>buildProductXXX generates a product from configuration "XXX"</p>
+</li>
+<li>
+<p>buildProductYYY generates a product from configuration "YYY"</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multiple_product_configurations_and_servlet_containers"><a class="anchor" href="#_multiple_product_configurations_and_servlet_containers"></a>Multiple product configurations and servlet containers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can configure multiple products that run on different servlet containers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>products {
+  product 'jetty', {
+    servletContainer = 'jetty9'
+    // ...
+  }
+  product 'tomcat', {
+    servletContainer = 'tomcat8'
+    // ...
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_property_inheritance_between_farms_and_products"><a class="anchor" href="#_property_inheritance_between_farms_and_products"></a>Property inheritance between farms and products</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty products automatically inherit all properties from the farms having the same name. When some property is present both in farm and product, product&#8217;s property has priority. There&#8217;s one exclusion: webapps list is rather merged than overridden from farm to product.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>farms {
+  farm 'X', {
+    servletContainer = 'jetty8'
+    webapp ':ProjectA'
+  }
+  farm 'Y', {
+    servletContainer = 'tomcat8'
+    webapp ':ProjectB'
+  }
+}
+
+products {
+  product 'X', {
+    servletContainer = 'jetty9'
+    webapp ':ProjectC'
+  }
+  product 'Y', {
+    webapp ':ProjectD'
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Product "X" gets jetty9 as servlet container and web-apps ProjectA and ProjectC.</p>
+</div>
+<div class="paragraph">
+<p>Product "Y" gets tomcat8 as servlet container and web-apps ProjectB and ProjectD.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_products_and_external_configuration_files"><a class="anchor" href="#_products_and_external_configuration_files"></a>Products and external configuration files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gretty recognizes the external configuration files, like "jetty.xml", "jetty-env.xml", "tomcat.xml", "tomcat-context.xml", and automatically packs them into the generated product. When you run the product, it automatically applies all these configuration files to server and webapps.</p>
+</div>
+<div class="paragraph">
+<p>See more information at:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="jetty.xml-support.html">jetty.xml support</a></p>
+</li>
+<li>
+<p><a href="jetty-env.xml-support.html">jetty-env.xml support</a></p>
+</li>
+<li>
+<p><a href="tomcat.xml-support.html">tomcat.xml support</a></p>
+</li>
+<li>
+<p><a href="tomcat-context.xml-support.html">tomcat-context.xml support</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_product_runtime_limitations"><a class="anchor" href="#_product_runtime_limitations"></a>Product runtime limitations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following Gretty features are not supported by generated products:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>hot reload</p>
+</li>
+<li>
+<p>fast reload</p>
+</li>
+<li>
+<p>springloaded integration</p>
+</li>
+<li>
+<p>jacoco integration</p>
+</li>
+</ul>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2014 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

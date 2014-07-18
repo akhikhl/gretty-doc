@@ -65,12 +65,12 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gretty configuration supports two properties related to Jetty security realms - <code>realm</code> and <code>realmConfigFile</code>. When both properties are defined, Gretty applies the specified security realm to a web-app.</p>
+<p>Gretty configuration supports two properties related to Jetty security realms - "realm" and "realmConfigFile".</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h2>
+<h2 id="_jetty_security_realms_for_a_single_web_app"><a class="anchor" href="#_jetty_security_realms_for_a_single_web_app"></a>Jetty security realms for a single web-app</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -83,23 +83,173 @@
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Here "realm" property defines security realm for the given web-app. When specified, it must match /web-app/login-config/realm-name element in "web.xml".</p>
+</div>
+<div class="paragraph">
+<p>"realmConfigFile" property defines relative or absolute path to the properties file, containing properties for HashLoginService.</p>
+</div>
+<div class="paragraph">
+<p>The syntax of the properties file is described in <a href="http://wiki.eclipse.org/Jetty/Tutorial/Realms">Jetty tutorial</a></p>
+</div>
+<div class="paragraph">
+<p>If "realmConfigFile" is not specified, Gretty looks for files "jetty9-realm.properties" (for Jetty 9), "jetty8-realm.properties" (for Jetty 8), "jetty7-realm.properties" (for Jetty 7), "jetty-realm.properties". Jetty version is defined by <a href="Gretty-configuration.html#_servletcontainer">gretty.servletContainer</a> property.</p>
+</div>
+<div class="paragraph">
+<p>If explicitly defined realmConfigFile represents an absolute path, gretty will use just that.</p>
+</div>
+<div class="paragraph">
+<p>If implicitly or explicitly defined realmConfigFile represents a relative path, gretty tries to resolve it in the following directories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"$project.projectDir/realm"</p>
+</li>
+<li>
+<p>"$project.projectDir/security"</p>
+</li>
+<li>
+<p>"$project.projectDir/server"</p>
+</li>
+<li>
+<p>"$project.projectDir/config"</p>
+</li>
+<li>
+<p>"$project.projectDir"</p>
+</li>
+<li>
+<p>recursively in the abovementioned folders of the overlay sources (if any)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you generate a <a href="Product-generation.html">product</a>, realm configuration file is copied to "conf" subdirectory and referenced in "conf/server.json". Running product uses realm and realmConfigFile, so that your web-app stays secure.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_effects"><a class="anchor" href="#_effects"></a>Effects</h2>
+<h2 id="_jetty_security_realms_for_multiple_web_apps"><a class="anchor" href="#_jetty_security_realms_for_multiple_web_apps"></a>Jetty security realms for multiple web-apps</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_same_realm_configuration_for_multiple_web_apps"><a class="anchor" href="#_same_realm_configuration_for_multiple_web_apps"></a>Same realm configuration for multiple web-apps</h3>
 <div class="paragraph">
-<p><code>realm</code> property defines security realm for the given web-app.
-When specified, it must match /web-app/login-config/realm-name element
-in "web.xml".</p>
+<p>You can define same realm configuration for all web-apps of the given farm:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>farm {
+  // ...
+  servletContainer = 'jetty9'
+  realm 'auth'
+  realmConfigFile 'jetty-realm.properties'
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+  // ...
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p><code>realmConfigFile</code> property defines relative (to webAppDir/WEB-INF folder)
-path to the properties file, containing properties for HashLoginService.</p>
+<p>In the example above two web-apps - ProjectA and projectB - are using the same realm configuration.</p>
 </div>
 <div class="paragraph">
-<p><code>realm</code> and <code>realmConfigFile</code> affect only Gretty tasks. If you assemble WAR file and deploy it to some servlet container, you must define security realms by means of that
-container.</p>
+<p>The same rules apply to resolution and product-packaging of realmConfigFile specified in farm, as in gretty configuration.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_individual_realm_configurations_for_multiple_web_apps"><a class="anchor" href="#_individual_realm_configurations_for_multiple_web_apps"></a>Individual realm configurations for multiple web-apps</h3>
+<div class="paragraph">
+<p>If web-app has it&#8217;s own realm configuration, it is used instread of farm-wide realm configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>// in ProjectA:
+gretty {
+  realm 'auth1'
+  realmConfigFile 'jetty-realm1.properties'
+}
+
+// in farm project:
+farm {
+  // ...
+  servletContainer = 'jetty9'
+  realm 'auth'
+  realmConfigFile 'jetty-realm.properties'
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+  // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above ProjectA uses realm configuration "auth1"/"jetty-realm1.properties", while ProjectB uses realm configuration "auth"/"jetty-realm.properties".</p>
+</div>
+<div class="paragraph">
+<p>When you run a farm or when you generate product from a farm, the rules for resolution and product-packaging of web-app-specific realm configurations are the following:</p>
+</div>
+<div class="paragraph">
+<p>If "realmConfigFile" is not specified, Gretty looks for one of the files "jetty9-realm.properties" (for Jetty 9), "jetty8-realm.properties" (for Jetty 8), "jetty7-realm.properties" (for Jetty 7), "jetty-realm.properties". Jetty version is defined by <a href="Gretty-configuration.html#_servletcontainer">gretty.servletContainer</a> property.</p>
+</div>
+<div class="paragraph">
+<p>If explicitly defined realmConfigFile represents an absolute path, gretty will use just that.</p>
+</div>
+<div class="paragraph">
+<p>If implicitly or explicitly defined realmConfigFile represents a relative path, gretty tries to resolve it in the following directories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"$project.projectDir/webapp-realm"</p>
+</li>
+<li>
+<p>"$project.projectDir/webapp-security"</p>
+</li>
+<li>
+<p>"$project.projectDir/webapp-config"</p>
+</li>
+<li>
+<p>recursively in the abovementioned folders of the overlay sources (if any)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you generate a <a href="Product-generation.html">product</a>, realm configuration files linked to web-apps are copied to "conf/$project.name" subdirectories and referenced in "conf/server.json". Running product uses realm and realmConfigFile properties for all designated web-apps, so they stay secure.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_overriding_individual_realm_configurations_for_multiple_web_apps"><a class="anchor" href="#_overriding_individual_realm_configurations_for_multiple_web_apps"></a>Overriding individual realm configurations for multiple web-apps</h3>
+<div class="paragraph">
+<p>Farm can override individual realm configurations for web-apps:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>// in ProjectA:
+gretty {
+  realm 'auth1'
+  realmConfigFile 'jetty-realm1.properties'
+}
+
+// in ProjectB:
+gretty {
+  realm 'auth2'
+  realmConfigFile 'jetty-realm2.properties'
+}
+
+// in farm project:
+farm {
+  // ...
+  servletContainer = 'jetty9'
+  realm 'auth'
+  realmConfigFile 'jetty-realm.properties'
+  webapp ':ProjectA', realm: 'auth3', realmConfigFile: 'jetty-realm3.properties'
+  webapp ':ProjectB'
+  webapp ':ProjectC'
+  // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above ProjectA uses realm configuration "auth3"/"jetty-realm3.properties", while ProjectB uses realm configuration "auth2"/"jetty-realm2.properties" and ProjectC uses realm configuration "auth"/"jetty-realm.properties".</p>
 </div>
 <div class="paragraph">
 <p>Gretty contains example programs, demonstrating use of Jetty security realms:</p>
@@ -107,18 +257,16 @@ container.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/securityRealm7">securityRealm7</a></p>
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/secureGretty">https://github.com/akhikhl/gretty/tree/master/examples/secureGretty</a></p>
 </li>
 <li>
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/securityRealm8">securityRealm8</a></p>
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/farmSecure">https://github.com/akhikhl/gretty/tree/master/examples/farmSecure</a></p>
 </li>
 <li>
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/securityRealm9">securityRealm9</a></p>
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm-secure">https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm-secure</a></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>See more information on Jetty security realms at: <a href="http://wiki.eclipse.org/Jetty/Tutorial/Realms">http://wiki.eclipse.org/Jetty/Tutorial/Realms</a>.</p>
 </div>
 </div>
 </div></p>

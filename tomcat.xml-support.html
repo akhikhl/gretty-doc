@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>jetty.xml support</title>
+    <title>tomcat.xml support</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -59,22 +59,22 @@
     <div class="container">
 	
 	<div class="page-header">
-		<h1>jetty.xml support</h1>
+		<h1>tomcat.xml support</h1>
 	</div>
 
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>"jetty.xml" is the configuration file for Jetty (for server itself, not for web-app).</p>
+<p>"tomcat.xml" is the configuration file for Tomcat (for server itself, not for web-app).</p>
 </div>
 <div class="paragraph">
-<p>The purpose and syntax of "jetty.xml" is documented in <a href="http://wiki.eclipse.org/Jetty/Reference/jetty.xml">Jetty reference</a>.</p>
+<p>The purpose and syntax of "tomcat.xml" is documented in <a href="http://tomcat.apache.org/tomcat-8.0-doc/config/index.html">Tomcat configuration reference</a>.</p>
 </div>
 <div class="paragraph">
-<p>Gretty recognizes and supports "jetty.xml". As soon as Gretty finds existing "jetty.xml" file, it reads the file and uses it to configure jetty server. Even if "jetty.xml" is not found, Gretty still works.</p>
+<p>Gretty recognizes and supports "tomcat.xml". As soon as Gretty finds existing "tomcat.xml" file, it reads the file and uses it to configure tomcat server. Even if "tomcat.xml" is not found, Gretty still works.</p>
 </div>
 <div class="paragraph">
-<p>You can (but you don&#8217;t have to) specify "jetty.xml" file via property "serverConfigFile" in Gretty configuration:</p>
+<p>You can (but you don&#8217;t have to) specify "tomcat.xml" file via property "serverConfigFile" in Gretty configuration:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -86,7 +86,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>If serverConfigFile is not specified, Gretty looks for one of the files "jetty9.xml" (for Jetty 9), "jetty8.xml" (for Jetty 8), "jetty7.xml" (for Jetty 7), "jetty.xml". Jetty version is defined by <a href="Gretty-configuration.html#_servletcontainer">gretty.servletContainer</a> property.</p>
+<p>If serverConfigFile is not specified, Gretty looks for one of the files: "tomcat8.xml" (for Tomcat 8), "tomcat7.xml" (for Tomcat 7), "tomcat.xml", "tomcat8-server.xml" (for Tomcat 8), "tomcat7-server.xml" (for Tomcat 7), "server.xml". Tomcat version is defined by <a href="Gretty-configuration.html#_servletcontainer">gretty.servletContainer</a> property.</p>
 </div>
 <div class="paragraph">
 <p>If explicitly defined serverConfigFile represents an absolute path, gretty will use just that.</p>
@@ -97,7 +97,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>"$project.projectDir/jetty"</p>
+<p>"$project.projectDir/tomcat"</p>
 </li>
 <li>
 <p>"$project.projectDir/server"</p>
@@ -111,16 +111,16 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>When you generate a <a href="Product-generation.html">product</a>, "jetty.xml" file is automatically copied to "conf" subdirectory and referenced in "conf/server.json". The running product automatically applies "jetty.xml" files listed in "conf/server.json".</p>
+<p>When you generate a <a href="Product-generation.html">product</a>, "tomcat.xml" file is automatically copied to "conf" subdirectory and referenced in "conf/server.json". The running product automatically applies "tomcat.xml" files listed in "conf/server.json".</p>
 </div>
 <div class="paragraph">
 <p>When you run a farm or generate product from a farm, serverConfigFile is taken from farm or product configuration, not from gretty configurations.</p>
 </div>
 <div class="paragraph">
-<p>Gretty sources contain example program demonstrating support of "jetty.xml" at work:</p>
+<p>Gretty sources contain example program demonstrating support of "tomcat.xml" at work:</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/testJettyServerConfig">https://github.com/akhikhl/gretty/tree/master/examples/testJettyServerConfig</a></p>
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/testTomcatServerConfig">https://github.com/akhikhl/gretty/tree/master/examples/testTomcatServerConfig</a></p>
 </div>
 <div class="paragraph">
 <p>See also:</p>
@@ -128,7 +128,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="jetty-env.xml-support.html">jetty-env.xml support</a></p>
+<p><a href="tomcat-context.xml-support.html">tomcat-context.xml support</a></p>
 </li>
 <li>
 <p><a href="Gretty-configuration.html">Gretty configuration</a></p>

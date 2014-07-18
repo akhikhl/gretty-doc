@@ -106,9 +106,16 @@ and apply all Gretty features to them: integration tests, debugging, Jacoco code
 <h2 id="_multiple_web_apps_support"><a class="anchor" href="#_multiple_web_apps_support"></a>Multiple web-apps support</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Since version 0.0.18 Gretty supports <a href="Multiple-web-apps-introduction.html">multiple web-apps feature</a>: it can start arbitrary number of web-apps on the same servlet container. Gretty supports web-apps of various types: <a href="Farm-web-app-list.html#_project_web_app_references">gradle projects</a>, <a href="Farm-web-app-list.html#_file_based_web_app_references">WAR-files in the file system</a> and even <a href="Farm-web-app-list.html#_repository_based_web_app_references">WAR-files from maven dependencies</a>.<br>
-Multiple web-apps feature works out-of-the-box in <a href="Multiple-web-apps-configureless-setup.html">configureless mode</a>, although it is fully <a href="index.html#_multiple_web_apps_configuration">configurable/customizable</a>.<br>
-Multiple web-apps feature also works nicely with integration tests and with the debugger.</p>
+<p>Since version 0.0.18 Gretty supports <a href="Multiple-web-apps-introduction.html">multiple web-apps feature</a>: it can start arbitrary number of web-apps on the same servlet container. Gretty supports web-apps of various types: <a href="Farm-web-app-list.html#_project_web_app_references">gradle projects</a>, <a href="Farm-web-app-list.html#_file_based_web_app_references">WAR-files in the file system</a> and even <a href="Farm-web-app-list.html#_repository_based_web_app_references">WAR-files from maven dependencies</a>.</p>
+</div>
+<div class="paragraph">
+<p>Multiple web-apps feature works out-of-the-box in <a href="Multiple-web-apps-configureless-setup.html">configureless mode</a>, although it is fully <a href="index.html#_multiple_web_apps_configuration">configurable/customizable</a>.</p>
+</div>
+<div class="paragraph">
+<p>Multiple web-apps feature also works nicely with integration tests and with the debugger.</p>
+</div>
+<div class="paragraph">
+<p>Since version 1.1.0 Gretty supports <a href="single-sign-on.html">single sign-on</a> on Jetty and Tomcat realms.</p>
 </div>
 </div>
 </div>
@@ -117,6 +124,14 @@ Multiple web-apps feature also works nicely with integration tests and with the 
 <div class="sectionbody">
 <div class="paragraph">
 <p>Gretty supports <a href="Switching-between-servlet-containers.html">easy switch</a> between Jetty 7, 8 and 9 and Tomcat 7 and 8.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_product_generation"><a class="anchor" href="#_product_generation"></a>Product generation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since version 1.1.0 Gretty is able to generate runnable products. It works as follows: you invoke "buildProduct" gradle task and Gretty accurately packs one or more web-apps with the specified servlet container (tomcat or jetty), configuration files and, when needed, with spring boot libraries. The generated products are autonomous and self-contained, so they can be deployed to vanilla machines without preinstalled servlet container. The only requirement to the target machine is the presence of JRE 6/7/8.</p>
 </div>
 </div>
 </div>
@@ -183,7 +198,7 @@ Gretty supports <a href="Web-fragments-support.html">Web fragments</a>: META-INF
 <div class="sectionbody">
 <div class="paragraph">
 <p>Gretty automatically uses <a href="jetty.xml-support.html">"jetty.xml"</a> and <a href="jetty-env.xml-support.html">"jetty-env.xml"</a>, if they are present.<br>
-Also Gretty supports <a href="Jetty-security-realms.html">Jetty security realms</a> out-of-the-box.</p>
+Gretty also supports <a href="Jetty-security-realms.html">Jetty security realms</a> out-of-the-box.</p>
 </div>
 </div>
 </div>
@@ -191,7 +206,8 @@ Also Gretty supports <a href="Jetty-security-realms.html">Jetty security realms<
 <h2 id="_tomcat_specific_features"><a class="anchor" href="#_tomcat_specific_features"></a>Tomcat-specific features</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gretty supports <a href="Tomcat-security-realms.html">Tomcat security realms</a> out-of-the-box.</p>
+<p>Gretty automatically uses <a href="tomcat.xml-support.html">"tomcat.xml"</a> and <a href="tomcat-context.xml-support.html">"tomcat-context.xml"</a>, if they are present.<br>
+Gretty also supports <a href="Tomcat-security-realms.html">Tomcat security realms</a> out-of-the-box.</p>
 </div>
 </div>
 </div></p>

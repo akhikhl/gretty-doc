@@ -123,6 +123,13 @@ farm {
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servlet container to be used in farmXXX tasks. Possible values are <em>jetty7</em>, <em>jetty8</em>, <em>jetty9</em>, <em>tomcat7</em>, <em>tomcat8</em>.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_managedclassreload"></a> managedClassReload</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When true, Gretty gradle tasks facilitate your web-app with springloaded library, thus allowing to live-reload compiled classes and avoid restarting servlet container.<br>
+See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_host"></a> host</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"localhost"</p></td>
@@ -208,16 +215,11 @@ See also: <a href="HTTPS-support.html#_https_manual_configuration">HTTPS manual 
 <td class="tableblock halign-left valign-top"><p class="tableblock">When not null, defines the time, in milliseconds, that the HTTPS connection can be idle before it is closed.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_serviceport"></a> servicePort</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">9900</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Gretty to send commands to servlet-container process.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_statusport"></a> statusPort</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">9901</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by servlet-container process to send status back to Gretty.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_serverconfigfile"></a> serverConfigFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String or java.io.File</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"jetty.xml" or "tomcat.xml"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name and/or location of servlet-container-specific server configuration file.<br>
+See also: <a href="jetty.xml-support.html">jetty.xml support</a> and <a href="tomcat.xml-support.html">tomcat.xml support</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_jettyxmlfile"></a> jettyXmlFile</p></td>
@@ -227,9 +229,30 @@ See also: <a href="HTTPS-support.html#_https_manual_configuration">HTTPS manual 
 See also: <a href="jetty.xml-support.html">jetty.xml support</a>.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_realm"></a> realm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security realm for the given farm.<br>
+See also: <a href="Jetty-security-realms.html">Jetty security realms</a> and <a href="Tomcat-security-realms.html">Tomcat security realms</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_realmconfigfile"></a> realmConfigFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String or java.io.File</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"jetty-realm.properties" or "tomcat-users.xml"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contains security realm properties for the given farm.<br>
+See also: <a href="Jetty-security-realms.html">Jetty security realms</a> and <a href="Tomcat-security-realms.html">Tomcat security realms</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_singlesignon"></a> singleSignOn</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true, if single sign-on should be enabled for the given farm.<br>
+See also: <a href="single-sign-on.html">Single sign on</a>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_scaninterval"></a> scanInterval</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Hot-deployment scan interval, in seconds.<br>
 See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
 </tr>
@@ -300,6 +323,18 @@ See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds closure to be called whenever hot-deployment detects that files or folders were changed.<br>
 See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_serviceport"></a> servicePort</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9900</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by Gretty to send commands to servlet-container process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_statusport"></a> statusPort</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9901</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by servlet-container process to send status back to Gretty.</p></td>
 </tr>
 </tbody>
 </table>

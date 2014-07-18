@@ -65,73 +65,70 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>"jetty-env.xml" is an optional Jetty file that configures individual web-app.
-The format of jetty-web.xml is the same as jetty.xml - it is an XML mapping of the Jetty API.</p>
+<p>"jetty-env.xml" is an optional Jetty file that configures individual web-app. The format of jetty-web.xml is the same as jetty.xml - it is an XML mapping of the Jetty API.</p>
 </div>
 <div class="paragraph">
-<p>The purpose and syntax of "jetty-env.xml" is documented at
-<a href="http://wiki.eclipse.org/Jetty/Reference/jetty-env.xml">Jetty reference</a>.</p>
+<p>The purpose and syntax of "jetty-env.xml" is documented at <a href="http://wiki.eclipse.org/Jetty/Reference/jetty-env.xml">Jetty reference</a>.</p>
 </div>
 <div class="paragraph">
-<p>Gretty recognizes and supports "jetty-env.xml". As soon as Gretty finds
-existing "jetty-env.xml" file, it reads the file and uses it to
-configure jetty web-app. Even if "jetty-env.xml" is not found, Gretty
-still works.</p>
+<p>Gretty recognizes and supports "jetty-env.xml". As soon as Gretty finds existing "jetty-env.xml" file, it reads the file and uses it to configure jetty web-app. Even if "jetty-env.xml" is not found, Gretty still works.</p>
 </div>
 <div class="paragraph">
-<p>By convension Gretty looks for the file name "jetty-env.xml". You can
-(but you don&#8217;t have to) change the file name by specifying property
-<code>jettyEnvXmlFile</code> in Gretty configuration:</p>
+<p>You can (but you don&#8217;t have to) specify "jetty-env.xml" via property "contextConfigFile" in Gretty configuration:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint groovy language-groovy"><code>gretty {
   // ...
-  jettyEnvXmlFile = 'someFile.xml'
+  contextConfigFile = 'someFile.xml'
   // ...
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If explicitly defined jettyEnvXmlFile represents an absolute path, gretty will try to use just that.</p>
+<p>If contextConfigFile is not specified, Gretty looks for one of the files: "jetty9-env.xml" (for Jetty 9), "jetty8-env.xml" (for Jetty 8), "jetty7-env.xml" (for Jetty 7), "jetty-env.xml" in the directory "$project.webAppDir/META-INF". Jetty version is defined by <a href="Gretty-configuration.html#_servletcontainer">gretty.servletContainer</a> property.</p>
 </div>
 <div class="paragraph">
-<p>If implicitly or explicitly defined jettyEnvXmlFile represents a
-relative path, gretty tries to find corresponding existing file in the
-following directories:</p>
+<p>If explicitly defined contextConfigFile represents an absolute path, gretty will use just that.</p>
+</div>
+<div class="paragraph">
+<p>If explicitly defined contextConfigFile represents a relative path, gretty tries to resolve it in the following directories:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>"$project.projectDir"</code></p>
+<p>"$project.projectDir/webapp-jetty"</p>
 </li>
 <li>
-<p><code>"$project.webAppDir/WEB-INF"</code></p>
+<p>"$project.projectDir/webapp-config"</p>
 </li>
 <li>
-<p><code>"$project.buildDir/classes"</code></p>
-</li>
-<li>
-<p><code>"$project.buildDir/resources"</code></p>
-</li>
-<li>
-<p>recursively in all abovementioned folders of the overlay sources (if any)</p>
+<p>recursively in the abovementioned folders of the overlay sources (if any)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
+<p>When you generate a <a href="Product-generation.html">product</a> and "jetty-env.xml" resides within "$project.webAppDir/META-INF", it is packed to the WAR-file. The running product automatically finds and applies "META-INF/jetty-env.xml" of each included web-app.</p>
+</div>
+<div class="paragraph">
+<p>When you generate a <a href="Product-generation.html">product</a> and "jetty-env.xml" resides within "webapp-jetty" or "webapp-config", the file is copied to subdirectory "conf/$projectName" and referenced in "conf/server.json". The running product automatically applies "jetty-env.xml" files listed in "conf/server.json".</p>
+</div>
+<div class="paragraph">
 <p>Gretty sources contain example programs demonstrating support of "jetty-env.xml" at work:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/testJettyContextConfig">https://github.com/akhikhl/gretty/tree/master/examples/testJettyContextConfig</a></p>
+</div>
+<div class="paragraph">
+<p>See also:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/testJettyEnvXml7">testJettyEnvXml7</a></p>
+<p><a href="jetty.xml-support.html">jetty.xml support</a></p>
 </li>
 <li>
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/testJettyEnvXml8">testJettyEnvXml8</a></p>
-</li>
-<li>
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/testJettyEnvXml9">testJettyEnvXml9</a></p>
+<p><a href="Gretty-configuration.html">Gretty configuration</a></p>
 </li>
 </ul>
 </div>

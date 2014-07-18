@@ -65,8 +65,7 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>There are cases, when restart of the web-app on every resource change
-is not optimal (too slow). Specifically for such cases Gretty implements "fast reload" feature.</p>
+<p>There are cases, when restart of the web-app on every resource change is not optimal (too slow). Specifically for such cases Gretty implements "fast reload" feature.</p>
 </div>
 <div class="paragraph">
 <p>You can configure fastReload feature by adjusting the <a href="Gretty-configuration.html">gretty configuration</a> properties:</p>
@@ -78,71 +77,64 @@ is not optimal (too slow). Specifically for such cases Gretty implements "fast r
 <div class="ulist">
 <ul>
 <li>
-<p>When set to false, fast reload feature is disabled (the default). Effect: any resource changes will cause full restart of web-app (as far as scanInterval is specified, see <a href="Hot-deployment.html">Hot deployment</a>).</p>
+<p>When set to false, fast reload feature is disabled. Effect: any resource changes will cause full restart of web-app (as far as scanInterval is set to non-zero, see <a href="Hot-deployment.html">Hot deployment</a>).</p>
 </li>
 <li>
-<p>When set to true, webAppDir folder (which is typically src/main/webapp) is set as being fast-reloaded.
-That means: whenever some files within webAppDir are changed, these files are copied into running web-app
-without web-app restart.</p>
+<p>When set to true (the default), webAppDir folder (which is typically src/main/webapp) is set as being fast-reloaded.
+That means: whenever some files within webAppDir are changed, these files are copied into running web-app without web-app restart.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> function(String) or function(java.io.File).
-The specified directory or file is added to fast-reloaded resources.</p>
+<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> function(String) or function(java.io.File). The specified directory or file is added to fast-reloaded resources.</p>
 </li>
 <li>
-<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> - function(Map).
-Map may contain the following properties:</p>
+<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> function(Map). Map may contain the following properties:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>baseDir</code> is required and should have type String or java.io.File. If
-baseDir represents a relative path, gretty tries to find corresponding
-existing folder in the following directories:</p>
+<p>"baseDir" is required and should have type String or java.io.File. If baseDir represents a relative path, gretty tries to find corresponding existing folder in the following directories:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>"$project.projectDir"</code></p>
+<p>"$project.projectDir"</p>
 </li>
 <li>
-<p><code>"$project.webAppDir"</code></p>
+<p>"$project.webAppDir"</p>
 </li>
 <li>
-<p><code>"$project.buildDir/classes/main"</code></p>
+<p>"$project.buildDir/classes/main"</p>
 </li>
 <li>
-<p><code>"$project.buildDir/resources/main"</code>
+<p>"$project.buildDir/resources/main"
 each resolved subfolder within these folders is added to fast reload.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>pattern</code> is optional and should have type String or java.util.regex.Pattern.</p>
+<p>"pattern" is optional and should have type String or java.util.regex.Pattern.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>If <code>pattern</code> is not specified, then all files within baseDir are fast-reloaded.</p>
+<p>If "pattern" is not specified, then all files within baseDir are fast-reloaded.</p>
 </li>
 <li>
-<p>If <code>pattern</code> is specified, then only the files, whose relative (to baseDir)
-paths satisfy <code>pattern</code>, are fast-reloaded, other files are full-reloaded.</p>
+<p>If "pattern" is specified, then only the files, whose relative (to baseDir) path satisfies "pattern", are fast-reloaded, other files are full-reloaded.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>excludesPattern</code> is optional and should have type String or java.util.regex.Pattern.</p>
+<p>"excludesPattern" is optional and should have type String or java.util.regex.Pattern.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>If <code>excludesPattern</code> is not specified, then <code>pattern</code> fully defines which files are fast-reloaded.</p>
+<p>If "excludesPattern" is not specified, then "pattern" fully defines which files are fast-reloaded.</p>
 </li>
 <li>
-<p>If <code>excludesPattern</code> is specified, then those files whose relative (to baseDir)
-paths satisfy <code>excludesPattern</code>, are not fast-reloaded. <code>excludesPattern</code> is always applied after <code>pattern</code>.</p>
+<p>If "excludesPattern" is specified, then those files whose relative (to baseDir) path satisfies "excludesPattern", are not fast-reloaded. "excludesPattern" is always applied after "pattern".</p>
 </li>
 </ul>
 </div>
@@ -158,17 +150,18 @@ paths satisfy <code>excludesPattern</code>, are not fast-reloaded. <code>exclude
 <div class="ulist">
 <ul>
 <li>
-<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> property is set to false.</p>
+<p><a href="Gretty-configuration.html#_fastreload">fastReload</a> property is set to true.</p>
 </li>
 <li>
-<p>Fast reload always excludes the following files:
-<code>'*.jar', '*.class', 'web.xml', 'web-fragment.xml', 'jetty.xml', 'jetty-env.xml', 'tomcat-users.xml', 'WEB-INF/lib/**', 'WEB-INF/classes/**'</code>
-That means: when these files are changed, web-app is fully restarted.</p>
+<p>Fast reload always excludes the following files: <code>*.jar, *.class, web.xml, web-fragment.xml, jetty.xml, jetty-env.xml, tomcat-users.xml, WEB-INF/lib/**, WEB-INF/classes/**</code>. That means: when these files are changed, web-app is fully restarted.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>You can add more than one fastReload specification. In such case all specified folders are fast-reloaded.</p>
+<p>You can add more than one fastReload specification. In such case all specified directories are fast-reloaded.</p>
+</div>
+<div class="paragraph">
+<p>INFO: Gretty supports fast reload only on non-test gradle tasks. Any test tasks (including integration test tasks) run without fast reload. The generated <a href="Product-generation.html">products</a> also run without fast reload.</p>
 </div>
 </div>
 </div></p>
