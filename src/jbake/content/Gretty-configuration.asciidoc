@@ -46,7 +46,7 @@ Gretty extension supports the following server-specific properties:
 
 | [[_managedclassreload]] managedClassReload
 | boolean
-| true
+| false
 | When true, Gretty gradle tasks facilitate your web-app with springloaded library, thus allowing to live-reload compiled classes and avoid restarting servlet container. +
 See also: link:Hot-deployment.html[Hot deployment].
 
