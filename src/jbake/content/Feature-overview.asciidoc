@@ -53,6 +53,10 @@ There is _cool extension to hot-deployment feature_ in Gretty since version 0.0.
 
 You can specify that certain folders or files should be link:Fast-reload.html[fast-reloaded]: that is, when they change, they should not cause web-app restart. Instead, the changed files or folders are simply copied into running web-app.
 
+== Web-app filtering
+
+Since version 1.1.2 Gretty can link:Web-app-filtering.html[filter files in "src/main/webapp"] the same way as processResources can filter files in "src/main/resources". Gretty sources contain https://github.com/akhikhl/gretty/tree/master/examples/filterWebapp[example program] showing the needed configuration.
+
 == Web-app overlays
 
 Gretty can generate link:Web-app-overlays.html[WAR overlays] automatically, each time you build your project.

@@ -15,6 +15,7 @@ link:Troubleshooting.html[Troubleshooting]
 link:Switching-between-servlet-containers.html[Switching between servlet containers] +
 link:Hot-deployment.html[Hot deployment] +
 link:Fast-reload.html[Fast reload] +
+link:Web-app-filtering.html[Web-app filtering] +
 link:Web-app-overlays.html[Web-app overlays] +
 link:HTTPS-support.html[HTTPS support] +
 link:Gretty-configuration.html[Gretty configuration] +
