@@ -55,7 +55,11 @@ You can specify that certain folders or files should be link:Fast-reload.html[fa
 
 == Web-app filtering
 
-Since version 1.1.2 Gretty can link:Web-app-filtering.html[filter files in "src/main/webapp"] the same way as processResources can filter files in "src/main/resources". Gretty sources contain https://github.com/akhikhl/gretty/tree/master/examples/filterWebapp[example program] showing the needed configuration.
+Since version 1.1.2-SNAPSHOT Gretty can link:Web-app-filtering.html[filter files in "src/main/webapp"] the same way as processResources can filter files in "src/main/resources". Gretty sources contain https://github.com/akhikhl/gretty/tree/master/examples/filterWebapp[example program] demonstrating web-app filtering at work.
+
+== Web-app extra resource bases
+
+Since version 1.1.2-SNAPSHOT Gretty supports link:Web-app-extra-resource-bases.html[web-app extra resource bases]. It means: additionally to "src/main/webapp" you can specify arbitrary directories that should be served as content of the given web-app. Gretty sources contain https://github.com/akhikhl/gretty/tree/master/examples/extraResourceBases[example program] demonstrating web-app extra resource bases at work.
 
 == Web-app overlays
 
