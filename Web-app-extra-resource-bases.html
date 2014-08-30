@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Web-app filtering</title>
+    <title>Web-app extra resource bases</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -59,13 +59,13 @@
     <div class="container">
 	
 	<div class="page-header">
-		<h1>Web-app filtering</h1>
+		<h1>Web-app extra resource bases</h1>
 	</div>
 
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Since version 1.1.2-SNAPSHOT Gretty can filter files in "src/main/webapp" the same way as processResources can filter files in "src/main/resources".</p>
+<p>Since version 1.1.2-SNAPSHOT Gretty supports web-app extra resource bases. It means: additionally to "src/main/webapp" you can specify arbitrary directories that should be served as content of the given web-app.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -74,7 +74,7 @@
 <div class="title">Important</div>
 </td>
 <td class="content">
-Web-app filtering feature is in incubation phase and currently is only available in Gretty 1.1.2-SNAPSHOT. See <a href="https://github.com/akhikhl/gretty#star-whats-new">Gretty What&#8217;s New</a> section to learn how to configure Gradle script for using snapshot versions of Gretty.
+Web-app extra resource bases feature is in incubation phase and currently is only available in Gretty 1.1.2-SNAPSHOT. See <a href="https://github.com/akhikhl/gretty#star-whats-new">Gretty What&#8217;s New</a> section to learn how to configure Gradle script for using snapshot versions of Gretty.
 </td>
 </tr>
 </table>
@@ -87,14 +87,20 @@ Web-app filtering feature is in incubation phase and currently is only available
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint groovy language-groovy"><code>gretty {
-  webappCopy { CopySpec copySpec -&gt;
-     // ...
-  }
+  extraResourceBase 'directory1'
+  extraResourceBase 'directory2'
+  extraResourceBases 'directory3', 'directory4'
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>here webappCopy is a closure, accepting org.gradle.api.file.CopySpec as a parameter.</p>
+<p>extraResourceBase is a function accepting string or java.io.File</p>
+</div>
+<div class="paragraph">
+<p>extraResourceBases is a function accepting array of strings or java.io.File objects</p>
+</div>
+<div class="paragraph">
+<p>You can call extraResourceBase and extraResourceBases multiple times. The specified directories are added to internal collection of extra resource bases.</p>
 </div>
 </div>
 </div>
@@ -102,35 +108,13 @@ Web-app filtering feature is in incubation phase and currently is only available
 <h2 id="_effects"><a class="anchor" href="#_effects"></a>Effects</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>webappCopy closure is automatically invoked when:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>gradle performs one of Gretty run tasks</p>
-</li>
-<li>
-<p>gradle builds WAR file</p>
-</li>
-<li>
-<p>gradle builds a <a href="Product-generation.html">product</a></p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-There&#8217;s no need to duplicate CopySpec-specific code in gretty and War task. You can hold all filtering code in gretty.webappCopy. Gretty automatically reconfigures War task with gretty.webappCopy.
-</td>
-</tr>
-</table>
+<p>Web-app serves the specified directories at the web-app context path.</p>
 </div>
 <div class="paragraph">
-<p>Gretty sources contain <a href="https://github.com/akhikhl/gretty/tree/master/examples/filterWebapp">example program</a> demonstrating web-app filtering at work.</p>
+<p>When Gretty assembles a product, it copies extra resource bases into product directory and registers them within "server.json". The running product serves extra resource bases listed in "server.json".</p>
+</div>
+<div class="paragraph">
+<p>Gretty sources contain <a href="https://github.com/akhikhl/gretty/tree/master/examples/extraResourceBases">example program</a> demonstrating web-app extra resource bases at work.</p>
 </div>
 </div>
 </div></p>
