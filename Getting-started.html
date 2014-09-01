@@ -111,6 +111,8 @@ apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.p
 
 repositories {
   jcenter()
+  // enable this to use snapshot versions of Gretty:
+  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
 }
 
 apply plugin: 'org.akhikhl.gretty'</code></pre>
@@ -123,7 +125,19 @@ apply plugin: 'org.akhikhl.gretty'</code></pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-All versions of gretty are available at jcenter and maven central under the group <em>org.akhikhl.gretty</em>.
+All release versions of Gretty are available at jcenter and maven central under the group <em>org.akhikhl.gretty</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Snapshot versions of gretty are available at jfrog artifactory (see code above).
 </td>
 </tr>
 </table>
