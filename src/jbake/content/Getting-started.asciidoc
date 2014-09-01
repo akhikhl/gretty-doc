@@ -47,12 +47,16 @@ buildscript {
 
 repositories {
   jcenter()
+  // enable this to use snapshot versions of Gretty:
+  // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
 }
 
 apply plugin: 'org.akhikhl.gretty'
 ----
 
-NOTE: All versions of gretty are available at jcenter and maven central under the group 'org.akhikhl.gretty'.
+NOTE: All release versions of Gretty are available at jcenter and maven central under the group 'org.akhikhl.gretty'.
+
+NOTE: Snapshot versions of gretty are available at jfrog artifactory (see code above).
 
 IMPORTANT: If you experience problems starting Gretty, first look into link:Troubleshooting.html[troubleshooting] section. If it does not help, raise an issue at https://github.com/akhikhl/gretty/issues[Gretty issue tracker] or mailto:akhikhl@gmail.com[send an email] to Gretty developer.
 
