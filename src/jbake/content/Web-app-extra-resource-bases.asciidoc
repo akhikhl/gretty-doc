@@ -1,0 +1,36 @@
+= Web-app extra resource bases
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Since version 1.1.2-SNAPSHOT Gretty supports web-app extra resource bases. It means: additionally to "src/main/webapp" you can specify arbitrary directories that should be served as content of the given web-app.
+
+IMPORTANT: Web-app extra resource bases feature is in incubation phase and currently is only available in Gretty 1.1.2-SNAPSHOT. See https://github.com/akhikhl/gretty#star-whats-new[Gretty What's New] section to learn how to configure Gradle script for using snapshot versions of Gretty.
+
+== Syntax
+
+[source,groovy]
+----
+gretty {
+  extraResourceBase 'directory1'
+  extraResourceBase 'directory2'
+  extraResourceBases 'directory3', 'directory4'
+}
+----
+
+extraResourceBase is a function accepting string or java.io.File
+
+extraResourceBases is a function accepting array of strings or java.io.File objects
+
+You can call extraResourceBase and extraResourceBases multiple times. The specified directories are added to internal collection of extra resource bases.
+
+== Effects
+
+Web-app serves the specified directories at the web-app context path.
+
+When Gretty assembles a product, it copies extra resource bases into product directory and registers them within "server.json". The running product serves extra resource bases listed in "server.json".
+
+Gretty sources contain https://github.com/akhikhl/gretty/tree/master/examples/extraResourceBases[example program] demonstrating web-app extra resource bases at work.
+

@@ -5,7 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-Since version 1.1.2 Gretty can filter files in "src/main/webapp" the same way as processResources can filter files in "src/main/resources".
+Since version 1.1.2-SNAPSHOT Gretty can filter files in "src/main/webapp" the same way as processResources can filter files in "src/main/resources".
 
 IMPORTANT: Web-app filtering feature is in incubation phase and currently is only available in Gretty 1.1.2-SNAPSHOT. See https://github.com/akhikhl/gretty#star-whats-new[Gretty What's New] section to learn how to configure Gradle script for using snapshot versions of Gretty.
 
@@ -32,5 +32,5 @@ webappCopy closure is automatically invoked when:
 
 TIP: There's no need to duplicate CopySpec-specific code in gretty and War task. You can hold all filtering code in gretty.webappCopy. Gretty automatically reconfigures War task with gretty.webappCopy.
 
-Gretty sources contain example program, demonstrating web-app filtering: https://github.com/akhikhl/gretty/tree/master/examples/filterWebapp[filterWebapp].
+Gretty sources contain https://github.com/akhikhl/gretty/tree/master/examples/filterWebapp[example program] demonstrating web-app filtering at work.
 
