@@ -5,9 +5,7 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-Since version 1.1.2-SNAPSHOT Gretty supports web-app extra resource bases. It means: additionally to "src/main/webapp" you can specify arbitrary directories that should be served as content of the given web-app.
-
-IMPORTANT: Web-app extra resource bases feature is in incubation phase and currently is only available in Gretty 1.1.2-SNAPSHOT. See https://github.com/akhikhl/gretty#star-whats-new[Gretty What's New] section to learn how to configure Gradle script for using snapshot versions of Gretty.
+Since version 1.1.2 Gretty supports web-app extra resource bases. It means: additionally to "src/main/webapp" you can specify arbitrary directories that should be served as content of the given web-app.
 
 == Syntax
 
@@ -22,7 +20,7 @@ gretty {
 
 extraResourceBase is a function accepting string or java.io.File
 
-extraResourceBases is a function accepting array of strings or java.io.File objects
+extraResourceBases is a function accepting a list of strings or java.io.File objects
 
 You can call extraResourceBase and extraResourceBases multiple times. The specified directories are added to internal collection of extra resource bases.
 
