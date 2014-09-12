@@ -65,19 +65,7 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Since version 1.1.2-SNAPSHOT Gretty supports web-app extra resource bases. It means: additionally to "src/main/webapp" you can specify arbitrary directories that should be served as content of the given web-app.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-Web-app extra resource bases feature is in incubation phase and currently is only available in Gretty 1.1.2-SNAPSHOT. See <a href="https://github.com/akhikhl/gretty#star-whats-new">Gretty What&#8217;s New</a> section to learn how to configure Gradle script for using snapshot versions of Gretty.
-</td>
-</tr>
-</table>
+<p>Since version 1.1.2 Gretty supports web-app extra resource bases. It means: additionally to "src/main/webapp" you can specify arbitrary directories that should be served as content of the given web-app.</p>
 </div>
 </div>
 </div>
@@ -97,7 +85,7 @@ Web-app extra resource bases feature is in incubation phase and currently is onl
 <p>extraResourceBase is a function accepting string or java.io.File</p>
 </div>
 <div class="paragraph">
-<p>extraResourceBases is a function accepting array of strings or java.io.File objects</p>
+<p>extraResourceBases is a function accepting a list of strings or java.io.File objects</p>
 </div>
 <div class="paragraph">
 <p>You can call extraResourceBase and extraResourceBases multiple times. The specified directories are added to internal collection of extra resource bases.</p>
