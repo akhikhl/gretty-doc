@@ -16,5 +16,5 @@ All officially released Gretty versions are available at jcenter and maven centr
 
 Copyright 2013-2014 (c) Andrey Hihlovskiy
 
-All versions, present and past, of Gretty are licensed under https://github.com/akhikhl/gretty/blob/master/license.txt[MIT license].
+All versions, present and past, of Gretty are licensed under https://github.com/akhikhl/gretty/blob/master/LICENSE[MIT license].
 
