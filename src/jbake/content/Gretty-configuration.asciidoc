@@ -1,4 +1,3 @@
-= Gretty configuration
 Andrey Hihlovskiy
 2014-05-29
 :sectanchors:
@@ -267,7 +266,7 @@ See also: link:Hot-deployment.html[Hot deployment].
 
 | [[_fastreload]] fastReload 
 | boolean or function(String) or function(java.io.File) or function(Map)
-| false
+| true
 | Adds folders to be fast-reloaded on change, i.e. copied to running web-app without restarting web-app. +
 See also: link:Fast-reload.html[Fast reload].
 
