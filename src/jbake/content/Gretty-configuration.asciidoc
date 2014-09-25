@@ -1,3 +1,4 @@
+= Gretty configuration
 Andrey Hihlovskiy
 2014-05-29
 :sectanchors:
