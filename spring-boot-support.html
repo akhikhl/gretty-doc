@@ -122,24 +122,22 @@ gretty {
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint groovy language-groovy"><code>buildscript {
-  ext {
-    springBootVersion = '1.1.2.BUILD-SNAPSHOT'
-  }
-
   repositories {
     mavenLocal()
     jcenter()
-    maven { url 'http://repo.spring.io/snapshot' }
+    maven { url 'http://repo.spring.io/release' }
   }
 
   dependencies {
-    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
-    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
     classpath 'org.akhikhl.gretty:gretty:+'
   }
 }
 
-apply plugin: 'gretty'</code></pre>
+apply plugin: 'gretty'
+
+gretty {
+  springBootVersion = '1.1.7.RELEASE'
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">

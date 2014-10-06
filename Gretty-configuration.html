@@ -313,6 +313,25 @@ See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">9901</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TCP-port used by servlet-container process to send status back to Gretty.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_interactivemode"></a> interactiveMode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stopOnKeyPress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines Gretty&#8217;s reaction on user keypress. When <em>stopOnKeyPress</em>, any keypress stops running web-server. When <em>restartOnKeyPress</em>, any keypress causes web-server restart. When <em>rebuildAndRestartOnKeyPress</em>, any keypress causes Gretty to rebuild web-apps and then restart web-server.<br>
+Note that interactiveMode only affects interactive tasks: appRun, appRunDebug, farmRun, farmRunDebug etc. Tasks having word "start" in their name are non-interactive and must be stopped by respective stop tasks. See more information on Gretty tasks <a href="Gretty-tasks.html">here</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_springbootversion"></a> springBootVersion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.7.RELEASE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines which version of SpringBoot must be used with the given web-server/web-app.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_enablenaming"></a> enableNaming</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When true, Tomcat supports JNDI resource naming.</p></td>
+</tr>
 </tbody>
 </table>
 
@@ -426,6 +445,15 @@ See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Should the given web-app automatically reload when library files (either in WEB-INF/lib or in maven dependencies) change?<br>
+See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="_inplacemode"></a> inplaceMode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"soft"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can be "soft" or "hard" (default "soft"). When "hard", the web-server serves the resources (of the given web-app) directly
+from src/main/webapp. When "soft", the web-server serves the resources (of the given web-app) from build/inplaceWebapp.<br>
+Attention: <code>inplaceMode="hard"</code> effectively disables <a href="Web-app-overlays.html">webapp overlays</a> and <a href="Web-app-filtering.html">webapp filtering</a>.<br>
 See also: <a href="Hot-deployment.html">Hot deployment</a>.</p></td>
 </tr>
 <tr>

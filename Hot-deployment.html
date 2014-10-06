@@ -68,10 +68,13 @@
 <p>Gretty supports hot deployment: whenever the classes, jars or resources [comprising the web-app] are updated, Gretty automatically reloads web-app.</p>
 </div>
 <div class="paragraph">
-<p>Since version 0.0.18 Gretty provides new cool feature: it automatically recompiles and then reloads your web-app, as soon as source code files have changed.</p>
+<p>Since version 0.0.18 Gretty automatically recompiles and then reloads your web-app, as soon as source code files have changed.</p>
 </div>
 <div class="paragraph">
-<p>Since version 1.0.0 Gretty provides even cooler feature: the changed .class files are live-reloaded without web-app restart. This is achieved with the help of <a href="https://github.com/spring-projects/spring-loaded">springloaded</a> library.</p>
+<p>Since version 1.0.0 Gretty reloads the changed .class files "on-the-fly", without web-app restart. This is achieved with the help of <a href="https://github.com/spring-projects/spring-loaded">springloaded</a> library. By default this feature is turned off, you can activate it by setting <code>managedClassReload=true</code>.</p>
+</div>
+<div class="paragraph">
+<p>Since version 1.1.4 Gretty supports inplaceMode property (see below), allowing to accelerate resource reloads by serving files directly from src/main/webapp.</p>
 </div>
 <div class="paragraph">
 <p>You can configure hot deployment by adjusting the <a href="Gretty-configuration.html">gretty configuration</a> properties:</p>
@@ -101,6 +104,9 @@
 </li>
 <li>
 <p><a href="Gretty-configuration.html#_reloadonlibchange">reloadOnLibChange</a> defines, whether the given web-app should automatically reload when library files (either in WEB-INF/lib or in maven dependencies) change.</p>
+</li>
+<li>
+<p><a href="Gretty-configuration.html#_managedclassreload">managedClassReload</a> is boolean (default false). When true, the web-server will reload the changed .class files of the given web-app without web-app restart.</p>
 </li>
 </ul>
 </div>
@@ -139,6 +145,9 @@
 </li>
 <li>
 <p>recompileOnSourceChange, reloadOnClassChange, reloadOnConfigChange and reloadOnLibChange are all set to true.</p>
+</li>
+<li>
+<p>managedClassReload is set to false.</p>
 </li>
 </ul>
 </div>
