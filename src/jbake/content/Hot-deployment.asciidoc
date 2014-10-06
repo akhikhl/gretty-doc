@@ -7,9 +7,11 @@ Andrey Hihlovskiy
 
 Gretty supports hot deployment: whenever the classes, jars or resources [comprising the web-app] are updated, Gretty automatically reloads web-app.
 
-Since version 0.0.18 Gretty provides new cool feature: it automatically recompiles and then reloads your web-app, as soon as source code files have changed. 
+Since version 0.0.18 Gretty automatically recompiles and then reloads your web-app, as soon as source code files have changed. 
 
-Since version 1.0.0 Gretty provides even cooler feature: the changed .class files are live-reloaded without web-app restart. This is achieved with the help of https://github.com/spring-projects/spring-loaded[springloaded] library.
+Since version 1.0.0 Gretty reloads the changed .class files "on-the-fly", without web-app restart. This is achieved with the help of https://github.com/spring-projects/spring-loaded[springloaded] library. By default this feature is turned off, you can activate it by setting `managedClassReload=true`.
+
+Since version 1.1.4 Gretty supports inplaceMode property (see below), allowing to accelerate resource reloads by serving files directly from src/main/webapp.
 
 You can configure hot deployment by adjusting the link:Gretty-configuration.html[gretty configuration] properties:
 
@@ -28,6 +30,10 @@ You can configure hot deployment by adjusting the link:Gretty-configuration.html
 * link:Gretty-configuration.html#_reloadonconfigchange[reloadOnConfigChange] defines, whether the given web-app should automatically reload when configuration files (either in WEB-INF or META-INF) change.
 
 * link:Gretty-configuration.html#_reloadonlibchange[reloadOnLibChange] defines, whether the given web-app should automatically reload when library files (either in WEB-INF/lib or in maven dependencies) change.
+
+* link:Gretty-configuration.html#_managedclassreload[managedClassReload] is boolean (default false). When true, the web-server will reload the changed .class files of the given web-app without web-app restart.
+
+* link:Gretty-configuration.html#_inplacemode[inplaceMode] can be "soft" or "hard" (default "soft"). When "hard", the web-server will serve the resources (of the given web-app) directly from src/main/webapp, not from build/inplaceWebapp.
 
 Gretty hot deployment assumes the following defaults:
 
