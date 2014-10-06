@@ -206,6 +206,22 @@ See also: link:Hot-deployment.html[Hot deployment].
 | int
 | 9901
 | TCP-port used by servlet-container process to send status back to Gretty.
+
+| [[_interactivemode]] interactiveMode
+| String
+| stopOnKeyPress
+| Defines Gretty's reaction on user keypress. When 'stopOnKeyPress', any keypress stops running web-server. When 'restartOnKeyPress', any keypress causes web-server restart. When 'rebuildAndRestartOnKeyPress', any keypress causes Gretty to rebuild web-apps and then restart web-server. +
+Note that interactiveMode only affects interactive tasks: appRun, appRunDebug, farmRun, farmRunDebug etc. Tasks having word "start" in their name are non-interactive and must be stopped by respective stop tasks. See more information on Gretty tasks link:Gretty-tasks.html[here].
+
+| [[_springbootversion]] springBootVersion
+| String
+| 1.1.7.RELEASE
+| Defines which version of SpringBoot must be used with the given web-server/web-app.
+
+| [[_enablenaming]] enableNaming
+| boolean
+| false
+| When true, Tomcat supports JNDI resource naming.
 |===
 
 == Web-app-specific properties
@@ -293,6 +309,14 @@ See also: link:Hot-deployment.html[Hot deployment].
 | boolean
 | true
 | Should the given web-app automatically reload when library files (either in WEB-INF/lib or in maven dependencies) change? +
+See also: link:Hot-deployment.html[Hot deployment].
+
+| [[_inplacemode]] inplaceMode
+| String
+| "soft"
+| Can be "soft" or "hard" (default "soft"). When "hard", the web-server serves the resources (of the given web-app) directly 
+from src/main/webapp. When "soft", the web-server serves the resources (of the given web-app) from build/inplaceWebapp. +
+Attention: `inplaceMode="hard"` effectively disables link:Web-app-overlays.html[webapp overlays] and link:Web-app-filtering.html[webapp filtering]. +
 See also: link:Hot-deployment.html[Hot deployment].
 
 | [[_overlay]] overlay
