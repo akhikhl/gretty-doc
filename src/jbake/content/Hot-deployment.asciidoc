@@ -33,8 +33,6 @@ You can configure hot deployment by adjusting the link:Gretty-configuration.html
 
 * link:Gretty-configuration.html#_managedclassreload[managedClassReload] is boolean (default false). When true, the web-server will reload the changed .class files of the given web-app without web-app restart.
 
-* link:Gretty-configuration.html#_inplacemode[inplaceMode] can be "soft" or "hard" (default "soft"). When "hard", the web-server will serve the resources (of the given web-app) directly from src/main/webapp, not from build/inplaceWebapp.
-
 Gretty hot deployment assumes the following defaults:
 
 * scanInterval is set to one, that means that Gretty scans for changed files every second.
@@ -49,6 +47,8 @@ Gretty hot deployment assumes the following defaults:
 ** all dependency jars and overlay-WARs, comprising the web-app.
 
 * recompileOnSourceChange, reloadOnClassChange, reloadOnConfigChange and reloadOnLibChange are all set to true.
+
+* managedClassReload is set to false.
 
 The directory "${projectDir}/src/main/webapp" is typically processed by different function: link:Fast-reload.html[Fast reload].
 

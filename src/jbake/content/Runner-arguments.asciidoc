@@ -1,0 +1,37 @@
+= Runner arguments
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Since version 1.1.4 Gretty supports passing special arguments to Gretty products, which are "tunneled" to Gretty runner (web-server). For example, when you add the following code to product's run.sh script:
+
+[source,bash]
+---
+java -Dfile.encoding=UTF8 -cp "${DIR}/conf/:${DIR}/starter/*" org.akhikhl.gretty.GrettyStarter --runnerArg=-Xms1024m --runnerArg=-Xmx2048m $@ run
+---
+
+then Gretty runner will be launched with additional arguments "-Xms1024m -Xmx2048m".
+
+Here are all Gretty-runner-specific arguments:
+
+[cols="1,1,6", options="header"]
+|===
+| Form
+| Purpose
+
+| --runnerArg=value
+| value will be passed as an argument to Gretty runner's JVM
+
+| --runnerArgFile=file
+| file is expected to be an existing file, containing space-separated on line-separated list of arguments to Gretty runner's JVM
+
+
+| --runnerArgURL=url
+| url is expected to be a valid URL, pointing to an existing location of arguments file. The file is expected to have the same format as for runnerArgFile
+
+| --runnerOverrideArgs=true/false
+| when true, the arguments specified in jvmArgs property in server.json are ignored.
+|===
+

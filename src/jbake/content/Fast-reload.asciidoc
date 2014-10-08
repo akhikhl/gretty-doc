@@ -36,6 +36,8 @@ each resolved subfolder within these folders is added to fast reload.
 *** If "excludesPattern" is not specified, then "pattern" fully defines which files are fast-reloaded.
 *** If "excludesPattern" is specified, then those files whose relative (to baseDir) path satisfies "excludesPattern", are not fast-reloaded. "excludesPattern" is always applied after "pattern".
 
+* link:Gretty-configuration.html#_inplacemode[inplaceMode] can be "soft" or "hard" (default "soft"). When "hard", the web-server serves the resources (of the given web-app) directly from src/main/webapp. When "soft", the web-server serves the resources (of the given web-app) from build/inplaceWebapp.
+
 Gretty fast reload assumes the following defaults:
 
 * link:Gretty-configuration.html#_fastreload[fastReload] property is set to true.

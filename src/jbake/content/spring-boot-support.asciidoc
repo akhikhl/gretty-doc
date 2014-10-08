@@ -47,24 +47,22 @@ Add the following code to "build.gradle":
 [source,groovy]
 ----
 buildscript {
-  ext {
-    springBootVersion = '1.1.2.BUILD-SNAPSHOT'
-  }
-  
   repositories {
     mavenLocal()
     jcenter()
-    maven { url 'http://repo.spring.io/snapshot' }
+    maven { url 'http://repo.spring.io/release' }
   }
 
   dependencies {
-    classpath "org.springframework.boot:spring-boot-loader-tools:${springBootVersion}"
-    classpath "org.springframework.boot:spring-boot-dependency-tools:${springBootVersion}"
     classpath 'org.akhikhl.gretty:gretty:+'
   }
 }
 
 apply plugin: 'gretty'
+
+gretty {
+  springBootVersion = '1.1.7.RELEASE'
+}
 ----
 
 Note that spring-boot versions prior to 1.1.0 are not supported by Gretty and may produce compile-time or runtime errors.
