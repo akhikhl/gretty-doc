@@ -82,7 +82,6 @@ See more information below.</p>
 <div class="content">
 <pre class="prettyprint groovy language-groovy"><code>buildscript {
   repositories {
-    mavenLocal()
     jcenter()
   }
 
@@ -92,6 +91,10 @@ See more information below.</p>
 }
 
 apply plugin: 'gretty'
+
+repositories {
+  jcenter()
+}
 
 gretty {
   springBoot = true
@@ -123,7 +126,6 @@ gretty {
 <div class="content">
 <pre class="prettyprint groovy language-groovy"><code>buildscript {
   repositories {
-    mavenLocal()
     jcenter()
     maven { url 'http://repo.spring.io/release' }
   }
@@ -135,7 +137,13 @@ gretty {
 
 apply plugin: 'gretty'
 
+repositories {
+  jcenter()
+  maven { url 'http://repo.spring.io/release' }
+}
+
 gretty {
+  springBoot = true
   springBootVersion = '1.1.7.RELEASE'
 }</code></pre>
 </div>
