@@ -11,6 +11,6 @@ For now:
 
 The feature is fully implemented. Try it yourself on the example project:
 
-https://github.com/akhikhl/gretty/tree/master/examples/farm9/MyWebApp
+https://github.com/akhikhl/gretty/tree/master/examples/farm
 
-there invoke `gradle farmIntegrationTest` - you'll see integration tests running for multiple web-apps on the same Jetty server.
+there invoke `gradle farmIntegrationTest` - you'll see integration tests running for multiple web-apps on the same web server.
