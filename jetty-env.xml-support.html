@@ -65,7 +65,7 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>"jetty-env.xml" is an optional Jetty file that configures individual web-app. The format of jetty-web.xml is the same as jetty.xml - it is an XML mapping of the Jetty API.</p>
+<p>"jetty-env.xml" is an optional Jetty file that configures individual web-app. The format of "jetty-env.xml" is the same as of "jetty.xml" - it is an XML mapping of the Jetty API.</p>
 </div>
 <div class="paragraph">
 <p>The purpose and syntax of "jetty-env.xml" is documented at <a href="http://wiki.eclipse.org/Jetty/Reference/jetty-env.xml">Jetty reference</a>.</p>
@@ -84,9 +84,6 @@
   // ...
 }</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>If contextConfigFile is not specified, Gretty looks for one of the files: "jetty9-env.xml" (for Jetty 9), "jetty8-env.xml" (for Jetty 8), "jetty7-env.xml" (for Jetty 7), "jetty-env.xml" in the directory "$project.webAppDir/META-INF". Jetty version is defined by <a href="Gretty-configuration.html#_servletcontainer">gretty.servletContainer</a> property.</p>
 </div>
 <div class="paragraph">
 <p>If explicitly defined contextConfigFile represents an absolute path, gretty will use just that.</p>
@@ -108,7 +105,10 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>When you generate a <a href="Product-generation.html">product</a> and "jetty-env.xml" resides within "$project.webAppDir/META-INF", it is packed to the WAR-file. The running product automatically finds and applies "META-INF/jetty-env.xml" of each included web-app.</p>
+<p>If contextConfigFile is not specified, Gretty looks for one of the files: "jetty9-env.xml" (for Jetty 9), "jetty8-env.xml" (for Jetty 8), "jetty7-env.xml" (for Jetty 7), "jetty-env.xml" in the directory "$project.webAppDir/META-INF". Jetty version is defined by <a href="Gretty-configuration.html#_servletcontainer">gretty.servletContainer</a> property.</p>
+</div>
+<div class="paragraph">
+<p>When you generate a <a href="Product-generation.html">product</a> and "jetty-env.xml" resides within "$project.webAppDir/META-INF", it is packed into the WAR-file. The running product automatically finds and applies "META-INF/jetty-env.xml" of each included web-app.</p>
 </div>
 <div class="paragraph">
 <p>When you generate a <a href="Product-generation.html">product</a> and "jetty-env.xml" resides within "webapp-jetty" or "webapp-config", the file is copied to subdirectory "conf/$projectName" and referenced in "conf/server.json". The running product automatically applies "jetty-env.xml" files listed in "conf/server.json".</p>
