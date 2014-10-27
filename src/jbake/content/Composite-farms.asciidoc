@@ -31,7 +31,7 @@ farm {
 // Farm of ProjectE effectively includes webapps ProjectA, ProjectB, ProjectC and ProjectD.
 ----
 
-The farms referred by composite farm can themselves be composite farms. Gretty provides runtime mechanism that detects [and reports as an error)
+The farms referred by composite farm can themselves be composite farms. Gretty provides runtime mechanism that detects (and reports as an error)
 any cyclic includes between composite farms.
 
 You can arbitrarily combine composite farms and named farms:
@@ -72,4 +72,8 @@ farms {
 // Farm 'R' of ProjectE effectively includes webapps ProjectA and ProjectD.
 // Farm 'S' of ProjectE effectively includes webapps ProjectB and ProjectC.
 ----
+
+Gretty sources contain complete working example of composite farm:
+
+https://github.com/akhikhl/gretty/tree/master/examples/multifarm
 
