@@ -5,6 +5,10 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
+        <loc>http://akhikhl.github.io/gretty-doc/Composite-farms.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
         <loc>http://akhikhl.github.io/gretty-doc/Configuring-default-farm.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
@@ -93,6 +97,10 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
+        <loc>http://akhikhl.github.io/gretty-doc/Injection-of-version-variables.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
         <loc>http://akhikhl.github.io/gretty-doc/Integration-tests-support.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
@@ -118,6 +126,10 @@
     </url>
     <url>
         <loc>http://akhikhl.github.io/gretty-doc/Multiple-web-apps-introduction.html</loc>
+        <lastmod>2014-05-29</lastmod>
+    </url>
+    <url>
+        <loc>http://akhikhl.github.io/gretty-doc/Override-context-path-in-integration-test-tasks.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>

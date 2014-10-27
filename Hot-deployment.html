@@ -68,13 +68,13 @@
 <p>Gretty supports hot deployment: whenever the classes, jars or resources [comprising the web-app] are updated, Gretty automatically reloads web-app.</p>
 </div>
 <div class="paragraph">
-<p>Since version 0.0.18 Gretty automatically recompiles and then reloads your web-app, as soon as source code files have changed.</p>
+<p>Gretty version 0.0.18+ automatically recompiles and then reloads your web-app, as soon as source code files have changed.</p>
 </div>
 <div class="paragraph">
-<p>Since version 1.0.0 Gretty reloads the changed .class files "on-the-fly", without web-app restart. This is achieved with the help of <a href="https://github.com/spring-projects/spring-loaded">springloaded</a> library. By default this feature is turned off, you can activate it by setting <code>managedClassReload=true</code>.</p>
+<p>Gretty version 1.0.0+ reloads the changed .class files "on-the-fly", without web-app restart. This is achieved with the help of <a href="https://github.com/spring-projects/spring-loaded">springloaded</a> library. By default this feature is turned off, you can activate it by setting <code>managedClassReload=true</code>.</p>
 </div>
-<div class="paragraph">
-<p>Since version 1.1.4 Gretty supports inplaceMode property (see below), allowing to accelerate resource reloads by serving files directly from src/main/webapp.</p>
+<div id="_dependencyprojectsinplaceserve" class="paragraph">
+<p>Gretty version 1.1.5+ serves classes and resources of dependency projects directly from their buildDir, thus avoiding assembly/reload of jar files.</p>
 </div>
 <div class="paragraph">
 <p>You can configure hot deployment by adjusting the <a href="Gretty-configuration.html">gretty configuration</a> properties:</p>
@@ -151,8 +151,29 @@
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>The directory "${projectdir}/src/main/webapp" is typically processed by different function: <a href="Fast-reload.html">Fast reload</a>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Hot-deployment function normally serves files in "src/main/java" and "src/main/resources", but not in "src/main/webapp". This latter is processed by another function: <a href="Fast-reload.html">Fast reload</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Gretty supports hot deployment only on non-test gradle tasks. Any test tasks (including integration test tasks) run without hot deployment. The generated <a href="Product-generation.html">products</a> also run without hot deployment.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -165,9 +186,6 @@ Current implementation of hot deployment does not detect changes in Gradle confi
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>INFO: Gretty supports hot deployment only on non-test gradle tasks. Any test tasks (including integration test tasks) run without hot deployment. The generated <a href="Product-generation.html">products</a> also run without hot deployment.</p>
 </div>
 </div>
 </div></p>
