@@ -5,11 +5,16 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-Since version 1.1.0 Gretty is able to generate runnable products. It works as follows: you invoke "buildProduct" gradle task and Gretty accurately packs one or more web-apps with the specified servlet container (tomcat or jetty), configuration files and, when needed, with spring boot libraries. The generated products are autonomous and self-contained, so they can be deployed to vanilla machines without preinstalled servlet container. The only requirement to the target machine is the presence of JRE 6/7/8.
+Gretty 1.1.0+ is able to generate runnable products. It works as follows: you invoke "buildProduct" gradle task 
+and Gretty accurately packs one or more web-apps with the specified servlet container (tomcat or jetty), 
+configuration files and, when needed, with spring boot libraries. 
+The generated products are autonomous and self-contained, so they can be deployed to vanilla machines 
+without preinstalled servlet container. The only requirement to the target machine is the presence of JRE 6/7/8.
 
 == Configureless product generation
 
-Every project using gretty is already able to generate a product in configureless mode. All you have to do is to invoke `gradle buildProduct` on the command line (or from your favorite IDE, if you like).
+Every project using gretty is already able to generate a product in configureless mode. 
+All you have to do is to invoke `gradle buildProduct` on the command line (or from your favorite IDE, if you like).
 
 == Product structure
 

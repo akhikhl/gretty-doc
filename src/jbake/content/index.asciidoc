@@ -80,7 +80,7 @@ link:single-sign-on.html[Single sign-on]
 link:Farm-tasks.html[Farm tasks] +
 link:Farm-task-classes.html[Farm task classes]
 
-=== Product generation
+== Product generation
 
 link:Product-generation.html[Product generation]
 
