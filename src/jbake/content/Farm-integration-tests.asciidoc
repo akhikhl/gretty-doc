@@ -5,12 +5,48 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-This part of documentation is coming soon!
+Gretty supports link:Integration-tests-support.html[integration tests] on link:Multiple-web-apps-introduction.html[farms], 
+i.e. on multiple web-apps running on the same web-server.
 
-For now:
+You don't have to configure anything in order to use integration tests on farms. Your part is to create a farm and some integration tests, 
+then run task:
 
-The feature is fully implemented. Try it yourself on the example project:
+[source,shell]
+----
+gradle farmIntegrationTest
+----
 
-https://github.com/akhikhl/gretty/tree/master/examples/farm
+Gretty automatically starts and stops a servlet container before and after integration tests.
 
-there invoke `gradle farmIntegrationTest` - you'll see integration tests running for multiple web-apps on the same web server.
+Gretty automatically invokes all integration tests for all web-apps mentioned in a farm.
+
+If you use named farms, then you have to invoked specific tasks for named farms. For example:
+
+[source,groovy]
+----
+farms {
+  farm 'XYZ', {
+    webapp ':ProjectB'
+    webapp ':ProjectC'
+    webapp ':ProjectD'
+  }
+}
+----
+
+then you have to invoke:
+
+[source,shell]
+----
+gradle farmIntegrationTestXYZ
+----
+
+There following example projects demonstrate farm integration tests at work:
+
+https://github.com/akhikhl/gretty/tree/master/examples/farm[Simple farm]
+
+https://github.com/akhikhl/gretty/tree/master/examples/farmSecure[Secure farm]
+
+https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm[Spring Boot farm]
+
+https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm-secure[Secure Spring Boot farm]
+

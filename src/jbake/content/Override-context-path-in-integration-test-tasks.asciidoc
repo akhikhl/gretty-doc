@@ -1,0 +1,45 @@
+= Overriding context path in integration test tasks
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Gretty version 1.1.5+ allows to override context path in integration test tasks. This can be useful, when you need to run integration tests 
+against "alien" web-app, coming in form of WAR-file. Example:
+
+[source,groovy]
+----
+apply plugin: 'org.akhikhl.gretty'
+
+test {
+  include '**/Test*.*'
+  include '**/*Test.*'
+  exclude '**/*IT.*'
+}
+
+task integrationTest(type: Test, dependsOn: 'test') {
+  outputs.upToDateWhen { false }
+  include '**/*IT.*'
+  // we explain to integrationTest that contextPath under test is "helloGretty", not this project
+  ext.contextPath = 'helloGretty'
+}
+
+farm {
+  // we serve helloGretty.war under http://localhost:8080/helloGretty
+  webapp 'helloGretty.war'
+  // we run integration tests of this project
+  webapp project
+  
+  // this is needed only if WAR-file is generated in the same project tree
+  // afterEvaluate {
+  //   project.tasks.farmBeforeIntegrationTest.dependsOn ':helloGretty:build'
+  // }
+}
+----
+
+With such setup just invoke `gradle farmIntegrationTest` to run integration tests.
+
+The complete working example of overriding context path in integration test tasks is available here:
+
+https://github.com/akhikhl/gretty/tree/master/examples/testWar

@@ -22,20 +22,27 @@ See more information at link:Gretty-tasks.html[Gretty tasks] and link:Farm-tasks
 
 == Spring-boot support
 
-Since version 0.0.24 Gretty link:spring-boot-support.html[fully supports spring-boot web-apps]. 
+Gretty version 0.0.24+ fully supports link:spring-boot-support.html[spring-boot web-apps]. 
 You can run spring-boot web-apps and "normal" web-apps side-by-side on the same servlet container. 
 You can control spring-boot web-apps with the same link:Gretty-configuration.html[Gretty configuration] 
 and apply all Gretty features to them: integration tests, debugging, Jacoco code coverage etc.etc.
 
 == Multiple web-apps support
 
-Since version 0.0.18 Gretty supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: it can start arbitrary number of web-apps on the same servlet container. Gretty supports web-apps of various types: link:Farm-web-app-list.html#_project_web_app_references[gradle projects], link:Farm-web-app-list.html#_file_based_web_app_references[WAR-files in the file system] and even link:Farm-web-app-list.html#_repository_based_web_app_references[WAR-files from maven dependencies].
+Gretty version 0.0.18+ supports link:Multiple-web-apps-introduction.html[multiple web-apps feature]: 
+it can start arbitrary number of web-apps on the same servlet container. 
+Gretty supports web-apps of various types: link:Farm-web-app-list.html#_project_web_app_references[gradle projects], 
+link:Farm-web-app-list.html#_file_based_web_app_references[WAR-files in the file system] 
+and even link:Farm-web-app-list.html#_repository_based_web_app_references[WAR-files from maven dependencies].
 
-Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup.html[configureless mode], although it is fully link:index.html#_multiple_web_apps_configuration[configurable/customizable].
+Multiple web-apps feature works out-of-the-box in link:Multiple-web-apps-configureless-setup.html[configureless mode], 
+although it is fully link:index.html#_multiple_web_apps_configuration[configurable/customizable].
 
-Multiple web-apps feature also works nicely with integration tests and with the debugger.
+Multiple web-apps feature also link:Farm-integration-tests.html[works nicely with integration tests] and with the debugger.
 
-Since version 1.1.0 Gretty supports link:single-sign-on.html[single sign-on] on Jetty and Tomcat realms.
+Gretty version 1.1.0+ supports link:single-sign-on.html[single sign-on] on multiple web-apps (via Jetty and Tomcat realms).
+
+Gretty version 1.1.5+ supports link:Composite-farms.html[composite farms] - farms consisting of other farms.
 
 == Switch between servlet container versions
 
@@ -43,7 +50,13 @@ Gretty supports link:Switching-between-servlet-containers.html[easy switch] betw
 
 == Product generation
 
-Since version 1.1.0 Gretty is able to generate runnable products. It works as follows: you invoke "buildProduct" gradle task and Gretty accurately packs one or more web-apps with the specified servlet container (tomcat or jetty), configuration files and, when needed, with spring boot libraries. The generated products are autonomous and self-contained, so they can be deployed to vanilla machines without preinstalled servlet container. The only requirement to the target machine is the presence of JRE 6/7/8.
+Gretty version 1.1.0+ is able to generate runnable products. 
+It works as follows: you invoke "buildProduct" gradle task and Gretty accurately packs 
+one or more web-apps with the specified servlet container (tomcat or jetty), 
+configuration files and, when needed, with spring boot libraries. 
+The generated products are autonomous and self-contained, so they can be deployed 
+to vanilla machines without preinstalled servlet container. 
+The only requirement to the target machine is the presence of JRE 6/7/8.
 
 == Hot deployment
 
@@ -78,7 +91,16 @@ Since version 0.0.23 Gretty link:HTTPS-support.html[supports HTTPS protocol] out
 
 Gretty provides link:Debugger-support.html[integration with Java IDE debuggers]. You can even debug multiple web-apps loaded into the same servlet container.
 
-Gretty link:Integration-tests-support.html[supports integration tests]: it starts servlet container before integration tests and stop it after. Since version 0.0.22 Gretty link:Code-coverage-support.html[supports Jacoco code coverage] of web-app projects - both client-side and server-side. The resulting coverage information can be converted to report with the help of standard gradle task http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html[JacocoReport].
+Gretty link:Integration-tests-support.html[supports integration tests]: it starts servlet container before integration tests and stop it after. 
+Gretty version 0.0.22+ supports link:Code-coverage-support.html[Jacoco code coverage] of web-app projects - both client-side and server-side. 
+The resulting coverage information can be converted to report with the help of standard gradle task 
+http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html[JacocoReport].
+
+Gretty version 1.1.5+ supports [override of context path in integration test tasks](http://akhikhl.github.io/gretty-doc/Override-context-path-in-integration-test-tasks.html).
+
+== Injection of version variables
+
+Gretty version 1.1.5+ automatically injects some link:Injection-of-version-variables.html[version variables] into project.ext of your project.
 
 == Logging support
 

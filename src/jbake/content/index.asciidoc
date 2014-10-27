@@ -23,12 +23,14 @@ link:HTTPS-support.html[HTTPS support] +
 link:Gretty-configuration.html[Gretty configuration] +
 link:Gretty-tasks.html[Gretty tasks] +
 link:Gretty-task-classes.html[Gretty task classes] +
+link:Injection-of-version-variables.html[Injection of version variables into project.ext]
 
 === Debugging and testing
 
 link:Debugger-support.html[Debugger support] +
 link:Integration-tests-support.html[Integration tests] +
 link:Code-coverage-support.html[Code coverage (jacoco) support] +
+link:Override-context-path-in-integration-test-tasks.html[Override of context path in integration test tasks] +
 link:Logging.html[Logging]
 
 === Spring-framework-specific
@@ -60,7 +62,8 @@ link:Multiple-web-apps-configureless-setup.html[Configureless setup] +
 link:Configuring-default-farm.html[Configuring default farm] +
 link:Multiple-farms.html[Multiple farms] +
 link:Debugging-a-farm.html[Debugging a farm] +
-link:Farm-integration-tests.html[Farm integration tests]
+link:Farm-integration-tests.html[Farm integration tests] +
+link:Composite-farms.html[Composite farms]
 
 === Multiple web-apps configuration
 
