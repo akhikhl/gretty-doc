@@ -23,7 +23,8 @@ link:HTTPS-support.html[HTTPS support] +
 link:Gretty-configuration.html[Gretty configuration] +
 link:Gretty-tasks.html[Gretty tasks] +
 link:Gretty-task-classes.html[Gretty task classes] +
-link:Injection-of-version-variables.html[Injection of version variables into project.ext]
+link:Injection-of-version-variables.html[Injection of version variables into project.ext] +
+link:Redirect-filter.html[Redirect filter]
 
 === Debugging and testing
 
