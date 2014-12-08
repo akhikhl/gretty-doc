@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Farm integration tests</title>
+    <title>farmIntegrationTest task</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -59,66 +59,96 @@
     <div class="container">
 	
 	<div class="page-header">
-		<h1>Farm integration tests</h1>
+		<h1>farmIntegrationTest task</h1>
 	</div>
 
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gretty supports <a href="Integration-tests-support.html">integration tests</a> on <a href="Multiple-web-apps-introduction.html">farms</a>,
-i.e. on multiple web-apps running on the same web-server.</p>
+<p>farmIntegrationTest runs integration tests on the default farm.
+To run integration tests on the named farm, use farmIntegrationTestXYZ, where XYZ is the farm name.</p>
 </div>
-<div class="paragraph">
-<p>You don&#8217;t have to configure anything in order to use integration tests on farms. Your part is to create a farm and some integration tests,
-then run task:</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint shell language-shell"><code>gradle farmIntegrationTest</code></pre>
+<pre class="prettyprint bash language-bash"><code>gradle farmIntegrationTest</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_effects"><a class="anchor" href="#_effects"></a>Effects</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Gretty automatically starts and stops a servlet container before and after integration tests.</p>
+<p>farmIntegrationTest performs the following sequence:</p>
 </div>
-<div class="paragraph">
-<p>Gretty automatically invokes all integration tests for all web-apps mentioned in a farm.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>perform <a href="farmBeforeIntegrationTest-task.html">farmBeforeIntegrationTest task</a>, thus starting web-server.</p>
+</li>
+<li>
+<p>iteratively perform integrationTest task on each web-app of the farm.</p>
+</li>
+<li>
+<p>perform <a href="farmAfterIntegrationTest-task.html">farmAfterIntegrationTest task</a>, thus stopping web-server.</p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>If you use named farms, then you have to invoked specific tasks for named farms. For example:</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farms {
-  farm 'XYZ', {
-    webapp ':ProjectB'
-    webapp ':ProjectC'
-    webapp ':ProjectD'
+<pre class="prettyprint groovy language-groovy"><code>// RootProject/build.gradle
+
+farm {
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+  integrationTestTask = 'myIntegrationTest'
+}
+
+configure(project(':ProjectA'), project(':ProjectB')) {
+  test {
+    include '**/Test*.*'
+    include '**/*Test.*'
+    exclude '**/*IT.*'
+  }
+
+  task myIntegrationTest(type: Test, dependsOn: 'test') {
+    outputs.upToDateWhen { false }
+    include '**/*IT.*'
   }
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>then you have to invoke:</p>
+<p>when invoking:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint shell language-shell"><code>gradle farmIntegrationTestXYZ</code></pre>
+<pre class="prettyprint bash language-bash"><code>gradle farmIntegrationTest</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>There following example projects demonstrate farm integration tests at work:</p>
+<p>the resulting task invokation sequence is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint bash language-bash"><code>:RootProject:farmBeforeIntegrationTest
+:ProjectA:myIntegrationTest
+:ProjectB:myIntegrationTest
+:RootProject:farmAfterIntegrationTest</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/farm">Simple farm</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/farmSecure">Secure farm</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm">Spring Boot farm</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm-secure">Secure Spring Boot farm</a></p>
+<p>The full and working example program is found here: <a href="https://github.com/akhikhl/gretty/tree/master/examples/farm">https://github.com/akhikhl/gretty/tree/master/examples/farm</a></p>
 </div>
 </div>
 </div></p>

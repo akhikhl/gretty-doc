@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Farm integration tests</title>
+    <title>Injection of version variables</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -59,66 +59,51 @@
     <div class="container">
 	
 	<div class="page-header">
-		<h1>Farm integration tests</h1>
+		<h1>Injection of version variables</h1>
 	</div>
 
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gretty supports <a href="Integration-tests-support.html">integration tests</a> on <a href="Multiple-web-apps-introduction.html">farms</a>,
-i.e. on multiple web-apps running on the same web-server.</p>
-</div>
-<div class="paragraph">
-<p>You don&#8217;t have to configure anything in order to use integration tests on farms. Your part is to create a farm and some integration tests,
-then run task:</p>
+<p>Gretty version 1.1.5+ automatically injects the following variables into project.ext of your project:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint shell language-shell"><code>gradle farmIntegrationTest</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Gretty automatically starts and stops a servlet container before and after integration tests.</p>
-</div>
-<div class="paragraph">
-<p>Gretty automatically invokes all integration tests for all web-apps mentioned in a farm.</p>
-</div>
-<div class="paragraph">
-<p>If you use named farms, then you have to invoked specific tasks for named farms. For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farms {
-  farm 'XYZ', {
-    webapp ':ProjectB'
-    webapp ':ProjectC'
-    webapp ':ProjectD'
-  }
+<pre class="prettyprint groovy language-groovy"><code>project.ext {
+  grettyVersion = Externalized.getString('grettyVersion')
+  jetty7Version = Externalized.getString('jetty7Version')
+  jetty7ServletApi = Externalized.getString('jetty7ServletApi')
+  jetty7ServletApiVersion = Externalized.getString('jetty7ServletApiVersion')
+  jetty8Version = Externalized.getString('jetty8Version')
+  jetty8ServletApi = Externalized.getString('jetty8ServletApi')
+  jetty8ServletApiVersion = Externalized.getString('jetty8ServletApiVersion')
+  jetty9Version = Externalized.getString('jetty9Version')
+  jetty9ServletApi = Externalized.getString('jetty9ServletApi')
+  jetty9ServletApiVersion = Externalized.getString('jetty9ServletApiVersion')
+  tomcat7Version = Externalized.getString('tomcat7Version')
+  tomcat7ServletApi = Externalized.getString('tomcat7ServletApi')
+  tomcat7ServletApiVersion = Externalized.getString('tomcat7ServletApiVersion')
+  tomcat8Version = Externalized.getString('tomcat8Version')
+  tomcat8ServletApi = Externalized.getString('tomcat8ServletApi')
+  tomcat8ServletApiVersion = Externalized.getString('tomcat8ServletApiVersion')
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>then you have to invoke:</p>
+<p>These variables are always up-to-date and correspond to library versions used by Gretty itself.</p>
+</div>
+<div class="paragraph">
+<p>You can rely on these variables, when adding version-sensitive components, for example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint shell language-shell"><code>gradle farmIntegrationTestXYZ</code></pre>
+<pre class="prettyprint groovy language-groovy"><code>dependencies {
+  gretty "org.apache.tomcat:tomcat-dbcp:$tomcat8Version"
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>There following example projects demonstrate farm integration tests at work:</p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/farm">Simple farm</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/farmSecure">Secure farm</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm">Spring Boot farm</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm-secure">Secure Spring Boot farm</a></p>
+<p>Note that changing the values of version variables is possible, but not recommended. Gretty will ignore such changes and use the versions supplied to Gretty at compile time (of Gretty Gradle plugin).</p>
 </div>
 </div>
 </div></p>
