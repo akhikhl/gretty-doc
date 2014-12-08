@@ -7,11 +7,12 @@ Andrey Hihlovskiy
 
 Gretty supports hot deployment: whenever the classes, jars or resources [comprising the web-app] are updated, Gretty automatically reloads web-app.
 
-Since version 0.0.18 Gretty automatically recompiles and then reloads your web-app, as soon as source code files have changed. 
+Gretty version 0.0.18+ automatically recompiles and then reloads your web-app, as soon as source code files have changed. 
 
-Since version 1.0.0 Gretty reloads the changed .class files "on-the-fly", without web-app restart. This is achieved with the help of https://github.com/spring-projects/spring-loaded[springloaded] library. By default this feature is turned off, you can activate it by setting `managedClassReload=true`.
+Gretty version 1.0.0+ reloads the changed .class files "on-the-fly", without web-app restart. This is achieved with the help of https://github.com/spring-projects/spring-loaded[springloaded] library. By default this feature is turned off, you can activate it by setting `managedClassReload=true`.
 
-Since version 1.1.4 Gretty supports inplaceMode property (see below), allowing to accelerate resource reloads by serving files directly from src/main/webapp.
+[[_dependencyprojectsinplaceserve]]
+Gretty version 1.1.5+ serves classes and resources of dependency projects directly from their buildDir, thus avoiding assembly/reload of jar files.
 
 You can configure hot deployment by adjusting the link:Gretty-configuration.html[gretty configuration] properties:
 
@@ -50,8 +51,9 @@ Gretty hot deployment assumes the following defaults:
 
 * managedClassReload is set to false.
 
-The directory "${projectDir}/src/main/webapp" is typically processed by different function: link:Fast-reload.html[Fast reload].
+TIP: Hot-deployment function normally serves files in "src/main/java" and "src/main/resources", but not in "src/main/webapp". This latter is processed by another function: link:Fast-reload.html[Fast reload].
+
+TIP: Gretty supports hot deployment only on non-test gradle tasks. Any test tasks (including integration test tasks) run without hot deployment. The generated link:Product-generation.html[products] also run without hot deployment.
 
 IMPORTANT: Current implementation of hot deployment does not detect changes in Gradle configuration. That means: whenever you change and save "build.gradle", containing Gretty configuration, you need to restart the web-app "by hand", only then the changes will have effect.
 
-INFO: Gretty supports hot deployment only on non-test gradle tasks. Any test tasks (including integration test tasks) run without hot deployment. The generated link:Product-generation.html[products] also run without hot deployment.

@@ -1,0 +1,70 @@
+= farmIntegrationTest task
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+farmIntegrationTest runs integration tests on the default farm.
+To run integration tests on the named farm, use farmIntegrationTestXYZ, where XYZ is the farm name.
+
+== Syntax
+
+[source,bash]
+----
+gradle farmIntegrationTest
+----
+
+== Effects
+
+farmIntegrationTest performs the following sequence:
+
+. perform link:farmBeforeIntegrationTest-task.html[farmBeforeIntegrationTest task], thus starting web-server.
+. iteratively perform integrationTest task on each web-app of the farm.
+. perform link:farmAfterIntegrationTest-task.html[farmAfterIntegrationTest task], thus stopping web-server.
+
+== Example
+
+[source,groovy]
+----
+// RootProject/build.gradle
+
+farm {
+  webapp ':ProjectA'
+  webapp ':ProjectB'
+  integrationTestTask = 'myIntegrationTest'
+}
+
+configure(project(':ProjectA'), project(':ProjectB')) {
+  test {
+    include '**/Test*.*'
+    include '**/*Test.*'
+    exclude '**/*IT.*'
+  }
+
+  task myIntegrationTest(type: Test, dependsOn: 'test') {
+    outputs.upToDateWhen { false }
+    include '**/*IT.*'
+  }
+}
+----
+
+when invoking:
+
+[source,bash]
+----
+gradle farmIntegrationTest
+----
+
+the resulting task invokation sequence is:
+
+[source,bash]
+----
+:RootProject:farmBeforeIntegrationTest
+:ProjectA:myIntegrationTest
+:ProjectB:myIntegrationTest
+:RootProject:farmAfterIntegrationTest
+----
+
+The full and working example program is found here: https://github.com/akhikhl/gretty/tree/master/examples/farm
+

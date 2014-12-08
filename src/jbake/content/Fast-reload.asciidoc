@@ -6,6 +6,9 @@ Andrey Hihlovskiy
 :jbake-status: published
 
 There are cases, when restart of the web-app on every resource change is not optimal (too slow). Specifically for such cases Gretty implements "fast reload" feature.
+Fast reload handles changes in src/main/webapp directory: whenever some files within this directory are changed, these files are copied into running web-app without web-app restart.
+
+Gretty version 1.1.4+ supports inplaceMode property (see below), allowing to accelerate resource reloads by serving files directly from src/main/webapp (thus avoiding file copy on change).
 
 You can configure fastReload feature by adjusting the link:Gretty-configuration.html[gretty configuration] properties:
 
@@ -42,8 +45,8 @@ Gretty fast reload assumes the following defaults:
 
 * link:Gretty-configuration.html#_fastreload[fastReload] property is set to true.
 
-* Fast reload always excludes the following files: `*.jar, *.class, web.xml, web-fragment.xml, jetty.xml, jetty-env.xml, tomcat-users.xml, WEB-INF/lib/**, WEB-INF/classes/**`. That means: when these files are changed, web-app is fully restarted.
+* Fast reload always excludes the following files: `\*.jar, *.class, web.xml, web-fragment.xml, jetty.xml, jetty-env.xml, tomcat-users.xml, WEB-INF/lib/*\*, WEB-INF/classes/**`. That means: when these files are changed, web-app is fully restarted.
 
 You can add more than one fastReload specification. In such case all specified directories are fast-reloaded.
 
-INFO: Gretty supports fast reload only on non-test gradle tasks. Any test tasks (including integration test tasks) run without fast reload. The generated link:Product-generation.html[products] also run without fast reload.
+TIP: Gretty supports fast reload only on non-test gradle tasks. Any test tasks (including integration test tasks) run without fast reload. The generated link:Product-generation.html[products] also run without fast reload.

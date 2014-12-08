@@ -1,0 +1,79 @@
+= Composite farms
+Andrey Hihlovskiy
+2014-05-29
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Gretty version 1.1.5+ extends link:Multiple-web-apps-introduction.html[farms mechanism] with _composite farms_ - farms consisting of other farms.
+
+The syntax:
+
+[source,groovy]
+----
+// in ProjectA:
+farm {
+  webapp project // ProjectA
+  webapp ':ProjectB'
+}
+
+// in ProjectC:
+farm {
+  webapp project // ProjectC
+  webapp ':ProjectD'
+}
+
+// in ProjectE:
+farm {
+  include ':ProjectA'
+  include ':ProjectC'
+}
+// Farm of ProjectE effectively includes webapps ProjectA, ProjectB, ProjectC and ProjectD.
+----
+
+The farms referred by composite farm can themselves be composite farms. Gretty provides runtime mechanism that detects (and reports as an error)
+any cyclic includes between composite farms.
+
+You can arbitrarily combine composite farms and named farms:
+
+[source,groovy]
+----
+// in ProjectA:
+farms {
+  farm 'X', {
+    webapp project // ProjectA
+  }
+  farm 'Y', {
+    webapp ':ProjectB'
+  }
+}
+
+// in ProjectC:
+farm {
+  farm 'P', {
+    webapp project // ProjectC
+  }
+  farm 'Q', {
+    webapp ':ProjectD'
+  }
+}
+
+// in ProjectE:
+farms {
+  farm 'R', {
+    include ':ProjectA', 'X'
+    include ':ProjectC', 'Q'
+  }
+  farm 'S', {
+    include ':ProjectA', 'Y'
+    include ':ProjectC', 'P'
+  }
+}
+// Farm 'R' of ProjectE effectively includes webapps ProjectA and ProjectD.
+// Farm 'S' of ProjectE effectively includes webapps ProjectB and ProjectC.
+----
+
+Gretty sources contain complete working example of composite farm:
+
+https://github.com/akhikhl/gretty/tree/master/examples/multifarm
+
