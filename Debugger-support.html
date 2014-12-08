@@ -67,11 +67,42 @@
 <div class="paragraph">
 <p>All appRunXXX and appStartXXX tasks have their debugging counterparts. For example, there are tasks appRun and appRunDebug. appRun starts web-app "normally", while appRunDebug starts web-app in suspended mode and listens for debugger commands on port 5005.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fine_tuning"><a class="anchor" href="#_fine_tuning"></a>Fine-tuning</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Author of Gretty plugin tested debugging only under Netbeans IDE. It should also work under other IDEs, but it&#8217;s not tested yet.</p>
+<p>Gretty version 1.1.8+ implements two new properties, allowing fine-tuning of debug tasks:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>gretty {
+  debugPort = 5005      // default
+  debugSuspend = true   // default
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Author of Gretty plugin invites all interested parties to testing Gretty debugging features under other IDEs.</p>
+<p>When defined, these properties affect all Gretty debug tasks (appRunDebug, appStartDebug, &#8230;) of the given project.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, you can redefine these two properties on the level of the individual task:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>gretty {
+  afterEvaluate {
+    appRunDebug {
+      debugPort = 5005
+      debugSuspend = true
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please note how appRunDebug task is configured within gretty.afterEvaluate closure: this guarantees that task exists at the moment of configuration.</p>
 </div>
 </div>
 </div></p>

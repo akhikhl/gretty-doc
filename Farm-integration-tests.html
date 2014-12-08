@@ -65,60 +65,19 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Gretty supports <a href="Integration-tests-support.html">integration tests</a> on <a href="Multiple-web-apps-introduction.html">farms</a>,
-i.e. on multiple web-apps running on the same web-server.</p>
+<p>This part of documentation is coming soon!</p>
 </div>
 <div class="paragraph">
-<p>You don&#8217;t have to configure anything in order to use integration tests on farms. Your part is to create a farm and some integration tests,
-then run task:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint shell language-shell"><code>gradle farmIntegrationTest</code></pre>
-</div>
+<p>For now:</p>
 </div>
 <div class="paragraph">
-<p>Gretty automatically starts and stops a servlet container before and after integration tests.</p>
+<p>The feature is fully implemented. Try it yourself on the example project:</p>
 </div>
 <div class="paragraph">
-<p>Gretty automatically invokes all integration tests for all web-apps mentioned in a farm.</p>
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/farm9/MyWebApp">https://github.com/akhikhl/gretty/tree/master/examples/farm9/MyWebApp</a></p>
 </div>
 <div class="paragraph">
-<p>If you use named farms, then you have to invoked specific tasks for named farms. For example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farms {
-  farm 'XYZ', {
-    webapp ':ProjectB'
-    webapp ':ProjectC'
-    webapp ':ProjectD'
-  }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>then you have to invoke:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint shell language-shell"><code>gradle farmIntegrationTestXYZ</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>There following example projects demonstrate farm integration tests at work:</p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/farm">Simple farm</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/farmSecure">Secure farm</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm">Spring Boot farm</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm-secure">Secure Spring Boot farm</a></p>
+<p>there invoke <code>gradle farmIntegrationTest</code> - you&#8217;ll see integration tests running for multiple web-apps on the same Jetty server.</p>
 </div>
 </div>
 </div></p>

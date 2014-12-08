@@ -5,10 +5,6 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
-        <loc>http://akhikhl.github.io/gretty-doc/Composite-farms.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
         <loc>http://akhikhl.github.io/gretty-doc/Configuring-default-farm.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
@@ -97,10 +93,6 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
-        <loc>http://akhikhl.github.io/gretty-doc/Injection-of-version-variables.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
         <loc>http://akhikhl.github.io/gretty-doc/Integration-tests-support.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
@@ -129,15 +121,7 @@
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
-        <loc>http://akhikhl.github.io/gretty-doc/Override-context-path-in-integration-test-tasks.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
         <loc>http://akhikhl.github.io/gretty-doc/Product-generation.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
-        <loc>http://akhikhl.github.io/gretty-doc/Redirect-filter.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>
@@ -246,10 +230,6 @@
     </url>
     <url>
         <loc>http://akhikhl.github.io/gretty-doc/farmBeforeIntegrationTest-task.html</loc>
-        <lastmod>2014-05-29</lastmod>
-    </url>
-    <url>
-        <loc>http://akhikhl.github.io/gretty-doc/farmIntegrationTest-task.html</loc>
         <lastmod>2014-05-29</lastmod>
     </url>
     <url>

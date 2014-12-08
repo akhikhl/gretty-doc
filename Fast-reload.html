@@ -65,11 +65,7 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>There are cases, when restart of the web-app on every resource change is not optimal (too slow). Specifically for such cases Gretty implements "fast reload" feature.
-Fast reload handles changes in src/main/webapp directory: whenever some files within this directory are changed, these files are copied into running web-app without web-app restart.</p>
-</div>
-<div class="paragraph">
-<p>Gretty version 1.1.4+ supports inplaceMode property (see below), allowing to accelerate resource reloads by serving files directly from src/main/webapp (thus avoiding file copy on change).</p>
+<p>There are cases, when restart of the web-app on every resource change is not optimal (too slow). Specifically for such cases Gretty implements "fast reload" feature.</p>
 </div>
 <div class="paragraph">
 <p>You can configure fastReload feature by adjusting the <a href="Gretty-configuration.html">gretty configuration</a> properties:</p>
@@ -160,24 +156,15 @@ each resolved subfolder within these folders is added to fast reload.</p>
 <p><a href="Gretty-configuration.html#_fastreload">fastReload</a> property is set to true.</p>
 </li>
 <li>
-<p>Fast reload always excludes the following files: <code>\*.jar, *.class, web.xml, web-fragment.xml, jetty.xml, jetty-env.xml, tomcat-users.xml, WEB-INF/lib/*\*, WEB-INF/classes/**</code>. That means: when these files are changed, web-app is fully restarted.</p>
+<p>Fast reload always excludes the following files: <code>*.jar, *.class, web.xml, web-fragment.xml, jetty.xml, jetty-env.xml, tomcat-users.xml, WEB-INF/lib/**, WEB-INF/classes/**</code>. That means: when these files are changed, web-app is fully restarted.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>You can add more than one fastReload specification. In such case all specified directories are fast-reloaded.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-Gretty supports fast reload only on non-test gradle tasks. Any test tasks (including integration test tasks) run without fast reload. The generated <a href="Product-generation.html">products</a> also run without fast reload.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>INFO: Gretty supports fast reload only on non-test gradle tasks. Any test tasks (including integration test tasks) run without fast reload. The generated <a href="Product-generation.html">products</a> also run without fast reload.</p>
 </div>
 </div>
 </div></p>

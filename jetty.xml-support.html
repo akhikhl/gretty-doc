@@ -86,10 +86,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>If explicitly defined serverConfigFile represents an absolute path, gretty will use just that.</p>
+<p>If serverConfigFile is not specified, Gretty looks for one of the files "jetty9.xml" (for Jetty 9), "jetty8.xml" (for Jetty 8), "jetty7.xml" (for Jetty 7), "jetty.xml". Jetty version is defined by <a href="Gretty-configuration.html#_servletcontainer">gretty.servletContainer</a> property.</p>
 </div>
 <div class="paragraph">
-<p>If serverConfigFile is not specified, Gretty looks for one of the files "jetty9.xml" (for Jetty 9), "jetty8.xml" (for Jetty 8), "jetty7.xml" (for Jetty 7), "jetty.xml". Jetty version is defined by <a href="Gretty-configuration.html#_servletcontainer">gretty.servletContainer</a> property.</p>
+<p>If explicitly defined serverConfigFile represents an absolute path, gretty will use just that.</p>
 </div>
 <div class="paragraph">
 <p>If implicitly or explicitly defined serverConfigFile represents a relative path, gretty tries to resolve it in the following directories:</p>
@@ -113,17 +113,8 @@
 <div class="paragraph">
 <p>When you generate a <a href="Product-generation.html">product</a>, "jetty.xml" file is automatically copied to "conf" subdirectory and referenced in "conf/server.json". The running product automatically applies "jetty.xml" files listed in "conf/server.json".</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-When you run a farm or generate product from a farm, serverConfigFile is taken from farm or product configuration, not from gretty configuration.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>When you run a farm or generate product from a farm, serverConfigFile is taken from farm or product configuration, not from gretty configurations.</p>
 </div>
 <div class="paragraph">
 <p>Gretty sources contain example program demonstrating support of "jetty.xml" at work:</p>
