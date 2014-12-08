@@ -7,7 +7,32 @@ Andrey Hihlovskiy
 
 All appRunXXX and appStartXXX tasks have their debugging counterparts. For example, there are tasks appRun and appRunDebug. appRun starts web-app "normally", while appRunDebug starts web-app in suspended mode and listens for debugger commands on port 5005.
 
-Author of Gretty plugin tested debugging only under Netbeans IDE. It should also work under other IDEs, but it's not tested yet.
+== Fine-tuning
 
-Author of Gretty plugin invites all interested parties to testing Gretty debugging features under other IDEs.
+Gretty version 1.1.8+ implements two new properties, allowing fine-tuning of debug tasks:
 
+[source,groovy]
+----
+gretty {
+  debugPort = 5005      // default
+  debugSuspend = true   // default
+}
+----
+
+When defined, these properties affect all Gretty debug tasks (appRunDebug, appStartDebug, ...) of the given project.
+
+Additionally, you can redefine these two properties on the level of the individual task:
+
+[source,groovy]
+----
+gretty {
+  afterEvaluate {
+    appRunDebug {
+      debugPort = 5005
+      debugSuspend = true
+    }
+  }
+}
+----
+
+Please note how appRunDebug task is configured within gretty.afterEvaluate closure: this guarantees that task exists at the moment of configuration.
