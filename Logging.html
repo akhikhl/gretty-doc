@@ -65,22 +65,25 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>When Gretty runs it&#8217;s tasks, it appends
-<a href="http://logback.qos.ch/">logback-classic</a> to the project&#8217;s classpath.</p>
+<p>Gretty protocols it&#8217;s own messages and messages from servlet container
+with the help of <a href="http://logback.qos.ch/">logback-classic</a> library.</p>
 </div>
 <div class="paragraph">
-<p>Gretty supports configuring slf4j/logback logging in three forms:</p>
+<p>Gretty isolates it&#8217;s own logging from the web application logging on the level of ClassLoader. That means:
+the logback library (and logback configuration) used by Gretty is not visible within web application.
+You are free to use any logging system - logback, log4j, commons-logging etc. - within your
+web applications.</p>
+</div>
+<div class="paragraph">
+<p>Gretty supports configuring it&#8217;s own slf4j/logback logging by two methods:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you place "logback.groovy" or "logback.xml" to "src/main/resources", it is compiled (copied) to "build/resources/main" folder before running any start tasks. Gretty auto-discovers logback configuration file in that folder and applies it to servlet-container process.</p>
-</li>
-<li>
 <p>If you place "logback.groovy" or "logback.xml" to arbitrary folder and then reference it by <code>logbackConfigFile</code> property, gretty applies the specified configuration to servlet-container process.</p>
 </li>
 <li>
-<p>If there&#8217;s no "logback.groovy" or "logback.xml" file, gretty configures logging with default settings:</p>
+<p>If "logback.groovy" or "logback.xml" is not specified, gretty configures logging with default settings:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -90,24 +93,12 @@
 <p>It configures two appenders: one for console and another for the log file.</p>
 </li>
 <li>
-<p>Log file by default has name "${project.name}.log" and is created in folder "${user.home}/logs".</p>
+<p>Log file by default has name "${project.name}.log" and is created in folder "$HOME/logs".</p>
 </li>
 </ul>
 </div>
 </li>
 </ol>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Important</div>
-</td>
-<td class="content">
-gretty logging is only effective in Gretty tasks. Gretty does not reconfigure logging (or libraries) of the compiled WAR-file.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>You can fine-tune gretty logging by adjusting the following properties [of gretty plugin extension]:</p>
@@ -115,7 +106,8 @@ gretty logging is only effective in Gretty tasks. Gretty does not reconfigure lo
 <div class="ulist">
 <ul>
 <li>
-<p><code>logbackConfigFile</code> defines the absolute or relative path to logback configuration file (.groovy or .xml). If "logbackConfigFile" is relative, it is first combined with projectDir. If the resulting path points to an existing file, it is used for logback configuration. If not, gretty tries to combine "logbackConfigFile" with each output folder (typically "${projectdir}/build/classes/main" and "${projectdir}/build/resources/main"). If any resulting path points to an existing file, it is used for logback configuration.</p>
+<p><code>logbackConfigFile</code> defines the absolute or relative path to logback configuration file (.groovy or .xml). If "logbackConfigFile" is relative, it is first combined with projectDir. If the resulting path points to an existing file, it is used for logback configuration. If not, gretty tries to combine "logbackConfigFile" with directories
+"$projectDir/logback", "$projectDir/server", "$projectDir/config". If any resulting path points to an existing file, it is used for logback configuration.</p>
 </li>
 <li>
 <p><code>loggingLevel</code> defines slf4j logging-level for servlet-container process. It is a string, having one of the values: <em>ALL</em>, <em>DEBUG</em>, <em>ERROR</em>, <em>INFO</em>, <em>OFF</em>, <em>TRACE</em>, <em>WARN</em>. The default value is <em>INFO</em>.</p>
@@ -130,7 +122,7 @@ gretty logging is only effective in Gretty tasks. Gretty does not reconfigure lo
 <p><code>logFileName</code> defines log file name (without path). It is a string, default value is "${project.name}.log".</p>
 </li>
 <li>
-<p><code>logDir</code> defines directory, where log file is created. It is a string, default value is "${user.home}/logs".</p>
+<p><code>logDir</code> defines directory, where log file is created. It is a string, default value is "$HOME/logs".</p>
 </li>
 </ul>
 </div>
@@ -141,8 +133,7 @@ gretty logging is only effective in Gretty tasks. Gretty does not reconfigure lo
 <div class="title">Important</div>
 </td>
 <td class="content">
-when logback configuration file is used (either auto-discovered or specified via "logbackConfigFile" property), other logging properties ("loggingLevel", "consoleLogEnabled",
-"fileLogEnabled", "logFileName", "logDir") have no effect.
+when logback configuration is groovy-based (not XML), Gretty injects other logging properties ("loggingLevel", "consoleLogEnabled", "fileLogEnabled", "logFileName", "logDir") are binding variables to the groovy configuration.
 </td>
 </tr>
 </table>
