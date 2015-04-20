@@ -5,31 +5,57 @@ Andrey Hihlovskiy
 :jbake-type: page
 :jbake-status: published
 
-Since version 1.1.4 Gretty supports passing special arguments to Gretty products, which are "tunneled" to Gretty runner (web-server). For example, when you add the following code to product's run.sh script:
+Since version 1.1.4 Gretty supports passing special arguments to Gretty products, which are "tunneled" to Gretty runner (web-server). 
+
+For example, when you pass the following arguments to product's run.sh script:
 
 [source,bash]
----
-java -Dfile.encoding=UTF8 -cp "${DIR}/conf/:${DIR}/starter/*" org.akhikhl.gretty.GrettyStarter --runnerArg=-Xms1024m --runnerArg=-Xmx2048m $@ run
----
+----
+./run.sh --runnerArg=-Xms1024m --runnerArg=-Xmx2048m
+----
 
 then Gretty runner will be launched with additional arguments "-Xms1024m -Xmx2048m".
 
 Here are all Gretty-runner-specific arguments:
 
-[cols="1,1,6", options="header"]
+[cols="1,2", options="header"]
 |===
 | Form
 | Purpose
 
+| --runnerArg=httpPort=8080
+| overrides HTTP port specified in server.json
+
+| --runnerArg=httpsPort=8443
+| overrides HTTPS port specified in server.json
+
+| --runnerArg=servicePort=9000
+| overrides service port specified in server.json
+
+| --runnerArg=statusPort=9001
+| overrides status port specified in server.json
+
+| --runnerArg=httpEnabled=true
+| overrides httpEnabled specified in server.json
+
+| --runnerArg=httpsEnabled=false
+| overrides httpsEnabled specified in server.json
+
+| --runnerArg=httpIdleTimeout=60000
+| overrides httpIdleTimeout specified in server.json
+
+| --runnerArg=httpsIdleTimeout=60000
+| overrides httpsIdleTimeout specified in server.json
+
 | --runnerArg=value
-| value will be passed as an argument to Gretty runner's JVM
+| when value does not match any of the patterns above, it is passed "as it is" to Gretty runner's JVM
 
 | --runnerArgFile=file
-| file is expected to be an existing file, containing space-separated on line-separated list of arguments to Gretty runner's JVM
+| file is expected to be an existing file, containing space-separated on line-separated list of arguments to Gretty runner (parameters are interpreted the same way as runnerArg).
 
 
 | --runnerArgURL=url
-| url is expected to be a valid URL, pointing to an existing location of arguments file. The file is expected to have the same format as for runnerArgFile
+| url is expected to be a valid URL, pointing to an existing location of arguments file. The file has the same format and meaning as runnerArgFile.
 
 | --runnerOverrideArgs=true/false
 | when true, the arguments specified in jvmArgs property in server.json are ignored.

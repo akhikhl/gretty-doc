@@ -83,5 +83,5 @@ link:Farm-task-classes.html[Farm task classes]
 
 == Product generation
 
-link:Product-generation.html[Product generation]
+link:Product-generation.html[Product generation] +
 link:Runner-arguments.html[Runner arguments]
