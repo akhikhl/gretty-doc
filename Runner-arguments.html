@@ -65,13 +65,14 @@
 	<p><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Since version 1.1.4 Gretty supports passing special arguments to Gretty products, which are "tunneled" to Gretty runner (web-server). For example, when you add the following code to product&#8217;s run.sh script:</p>
+<p>Since version 1.1.4 Gretty supports passing special arguments to Gretty products, which are "tunneled" to Gretty runner (web-server).</p>
+</div>
+<div class="paragraph">
+<p>For example, when you pass the following arguments to product&#8217;s run.sh script:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint bash language-bash"><code>---
-java -Dfile.encoding=UTF8 -cp "${DIR}/conf/:${DIR}/starter/*" org.akhikhl.gretty.GrettyStarter --runnerArg=-Xms1024m --runnerArg=-Xmx2048m $@ run
----</code></pre>
+<pre class="prettyprint bash language-bash"><code>./run.sh --runnerArg=-Xms1024m --runnerArg=-Xmx2048m</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -82,27 +83,63 @@ java -Dfile.encoding=UTF8 -cp "${DIR}/conf/:${DIR}/starter/*" org.akhikhl.gretty
 </div>
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <colgroup>
-<col style="width:12%;">
-<col style="width:12%;">
-<col style="width:75%;"> 
+<col style="width:33%;">
+<col style="width:66%;"> 
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Form</th>
 <th class="tableblock halign-left valign-top">Purpose</th>
-<th class="tableblock halign-left valign-top">--runnerArg=value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value will be passed as an argument to Gretty runner&#8217;s JVM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArg=httpPort=8080</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">overrides HTTP port specified in server.json</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArg=httpsPort=8443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">overrides HTTPS port specified in server.json</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArg=servicePort=9000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">overrides service port specified in server.json</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArg=statusPort=9001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">overrides status port specified in server.json</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArg=httpEnabled=true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">overrides httpEnabled specified in server.json</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArg=httpsEnabled=false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">overrides httpsEnabled specified in server.json</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArg=httpIdleTimeout=60000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">overrides httpIdleTimeout specified in server.json</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArg=httpsIdleTimeout=60000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">overrides httpsIdleTimeout specified in server.json</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArg=value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">when value does not match any of the patterns above, it is passed "as it is" to Gretty runner&#8217;s JVM</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArgFile=file</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">file is expected to be an existing file, containing space-separated on line-separated list of arguments to Gretty runner&#8217;s JVM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">file is expected to be an existing file, containing space-separated on line-separated list of arguments to Gretty runner (parameters are interpreted the same way as runnerArg).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">--runnerArgURL=url</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">url is expected to be a valid URL, pointing to an existing location of arguments file. The file is expected to have the same format as for runnerArgFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">url is expected to be a valid URL, pointing to an existing location of arguments file. The file has the same format and meaning as runnerArgFile.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">--runnerOverrideArgs=true/false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">when true, the arguments specified in jvmArgs property in server.json are ignored.</p></td>
 </tr>
 </tbody>
 </table>
