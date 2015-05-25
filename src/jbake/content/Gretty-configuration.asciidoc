@@ -243,6 +243,12 @@ contextPath affects only gretty tasks.
 If you assemble WAR file and deploy it to some servlet container, you must define context
 path by means of that container.
 
+| [[__classpath]] classPath
+| function(URL url)
+| -
+| Add classpath entry to the web-app. +
+classPath affects only gretty tasks (not the generated WAR files or products).
+
 | [[_initparameter]] initParameter
 | function(String key, String value)
 | -
