@@ -42,7 +42,7 @@ Gretty extension supports the following server-specific properties:
 | [[_servletcontainer]] servletContainer
 | String
 | 'jetty9'
-| Servlet container to be used in appXXX tasks. Possible values are 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'.
+| Servlet container to be used in appXXX tasks. Possible values are 'jetty7', 'jetty8', 'jetty9', 'jetty93' (jdk 8 only), 'tomcat7', 'tomcat8'.
 
 | [[_managedclassreload]] managedClassReload
 | boolean
@@ -116,6 +116,11 @@ See also: link:HTTPS-support.html#_https_manual_configuration[HTTPS manual confi
 | null
 | Password for the key-store designated by property sslKeyStorePath. +
 See also: link:HTTPS-support.html#_https_manual_configuration[HTTPS manual configuration]
+
+| [[_sslneedclientauth]] sslNeedClientAuth
+| boolean
+| false
+| Specify if client auth is required
 
 | [[_httpsidletimeout]] httpsIdleTimeout
 | int
@@ -222,7 +227,26 @@ Note that interactiveMode only affects interactive tasks: appRun, appRunDebug, f
 | boolean
 | false
 | When true, Tomcat supports JNDI resource naming.
-|===
+
+| [[_redeploymode]] redeployMode
+| String
+| restart
+| Defines Gretty behaviour on application redeployment. When 'restart' gretty simply restarts servlet container. When 'redeploy' gretty redeploys web application on servlet container. Redeploy is useful when multiple application is started in farm mode.
+
+| [[_scanner]] scanner
+| String
+| jetty
+| Switch between jetty and jdk scanners. 'jetty' is scan-based and 'jdk' is notify-based (jdk 7).
+
+| [[_auxPortRange]] auxPortRange
+| List<Integer>
+| null
+| If specified gretty will pick service and status port from it.
+
+| [[_portPropertiesFileName]] portPropertiesFileName
+| String
+| gretty_port.properties
+| Specifies name of file for gretty service and status port.
 
 == Web-app-specific properties
 
@@ -242,6 +266,12 @@ Gretty extension supports the following web-app-specific properties:
 contextPath affects only gretty tasks.
 If you assemble WAR file and deploy it to some servlet container, you must define context
 path by means of that container.
+
+| [[__beforeclasspath] beforeClassPath
+| function(URL... url)
+| -
+| Adds classpath entry before web-app classpath +
+beforeClassPath affects only gretty tasks (not the generated WAR files or products).
 
 | [[__classpath]] classPath
 | function(URL url)
