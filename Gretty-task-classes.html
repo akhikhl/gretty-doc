@@ -86,12 +86,12 @@
 </div>
 <div class="sect2">
 <h3 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h3>
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:66%;"> 
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -130,7 +130,6 @@ If false, the servlet-container process is started in non-debug mode.</p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect2">
 <h3 id="_property_inheritance"><a class="anchor" href="#_property_inheritance"></a>Property inheritance</h3>
@@ -142,7 +141,7 @@ If false, the servlet-container process is started in non-debug mode.</p></td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'org.akhikhl.gretty'
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin: 'org.akhikhl.gretty'
 
 gretty {
   contextPath = '/abc'
@@ -186,7 +185,7 @@ Press any key to stop the jetty server.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>gretty {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">gretty {
   jvmArgs = '-Da=b'
 }
 
@@ -196,14 +195,14 @@ task('myRun', type: AppStartTask) {
 </div>
 </div>
 <div class="paragraph">
-<p>as the result, myRun task will contain two parameters: <em>-Da=b</em> and <em>-Dx=y</em>, but you probably wanted only <em>-Dx=y</em>.</p>
+<p>as the result, myRun task will contain two parameters: '-Da=b' and '-Dx=y', but you probably wanted only '-Dx=y'.</p>
 </div>
 <div class="paragraph">
 <p>If you want replace jvmArgs rather than append, you&#8217;ll need to call prepareServerConfig function with closure parameter:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>gretty {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">gretty {
   jvmArgs = '-Da=b'
 }
 
@@ -257,12 +256,12 @@ and receives merged property object as closure delegate.</p>
 </div>
 <div class="sect2">
 <h3 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h3>
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:66%;"> 
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -281,7 +280,6 @@ and receives merged property object as closure delegate.</p>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect2">
 <h3 id="_property_inheritance_2"><a class="anchor" href="#_property_inheritance_2"></a>Property inheritance</h3>
@@ -311,12 +309,12 @@ and receives merged property object as closure delegate.</p>
 </div>
 <div class="sect2">
 <h3 id="_properties_3"><a class="anchor" href="#_properties_3"></a>Properties</h3>
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:66%;"> 
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -335,7 +333,6 @@ and receives merged property object as closure delegate.</p>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect2">
 <h3 id="_property_inheritance_3"><a class="anchor" href="#_property_inheritance_3"></a>Property inheritance</h3>
@@ -368,7 +365,7 @@ AppBeforeIntegrationTestTask starts servlet container automatically before the d
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>import org.akhikhl.gretty.AppBeforeIntegrationTestTask
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">import org.akhikhl.gretty.AppBeforeIntegrationTestTask
 
 task('MyIntegrationTest') {
   // ...
@@ -383,12 +380,12 @@ task('MyBeforeIntegrationTest', type: AppBeforeIntegrationTestTask) {
 </div>
 <div class="sect2">
 <h3 id="_properties_4"><a class="anchor" href="#_properties_4"></a>Properties</h3>
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:66%;"> 
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -433,7 +430,6 @@ If false, the servlet-container is started in non-debug mode.</p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect2">
 <h3 id="_property_inheritance_4"><a class="anchor" href="#_property_inheritance_4"></a>Property inheritance</h3>
@@ -466,7 +462,7 @@ AppAfterIntegrationTestTask stops servlet-container process automatically after 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>import org.akhikhl.gretty.AppAfterIntegrationTestTask
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">import org.akhikhl.gretty.AppAfterIntegrationTestTask
 
 task('MyIntegrationTest') {
   // ...
@@ -481,12 +477,12 @@ task('MyAfterIntegrationTest', type: AppAfterIntegrationTestTask) {
 </div>
 <div class="sect2">
 <h3 id="_properties_5"><a class="anchor" href="#_properties_5"></a>Properties</h3>
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:11%;">
-<col style="width:66%;"> 
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -511,7 +507,6 @@ task('MyAfterIntegrationTest', type: AppAfterIntegrationTestTask) {
 </tr>
 </tbody>
 </table>
-
 </div>
 <div class="sect2">
 <h3 id="_property_inheritance_5"><a class="anchor" href="#_property_inheritance_5"></a>Property inheritance</h3>

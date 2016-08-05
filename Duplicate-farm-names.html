@@ -62,9 +62,7 @@
 		<h1>Duplicate farm names</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>If you configure farm with the same name more than once, there&#8217;s still only one farm with the given name and it&#8217;s properties are merged:</p>
 </div>
 <div class="ulist">
@@ -92,7 +90,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farms {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">farms {
   farm 'A', {
     port = 8081
     webapp ':ProjectA'
@@ -149,8 +147,6 @@ Farms are strictly project-specific. If you define farms with the same name in t
 <p><a href="Farms-and-web-app-specific-properties.html">Farms and web-app specific properties</a></p>
 </li>
 </ul>
-</div>
-</div>
 </div></p>
 
 	<hr />

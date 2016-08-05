@@ -62,9 +62,7 @@
 		<h1>Composite farms</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>Gretty version 1.1.5+ extends <a href="Multiple-web-apps-introduction.html">farms mechanism</a> with <em>composite farms</em> - farms consisting of other farms.</p>
 </div>
 <div class="paragraph">
@@ -72,7 +70,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>// in ProjectA:
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">// in ProjectA:
 farm {
   webapp project // ProjectA
   webapp ':ProjectB'
@@ -101,7 +99,7 @@ any cyclic includes between composite farms.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>// in ProjectA:
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">// in ProjectA:
 farms {
   farm 'X', {
     webapp project // ProjectA
@@ -140,9 +138,7 @@ farms {
 <p>Gretty sources contain complete working example of composite farm:</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/multifarm">https://github.com/akhikhl/gretty/tree/master/examples/multifarm</a></p>
-</div>
-</div>
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/multifarm" class="bare">https://github.com/akhikhl/gretty/tree/master/examples/multifarm</a></p>
 </div></p>
 
 	<hr />

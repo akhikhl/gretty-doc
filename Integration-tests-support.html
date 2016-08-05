@@ -75,7 +75,7 @@ The task itself can perform arbitrary tests (for example, use <a href="http://ww
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>gretty {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">gretty {
   // ...
   integrationTestTask = 'integrationTest' // name of existing gradle task
   // ...
@@ -110,10 +110,10 @@ Gretty does not define integration test task nor does it augment it in any way. 
 <div class="paragraph">
 <p>When your integration task supports <a href="http://www.gradle.org/docs/current/javadoc/org/gradle/process/JavaForkOptions.html">JavaForkOptions</a> interface (for example, when integration task is instance of <a href="http://www.gradle.org/docs/current/javadoc/org/gradle/api/tasks/testing/Test.html">Test</a> class), Gretty passes the following system properties to the java process of integration task:</p>
 </div>
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width:25%;">
-<col style="width:75%;"> 
+<col style="width: 25%;">
+<col style="width: 75%;">
 </colgroup>
 <thead>
 <tr>
@@ -166,7 +166,6 @@ Gretty does not define integration test task nor does it augment it in any way. 
 </tr>
 </tbody>
 </table>
-
 <div class="paragraph">
 <p>Your test code can access these properties via System.getProperty function. This allows to parametrize test code with Gretty-specific parameters.</p>
 </div>

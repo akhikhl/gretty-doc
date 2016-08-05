@@ -75,7 +75,7 @@ To run integration tests on the named farm, use farmIntegrationTestXYZ, where XY
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint bash language-bash"><code>gradle farmIntegrationTest</code></pre>
+<pre class="prettyprint highlight"><code class="language-bash" data-lang="bash">gradle farmIntegrationTest</code></pre>
 </div>
 </div>
 </div>
@@ -106,7 +106,7 @@ To run integration tests on the named farm, use farmIntegrationTestXYZ, where XY
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>// RootProject/build.gradle
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">// RootProject/build.gradle
 
 farm {
   webapp ':ProjectA'
@@ -133,7 +133,7 @@ configure(project(':ProjectA'), project(':ProjectB')) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint bash language-bash"><code>gradle farmIntegrationTest</code></pre>
+<pre class="prettyprint highlight"><code class="language-bash" data-lang="bash">gradle farmIntegrationTest</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -141,14 +141,14 @@ configure(project(':ProjectA'), project(':ProjectB')) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint bash language-bash"><code>:RootProject:farmBeforeIntegrationTest
+<pre class="prettyprint highlight"><code class="language-bash" data-lang="bash">:RootProject:farmBeforeIntegrationTest
 :ProjectA:myIntegrationTest
 :ProjectB:myIntegrationTest
 :RootProject:farmAfterIntegrationTest</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The full and working example program is found here: <a href="https://github.com/akhikhl/gretty/tree/master/examples/farm">https://github.com/akhikhl/gretty/tree/master/examples/farm</a></p>
+<p>The full and working example program is found here: <a href="https://github.com/akhikhl/gretty/tree/master/examples/farm" class="bare">https://github.com/akhikhl/gretty/tree/master/examples/farm</a></p>
 </div>
 </div>
 </div></p>

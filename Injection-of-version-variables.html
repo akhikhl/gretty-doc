@@ -62,14 +62,12 @@
 		<h1>Injection of version variables</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>Gretty version 1.1.5+ automatically injects the following variables into project.ext of your project:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>project.ext {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">project.ext {
   grettyVersion = Externalized.getString('grettyVersion')
   jetty7Version = Externalized.getString('jetty7Version')
   jetty7ServletApi = Externalized.getString('jetty7ServletApi')
@@ -97,15 +95,13 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>dependencies {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">dependencies {
   gretty "org.apache.tomcat:tomcat-dbcp:$tomcat8Version"
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Note that changing the values of version variables is possible, but not recommended. Gretty will ignore such changes and use the versions supplied to Gretty at compile time (of Gretty Gradle plugin).</p>
-</div>
-</div>
 </div></p>
 
 	<hr />

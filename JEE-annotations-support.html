@@ -62,16 +62,14 @@
 		<h1>JEE annotations support</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>Gretty supports JEE annotations out-of-the-box. This means: you don&#8217;t
 have to configure anything, you just use JEE annotations in the
 web-app:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint java language-java"><code>import java.io.IOException;
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -101,7 +99,7 @@ public class ExampleServlet extends HttpServlet {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint xml language-xml"><code>&lt;?xml version="1.0"?&gt;
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;?xml version="1.0"?&gt;
 &lt;!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd"&gt;
 &lt;Configure class="org.eclipse.jetty.webapp.WebAppContext"&gt;
   &lt;Call name="setContextAttribute"&gt;
@@ -117,8 +115,6 @@ any jar whose name starts with "foo-" or "bar-", or a directory named "classes".
 </div>
 <div class="paragraph">
 <p>See also: <a href="jetty-env.xml-support.html">"jetty-env.xml" support</a>.</p>
-</div>
-</div>
 </div></p>
 
 	<hr />

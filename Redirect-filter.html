@@ -83,7 +83,7 @@ even if you deploy web-application as a WAR file to arbitrary servlet container 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint xml language-xml"><code>&lt;filter&gt;
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;filter&gt;
   &lt;filter-name&gt;RedirectFilter&lt;/filter-name&gt;
   &lt;filter-class&gt;org.akhikhl.gretty.RedirectFilter&lt;/filter-class&gt;
 &lt;/filter&gt;
@@ -104,7 +104,7 @@ even if you deploy web-application as a WAR file to arbitrary servlet container 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>// here we forward context root path to "index.html"
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">// here we forward context root path to "index.html"
 filter relPath: '/', {
   forward 'index.html'
 }
@@ -149,7 +149,7 @@ as soon as it discovers redirect filter in "web.xml".
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>/**
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">/**
  * Adds new filter to filter chain.
  * Must be called in the top scope of "filter.groovy" script.
  * options - contains one or more filter criteria.
@@ -179,13 +179,13 @@ For example, if you put the following into options:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>filter relPath: '/path', scheme: 'http', {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">filter relPath: '/path', scheme: 'http', {
   // ...
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>then program will check for relative path being equal to <em>/path</em> AND for scheme being equal to <em>http</em>.
+<p>then program will check for relative path being equal to '/path' AND for scheme being equal to 'http'.
 Only when both comparisons are successful, then the closure will be called.</p>
 </div>
 <div class="paragraph">
@@ -195,7 +195,7 @@ The result of match is passed as map parameter to the closure. Example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>filter relPath: ~'/path/(*.)', query: ~'x=(.*)', { matches -&gt;
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">filter relPath: ~'/path/(*.)', query: ~'x=(.*)', { matches -&gt;
   // if we get here, then matches.relPath[0][1] will contain first capture group for relPath regex,
   // while matches.query[0][1] will contain first capture group for query regex.
 }</code></pre>
@@ -204,11 +204,11 @@ The result of match is passed as map parameter to the closure. Example:</p>
 <div class="paragraph">
 <p>Redirect filter recognizes the following keys within "options":</p>
 </div>
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:66%;"> 
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 66.6668%;">
 </colgroup>
 <thead>
 <tr>
@@ -281,15 +281,14 @@ For example, if context path is "/myWebApp" and request path is "/myWebApp/hello
 </tr>
 </tbody>
 </table>
-
 <div class="paragraph">
 <p>Redirect filter provides the following variables to filter closure:</p>
 </div>
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width:16%;">
-<col style="width:16%;">
-<col style="width:66%;"> 
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 66.6668%;">
 </colgroup>
 <thead>
 <tr>
@@ -388,7 +387,6 @@ For example, if context path is "/myWebApp" and request path is "/myWebApp/hello
 </tr>
 </tbody>
 </table>
-
 <div class="paragraph">
 <p>Redirect filter automatically imports groovyx.net.http.URIBuilder class into "filter.groovy",
 so that you can instantiate it with a simple call <code>new URIBuilder(uri)</code>.</p>

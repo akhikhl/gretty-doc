@@ -126,7 +126,7 @@ All you have to do is to invoke <code>gradle buildProduct</code> on the command 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>product {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">product {
   webapp project // include this project
   webapp ':ProjectA'
   webapp ':ProjectB'
@@ -146,7 +146,7 @@ All you have to do is to invoke <code>gradle buildProduct</code> on the command 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>products {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">products {
   product {
     webapp ':ProjectB'
     webapp ':ProjectC'
@@ -190,7 +190,7 @@ All you have to do is to invoke <code>gradle buildProduct</code> on the command 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>products {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">products {
   product 'jetty', {
     servletContainer = 'jetty9'
     // ...
@@ -215,7 +215,7 @@ All you have to do is to invoke <code>gradle buildProduct</code> on the command 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farms {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">farms {
   farm 'X', {
     servletContainer = 'jetty8'
     webapp ':ProjectA'

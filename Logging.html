@@ -62,9 +62,7 @@
 		<h1>Logging</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>Gretty protocols it&#8217;s own messages and messages from servlet container
 with the help of <a href="http://logback.qos.ch/">logback-classic</a> library.</p>
 </div>
@@ -80,7 +78,7 @@ web applications.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you place "logback.groovy" or "logback.xml" to arbitrary folder and then reference it by <code>logbackConfigFile</code> property, gretty applies the specified configuration to servlet-container process.</p>
+<p>If you place "logback.groovy" or "logback.xml" to arbitrary folder and then reference it by logbackConfigFile property, gretty applies the specified configuration to servlet-container process.</p>
 </li>
 <li>
 <p>If "logback.groovy" or "logback.xml" is not specified, gretty configures logging with default settings:</p>
@@ -106,23 +104,23 @@ web applications.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>logbackConfigFile</code> defines the absolute or relative path to logback configuration file (.groovy or .xml). If "logbackConfigFile" is relative, it is first combined with projectDir. If the resulting path points to an existing file, it is used for logback configuration. If not, gretty tries to combine "logbackConfigFile" with directories
+<p>logbackConfigFile defines the absolute or relative path to logback configuration file (.groovy or .xml). If "logbackConfigFile" is relative, it is first combined with projectDir. If the resulting path points to an existing file, it is used for logback configuration. If not, gretty tries to combine "logbackConfigFile" with directories
 "$projectDir/logback", "$projectDir/server", "$projectDir/config". If any resulting path points to an existing file, it is used for logback configuration.</p>
 </li>
 <li>
-<p><code>loggingLevel</code> defines slf4j logging-level for servlet-container process. It is a string, having one of the values: <em>ALL</em>, <em>DEBUG</em>, <em>ERROR</em>, <em>INFO</em>, <em>OFF</em>, <em>TRACE</em>, <em>WARN</em>. The default value is <em>INFO</em>.</p>
+<p>loggingLevel defines slf4j logging-level for servlet-container process. It is a string, having one of the values: 'ALL', 'DEBUG', 'ERROR', 'INFO', 'OFF', 'TRACE', 'WARN'. The default value is 'INFO'.</p>
 </li>
 <li>
-<p><code>consoleLogEnabled</code> defines, whether log messages are written to the terminal. It is a boolean, default is "true".</p>
+<p>consoleLogEnabled defines, whether log messages are written to the terminal. It is a boolean, default is "true".</p>
 </li>
 <li>
-<p><code>fileLogEnabled</code> defines, whether log messages are written to the log-file. It is a boolean, default is "true".</p>
+<p>fileLogEnabled defines, whether log messages are written to the log-file. It is a boolean, default is "true".</p>
 </li>
 <li>
-<p><code>logFileName</code> defines log file name (without path). It is a string, default value is "${project.name}.log".</p>
+<p>logFileName defines log file name (without path). It is a string, default value is "${project.name}.log".</p>
 </li>
 <li>
-<p><code>logDir</code> defines directory, where log file is created. It is a string, default value is "$HOME/logs".</p>
+<p>logDir defines directory, where log file is created. It is a string, default value is "$HOME/logs".</p>
 </li>
 </ul>
 </div>
@@ -137,8 +135,6 @@ when logback configuration is groovy-based (not XML), Gretty injects other loggi
 </td>
 </tr>
 </table>
-</div>
-</div>
 </div></p>
 
 	<hr />

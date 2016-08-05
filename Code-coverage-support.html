@@ -90,7 +90,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'jacoco'</code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin: 'jacoco'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -117,7 +117,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'jacoco'
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin: 'jacoco'
 
 // ...
 
@@ -164,7 +164,7 @@ task('integrationTestClientReport', type: JacocoReport) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'jacoco'</code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin: 'jacoco'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -173,7 +173,7 @@ task('integrationTestClientReport', type: JacocoReport) {
 <div class="ulist">
 <ul>
 <li>
-<p>Jacoco plugin adds <a href="http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.plugins.JacocoTaskExtension.html">JacocoTaskExtension</a> to each app-start task of the given project - to appRun, appRunDebug, &#8230; and, most importantly, to appBeforeIntegrationTest.</p>
+<p>Jacoco plugin adds <a href="http://www.gradle.org/docs/current/dsl/org.gradle.testing.jacoco.plugins.JacocoTaskExtension.html">JacocoTaskExtension</a> to each app-start task of the given project - to appRun, appRunDebug, &#8230;&#8203; and, most importantly, to appBeforeIntegrationTest.</p>
 </li>
 <li>
 <p>By default JacocoTaskExtension is enabled for appBeforeIntegrationTest and disabled for all other app-start tasks. Code coverage is not collected for the tasks with disabled JacocoTaskExtension. You can configure this by setting <code>appRun.jacoco.enabled = true</code>.</p>
@@ -194,7 +194,7 @@ task('integrationTestClientReport', type: JacocoReport) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'org.akhikhl.gretty'
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin: 'org.akhikhl.gretty'
 apply plugin: 'jacoco'
 
 // ...
@@ -225,8 +225,7 @@ task('integrationTestServerReport', type: JacocoReport) {
   doLast {
     println "Jacoco report for server created: file://${reportDir.toURI().path}"
   }
-}
-</code></pre>
+}</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -260,8 +259,7 @@ You cannot pass appBeforeIntegrationTest as a parameter to JacocoReport.executio
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>
-task('myIntegrationTest', type: Test) {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">task('myIntegrationTest', type: Test) {
   // ...
 }
 
@@ -344,15 +342,15 @@ When instantiating AppBeforeIntegrationTestTask and AppAfterIntegrationTestTask 
 <ul>
 <li>
 <p>Code coverage with standard Gretty tasks:<br>
-<a href="https://github.com/akhikhl/gretty/tree/master/examples/jacocoExample">https://github.com/akhikhl/gretty/tree/master/examples/jacocoExample</a></p>
+<a href="https://github.com/akhikhl/gretty/tree/master/examples/jacocoExample" class="bare">https://github.com/akhikhl/gretty/tree/master/examples/jacocoExample</a></p>
 </li>
 <li>
 <p>Code coverage with instantiated Gretty tasks:<br>
-<a href="https://github.com/akhikhl/gretty/tree/master/examples/jacocoInstantiateTasks">https://github.com/akhikhl/gretty/tree/master/examples/jacocoInstantiateTasks</a></p>
+<a href="https://github.com/akhikhl/gretty/tree/master/examples/jacocoInstantiateTasks" class="bare">https://github.com/akhikhl/gretty/tree/master/examples/jacocoInstantiateTasks</a></p>
 </li>
 <li>
 <p>Code coverage with <a href="Multiple-web-apps-introduction.html">multiple web-apps</a>:<br>
-<a href="https://github.com/akhikhl/gretty/tree/master/examples/farmJacoco">https://github.com/akhikhl/gretty/tree/master/examples/farmJacoco</a></p>
+<a href="https://github.com/akhikhl/gretty/tree/master/examples/farmJacoco" class="bare">https://github.com/akhikhl/gretty/tree/master/examples/farmJacoco</a></p>
 </li>
 </ul>
 </div>

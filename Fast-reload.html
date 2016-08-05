@@ -62,9 +62,7 @@
 		<h1>Fast reload</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>There are cases, when restart of the web-app on every resource change is not optimal (too slow). Specifically for such cases Gretty implements "fast reload" feature.
 Fast reload handles changes in src/main/webapp directory: whenever some files within this directory are changed, these files are copied into running web-app without web-app restart.</p>
 </div>
@@ -160,7 +158,7 @@ each resolved subfolder within these folders is added to fast reload.</p>
 <p><a href="Gretty-configuration.html#_fastreload">fastReload</a> property is set to true.</p>
 </li>
 <li>
-<p>Fast reload always excludes the following files: <code>\*.jar, *.class, web.xml, web-fragment.xml, jetty.xml, jetty-env.xml, tomcat-users.xml, WEB-INF/lib/*\*, WEB-INF/classes/**</code>. That means: when these files are changed, web-app is fully restarted.</p>
+<p>Fast reload always excludes the following files: <code>*.jar, *.class, web.xml, web-fragment.xml, jetty.xml, jetty-env.xml, tomcat-users.xml, WEB-INF/lib/**, WEB-INF/classes/**</code>. That means: when these files are changed, web-app is fully restarted.</p>
 </li>
 </ul>
 </div>
@@ -178,8 +176,6 @@ Gretty supports fast reload only on non-test gradle tasks. Any test tasks (inclu
 </td>
 </tr>
 </table>
-</div>
-</div>
 </div></p>
 
 	<hr />

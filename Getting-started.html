@@ -62,14 +62,12 @@
 		<h1>Getting started</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>Add the following to "build.gradle" of your web-app:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'war'
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin: 'war'
 apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'</code></pre>
 </div>
 </div>
@@ -78,18 +76,18 @@ apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint bash language-bash"><code>gradle appRun</code></pre>
+<pre class="prettyprint highlight"><code class="language-bash" data-lang="bash">gradle appRun</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>you can also use other <a href="Gretty-tasks">Gretty tasks</a> for running and debugging your web-app or <a href="Gretty-configuration.html">configure Gretty</a> to your needs.</p>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can download the script from <a href="https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin">https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin</a> to the project folder and include it like this:</p>
+<p>Alternatively, you can download the script from <a href="https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin" class="bare">https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin</a> to the project folder and include it like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply from: 'gretty.plugin'</code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply from: 'gretty.plugin'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -97,7 +95,7 @@ apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>buildscript {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">buildscript {
   repositories {
     jcenter()
     // enable this to use snapshot versions of Gretty:
@@ -125,7 +123,7 @@ apply plugin: 'org.akhikhl.gretty'</code></pre>
 <div class="title">Note</div>
 </td>
 <td class="content">
-All release versions of Gretty are available at jcenter and maven central under the group <em>org.akhikhl.gretty</em>.
+All release versions of Gretty are available at jcenter and maven central under the group 'org.akhikhl.gretty'.
 </td>
 </tr>
 </table>
@@ -153,8 +151,6 @@ If you experience problems starting Gretty, first look into <a href="Troubleshoo
 </td>
 </tr>
 </table>
-</div>
-</div>
 </div></p>
 
 	<hr />

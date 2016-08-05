@@ -62,9 +62,7 @@
 		<h1>Multiple web-apps configureless setup</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>Create three empty folders: ProjectA, ProjectB and ProjectC, so that folder tree looks like this:</p>
 </div>
 <div class="listingblock">
@@ -79,7 +77,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>include 'ProjectA', 'ProjectB'</code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">include 'ProjectA', 'ProjectB'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -90,7 +88,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>buildscript {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">buildscript {
   repositories {
     jcenter()
   }
@@ -108,7 +106,7 @@ apply plugin: 'org.akhikhl.gretty'</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'org.akhikhl.gretty'</code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin: 'org.akhikhl.gretty'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -116,7 +114,7 @@ apply plugin: 'org.akhikhl.gretty'</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'org.akhikhl.gretty'</code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin: 'org.akhikhl.gretty'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -124,7 +122,7 @@ apply plugin: 'org.akhikhl.gretty'</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint bash language-bash"><code>gradle farmRun</code></pre>
+<pre class="prettyprint highlight"><code class="language-bash" data-lang="bash">gradle farmRun</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -154,8 +152,6 @@ The project ProjectA is special. It defines <strong>farm</strong> - logical grou
 </div>
 <div class="paragraph">
 <p>See also: <a href="index.html#_multiple_web_apps">Multiple web-apps</a>.</p>
-</div>
-</div>
 </div></p>
 
 	<hr />

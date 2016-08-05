@@ -62,9 +62,7 @@
 		<h1>Farm integration tests</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>Gretty supports <a href="Integration-tests-support.html">integration tests</a> on <a href="Multiple-web-apps-introduction.html">farms</a>,
 i.e. on multiple web-apps running on the same web-server.</p>
 </div>
@@ -74,7 +72,7 @@ then run task:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint shell language-shell"><code>gradle farmIntegrationTest</code></pre>
+<pre class="prettyprint highlight"><code class="language-shell" data-lang="shell">gradle farmIntegrationTest</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -88,7 +86,7 @@ then run task:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farms {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">farms {
   farm 'XYZ', {
     webapp ':ProjectB'
     webapp ':ProjectC'
@@ -102,7 +100,7 @@ then run task:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint shell language-shell"><code>gradle farmIntegrationTestXYZ</code></pre>
+<pre class="prettyprint highlight"><code class="language-shell" data-lang="shell">gradle farmIntegrationTestXYZ</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -119,8 +117,6 @@ then run task:</p>
 </div>
 <div class="paragraph">
 <p><a href="https://github.com/akhikhl/gretty/tree/master/examples/spring-boot-farm-secure">Secure Spring Boot farm</a></p>
-</div>
-</div>
 </div></p>
 
 	<hr />

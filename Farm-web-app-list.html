@@ -75,7 +75,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farm {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">farm {
   webapp ':ProjectA'
   webapp ':ProjectB'
 }</code></pre>
@@ -104,7 +104,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farm {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">farm {
   webapp ':A:B:C' // adds a subproject from folder rootProject/A/B/C
 }</code></pre>
 </div>
@@ -118,7 +118,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farm {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">farm {
   webapp project(':A:B:C') // adds a subproject from folder rootProject/A/B/C
 }</code></pre>
 </div>
@@ -135,7 +135,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farm {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">farm {
   webapp project
 }</code></pre>
 </div>
@@ -166,7 +166,7 @@ projects being added to a farm must be present in gradle project tree, otherwise
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farm {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">farm {
   webapp '/path/to/some/folder/MyWebApp1.war'
   webapp '/path/to/some/folder/MyWebApp2.war'
 }</code></pre>
@@ -209,7 +209,7 @@ Sometimes you will want to customize <a href="Gretty-configuration.html#_web_app
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>farm {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">farm {
   webapp 'com.mycompany.product:MyWebApp1:0.0.1'
   webapp 'com.mycompany.product:MyWebApp2:0.0.2'
 }</code></pre>

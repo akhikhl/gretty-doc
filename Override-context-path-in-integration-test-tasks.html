@@ -62,15 +62,13 @@
 		<h1>Overriding context path in integration test tasks</h1>
 	</div>
 
-	<p><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
+	<p><div class="paragraph">
 <p>Gretty version 1.1.5+ allows to override context path in integration test tasks. This can be useful, when you need to run integration tests
 against "alien" web-app, coming in form of WAR-file. Example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint groovy language-groovy"><code>apply plugin: 'org.akhikhl.gretty'
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin: 'org.akhikhl.gretty'
 
 test {
   include '**/Test*.*'
@@ -105,9 +103,7 @@ farm {
 <p>The complete working example of overriding context path in integration test tasks is available here:</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/testWar">https://github.com/akhikhl/gretty/tree/master/examples/testWar</a></p>
-</div>
-</div>
+<p><a href="https://github.com/akhikhl/gretty/tree/master/examples/testWar" class="bare">https://github.com/akhikhl/gretty/tree/master/examples/testWar</a></p>
 </div></p>
 
 	<hr />
