@@ -247,6 +247,7 @@ Note that interactiveMode only affects interactive tasks: appRun, appRunDebug, f
 | String
 | gretty_port.properties
 | Specifies name of file for gretty service and status port.
+|===
 
 == Web-app-specific properties
 
@@ -283,7 +284,7 @@ classPath affects only gretty tasks (not the generated WAR files or products).
 | function(String key, String value)
 | -
 | Adds web-app initialization parameter. +
-It has the same meaning/effect as +/web-app/servlet/init-param+ element in "web.xml". 
+It has the same meaning/effect as +/web-app/servlet/init-param+ element in "web.xml".
 initParameter affects only gretty tasks.
 If you assemble WAR file and deploy it to some servlet container, you must define init-parameters
 in "web.xml".
@@ -317,7 +318,7 @@ See also: link:Jetty-security-realms.html[Jetty security realms] and link:Tomcat
 | Adds a directory to the list of directories scanned by hot-deployment. +
 See also: link:Hot-deployment.html[Hot deployment].
 
-| [[_fastreload]] fastReload 
+| [[_fastreload]] fastReload
 | boolean or function(String) or function(java.io.File) or function(Map)
 | true
 | Adds folders to be fast-reloaded on change, i.e. copied to running web-app without restarting web-app. +
@@ -350,7 +351,7 @@ See also: link:Hot-deployment.html[Hot deployment].
 | [[_inplacemode]] inplaceMode
 | String
 | "soft"
-| Can be "soft" or "hard" (default "soft"). When "hard", the web-server serves the resources (of the given web-app) directly 
+| Can be "soft" or "hard" (default "soft"). When "hard", the web-server serves the resources (of the given web-app) directly
 from src/main/webapp. When "soft", the web-server serves the resources (of the given web-app) from build/inplaceWebapp. +
 Attention: `inplaceMode="hard"` effectively disables link:Web-app-overlays.html[webapp overlays] and link:Web-app-filtering.html[webapp filtering]. +
 See also: link:Hot-deployment.html[Hot deployment].
@@ -367,4 +368,3 @@ See also: link:Web-app-overlays.html[Web-app overlays].
 | Name of gradle task in the same project, which gretty "encloses" with servlet-container start/stop. +
 See also: link:Integration-tests-support.html[Integration tests support].
 |===
-
