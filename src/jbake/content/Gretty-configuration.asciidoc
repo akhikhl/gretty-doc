@@ -42,7 +42,7 @@ Gretty extension supports the following server-specific properties:
 | [[_servletcontainer]] servletContainer
 | String
 | 'jetty9'
-| Servlet container to be used in appXXX tasks. Possible values are 'jetty7', 'jetty8', 'jetty9', 'jetty93' (jdk 8 only), 'tomcat7', 'tomcat8'.
+| Servlet container to be used in appXXX tasks. Possible values are 'jetty7', 'jetty8', 'jetty9', 'jetty93' (jdk 8 only), 'jetty94' (jdk 8 only), 'tomcat7', 'tomcat8'.
 
 | [[_managedclassreload]] managedClassReload
 | boolean

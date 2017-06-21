@@ -17,7 +17,7 @@ apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.p
 
 gretty {
   // supported values:
-  // 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'
+  // 'jetty7', 'jetty8', 'jetty9', 'jetty93', 'jetty94', 'tomcat7', 'tomcat8'
   servletContainer = 'jetty9'
 }
 ----
@@ -42,7 +42,7 @@ apply plugin: 'org.akhikhl.gretty'
 
 gretty {
   // supported values:
-  // 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'
+  // 'jetty7', 'jetty8', 'jetty9', 'jetty93', 'jetty94', 'tomcat7', 'tomcat8'
   servletContainer = 'jetty9'
 }
 ----
@@ -55,7 +55,7 @@ apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.p
 
 farm {
   // supported values:
-  // 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'
+  // 'jetty7', 'jetty8', 'jetty9', 'jetty93', 'jetty94', 'tomcat7', 'tomcat8'
   servletContainer = 'jetty9'
 }
 ----
@@ -69,7 +69,7 @@ Here are the versions for each servletContainer value:
 | Servlet API version
 
 | jetty7
-| Jetty 7.6.14.v20131031
+| Jetty 7.6.16.v20140903
 | 2.5
 
 | jetty8
@@ -77,22 +77,31 @@ Here are the versions for each servletContainer value:
 | 3.0.1
 
 | jetty9
-| Jetty 9.2.1.v20140609
+| Jetty 9.2.22.v20170606
+| 3.1.0
+
+| jetty93
+| Jetty 9.3.20.v20170531
+| 3.1.0
+
+| jetty94
+| Jetty 9.4.6.v20170531
 | 3.1.0
 
 | tomcat7
-| Tomcat 7.0.54
+| Tomcat 7.0.78
 | 3.0.1
 
 | tomcat8
-| Tomcat 8.0.8
+| Tomcat 8.0.44
 | 3.1.0
 |===
 
-When you run generic tasks (appRun, appStart, ...), servletContainer property fully defines 
+You can override these versions by properties, described in chapter link:Overriding-servlet-container-versions.html[overriding servlet container versions].
+
+When you run generic tasks (appRun, appStart, ...), servletContainer property fully defines
 on which servlet container your web-app will run. However, you can use more specific tasks to override
 the chosen servlet container. For example, if you define: `gretty.servletContainer = 'jetty9'` and
 run task `tomcatRun`, your web-app will actually run on tomcat.
 
 For more information see link:Gretty-configuration.html[Gretty configuration] and link:Gretty-tasks.html[Gretty tasks].
-

@@ -1,0 +1,29 @@
+= Overriding servlet container versions
+Andrey Hihlovskiy
+2017-06-20
+:sectanchors:
+:jbake-type: page
+:jbake-status: published
+
+Starting with version 2.0.0, Gretty supports overriding versions of Jetty, Tomcat and Servlet API.
+
+All you have to do is to add one of the following properties to "gradle.properties" of your project:
+
+[source,properties`]
+----
+jetty7Version = 7.6.16.v20140903
+jetty7ServletApiVersion = 2.5
+jetty8Version = 8.1.8.v20121106
+jetty8ServletApiVersion = 3.0.1
+jetty9Version = 9.2.22.v20170606
+jetty93Version = 9.3.20.v20170531
+jetty94Version = 9.4.6.v20170531
+jetty9ServletApiVersion = 3.1.0
+tomcat7Version = 7.0.78
+tomcat7ServletApiVersion = 3.0.1
+tomcat8Version = 8.0.44
+tomcat8ServletApiVersion = 3.1.0
+----
+
+Above we show default values of these properties. You can set them to other values, corresponding to existing artifact versions
+at jcenter or maven central.
