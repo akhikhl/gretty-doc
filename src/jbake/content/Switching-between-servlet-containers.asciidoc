@@ -17,7 +17,7 @@ apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.p
 
 gretty {
   // supported values:
-  // 'jetty7', 'jetty8', 'jetty9', 'jetty93', 'jetty94', 'tomcat7', 'tomcat8'
+  // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
   servletContainer = 'jetty9'
 }
 ----
@@ -42,7 +42,7 @@ apply plugin: 'org.akhikhl.gretty'
 
 gretty {
   // supported values:
-  // 'jetty7', 'jetty8', 'jetty9', 'jetty93', 'jetty94', 'tomcat7', 'tomcat8'
+  // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
   servletContainer = 'jetty9'
 }
 ----
@@ -55,7 +55,7 @@ apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.p
 
 farm {
   // supported values:
-  // 'jetty7', 'jetty8', 'jetty9', 'jetty93', 'jetty94', 'tomcat7', 'tomcat8'
+  // 'jetty7', 'jetty8', 'jetty9', 'jetty9.3', 'jetty9.4', 'tomcat7', 'tomcat8'
   servletContainer = 'jetty9'
 }
 ----
@@ -80,11 +80,11 @@ Here are the versions for each servletContainer value:
 | Jetty 9.2.22.v20170606
 | 3.1.0
 
-| jetty93
+| jetty9.3
 | Jetty 9.3.20.v20170531
 | 3.1.0
 
-| jetty94
+| jetty9.4
 | Jetty 9.4.6.v20170531
 | 3.1.0
 
